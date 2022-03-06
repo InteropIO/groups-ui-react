@@ -1,0 +1,312 @@
+@import "vars.css";
+
+body {
+    max-width: none;
+    max-height: none;
+    overflow: hidden;
+    background: var(--t42-background);
+    font-weight: var(--t42-text-font-weight);
+    font-family: var(--t42-text-font-family);
+    font-size: var(--t42-text-font-size);
+}
+
+
+#t42-group-container {
+    display: flex; 
+    flex-direction: column;
+    overflow: hidden; 
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    background: var(--t42-background);
+    border-style: solid;
+    border-color: var(--t42-group-border-color);
+    border-width: var(--t42-group-border-size);
+}
+
+#t42-frames-container {
+    display: flex;
+    flex-grow: 1;
+    position: relative;
+    height: 100%;
+    background: var(--t42-frames-background);
+}
+
+.t42-caption-bar {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 0;
+    flex-shrink: 0;
+    overflow: hidden; 
+    position: relative;
+}
+
+.t42-caption-bar:after {
+    width: 100%;
+    display: block;
+    background-color: var(--t42-caption-separator-color);
+    content: "";
+    position: absolute;
+    z-index: 1;
+}
+
+.t42-caption {
+    display: flex;
+    overflow: hidden; 
+    align-items: center;
+    text-align: left;
+    user-select: none;
+}
+
+.t42-title {
+    color: var(--t42-title-color);
+    margin: var(--t42-title-margin);
+}
+
+.t42-move-area {
+    display: flex;
+    flex-grow: 1;
+}
+
+.t42-buttons {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    box-sizing: border-box;
+}
+
+.t42-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    transition: 0.3s;
+}
+
+.t42-standard-button {
+    width: var(--t42-standard-button-size); 
+    height: var(--t42-standard-button-size); 
+}
+
+.t42-standard-button-image {
+    fill: var(--t42-standard-button-color);
+}
+
+.t42-caption-bar-button {
+    position: relative;
+}
+
+.t42-caption-bar-button:hover {
+    background: var(--t42-caption-bar-button-hover-background);
+}
+
+.t42-caption-bar-button-close:hover {
+    background: var(--t42-caption-bar-button-close-hover-background);
+}
+
+.t42-caption-bar-button:hover .t42-standard-button-image {
+    fill: var(--t42-standard-button-hover-color);
+}
+
+.t42-group-caption-bar {
+    height: var(--t42-group-caption-height);
+}
+
+.t42-group-caption-bar-element {
+    background: var(--t42-group-caption-background);
+}
+
+.t42-group-caption-bar::after {
+    top: calc(var(--t42-group-caption-height) - var(--t42-group-caption-separator-size));
+    height: var(--t42-group-caption-separator-size);
+}
+
+.t42-group-caption-bar-button {
+    width: var(--t42-group-caption-height);
+    height: var(--t42-group-caption-height);
+}
+
+.t42-frame {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0;
+    flex-shrink: 0;
+    position: absolute;
+    box-sizing: border-box;
+    overflow: hidden;
+    background: var(--t42-background);
+    border-style: solid;
+    border-color: var(--t42-frame-border-color);
+    border-width: var(--t42-frame-border-size);
+}
+
+.t42-frame-caption-bar {
+    height: var(--t42-frame-caption-height);
+}
+
+.t42-frame-caption-bar::after {
+    top: calc(var(--t42-frame-caption-height) - var(--t42-frame-caption-separator-size));
+    height: var(--t42-frame-caption-separator-size);
+}
+
+.t42-frame-caption-bar-element {
+    background: var(--t42-frame-caption-background);
+}
+
+.t42-frame-caption-bar-button {
+    width: var(--t42-frame-caption-height);
+    height: var(--t42-frame-caption-height);
+}
+
+.t42-frame-window {
+    display: flex;
+    flex-grow: 1;
+    background: var(--t42-background);
+}
+
+.t42-tab-bar {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 0;
+    flex-shrink: 0;
+    overflow: hidden; 
+    position: relative;
+    height: var(--t42-tab-bar-height);
+}
+
+.t42-tab-bar::after {
+    display: block;
+    content: "";
+    position: absolute;
+    z-index: 1;
+    background-color: var(--t42-caption-separator-color);
+    top: calc(var(--t42-tab-bar-height) - var(--t42-tab-bar-separator-size));
+    height: var(--t42-tab-bar-separator-size);
+    width: 100%;
+}
+
+.t42-tab-bar-element {
+    background: var(--t42-tab-bar-background);
+}
+
+.t42-tab-bar-button {
+    width: var(--t42-tab-bar-height);
+    height: var(--t42-tab-bar-height);
+}
+
+.t42-tabs {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 0;
+    flex-shrink: 0;
+    overflow: hidden;
+    list-style-type: none;
+    box-sizing: border-box;
+    position: relative;
+    padding: 0px;
+    margin: var(--t42-tab-bar-tabs-margin);
+}
+
+.t42-tab {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 0;
+    flex-shrink: 0;
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+    transition: 0.3s;
+    padding: 0px;
+    width: var(--t42-tab-bar-tab-width);
+    min-width: var(--t42-tab-bar-tab-min-width);
+    background: var(--t42-tab-bar-tab-background);
+}
+
+.t42-tab::after {
+    width: var(--t42-tab-bar-tab-separator-size);
+    height: 100%;
+    position: absolute;
+    right: 0px;
+    display: block;
+    background-color: var(--t42-tab-bar-tab-separator-color);
+    content: "";
+    z-index: 10;
+}
+
+.t42-tab:hover::before {
+    width: calc(100% - var(--t42-tab-bar-tab-separator-size));
+    height: var(--t42-tab-bar-tab-hover-separator-size);
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    display: block;
+    background-color: var(--t42-tab-bar-tab-separator-color);
+    content: "";
+    z-index: 10;
+}
+
+.t42-tab-caption {
+    flex-grow: 1;
+    text-overflow: ellipsis;
+    color: var(--t42-tab-bar-tab-text);
+    margin: var(--t42-tab-bar-tab-caption-margin);
+}
+
+.t42-tab-close-button {
+    margin: var(--t42-tab-bar-tab-close-button-margin);
+}
+
+.t42-tab-close-button-content {
+    display: flex;
+    width: var(--t42-tab-bar-tab-close-button-size); 
+    height: var(--t42-tab-bar-tab-close-button-size); 
+}
+
+.t42-tab-close-button-content .t42-standard-button-image {
+    fill: var(--t42-tab-bar-tab-text);
+}
+
+.t42-selected-tab-element {
+    background: var(--t42-tab-bar-selected-tab-background);
+}
+
+.t42-selected-tab::before {
+    width: calc(100% - var(--t42-tab-bar-tab-separator-size));
+    height: var(--t42-tab-bar-tab-selected-separator-size);
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    display: block;
+    background-color: var(--t42-tab-bar-tab-selected-separator-color);
+    content: "";
+    z-index: 10;
+}
+
+.t42-selected-tab:hover::before {
+    width: calc(100% - var(--t42-tab-bar-tab-separator-size));
+    height: var(--t42-tab-bar-tab-selected-separator-size);
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    display: block;
+    background-color: var(--t42-tab-bar-tab-selected-separator-color);
+    content: "";
+    z-index: 10;
+}
+
+.t42-selected-tab-caption {
+    color: var(--t42-tab-bar-selected-tab-text);
+}
+
+.t42-selected-tab-close-button-content {
+    display: flex;
+}
+
+.t42-selected-tab-close-button-content .t42-standard-button-image {
+    fill: var(--t42-tab-bar-selected-tab-text);
+}

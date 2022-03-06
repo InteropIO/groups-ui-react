@@ -1,0 +1,59 @@
+:root, ::before, ::after {
+    --t42-background: #252525;
+
+    --t42-frames-background: rgb(0, 153, 255);
+
+    --t42-text-font-family: "Montserrat","Helvetica Neue",Arial,sans-serif;
+    --t42-text-font-weight: 400;
+    --t42-text-font-size: 0.750rem;
+
+    --t42-title-color: #EEEEEE;
+    --t42-title-margin: 5px;
+
+    --t42-caption-separator-color: #343434;
+
+    --t42-caption-bar-button-hover-background: #454545;
+    --t42-caption-bar-button-close-hover-background: #D03E3E;
+
+    --t42-standard-button-size: 11px;
+    --t42-standard-button-color: #6E6E6E;
+    --t42-standard-button-hover-color: #E0E0E0;
+
+    --t42-group-border-color: #626262;
+    --t42-group-border-size: 0px;
+
+    --t42-group-caption-height: 30px;
+    --t42-group-caption-separator-size: 0px;
+    --t42-group-caption-background: #1E1E1E;
+
+    --t42-frame-border-color: #424242;
+    --t42-frame-border-size: 0px;
+    --t42-frame-caption-height: 30px;
+    --t42-frame-caption-separator-size: 1px;
+    --t42-frame-caption-background: #252525;
+
+    --t42-tab-bar-height: 30px;
+    --t42-tab-bar-separator-size: 1px;
+    --t42-tab-bar-background: #252525;
+
+    --t42-tab-bar-tabs-margin: 2px 0px 0px 2px;
+
+    --t42-tab-bar-tab-min-width: 40px;
+    --t42-tab-bar-tab-width: 160px;
+    --t42-tab-bar-tab-separator-size: 1px;
+    --t42-tab-bar-tab-separator-color: #444444;
+    --t42-tab-bar-tab-hover-separator-size: 3px;
+    --t42-tab-bar-tab-selected-separator-size: 3px;
+    --t42-tab-bar-tab-selected-separator-color: #2080D3;
+    --t42-tab-bar-tab-caption-margin: 2px 0px 2px 5px;
+    --t42-tab-bar-tab-close-button-margin: auto 9px auto 8px;
+    --t42-tab-bar-tab-close-button-size: 6px;
+    --t42-tab-bar-tab-text: #6E6E6E;
+    --t42-tab-bar-tab-background: #252525;
+    --t42-tab-bar-tab-hover-text: #6E6E6E;
+    --t42-tab-bar-tab-hover-background: #252525;
+    --t42-tab-bar-selected-tab-text: #EEEEEE;
+    --t42-tab-bar-selected-tab-background: #212121;
+    --t42-tab-bar-selected-tab-hover-text: #EEEEEE;
+    --t42-tab-bar-selected-tab-hover-background: #212121;
+}
