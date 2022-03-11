@@ -1,4 +1,4 @@
-import { WebGroupsManager } from "./types/internal";
+import { StandardButtons, TargetType, WebGroupsManager } from "./types/internal";
 
 declare const window: Window & { webGroupsManager: WebGroupsManager };
 
@@ -14,7 +14,7 @@ class WorkspacesManagerDecorator {
     }
 
     public getGroupId() {
-        return window.webGroupsManager.getGroupId();
+        return window.webGroupsManager.externalLibraryFactory.groupId;
     }
 
     public notifyMoveAreaChanged() {
@@ -44,6 +44,16 @@ class WorkspacesManagerDecorator {
     public requestFocus(): void {
         return window.webGroupsManager.requestFocus();
     }
+
+    public closeFrame(targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Frame, targetId, StandardButtons.Close);
+    }
+
+    public closeTab(targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Tab, targetId, StandardButtons.Close);
+    }
+
+    // TODO wrap all the methods of the externalLibrary factory
 }
 
 export default new WorkspacesManagerDecorator();

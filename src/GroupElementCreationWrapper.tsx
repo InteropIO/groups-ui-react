@@ -9,11 +9,11 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
         super(props);
         this.state = {
             groupCaptionBar: undefined,
-            frameCaptionBars: {},
-            beforeTabsZones: {},
-            tabElements: {},
-            afterTabsZones: {},
-            tabHeaderButtons: {}
+            frameCaptionBars: {}, // dict frameId to create caption bar options
+            beforeTabsZones: {}, // dict frameId to create before tabs zones options
+            tabElements: {}, // dict windowId to create tab elements options
+            afterTabsZones: {}, // dict frameId to after tabs zones options
+            tabHeaderButtons: {} // dict frameId to crate tab header buttons options
         };
     }
 
@@ -30,97 +30,83 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
     }
 
     onCreateFrameCaptionBarRequested = (options: CreateFrameCaptionBarRequestOptions) => {
-        if (options === this.state.frameCaptionBars[options.elementId] || !options) {
+        if (options === this.state.frameCaptionBars[options.targetId] || !options) {
             return;
         }
         this.setState(s => {
-            const newCaptionBarsObj = Object.keys(s.frameCaptionBars).reduce((acc, elementId) => {
-                acc[elementId] = s.frameCaptionBars[elementId];
-                return acc;
-            }, {});
-
-            newCaptionBarsObj[options.elementId] = options;
             return {
                 ...s,
-                frameCaptionBars: newCaptionBarsObj
+                frameCaptionBars: {
+                    ...s.frameCaptionBars,
+                    [options.targetId]: options
+                }
             }
         });
     }
 
     onCreateBeforeTabsComponentRequested = (options: CreateBeforeTabsZoneRequestOptions) => {
-        if (options === this.state.beforeTabsZones[options.elementId] || !options) {
+        if (options === this.state.beforeTabsZones[options.targetId] || !options) {
             return;
         }
         this.setState(s => {
-            const beforeTabsZonesObj = Object.keys(s.beforeTabsZones).reduce((acc, elementId) => {
-                acc[elementId] = s.beforeTabsZones[elementId];
-                return acc;
-            }, {});
-
-            beforeTabsZonesObj[options.elementId] = options;
             return {
                 ...s,
-                beforeTabsZones: beforeTabsZonesObj
+                beforeTabsZones: {
+                    ...s.beforeTabsZones,
+                    [options.targetId]: options
+                }
             }
         });
     }
 
     onCreateTabElementRequested = (options: CreateTabRequestOptions) => {
-        if (options === this.state.tabElements[options.elementId] || !options) {
+        if (options === this.state.tabElements[options.targetId] || !options) {
             return;
         }
-        console.log(" creating with ", options);
         this.setState(s => {
-            const newTabElementsObj = Object.keys(s.tabElements).reduce((acc, elementId) => {
-                console.log("element id is", elementId);
-                console.log("and the value for the element is", s.tabElements[elementId]);
-                console.log("the number of values in the state is ", Object.values(s.tabElements));
-                acc[elementId] = s.tabElements[elementId];
+            const newTabElementsObj = Object.keys(s.tabElements).reduce((acc, targetId) => {
+                acc[targetId] = s.tabElements[targetId];
                 return acc;
             }, {});
 
-            newTabElementsObj[options.elementId] = options;
+            newTabElementsObj[options.targetId] = options;
 
-            console.log("after copying the new tab element stat is ", newTabElementsObj);
             return {
                 ...s,
-                tabElements: newTabElementsObj
+                tabElements: {
+                    ...s.tabElements,
+                    [options.targetId]: options
+                }
             }
         });
     }
 
     onCreateAfterTabsComponentRequested = (options: CreateAfterTabsZoneRequestOptions) => {
-        if (options === this.state.afterTabsZones[options.elementId] || !options) {
+        if (options === this.state.afterTabsZones[options.targetId] || !options) {
             return;
         }
         this.setState(s => {
-            const afterTabsZonesObj = Object.keys(s.afterTabsZones).reduce((acc, elementId) => {
-                acc[elementId] = s.afterTabsZones[elementId];
-                return acc;
-            }, {});
-
-            afterTabsZonesObj[options.elementId] = options;
             return {
                 ...s,
-                afterTabsZones: afterTabsZonesObj
+                afterTabsZones: {
+                    ...s.afterTabsZones,
+                    [options.targetId]: options
+                }
             }
         });
     }
 
     onCreateTabHeaderButtonsRequested = (options: CreateTabHeaderButtonsOptions) => {
-        if (options === this.state.tabHeaderButtons[options.elementId] || !options) {
+        if (options === this.state.tabHeaderButtons[options.targetId] || !options) {
             return;
         }
         this.setState(s => {
-            const newTabElementsObj = Object.keys(s.tabHeaderButtons).reduce((acc, elementId) => {
-                acc[elementId] = s.tabHeaderButtons[elementId];
-                return acc;
-            }, {});
-
-            newTabElementsObj[options.elementId] = options;
             return {
                 ...s,
-                tabHeaderButtons: newTabElementsObj
+                tabHeaderButtons: {
+                    ...s.tabHeaderButtons,
+                    [options.targetId]: options
+                }
             }
         });
     }
@@ -138,38 +124,31 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
     }
 
     onUpdateFrameCaptionBarRequested = (options: UpdateFrameCaptionBarRequestOptions) => {
-        if (options === this.state.frameCaptionBars[options.elementId] || !options) {
+        if (options === this.state.frameCaptionBars[options.targetId] || !options) {
             return;
         }
         this.setState(s => {
-            const newCaptionBarsObj = Object.keys(s.frameCaptionBars).reduce((acc, elementId) => {
-                acc[elementId] = s.frameCaptionBars[elementId];
-                return acc;
-            }, {});
-
-            newCaptionBarsObj[options.elementId] = { ...newCaptionBarsObj[options.elementId], ...options };
             return {
                 ...s,
-                frameCaptionBars: newCaptionBarsObj
+                frameCaptionBars: {
+                    ...s.frameCaptionBars,
+                    [options.targetId]: { ...s.frameCaptionBars[options.targetId], ...options }
+                }
             }
         });
     }
 
     onUpdateTabElementRequested = (options: CreateTabRequestOptions) => {
-        if (options === this.state.tabElements[options.elementId] || !options) {
+        if (options === this.state.tabElements[options.targetId] || !options) {
             return;
         }
         this.setState(s => {
-            const newTabElementsObj = Object.keys(s.tabElements).reduce((acc, elementId) => {
-                acc[elementId] = s.tabElements[elementId];
-                return acc;
-            }, {});
-
-            console.log("merging", newTabElementsObj[options.elementId], "and ", options);
-            newTabElementsObj[options.elementId] = { ...newTabElementsObj[options.elementId], ...options };
             return {
                 ...s,
-                tabElements: newTabElementsObj
+                tabElements: {
+                    ...s.tabElements,
+                    [options.targetId]: { ...s.tabElements[options.targetId], ...options }
+                }
             }
         });
     }
@@ -180,7 +159,7 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
             return;
         }
 
-        const { parentElement, callback, ...options } = this.state.groupCaptionBar;
+        const { parentElement, ...options } = this.state.groupCaptionBar;
 
         return <Portal parentElement={parentElement}><GroupCaptionBarCustomElement {...options} /></Portal>;
     }
@@ -192,8 +171,8 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
                 return;
             }
 
-            const { parentElement, callback, ...options } = fcb;
-            return <Portal key={options.elementId} parentElement={parentElement}><FrameCaptionBarCustomElement {...options} /></Portal>
+            const { parentElement, ...options } = fcb;
+            return <Portal key={options.targetId} parentElement={parentElement}><FrameCaptionBarCustomElement {...options} /></Portal>
         });
     }
 
@@ -204,8 +183,8 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
                 return;
             }
 
-            const { parentElement, callback, ...options } = te;
-            return <Portal key={options.elementId} parentElement={parentElement}><BeforeTabsCustomElement {...options} /></Portal>
+            const { parentElement, ...options } = te;
+            return <Portal key={options.targetId} parentElement={parentElement}><BeforeTabsCustomElement {...options} /></Portal>
         });
     }
 
@@ -216,12 +195,12 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
                 return;
             }
 
-            const onCloseClick = ()=>{
-                webGroupsManager.close(); 
+            const onCloseClick = () => {
+                webGroupsManager.closeTab(te.targetId);
             }
 
-            const { parentElement, callback, ...options, } = te;
-            return <Portal key={options.elementId} parentElement={parentElement}><TabCustomElement {...options} /></Portal>
+            const { parentElement, ...options } = te;
+            return <Portal key={options.targetId} parentElement={parentElement}><TabCustomElement {...options} close={onCloseClick} /></Portal>
         });
     }
 
@@ -232,8 +211,8 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
                 return;
             }
 
-            const { parentElement, callback, ...options } = te;
-            return <Portal key={options.elementId} parentElement={parentElement}><AfterTabsCustomElement {...options} /></Portal>
+            const { parentElement, ...options } = te;
+            return <Portal key={options.targetId} parentElement={parentElement}><AfterTabsCustomElement {...options} /></Portal>
         });
     }
 
@@ -243,20 +222,20 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
             if (!TabButtonsCustomElement || !te.parentElement) {
                 return;
             }
-
-            const { parentElement, callback, ...options } = te;
-            return <Portal key={options.elementId} parentElement={parentElement}><TabButtonsCustomElement {...options} /></Portal>
+            // TODO Create wrapper functions for minimize, close, maximize etc like in renderTabElement
+            const { parentElement, ...options } = te;
+            return <Portal key={options.targetId} parentElement={parentElement}><TabButtonsCustomElement {...options} /></Portal>
         });
     }
 
     onRemoveFrameCaptionBarRequested = (options: RemoveRequestOptions) => {
-        if (!this.state.frameCaptionBars[options.elementId]) {
+        if (!this.state.frameCaptionBars[options.targetId]) {
             return;
         }
         this.setState(s => {
-            const newCaptionBarsObj = Object.keys(s.frameCaptionBars).reduce((acc, elementId) => {
-                if (elementId !== options.elementId) {
-                    acc[elementId] = s.frameCaptionBars[elementId];
+            const newCaptionBarsObj = Object.keys(s.frameCaptionBars).reduce((acc, targetId) => {
+                if (targetId !== options.targetId) {
+                    acc[targetId] = s.frameCaptionBars[targetId];
                 }
                 return acc;
             }, {});
@@ -269,13 +248,13 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
     }
 
     onRemoveBeforeTabsComponentRequested = (options: RemoveRequestOptions) => {
-        if (!this.state.beforeTabsZones[options.elementId]) {
+        if (!this.state.beforeTabsZones[options.targetId]) {
             return;
         }
         this.setState(s => {
-            const newTabElementsObj = Object.keys(s.beforeTabsZones).reduce((acc, elementId) => {
-                if (elementId != options.elementId) {
-                    acc[elementId] = s.beforeTabsZones[elementId];
+            const newTabElementsObj = Object.keys(s.beforeTabsZones).reduce((acc, targetId) => {
+                if (targetId != options.targetId) {
+                    acc[targetId] = s.beforeTabsZones[targetId];
                 }
                 return acc;
             }, {});
@@ -288,13 +267,13 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
     }
 
     onRemoveTabElementRequested = (options: RemoveRequestOptions) => {
-        if (!this.state.tabElements[options.elementId]) {
+        if (!this.state.tabElements[options.targetId]) {
             return;
         }
         this.setState(s => {
-            const newTabElementsObj = Object.keys(s.tabElements).reduce((acc, elementId) => {
-                if (elementId != options.elementId) {
-                    acc[elementId] = s.tabElements[elementId];
+            const newTabElementsObj = Object.keys(s.tabElements).reduce((acc, targetId) => {
+                if (targetId != options.targetId) {
+                    acc[targetId] = s.tabElements[targetId];
                 }
                 return acc;
             }, {});
@@ -307,13 +286,13 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
     }
 
     onRemoveAfterTabsComponentRequested = (options: RemoveRequestOptions) => {
-        if (!this.state.afterTabsZones[options.elementId]) {
+        if (!this.state.afterTabsZones[options.targetId]) {
             return;
         }
         this.setState(s => {
-            const newTabElementsObj = Object.keys(s.afterTabsZones).reduce((acc, elementId) => {
-                if (elementId != options.elementId) {
-                    acc[elementId] = s.afterTabsZones[elementId];
+            const newTabElementsObj = Object.keys(s.afterTabsZones).reduce((acc, targetId) => {
+                if (targetId != options.targetId) {
+                    acc[targetId] = s.afterTabsZones[targetId];
                 }
                 return acc;
             }, {});
@@ -326,13 +305,13 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
     }
 
     onRemoveTabHeaderButtonsRequested = (options: RemoveRequestOptions) => {
-        if (!this.state.tabHeaderButtons[options.elementId]) {
+        if (!this.state.tabHeaderButtons[options.targetId]) {
             return;
         }
         this.setState(s => {
-            const newTabElementsObj = Object.keys(s.tabHeaderButtons).reduce((acc, elementId) => {
-                if (elementId != options.elementId) {
-                    acc[elementId] = s.tabHeaderButtons[elementId];
+            const newTabElementsObj = Object.keys(s.tabHeaderButtons).reduce((acc, targetId) => {
+                if (targetId != options.targetId) {
+                    acc[targetId] = s.tabHeaderButtons[targetId];
                 }
                 return acc;
             }, {});
@@ -369,7 +348,6 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
                     onRemoveBeforeTabsComponentRequested={this.onRemoveBeforeTabsComponentRequested}
                     onRemoveAfterTabsComponentRequested={this.onRemoveAfterTabsComponentRequested}
                     onRemoveTabHeaderButtonsRequested={this.onRemoveTabHeaderButtonsRequested}
-                    glue={glue}
                 />
             </>
         );

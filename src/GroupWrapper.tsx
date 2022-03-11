@@ -2,13 +2,12 @@ import React from "react";
 import { GroupWrapperProps } from "./types/internal";
 import webGroupsManager from "./webGroupsManager";
 
-const templateId = "workspaces-react-wrapper-template";
-const workspacesInnerContainerId = "outter-layout-container";
 
 class GroupWrapper extends React.Component<GroupWrapperProps> {
     containerRef: HTMLElement | null;
 
     componentDidMount() {
+        // If unmount will be supported the element could be moved from the shadow dom to the normal dom (Workspaces works that way)
         // let placeholder = document.getElementById(templateId) as HTMLTemplateElement;
         // if (!placeholder) {
         //     const template = document.createElement("template");
@@ -28,24 +27,35 @@ class GroupWrapper extends React.Component<GroupWrapperProps> {
         // }
         // this.containerRef.appendChild(placeholder.content);
 
-        const componentFactory = { 
+        const componentFactory = {
             createGroupCaptionBar: this.props.onCreateGroupCaptionBarRequested,
-            changeGroupCaption: this.props.onUpdateGroupCaptionBarRequested,
+            updateGroupCaptionBar: this.props.onUpdateGroupCaptionBarRequested,
+
             createFrameCaptionBar: this.props.onCreateFrameCaptionBarRequested,
-            changeFrameCaption: this.props.onUpdateFrameCaptionBarRequested,
+            updateFrameCaptionBar: this.props.onUpdateFrameCaptionBarRequested,
+
             createBeforeTabsComponent: this.props.onCreateBeforeTabsComponentRequested,
+
             createTab: this.props.onCreateTabRequested,
-            changeTabCaption: this.props.onUpdateTabRequested,
+            updateTab: this.props.onUpdateTabRequested,
+
             createAfterTabsComponent: this.props.onCreateAfterTabsComponentRequested,
-            createTabHeaderButtonsComponent: this.props.onCreateTabHeaderButtonsRequested,
-            removeFrameCaptionBar: this.props.onRemoveFrameCaptionBarRequested,
+            createTabBarButtonsContainerElement: this.props.onCreateTabHeaderButtonsRequested,
+
+            updateStandardButton: (a: any) => { console.log(a) },
+
+            removeFrameCaptionBar: this.props.onRemoveFrameCaptionBarRequested, // needed to prevent a memory leak
             removeTab: this.props.onRemoveTabRequested,
             removeTabHeaderButtons: this.props.onRemoveTabHeaderButtonsRequested
         };
+
+        // TODO some of the methods might (if they are too fast) set the state of the parent before its mounted
+        // go to workspaces to see how its handled (with a flag in the state of the parent)
         webGroupsManager.init(undefined, componentFactory);
     }
 
     componentWillUnmount() {
+        // If unmount will be supported the element could be moved the the shadow dom (Workspaces works that way)
         // let placeholder = document.getElementById(templateId) as HTMLTemplateElement;
 
         // if (!this.containerRef) {
@@ -66,7 +76,5 @@ class GroupWrapper extends React.Component<GroupWrapperProps> {
         );
     }
 }
-
-// export default withGlueInstance(GroupWrapper);
 
 export default GroupWrapper;

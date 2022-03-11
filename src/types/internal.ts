@@ -5,11 +5,10 @@ export interface PortalProps {
 }
 
 export interface GroupCaptionBarProps {
-	elementId: string;
 	moveAreaId: string;
 	targetType: string;
 	targetId: string;
-	text: string;
+	caption: string;
 }
 
 export interface MoveAreaProps {
@@ -18,7 +17,7 @@ export interface MoveAreaProps {
 
 export interface FrameCaptionBarProps {
 	moveAreaId: string;
-	text: string;
+	caption: string;
 }
 
 export interface BeforeTabsZoneProps {
@@ -26,18 +25,20 @@ export interface BeforeTabsZoneProps {
 }
 
 export interface TabElementProps {
-	elementId: string;
-	text: string;
-	isSelected: boolean;
+	targetId: string;
+	caption: string;
+	selected: boolean;
+	close: () => void;
 }
 
 export interface TabCaptionProps {
-	text: string;
-	isSelected: boolean;
+	caption: string;
+	selected: boolean;
 }
 
 export interface TabCloseButtonProps {
-	isSelected: boolean;
+	selected: boolean;
+	close: () => void;
 }
 
 export interface AfterTabsZoneProps {
@@ -49,7 +50,7 @@ export interface ButtonsProps {
 }
 
 export interface MinimizeButtonProps {
-
+	minimize: () => void;
 }
 
 export interface MaximizeButtonProps {
@@ -57,7 +58,7 @@ export interface MaximizeButtonProps {
 }
 
 export interface CloseButtonProps {
-
+	close: () => void;
 }
 
 export interface GroupProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -72,7 +73,7 @@ export interface GroupProps extends React.DetailedHTMLProps<React.HTMLAttributes
 			Before?: React.ComponentType<BeforeTabsZoneProps>;
 			Element?: React.ComponentType<TabElementProps>;
 			After?: React.ComponentType<AfterTabsZoneProps>;
-			Buttons?: React.ComponentType<ButtonsProps>;
+			Buttons?: React.ComponentType<ButtonsProps>; // TODO create a default element
 		}
 	},
 	glue?: any;
@@ -93,14 +94,13 @@ export interface GroupWrapperProps {
 	onRemoveTabRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveAfterTabsComponentRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveTabHeaderButtonsRequested?: (options: RemoveRequestOptions) => void;
-	glue?: any;
 }
 
 export interface CreateGroupCaptionBarRequestOptions extends CreateElementRequestOptions {
 	moveAreaId: string;
 	targetId: string;
 	targetType: string;
-	text: string;
+	caption: string;
 }
 
 export interface UpdateGroupCaptionBarRequestOptions extends BaseElementOptions {
@@ -116,13 +116,13 @@ export interface UpdateTabRequestOptions extends BaseElementOptions {
 }
 
 export interface CreateFrameCaptionBarRequestOptions extends CreateElementRequestOptions {
-	text: string;
+	caption: string;
 	moveAreaId: string;
 }
 
 export interface CreateTabRequestOptions extends CreateElementRequestOptions {
-	text: string;
-	isSelected: boolean;
+	caption: string;
+	selected: boolean;
 }
 
 export interface CreateBeforeTabsZoneRequestOptions extends CreateElementRequestOptions {
@@ -138,32 +138,49 @@ export interface CreateTabHeaderButtonsOptions extends CreateElementRequestOptio
 }
 
 export interface RemoveRequestOptions {
-	elementId: string;
+	targetId: string;
 }
 
 export interface BaseElementOptions {
-	elementId: string;
+	targetId: string;
 }
 
 export interface CreateElementRequestOptions extends BaseElementOptions {
 	parentElement: HTMLElement;
-	elementId: string;
-	callback?: () => void;
 	[k: string]: any;
+}
+
+export enum TargetType {
+	Group = "group",
+	Frame = "frame",
+	TabBar = "tabBar",
+	Tab = "tab"
+}
+
+export enum StandardButtons {
+	Minimize = "minimize",
+	Maximize = "maximize",
+	Restore = "restore",
+	Close = "close"
 }
 
 export interface ElementCreationWrapperState {
 	groupCaptionBar?: CreateGroupCaptionBarRequestOptions;
-	frameCaptionBars: { [elementId: string]: CreateFrameCaptionBarRequestOptions };
-	beforeTabsZones: { [elementId: string]: CreateBeforeTabsZoneRequestOptions };
-	tabElements: { [elementId: string]: CreateTabRequestOptions };
-	afterTabsZones: { [elementId: string]: CreateAfterTabsZoneRequestOptions };
-	tabHeaderButtons: { [elementId: string]: CreateTabHeaderButtonsOptions };
+	frameCaptionBars: { [targetId: string]: CreateFrameCaptionBarRequestOptions };
+	beforeTabsZones: { [targetId: string]: CreateBeforeTabsZoneRequestOptions };
+	tabElements: { [targetId: string]: CreateTabRequestOptions };
+	afterTabsZones: { [targetId: string]: CreateAfterTabsZoneRequestOptions };
+	tabHeaderButtons: { [targetId: string]: CreateTabHeaderButtonsOptions };
+}
+
+export interface ExternalLibraryFactory {
+	readonly groupId: string;
+	onStandardButtonClick(targetType: TargetType, targetId: string, buttonId: StandardButtons): void;
+	onCaptionChanged(targetType: TargetType, targetId: string, text: string): void;
 }
 
 export interface WebGroupsManager {
 	init: (factory?: any) => void;
-	getGroupId: () => string;
 	notifyMoveAreaChanged(): void;
 	registerPopup(element: HTMLElement): string;
 	removePopup(element: HTMLElement): void;
@@ -171,4 +188,5 @@ export interface WebGroupsManager {
 	subscribeForWindowFocused(cb: () => any): () => void;
 	unmount(): void;
 	requestFocus(): void;
+	externalLibraryFactory: ExternalLibraryFactory;
 }
