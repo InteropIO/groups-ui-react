@@ -9,6 +9,11 @@ export interface GroupCaptionBarProps {
 	targetType: string;
 	targetId: string;
 	caption: string;
+
+	minimize: ButtonProps;
+	maximize: ButtonProps;
+	restore: ButtonProps;
+	close: ButtonProps;
 }
 
 export interface MoveAreaProps {
@@ -18,6 +23,10 @@ export interface MoveAreaProps {
 export interface FrameCaptionBarProps {
 	moveAreaId: string;
 	caption: string;
+	minimize: ButtonProps;
+	maximize: ButtonProps;
+	restore: ButtonProps;
+	close: ButtonProps;
 }
 
 export interface BeforeTabsZoneProps {
@@ -45,20 +54,26 @@ export interface AfterTabsZoneProps {
 
 }
 
-export interface ButtonsProps {
-
+export interface TabHeaderButtonsProps {
+	minimize: ButtonProps;
+	maximize: ButtonProps;
+	restore: ButtonProps;
+	close: ButtonProps;
 }
 
-export interface MinimizeButtonProps {
-	minimize: () => void;
+export interface ButtonProps {
+	onClick: () => void;
+	tooltip: string;
+	visible: boolean;
 }
 
-export interface MaximizeButtonProps {
-
+export interface MinimizeButtonProps extends ButtonProps {
 }
 
-export interface CloseButtonProps {
-	close: () => void;
+export interface MaximizeButtonProps extends ButtonProps {
+}
+
+export interface CloseButtonProps extends ButtonProps {
 }
 
 export interface GroupProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -73,7 +88,7 @@ export interface GroupProps extends React.DetailedHTMLProps<React.HTMLAttributes
 			Before?: React.ComponentType<BeforeTabsZoneProps>;
 			Element?: React.ComponentType<TabElementProps>;
 			After?: React.ComponentType<AfterTabsZoneProps>;
-			Buttons?: React.ComponentType<ButtonsProps>; // TODO create a default element
+			Buttons?: React.ComponentType<TabHeaderButtonsProps>; // TODO create a default element
 		}
 	},
 	glue?: any;
@@ -89,6 +104,7 @@ export interface GroupWrapperProps {
 	onUpdateTabRequested?: (options: UpdateTabRequestOptions) => void;
 	onCreateAfterTabsComponentRequested?: (options: CreateAfterTabsZoneRequestOptions) => void;
 	onCreateTabHeaderButtonsRequested?: (options: CreateTabHeaderButtonsOptions) => void;
+	onUpdateStandardButtonRequested?: (options: UpdateStandardButtonRequestOptions) => void;
 	onRemoveFrameCaptionBarRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveBeforeTabsComponentRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveTabRequested?: (options: RemoveRequestOptions) => void;
@@ -101,9 +117,25 @@ export interface CreateGroupCaptionBarRequestOptions extends CreateElementReques
 	targetId: string;
 	targetType: string;
 	caption: string;
+	minimize: {
+		tooltip: string;
+		visible: boolean;
+	};
+	restore: {
+		tooltip: string;
+		visible: boolean;
+	};
+	maximize: {
+		tooltip: string;
+		visible: boolean;
+	};
+	close: {
+		tooltip: string;
+		visible: boolean;
+	};
 }
 
-export interface UpdateGroupCaptionBarRequestOptions extends BaseElementOptions {
+export interface UpdateGroupCaptionBarRequestOptions extends CreateFrameCaptionBarRequestOptions {
 
 }
 
@@ -118,11 +150,33 @@ export interface UpdateTabRequestOptions extends BaseElementOptions {
 export interface CreateFrameCaptionBarRequestOptions extends CreateElementRequestOptions {
 	caption: string;
 	moveAreaId: string;
+	minimize: {
+		tooltip: string;
+		visible: boolean;
+	};
+	restore: {
+		tooltip: string;
+		visible: boolean;
+	};
+	maximize: {
+		tooltip: string;
+		visible: boolean;
+	};
+	close: {
+		tooltip: string;
+		visible: boolean;
+	};
 }
 
 export interface CreateTabRequestOptions extends CreateElementRequestOptions {
 	caption: string;
 	selected: boolean;
+}
+
+export interface UpdateStandardButtonRequestOptions extends CreateElementRequestOptions {
+	buttonId: StandardButtons;
+	visible: boolean;
+	tooltip: string;
 }
 
 export interface CreateBeforeTabsZoneRequestOptions extends CreateElementRequestOptions {
@@ -134,7 +188,22 @@ export interface CreateAfterTabsZoneRequestOptions extends CreateElementRequestO
 }
 
 export interface CreateTabHeaderButtonsOptions extends CreateElementRequestOptions {
-
+	minimize: {
+		tooltip: string;
+		visible: boolean;
+	};
+	restore: {
+		tooltip: string;
+		visible: boolean;
+	};
+	maximize: {
+		tooltip: string;
+		visible: boolean;
+	};
+	close: {
+		tooltip: string;
+		visible: boolean;
+	};
 }
 
 export interface RemoveRequestOptions {
@@ -174,10 +243,10 @@ export interface ElementCreationWrapperState {
 }
 
 export interface ExternalLibraryFactory {
-    readonly groupId: string;
-    onStandardButtonClick(targetType: TargetType, targetId: string, buttonId: StandardButtons): void;
-    onTabCloseButtonClick(targetId: string): void;
-    onMoveAreaChanged(targetType: TargetType, targetId: string): void;
+	readonly groupId: string;
+	onStandardButtonClick(targetType: TargetType, targetId: string, buttonId: StandardButtons): void;
+	onTabCloseButtonClick(targetId: string): void;
+	onMoveAreaChanged(targetType: TargetType, targetId: string): void;
 }
 
 export interface WebGroupsManager {

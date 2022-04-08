@@ -61,6 +61,38 @@ class WorkspacesManagerDecorator {
         window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Frame, targetId, StandardButtons.Minimize);
     }
 
+    public closeTabBar(targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.TabBar, targetId, StandardButtons.Close);
+    }
+
+    public restoreTabBar(targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.TabBar, targetId, StandardButtons.Restore);
+    }
+
+    public maximizeTabBar(targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.TabBar, targetId, StandardButtons.Maximize);
+    }
+
+    public minimizeTabBar(targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.TabBar, targetId, StandardButtons.Minimize);
+    }
+
+    public closeGroup(targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Group, targetId, StandardButtons.Close);
+    }
+
+    public restoreGroup(targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Group, targetId, StandardButtons.Restore);
+    }
+
+    public maximizeGroup(targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Group, targetId, StandardButtons.Maximize);
+    }
+
+    public minimizeGroup(targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Group, targetId, StandardButtons.Minimize);
+    }
+
     public closeTab(targetId: string): void {
         window.webGroupsManager.externalLibraryFactory.onTabCloseButtonClick(targetId);
     }

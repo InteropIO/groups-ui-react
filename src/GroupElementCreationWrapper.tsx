@@ -1,7 +1,7 @@
 import React from "react";
 import GroupWrapper from "./GroupWrapper";
 import Portal from "./Portal";
-import { GroupProps, ElementCreationWrapperState, CreateGroupCaptionBarRequestOptions, CreateFrameCaptionBarRequestOptions, CreateTabRequestOptions, RemoveRequestOptions, CreateBeforeTabsZoneRequestOptions, CreateAfterTabsZoneRequestOptions, UpdateGroupCaptionBarRequestOptions, UpdateFrameCaptionBarRequestOptions, CreateTabHeaderButtonsOptions } from "./types/internal";
+import { GroupProps, ElementCreationWrapperState, CreateGroupCaptionBarRequestOptions, CreateFrameCaptionBarRequestOptions, CreateTabRequestOptions, RemoveRequestOptions, CreateBeforeTabsZoneRequestOptions, CreateAfterTabsZoneRequestOptions, UpdateGroupCaptionBarRequestOptions, UpdateFrameCaptionBarRequestOptions, CreateTabHeaderButtonsOptions, UpdateStandardButtonRequestOptions } from "./types/internal";
 import webGroupsManager from "./webGroupsManager";
 
 class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCreationWrapperState> {
@@ -153,6 +153,41 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
         });
     }
 
+    onUpdateTabHeaderButtonsRequested = (options: CreateTabHeaderButtonsOptions) => {
+        if (options === this.state.tabHeaderButtons[options.targetId] || !options) {
+            return;
+        }
+        this.setState(s => {
+            return {
+                ...s,
+                tabHeaderButtons: {
+                    ...s.tabHeaderButtons,
+                    [options.targetId]: { ...s.tabHeaderButtons[options.targetId], ...options }
+                }
+            }
+        });
+    }
+
+    onUpdateStandardButton = (options: UpdateStandardButtonRequestOptions) => {
+        const isCaptionBar = this.state.groupCaptionBar?.targetId === options.targetId;
+        const isFrame = this.state.frameCaptionBars[options.targetId];
+        const isTabHeaderButtons = this.state.tabHeaderButtons[options.targetId];
+
+        if (isCaptionBar) {
+            this.onUpdateGroupCaptionBarRequested({
+                ...this.state.groupCaptionBar!,
+            }); // TODO apply the new options
+        } else if (isFrame) {
+            this.onUpdateFrameCaptionBarRequested({
+                ...this.state.frameCaptionBars[options.targetId]
+            }); // TODO apply the new options
+        } else if (isTabHeaderButtons) {
+            this.onUpdateTabHeaderButtonsRequested({
+                ...this.state.tabHeaderButtons[options.targetId]
+            }); // TODO apply the new options
+        }
+    }
+
     renderGroupCaptionBar = () => {
         const GroupCaptionBarCustomElement = this.props.components?.group?.CaptionBar;
         if (!GroupCaptionBarCustomElement || (!this.state.groupCaptionBar || !this.state.groupCaptionBar.parentElement)) {
@@ -161,7 +196,35 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
 
         const { parentElement, ...options } = this.state.groupCaptionBar;
 
-        return <Portal parentElement={parentElement}><GroupCaptionBarCustomElement {...options} /></Portal>;
+        const minimize = {
+            onClick: () => {
+                webGroupsManager.minimizeGroup(options.targetId);
+            },
+            ...options.minimize
+        }
+
+        const restore = {
+            onClick: () => {
+                webGroupsManager.restoreGroup(options.targetId);
+            },
+            ...options.restore
+        }
+
+        const maximize = {
+            onClick: () => {
+                webGroupsManager.maximizeGroup(options.targetId);
+            },
+            ...options.maximize
+        }
+
+        const close = {
+            onClick: () => {
+                webGroupsManager.closeGroup(options.targetId);
+            },
+            ...options.close
+        }
+
+        return <Portal parentElement={parentElement}><GroupCaptionBarCustomElement {...options} minimize={minimize} maximize={maximize} restore={restore} close={close} /></Portal>;
     }
 
     renderFrameCaptionBar = () => {
@@ -171,8 +234,38 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
                 return;
             }
 
+            // TODO Create wrapper functions for minimize, close, maximize etc like in renderTabElement
             const { parentElement, ...options } = fcb;
-            return <Portal key={options.targetId} parentElement={parentElement}><FrameCaptionBarCustomElement {...options} /></Portal>
+
+            const minimize = {
+                onClick: () => {
+                    webGroupsManager.minimizeFrame(options.targetId);
+                },
+                ...options.minimize
+            }
+
+            const restore = {
+                onClick: () => {
+                    webGroupsManager.restoreFrame(options.targetId);
+                },
+                ...options.restore
+            }
+
+            const maximize = {
+                onClick: () => {
+                    webGroupsManager.maximizeFrame(options.targetId);
+                },
+                ...options.maximize
+            }
+
+            const close = {
+                onClick: () => {
+                    webGroupsManager.closeFrame(options.targetId);
+                },
+                ...options.close
+            }
+
+            return <Portal key={options.targetId} parentElement={parentElement}><FrameCaptionBarCustomElement {...options} minimize={minimize} maximize={maximize} restore={restore} close={close} /></Portal>
         });
     }
 
@@ -224,7 +317,36 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
             }
             // TODO Create wrapper functions for minimize, close, maximize etc like in renderTabElement
             const { parentElement, ...options } = te;
-            return <Portal key={options.targetId} parentElement={parentElement}><TabButtonsCustomElement {...options} /></Portal>
+
+            const minimize = {
+                onClick: () => {
+                    webGroupsManager.minimizeTabBar(options.targetId);
+                },
+                ...options.minimize
+            }
+
+            const restore = {
+                onClick: () => {
+                    webGroupsManager.restoreTabBar(options.targetId);
+                },
+                ...options.restore
+            }
+
+            const maximize = {
+                onClick: () => {
+                    webGroupsManager.maximizeTabBar(options.targetId);
+                },
+                ...options.maximize
+            }
+
+            const close = {
+                onClick: () => {
+                    webGroupsManager.closeTabBar(options.targetId);
+                },
+                ...options.close
+            }
+
+            return <Portal key={options.targetId} parentElement={parentElement}><TabButtonsCustomElement {...options} minimize={minimize} maximize={maximize} restore={restore} close={close} /></Portal>
         });
     }
 
@@ -342,6 +464,7 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
                     onCreateTabHeaderButtonsRequested={false ? this.onCreateTabHeaderButtonsRequested : undefined}
                     onUpdateGroupCaptionBarRequested={components?.group?.CaptionBar ? this.onUpdateGroupCaptionBarRequested : undefined}
                     onUpdateFrameCaptionBarRequested={components?.frame?.CaptionBar ? this.onUpdateFrameCaptionBarRequested : undefined}
+                    onUpdateStandardButtonRequested={this.onUpdateStandardButton}
                     onUpdateTabRequested={components?.tabs?.Element ? this.onUpdateTabElementRequested : undefined}
                     onRemoveFrameCaptionBarRequested={this.onRemoveFrameCaptionBarRequested}
                     onRemoveTabRequested={this.onRemoveTabElementRequested}

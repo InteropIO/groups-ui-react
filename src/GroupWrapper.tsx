@@ -42,7 +42,7 @@ class GroupWrapper extends React.Component<GroupWrapperProps> {
             createAfterTabsComponent: this.props.onCreateAfterTabsComponentRequested,
             createTabBarButtonsContainerElement: this.props.onCreateTabHeaderButtonsRequested,
 
-            updateStandardButton: (a: any) => { console.log(a) },
+            updateStandardButton: this.props.onUpdateStandardButtonRequested,
 
             removeFrameCaptionBar: this.props.onRemoveFrameCaptionBarRequested, // needed to prevent a memory leak
             removeTab: this.props.onRemoveTabRequested,
