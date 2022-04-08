@@ -174,9 +174,10 @@ export interface ElementCreationWrapperState {
 }
 
 export interface ExternalLibraryFactory {
-	readonly groupId: string;
-	onStandardButtonClick(targetType: TargetType, targetId: string, buttonId: StandardButtons): void;
-	onCaptionChanged(targetType: TargetType, targetId: string, text: string): void;
+    readonly groupId: string;
+    onStandardButtonClick(targetType: TargetType, targetId: string, buttonId: StandardButtons): void;
+    onTabCloseButtonClick(targetId: string): void;
+    onMoveAreaChanged(targetType: TargetType, targetId: string): void;
 }
 
 export interface WebGroupsManager {

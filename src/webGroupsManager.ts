@@ -49,8 +49,20 @@ class WorkspacesManagerDecorator {
         window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Frame, targetId, StandardButtons.Close);
     }
 
+    public restoreFrame(targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Frame, targetId, StandardButtons.Restore);
+    }
+
+    public maximizeFrame(targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Frame, targetId, StandardButtons.Maximize);
+    }
+
+    public minimizeFrame(targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Frame, targetId, StandardButtons.Minimize);
+    }
+
     public closeTab(targetId: string): void {
-        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Tab, targetId, StandardButtons.Close);
+        window.webGroupsManager.externalLibraryFactory.onTabCloseButtonClick(targetId);
     }
 
     // TODO wrap all the methods of the externalLibrary factory
