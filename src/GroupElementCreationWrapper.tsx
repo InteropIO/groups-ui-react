@@ -1,7 +1,7 @@
 import React from "react";
 import GroupWrapper from "./GroupWrapper";
 import Portal from "./Portal";
-import { GroupProps, ElementCreationWrapperState, CreateGroupCaptionBarRequestOptions, CreateFrameCaptionBarRequestOptions, CreateTabRequestOptions, RemoveRequestOptions, CreateBeforeTabsZoneRequestOptions, CreateAfterTabsZoneRequestOptions, UpdateGroupCaptionBarRequestOptions, UpdateFrameCaptionBarRequestOptions, CreateTabHeaderButtonsOptions, UpdateStandardButtonRequestOptions } from "./types/internal";
+import { GroupProps, ElementCreationWrapperState, CreateGroupCaptionBarRequestOptions, CreateFrameCaptionBarRequestOptions, CreateTabRequestOptions, RemoveRequestOptions, CreateBeforeTabsZoneRequestOptions, CreateAfterTabsZoneRequestOptions, UpdateGroupCaptionBarRequestOptions, UpdateFrameCaptionBarRequestOptions, CreateTabHeaderButtonsOptions, UpdateStandardButtonRequestOptions, TargetType } from "./types/internal";
 import webGroupsManager from "./webGroupsManager";
 
 class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCreationWrapperState> {
@@ -172,19 +172,31 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
         const isCaptionBar = this.state.groupCaptionBar?.targetId === options.targetId;
         const isFrame = this.state.frameCaptionBars[options.targetId];
         const isTabHeaderButtons = this.state.tabHeaderButtons[options.targetId];
-
         if (isCaptionBar) {
-            this.onUpdateGroupCaptionBarRequested({
-                ...this.state.groupCaptionBar!,
-            }); // TODO apply the new options
-        } else if (isFrame) {
-            this.onUpdateFrameCaptionBarRequested({
-                ...this.state.frameCaptionBars[options.targetId]
-            }); // TODO apply the new options
-        } else if (isTabHeaderButtons) {
-            this.onUpdateTabHeaderButtonsRequested({
-                ...this.state.tabHeaderButtons[options.targetId]
-            }); // TODO apply the new options
+            const newOptions = {
+                ... this.state.groupCaptionBar,
+                [options.buttonId]: {
+                    ...options
+                }
+            };
+            this.onUpdateGroupCaptionBarRequested(newOptions as UpdateGroupCaptionBarRequestOptions);
+        } else if (isFrame && options.targetType === TargetType.Frame) {
+            const newOptions = {
+                ... this.state.frameCaptionBars[options.targetId],
+                [options.buttonId]: {
+                    ...options
+                }
+            };
+            this.onUpdateFrameCaptionBarRequested(newOptions);
+        } else if (isTabHeaderButtons && options.targetType === TargetType.TabBar) {
+            const newOptions = {
+                ... this.state.tabHeaderButtons[options.targetId],
+                [options.buttonId]: {
+                    ...options
+                }
+            };
+
+            this.onUpdateTabHeaderButtonsRequested(newOptions);
         }
     }
 
@@ -459,9 +471,9 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
                     onCreateGroupCaptionBarRequested={components?.group?.CaptionBar ? this.onCreateGroupCaptionBarRequested : undefined}
                     onCreateFrameCaptionBarRequested={components?.frame?.CaptionBar ? this.onCreateFrameCaptionBarRequested : undefined}
                     onCreateTabRequested={components?.tabs?.Element ? this.onCreateTabElementRequested : undefined}
-                    onCreateBeforeTabsComponentRequested={false ? this.onCreateBeforeTabsComponentRequested : undefined}
-                    onCreateAfterTabsComponentRequested={false ? this.onCreateAfterTabsComponentRequested : undefined}
-                    onCreateTabHeaderButtonsRequested={false ? this.onCreateTabHeaderButtonsRequested : undefined}
+                    onCreateBeforeTabsComponentRequested={components?.tabs?.Before ? this.onCreateBeforeTabsComponentRequested : undefined}
+                    onCreateAfterTabsComponentRequested={components?.tabs?.After ? this.onCreateAfterTabsComponentRequested : undefined}
+                    onCreateTabHeaderButtonsRequested={components?.tabs?.Buttons ? this.onCreateTabHeaderButtonsRequested : undefined}
                     onUpdateGroupCaptionBarRequested={components?.group?.CaptionBar ? this.onUpdateGroupCaptionBarRequested : undefined}
                     onUpdateFrameCaptionBarRequested={components?.frame?.CaptionBar ? this.onUpdateFrameCaptionBarRequested : undefined}
                     onUpdateStandardButtonRequested={this.onUpdateStandardButton}

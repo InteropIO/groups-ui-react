@@ -10,7 +10,6 @@ body {
     font-size: var(--t42-text-font-size);
 }
 
-
 #t42-group-container {
     display: flex; 
     flex-direction: column;
@@ -19,7 +18,7 @@ body {
     height: 100%;
     max-width: none;
     max-height: none;
-    background: var(--t42-background);
+    background: transparent;
     border-style: solid;
     border-color: var(--t42-group-border-color);
     border-width: var(--t42-group-border-size);
@@ -30,7 +29,7 @@ body {
     flex-grow: 1;
     position: relative;
     height: 100%;
-    background: var(--t42-frames-background);
+    background: transparent;
 }
 
 .t42-caption-bar {
@@ -55,7 +54,9 @@ body {
     display: flex;
     overflow: hidden; 
     align-items: center;
+    white-space: nowrap;
     text-align: left;
+    text-overflow: ellipsis;
     user-select: none;
 }
 
@@ -67,6 +68,12 @@ body {
 .t42-move-area {
     display: flex;
     flex-grow: 1;
+    min-width: var(--t42-move-area-min-width);
+}
+
+.t42-buttons-container {
+    display: flex;
+    flex-direction: row;
 }
 
 .t42-buttons {
@@ -139,7 +146,7 @@ body {
     position: absolute;
     box-sizing: border-box;
     overflow: hidden;
-    background: var(--t42-background);
+    background: transparent;
     border-style: solid;
     border-color: var(--t42-frame-border-color);
     border-width: var(--t42-frame-border-size);
@@ -156,6 +163,22 @@ body {
 
 .t42-frame-caption-bar-element {
     background: var(--t42-frame-caption-background);
+}
+
+.t42-frame-channel-selector {
+    align-self: center;
+    width: var(--t42-frame-channel-selector-size);
+    height: var(--t42-frame-channel-selector-size);
+    margin: var(--t42-frame-channel-selector-margin);
+}
+
+.t42-frame-channel-selector-content {
+    width: var(--t42-standard-button-size); 
+    height: var(--t42-standard-button-size); 
+}
+
+.t42-frame-channel-selector-content .t42-standard-button-image {
+    fill: var(--t42-channels-fill-color);
 }
 
 .t42-frame-caption-bar-button {
@@ -220,7 +243,6 @@ body {
     align-items: center;
     box-sizing: border-box;
     position: relative;
-    transition: 0.3s;
     padding: 0px;
     width: var(--t42-tab-bar-tab-width);
     min-width: var(--t42-tab-bar-tab-min-width);
@@ -233,6 +255,7 @@ body {
     position: absolute;
     right: 0px;
     display: block;
+    transition: 0.3s;
     background-color: var(--t42-tab-bar-tab-separator-color);
     content: "";
     z-index: 10;
@@ -245,14 +268,30 @@ body {
     left: 0px;
     bottom: 0px;
     display: block;
+    transition: 0.3s;
     background-color: var(--t42-tab-bar-tab-separator-color);
     content: "";
     z-index: 10;
 }
 
+.t42-tab-channel-selector {
+    width: var(--t42-tab-bar-tab-channels-size);
+    height: var(--t42-tab-bar-tab-channels-size);
+    margin: var(--t42-tab-bar-tab-channels-margin);
+}
+
+.t42-tab-channel-selector-content {
+    width: var(--t42-tab-bar-tab-channels-content-size);
+    height: var(--t42-tab-bar-tab-channels-content-size);
+    margin: var(--t42-tab-bar-tab-channels-content-margin);
+}
+
+.t42-tab-channel-selector-content .t42-standard-button-image {
+    fill: var(--t42-channels-fill-color);
+}
+
 .t42-tab-caption {
     flex-grow: 1;
-    text-overflow: ellipsis;
     color: var(--t42-tab-bar-tab-text);
     margin: var(--t42-tab-bar-tab-caption-margin);
 }
@@ -309,4 +348,28 @@ body {
 
 .t42-selected-tab-close-button-content .t42-standard-button-image {
     fill: var(--t42-tab-bar-selected-tab-text);
+}
+
+@keyframes approaching-edge-animation {
+    from {background-color: var(--t42-approaching-edge-start-color);}
+    to {background-color: var(--t42-approaching-edge-end-color);}
+  }
+  
+.t42-approaching-edge {
+    display: block;
+    position: absolute;
+    z-index: 100;
+    background-color: var(--t42-approaching-edge-start-color);
+    animation: approaching-edge-animation;
+    animation-duration: var(--t42-approaching-edge-animation-duration);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+.t42-horizontal-approaching-edge {
+    height: var(--t42-approaching-edge-size);
+}
+
+.t42-vertical-approaching-edge {
+    width: var(--t42-approaching-edge-size);
 }

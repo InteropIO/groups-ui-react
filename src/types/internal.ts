@@ -73,6 +73,9 @@ export interface MinimizeButtonProps extends ButtonProps {
 export interface MaximizeButtonProps extends ButtonProps {
 }
 
+export interface RestoreButtonProps extends ButtonProps {
+}
+
 export interface CloseButtonProps extends ButtonProps {
 }
 
@@ -115,7 +118,6 @@ export interface GroupWrapperProps {
 export interface CreateGroupCaptionBarRequestOptions extends CreateElementRequestOptions {
 	moveAreaId: string;
 	targetId: string;
-	targetType: string;
 	caption: string;
 	minimize: {
 		tooltip: string;
@@ -216,6 +218,7 @@ export interface BaseElementOptions {
 
 export interface CreateElementRequestOptions extends BaseElementOptions {
 	parentElement: HTMLElement;
+	targetType: TargetType;
 	[k: string]: any;
 }
 

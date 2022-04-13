@@ -7,6 +7,8 @@
     --t42-text-font-weight: 400;
     --t42-text-font-size: 0.750rem;
 
+    --t42-channels-fill-color: #EEEEEE;
+
     --t42-title-color: #EEEEEE;
     --t42-title-margin: 5px;
 
@@ -14,6 +16,8 @@
 
     --t42-caption-bar-button-hover-background: #454545;
     --t42-caption-bar-button-close-hover-background: #D03E3E;
+
+    --t42-move-area-min-width: 30px;
 
     --t42-standard-button-size: 11px;
     --t42-standard-button-color: #6E6E6E;
@@ -28,6 +32,8 @@
 
     --t42-frame-border-color: #424242;
     --t42-frame-border-size: 0px;
+    --t42-frame-channel-selector-size: 18px;
+    --t42-frame-channel-selector-margin: 0px 0px 1px 4px;
     --t42-frame-caption-height: 30px;
     --t42-frame-caption-separator-size: 1px;
     --t42-frame-caption-background: #252525;
@@ -45,6 +51,10 @@
     --t42-tab-bar-tab-hover-separator-size: 3px;
     --t42-tab-bar-tab-selected-separator-size: 3px;
     --t42-tab-bar-tab-selected-separator-color: #2080D3;
+    --t42-tab-bar-tab-channels-size: 18px;
+    --t42-tab-bar-tab-channels-margin: 0px 0px 2px 4px;
+    --t42-tab-bar-tab-channels-content-size: 11px;
+    --t42-tab-bar-tab-channels-content-margin: 0px 0px 2px 4px;
     --t42-tab-bar-tab-caption-margin: 2px 0px 2px 5px;
     --t42-tab-bar-tab-close-button-margin: auto 9px auto 8px;
     --t42-tab-bar-tab-close-button-size: 6px;
@@ -56,4 +66,9 @@
     --t42-tab-bar-selected-tab-background: #212121;
     --t42-tab-bar-selected-tab-hover-text: #EEEEEE;
     --t42-tab-bar-selected-tab-hover-background: #212121;
+
+    --t42-approaching-edge-start-color: #40a0f3;
+    --t42-approaching-edge-end-color: #1070c3;
+    --t42-approaching-edge-animation-duration: 0.5s;
+    --t42-approaching-edge-size: 4px;
 }

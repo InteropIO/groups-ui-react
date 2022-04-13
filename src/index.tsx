@@ -4,10 +4,11 @@ import GroupCaptionBar from "./defaultComponents/GroupCaptionBar";
 import MaximizeButton from "./defaultComponents/MaximizeButton";
 import MinimizeButton from "./defaultComponents/MinimizeButton";
 import Tab from "./defaultComponents/Tab";
+import TabHeaderButtons from "./defaultComponents/TabHeaderButtons";
 import TabCaption from "./defaultComponents/TabCaption";
 import TabCloseButton from "./defaultComponents/TabCloseButton";
 import GroupElementCreationWrapper from "./GroupElementCreationWrapper";
-import { GroupCaptionBarProps, GroupProps, MoveAreaProps, TabElementProps, TabCaptionProps, TabCloseButtonProps, FrameCaptionBarProps } from "./types/internal";
+import { GroupCaptionBarProps, GroupProps, MoveAreaProps, TabElementProps, TabCaptionProps, TabCloseButtonProps, FrameCaptionBarProps, TabHeaderButtonsProps } from "./types/internal";
 import webGroupsManager from "./webGroupsManager";
 // The assets (css, svgs etc) should be part of this lib, so the user can add or remove them on demand
 // for reference look at workspaces(workspaces-ui-react) and the dev-workspaces-frame in Glue42/core
@@ -19,7 +20,8 @@ export {
     MinimizeButton,
     MaximizeButton,
     CloseButton,
-    FrameCaptionBar
+    FrameCaptionBar,
+    TabHeaderButtons
 }
 
 export const getGroupId: () => string = () => webGroupsManager?.getGroupId();
@@ -31,7 +33,8 @@ export {
     TabElementProps,
     TabCaptionProps,
     TabCloseButtonProps,
-    FrameCaptionBarProps
+    FrameCaptionBarProps,
+    TabHeaderButtonsProps,
 }
 
 export default GroupElementCreationWrapper;
