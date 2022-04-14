@@ -249,6 +249,13 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
             // TODO Create wrapper functions for minimize, close, maximize etc like in renderTabElement
             const { parentElement, ...options } = fcb;
 
+            const extract = {
+                onClick: () => {
+                    webGroupsManager.extractFrame(options.targetId);
+                },
+                ...options.extract
+            };
+
             const minimize = {
                 onClick: () => {
                     webGroupsManager.minimizeFrame(options.targetId);
@@ -277,7 +284,7 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
                 ...options.close
             }
 
-            return <Portal key={options.targetId} parentElement={parentElement}><FrameCaptionBarCustomElement {...options} minimize={minimize} maximize={maximize} restore={restore} close={close} /></Portal>
+            return <Portal key={options.targetId} parentElement={parentElement}><FrameCaptionBarCustomElement {...options} extract={extract} minimize={minimize} maximize={maximize} restore={restore} close={close} /></Portal>
         });
     }
 
@@ -330,6 +337,13 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
             // TODO Create wrapper functions for minimize, close, maximize etc like in renderTabElement
             const { parentElement, ...options } = te;
 
+            const extract = {
+                onClick: () => {
+                    webGroupsManager.extractTabBar(options.targetId);
+                },
+                ...options.extract
+            };
+
             const minimize = {
                 onClick: () => {
                     webGroupsManager.minimizeTabBar(options.targetId);
@@ -358,7 +372,7 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
                 ...options.close
             }
 
-            return <Portal key={options.targetId} parentElement={parentElement}><TabButtonsCustomElement {...options} minimize={minimize} maximize={maximize} restore={restore} close={close} /></Portal>
+            return <Portal key={options.targetId} parentElement={parentElement}><TabButtonsCustomElement {...options} extract={extract} minimize={minimize} maximize={maximize} restore={restore} close={close} /></Portal>
         });
     }
 

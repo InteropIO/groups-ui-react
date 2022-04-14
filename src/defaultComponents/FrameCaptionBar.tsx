@@ -1,14 +1,17 @@
 import React from "react";
 import { FrameCaptionBarProps } from "../types/internal";
+import FrameChannelSelector from "./channelSelector/FrameChannelSelector";
 import CloseButton from "./CloseButton";
+import ExtractButton from "./ExtractButton";
 import MaximizeButton from "./MaximizeButton";
 import MinimizeButton from "./MinimizeButton";
 import RestoreButton from "./RestoreButton";
 
-const FrameCaptionBar: React.FC<FrameCaptionBarProps> = ({ moveAreaId, caption, close, maximize, restore, minimize }) => {
+const FrameCaptionBar: React.FC<FrameCaptionBarProps> = ({ moveAreaId, caption, close, maximize, restore, minimize, extract }) => {
     // TODO add buttons
     return (
         <>
+            <FrameChannelSelector />
             <div id={moveAreaId} className="t42-move-area t42-frame-caption-bar-element">
                 <div className="t42-caption t42-title t42-frame-caption-bar-element">
                     {caption}
@@ -16,6 +19,7 @@ const FrameCaptionBar: React.FC<FrameCaptionBarProps> = ({ moveAreaId, caption, 
             </div>
             <div className="t42-buttons-container t42-frame-caption-bar-element">
                 <ul className="t42-buttons t42-frame-caption-bar-element">
+                    {extract.visible && <ExtractButton {...extract} />}
                     {minimize.visible && <MinimizeButton {...minimize} />}
                     {maximize.visible && <MaximizeButton {...maximize} />}
                     {restore.visible && <RestoreButton {...restore} />}

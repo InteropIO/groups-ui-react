@@ -23,6 +23,7 @@ export interface MoveAreaProps {
 export interface FrameCaptionBarProps {
 	moveAreaId: string;
 	caption: string;
+	extract: ButtonProps;
 	minimize: ButtonProps;
 	maximize: ButtonProps;
 	restore: ButtonProps;
@@ -55,6 +56,7 @@ export interface AfterTabsZoneProps {
 }
 
 export interface TabHeaderButtonsProps {
+	extract: ButtonProps;
 	minimize: ButtonProps;
 	maximize: ButtonProps;
 	restore: ButtonProps;
@@ -119,6 +121,10 @@ export interface CreateGroupCaptionBarRequestOptions extends CreateElementReques
 	moveAreaId: string;
 	targetId: string;
 	caption: string;
+	extract: {
+		tooltip: string;
+		visible: boolean;
+	},
 	minimize: {
 		tooltip: string;
 		visible: boolean;

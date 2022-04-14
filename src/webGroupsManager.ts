@@ -61,6 +61,10 @@ class WorkspacesManagerDecorator {
         window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Frame, targetId, StandardButtons.Minimize);
     }
 
+    public extractFrame(targetId: string): void {
+        // TODO
+    }
+
     public closeTabBar(targetId: string): void {
         window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.TabBar, targetId, StandardButtons.Close);
     }
@@ -75,6 +79,10 @@ class WorkspacesManagerDecorator {
 
     public minimizeTabBar(targetId: string): void {
         window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.TabBar, targetId, StandardButtons.Minimize);
+    }
+
+    public extractTabBar(targetId: string): void {
+        // TODO
     }
 
     public closeGroup(targetId: string): void {
