@@ -1,7 +1,7 @@
 import React from "react";
 import GroupWrapper from "./GroupWrapper";
 import Portal from "./Portal";
-import { GroupProps, ElementCreationWrapperState, CreateGroupCaptionBarRequestOptions, CreateFrameCaptionBarRequestOptions, CreateTabRequestOptions, RemoveRequestOptions, CreateBeforeTabsZoneRequestOptions, CreateAfterTabsZoneRequestOptions, UpdateGroupCaptionBarRequestOptions, UpdateFrameCaptionBarRequestOptions, CreateTabHeaderButtonsOptions, UpdateStandardButtonRequestOptions, TargetType } from "./types/internal";
+import { GroupProps, ElementCreationWrapperState, CreateGroupCaptionBarRequestOptions, CreateFrameCaptionBarRequestOptions, CreateTabRequestOptions, RemoveRequestOptions, CreateBeforeTabsZoneRequestOptions, CreateAfterTabsZoneRequestOptions, UpdateGroupCaptionBarRequestOptions, UpdateFrameCaptionBarRequestOptions, CreateTabHeaderButtonsOptions, UpdateStandardButtonRequestOptions, TargetType, Bounds, ChannelProps } from "./types/internal";
 import webGroupsManager from "./webGroupsManager";
 
 class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCreationWrapperState> {
@@ -142,6 +142,8 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
         if (options === this.state.tabElements[options.targetId] || !options) {
             return;
         }
+
+        console.log("tab element updated with", options);
         this.setState(s => {
             return {
                 ...s,
@@ -284,7 +286,19 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
                 ...options.close
             }
 
-            return <Portal key={options.targetId} parentElement={parentElement}><FrameCaptionBarCustomElement {...options} extract={extract} minimize={minimize} maximize={maximize} restore={restore} close={close} /></Portal>
+            const showSelector = (bounds: Bounds) => {
+                webGroupsManager.onFrameChannelSelectorClick(options.targetId, bounds);
+            }
+
+            const channels = {
+                showSelector,
+                visible: options.channelSelectorVisible,
+                selectedChannel: options.selectedChannel,
+            }
+
+            return <Portal key={options.targetId} parentElement={parentElement}>
+                <FrameCaptionBarCustomElement {...options} extract={extract} minimize={minimize} maximize={maximize} restore={restore} close={close} channels={channels} />
+            </Portal>
         });
     }
 
@@ -307,12 +321,24 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
                 return;
             }
 
+            const { parentElement, ...options } = te;
+
+
             const onCloseClick = () => {
-                webGroupsManager.closeTab(te.targetId);
+                webGroupsManager.closeTab(options.targetId);
             }
 
-            const { parentElement, ...options } = te;
-            return <Portal key={options.targetId} parentElement={parentElement}><TabCustomElement {...options} close={onCloseClick} /></Portal>
+            const showSelector = (bounds: Bounds) => {
+                webGroupsManager.onTabChannelSelectorClick(options.targetId, bounds);
+            }
+
+            const channels: ChannelProps = {
+                showSelector,
+                visible: options.channelSelectorVisible,
+                selectedChannel: options.selectedChannel,
+            };
+
+            return <Portal key={options.targetId} parentElement={parentElement}><TabCustomElement {...options} close={onCloseClick} channels={channels} /></Portal>
         });
     }
 

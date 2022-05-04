@@ -23,6 +23,7 @@
         "access": "public"
     },
     "dependencies": {
+        "color2k": "^2.0.0",
         "reactjs-popup": "^2.0.4"
     },
     "peerDependencies": {

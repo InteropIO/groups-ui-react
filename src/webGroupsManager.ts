@@ -1,4 +1,4 @@
-import { StandardButtons, TargetType, WebGroupsManager } from "./types/internal";
+import { Bounds, StandardButtons, TargetType, WebGroupsManager } from "./types/internal";
 
 declare const window: Window & { webGroupsManager: WebGroupsManager };
 
@@ -103,6 +103,18 @@ class WorkspacesManagerDecorator {
 
     public closeTab(targetId: string): void {
         window.webGroupsManager.externalLibraryFactory.onTabCloseButtonClick(targetId);
+    }
+
+    public onGroupMoveAreaChanged(targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onMoveAreaChanged(TargetType.Group, targetId);
+    }
+
+    public onTabChannelSelectorClick(targetId: string, selectorBounds: Bounds): void {
+        window.webGroupsManager.externalLibraryFactory.onTabChannelSelectorClick(targetId, selectorBounds);
+    }
+
+    public onFrameChannelSelectorClick(targetId: string, selectorBounds: Bounds): void {
+        window.webGroupsManager.externalLibraryFactory.onFrameChannelSelectorClick(targetId, selectorBounds);
     }
 
     // TODO wrap all the methods of the externalLibrary factory

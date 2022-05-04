@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { TabCloseButtonProps } from "../types/internal";
 import CloseButton from "../../assets/img/close.svg";
 
@@ -9,10 +9,18 @@ const TabCloseButton: React.FC<TabCloseButtonProps> = ({ selected, close }) => {
     const normalContentClassName = "t42-tab-close-button-content";
     const selectedContentClassName = "t42-tab-close-button-content t42-selected-tab-close-button-content";
 
+    const ref = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        ref.current?.addEventListener("mousedown", (e) => {
+            e.stopPropagation();
+        });
+    }, [ref]);
+
     // TODO add close button visibility and tooltip props
-    return <div onClick={close} className={selected ? selectedClassName : normalClassName} title="close">
+    return <div ref={ref} onClick={close} className={selected ? selectedClassName : normalClassName} title="close">
         <div className={selected ? selectedContentClassName : normalContentClassName}>
-            <CloseButton /> 
+            <CloseButton />
         </div>
     </div>
 }

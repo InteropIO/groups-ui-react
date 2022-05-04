@@ -1,5 +1,25 @@
 import React from "react";
 
+
+export interface BaseChannelSelectorProps {
+	showSelector: (bounds: Bounds) => void;
+	outsideClass: string;
+	contentClass: string;
+	lightContentClass: string;
+	darkContentClass: string;
+	selectedChannel: string;
+}
+
+export interface FrameChannelSelectorProps {
+	showSelector: (bounds: Bounds) => void;
+	selectedChannel: string;
+}
+
+export interface TabChannelSelectorProps {
+	showSelector: (bounds: Bounds) => void;
+	selectedChannel: string;
+}
+
 export interface PortalProps {
 	parentElement: HTMLElement
 }
@@ -28,6 +48,13 @@ export interface FrameCaptionBarProps {
 	maximize: ButtonProps;
 	restore: ButtonProps;
 	close: ButtonProps;
+	channels: ChannelProps;
+}
+
+export interface ChannelProps {
+	visible: boolean;
+	selectedChannel: string;
+	showSelector: (bounds: Bounds) => void;
 }
 
 export interface BeforeTabsZoneProps {
@@ -39,6 +66,7 @@ export interface TabElementProps {
 	caption: string;
 	selected: boolean;
 	close: () => void;
+	channels: ChannelProps;
 }
 
 export interface TabCaptionProps {
@@ -143,7 +171,7 @@ export interface CreateGroupCaptionBarRequestOptions extends CreateElementReques
 	};
 }
 
-export interface UpdateGroupCaptionBarRequestOptions extends CreateFrameCaptionBarRequestOptions {
+export interface UpdateGroupCaptionBarRequestOptions extends CreateGroupCaptionBarRequestOptions {
 
 }
 
@@ -158,6 +186,8 @@ export interface UpdateTabRequestOptions extends BaseElementOptions {
 export interface CreateFrameCaptionBarRequestOptions extends CreateElementRequestOptions {
 	caption: string;
 	moveAreaId: string;
+	channelSelectorVisible: boolean;
+	selectedChannel: string;
 	minimize: {
 		tooltip: string;
 		visible: boolean;
@@ -179,6 +209,8 @@ export interface CreateFrameCaptionBarRequestOptions extends CreateElementReques
 export interface CreateTabRequestOptions extends CreateElementRequestOptions {
 	caption: string;
 	selected: boolean;
+	channelSelectorVisible: boolean;
+	selectedChannel: string;
 }
 
 export interface UpdateStandardButtonRequestOptions extends CreateElementRequestOptions {
@@ -255,6 +287,8 @@ export interface ExternalLibraryFactory {
 	readonly groupId: string;
 	onStandardButtonClick(targetType: TargetType, targetId: string, buttonId: StandardButtons): void;
 	onTabCloseButtonClick(targetId: string): void;
+	onTabChannelSelectorClick(targetId: string, channelSelectorBounds: Bounds): void;
+	onFrameChannelSelectorClick(targetId: string, channelSelectorBounds: Bounds): void;
 	onMoveAreaChanged(targetType: TargetType, targetId: string): void;
 }
 
@@ -268,4 +302,14 @@ export interface WebGroupsManager {
 	unmount(): void;
 	requestFocus(): void;
 	externalLibraryFactory: ExternalLibraryFactory;
+}
+
+export interface Size {
+	width: number;
+	height: number;
+}
+
+export interface Bounds extends Size {
+	left: number;
+	top: number;
 }
