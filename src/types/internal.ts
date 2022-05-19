@@ -22,7 +22,8 @@ export interface TabChannelSelectorProps {
 }
 
 export interface PortalProps {
-	parentElement: HTMLElement
+	parentElement: HTMLElement;
+	children?: React.ReactNode;
 }
 
 export interface GroupCaptionBarProps {
@@ -39,6 +40,7 @@ export interface GroupCaptionBarProps {
 
 export interface GroupMoveAreaProps {
 	moveAreaId: string;
+	children?: React.ReactNode;
 }
 
 export interface GroupButtonsProps {
@@ -75,6 +77,7 @@ export interface FrameCaptionBarProps {
 
 export interface FrameMoveAreaProps {
 	moveAreaId: string;
+	children?: React.ReactNode;
 }
 
 export interface FrameButtonsProps {
@@ -178,7 +181,7 @@ export interface BaseButtonProps {
 	innerElement: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 }
 
-export interface GroupProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+export interface GroupProps {
 	components?: {
 		group?: {
 			CaptionBar?: React.ComponentType<GroupCaptionBarProps>;
@@ -199,8 +202,7 @@ export interface GroupProps extends React.DetailedHTMLProps<React.HTMLAttributes
 			Buttons?: React.ComponentType<TabHeaderButtonsProps>;
 			Below?: React.ComponentType<BelowTabsProps>;
 		}
-	},
-	glue?: any;
+	}
 }
 
 export interface GroupWrapperProps {

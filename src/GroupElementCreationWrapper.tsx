@@ -872,7 +872,7 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
     }
 
     render() {
-        const { components, glue, ...additionalProperties } = this.props;
+        const { components, ...additionalProperties } = this.props;
         return (
             <>
                 {this.renderGroupCaptionBar()}

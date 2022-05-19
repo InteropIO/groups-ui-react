@@ -2,21 +2,21 @@
     "name": "@glue42/groups-ui-react",
     "version": "1.0.0",
     "description": "React version of the groups ui library",
-    "author": "",
+    "author": {
+        "name": "Glue42",
+        "url": "http://www.glue42.com"
+    },
     "license": "MIT",
-    "repository": "{{repo}}",
     "main": "dist/index.js",
     "module": "dist/index.js",
     "source": "src/index.tsx",
+    "homepage": "https://glue42.com/",
     "engines": {
         "node": ">=10"
     },
     "scripts": {
         "build": "rollup -c ./rollup.config.js",
-        "test": "",
-        "audit": "echo no audit found",
-        "audit:V1": "node ../../scripts/audit/index.js",
-        "preversion": "npm run build && npm run test && npm run audit",
+        "preversion": "npm run build",
         "version": "npm run build"
     },
     "publishConfig": {
@@ -35,13 +35,9 @@
         "@rollup/plugin-node-resolve": "^9.0.0",
         "@rollup/plugin-typescript": "^6.0.0",
         "@svgr/rollup": "^6.2.1",
-        "@testing-library/jest-dom": "^4.2.4",
-        "@testing-library/react": "^9.5.0",
-        "@testing-library/user-event": "^7.2.1",
-        "@types/jest": "^25.1.4",
         "@types/node": "^12.12.38",
-        "@types/react": "^16.9.27",
-        "@types/react-dom": "^16.9.7",
+        "@types/react": "^18.0.9",
+        "@types/react-dom": "^18.0.4",
         "@typescript-eslint/eslint-plugin": "^2.26.0",
         "@typescript-eslint/parser": "^2.26.0",
         "babel-eslint": "^10.0.3",
