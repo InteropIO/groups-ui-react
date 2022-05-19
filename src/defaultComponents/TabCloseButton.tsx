@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import { TabCloseButtonProps } from "../types/internal";
-import CloseButton from "../../assets/img/close.svg";
 
 const TabCloseButton: React.FC<TabCloseButtonProps> = ({ selected, close }) => {
     const normalClassName = "t42-tab-close-button t42-tab-bar-element";
@@ -17,10 +16,8 @@ const TabCloseButton: React.FC<TabCloseButtonProps> = ({ selected, close }) => {
         });
     }, [ref]);
 
-    // TODO add close button visibility and tooltip props
     return <div ref={ref} onClick={close} className={selected ? selectedClassName : normalClassName} title="close">
         <div className={selected ? selectedContentClassName : normalContentClassName}>
-            <CloseButton />
         </div>
     </div>
 }

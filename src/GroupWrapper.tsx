@@ -7,64 +7,51 @@ class GroupWrapper extends React.Component<GroupWrapperProps> {
     containerRef: HTMLElement | null;
 
     componentDidMount() {
-        // If unmount will be supported the element could be moved from the shadow dom to the normal dom (Workspaces works that way)
-        // let placeholder = document.getElementById(templateId) as HTMLTemplateElement;
-        // if (!placeholder) {
-        //     const template = document.createElement("template");
-        //     template.id = templateId;
-        //     const glContainer = document.createElement("div");
-
-        //     glContainer.id = workspacesInnerContainerId;
-        //     glContainer.style.overflow = "hidden";
-        //     glContainer.style.width = "100%";
-        //     glContainer.style.height = "100%";
-        //     template.content.appendChild(glContainer);
-        //     document.body.appendChild(template);
-        //     placeholder = template;
-        // }
-        // if (!this.containerRef) {
-        //     return;
-        // }
-        // this.containerRef.appendChild(placeholder.content);
-
         const componentFactory = {
             createGroupCaptionBar: this.props.onCreateGroupCaptionBarRequested,
             updateGroupCaptionBar: this.props.onUpdateGroupCaptionBarRequested,
+            createGroupOverlay: this.props.onCreateGroupOverlayRequested,
 
             createFrameCaptionBar: this.props.onCreateFrameCaptionBarRequested,
             updateFrameCaptionBar: this.props.onUpdateFrameCaptionBarRequested,
+            createFrameWindowOverlay: this.props.onCreateFrameWindowOverlayRequested,
+            updateFrameWindowOverlay: this.props.onUpdateFrameWindowOverlayRequested,
+            createBelowWindow: this.props.onCreateBelowWindowRequested,
+            destroyBelowWindow: this.props.onRemoveBelowWindowRequested,
 
-            createBeforeTabsComponent: this.props.onCreateBeforeTabsComponentRequested,
+            createAboveTabs: this.props.onCreateAboveTabsRequested,
+            updateAboveTabs: this.props.onUpdateAboveTabsRequested,
+            createBeforeTabs: this.props.onCreateBeforeTabsComponentRequested,
+            updateBeforeTabs: this.props.onUpdateBeforeTabsComponentRequested,
 
             createTab: this.props.onCreateTabRequested,
             updateTab: this.props.onUpdateTabRequested,
 
-            createAfterTabsComponent: this.props.onCreateAfterTabsComponentRequested,
+            createAfterTabs: this.props.onCreateAfterTabsComponentRequested,
+            updateAfterTabs: this.props.onUpdateAfterTabsComponentRequested,
             createTabBarButtonsContainerElement: this.props.onCreateTabHeaderButtonsRequested,
+            createBelowTabs: this.props.onCreateBelowTabsRequested,
+            updateBelowTabs: this.props.onUpdateBelowTabsRequested,
 
+            updateFrame: this.props.onUpdateFrameRequested,
             updateStandardButton: this.props.onUpdateStandardButtonRequested,
 
-            removeFrameCaptionBar: this.props.onRemoveFrameCaptionBarRequested, // needed to prevent a memory leak
-            removeTab: this.props.onRemoveTabRequested,
-            removeTabHeaderButtons: this.props.onRemoveTabHeaderButtonsRequested
+            destroyFrameCaptionBar: this.props.onRemoveFrameCaptionBarRequested, // needed to prevent a memory leak
+            destroyFrameWindowOverlay: this.props.onRemoveFrameWindowOverlayRequested,
+
+            destroyAboveTabs: this.props.onRemoveAboveTabsRequested,
+            destroyBeforeTabs: this.props.onRemoveBeforeTabsComponentRequested,
+            destroyTab: this.props.onRemoveTabRequested,
+            destroyAfterTabs: this.props.onRemoveAfterTabsComponentRequested,
+            destroyTabBarButtonsContainerElement: this.props.onRemoveTabHeaderButtonsRequested,
+            destroyBelowTabs: this.props.onRemoveBelowTabsRequested
         };
 
-        // TODO some of the methods might (if they are too fast) set the state of the parent before its mounted
-        // go to workspaces to see how its handled (with a flag in the state of the parent)
         webGroupsManager.init(undefined, componentFactory);
     }
 
     componentWillUnmount() {
-        // If unmount will be supported the element could be moved the the shadow dom (Workspaces works that way)
-        // let placeholder = document.getElementById(templateId) as HTMLTemplateElement;
-
-        // if (!this.containerRef) {
-        //     return;
-        // }
-
-        // placeholder?.content.appendChild(this.containerRef.children[0]);
-
-        // webGroupsManager.unmount();
+        // TODO
     }
 
     render() {

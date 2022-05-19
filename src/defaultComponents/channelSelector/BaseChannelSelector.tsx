@@ -1,9 +1,8 @@
 import React, { useEffect, useRef } from "react";
-import ChannelsIcon from "../../../assets/img/channels.svg";
 import { BaseChannelSelectorProps } from "../../types/internal";
 import { IsBlackReadable } from "./utils";
 
-const BaseChannelSelector: React.FC<BaseChannelSelectorProps> = ({ outsideClass, contentClass, lightContentClass, darkContentClass, showSelector, selectedChannel }) => {
+const BaseChannelSelector: React.FC<BaseChannelSelectorProps> = ({ outsideClass, contentClass, showSelector, selectedChannel, selectedChannelColor }) => {
     const ref = useRef<HTMLDivElement>(null);
     const wrappedOnClick = () => {
         if (!ref.current) {
@@ -24,9 +23,20 @@ const BaseChannelSelector: React.FC<BaseChannelSelectorProps> = ({ outsideClass,
         });
     }, [ref]);
 
-    return <div title={selectedChannel ?? ""} ref={ref} style={{ background: selectedChannel }} onClick={wrappedOnClick} className={`t42-buttons ${outsideClass}`} >
-        <div className={`${contentClass} ${selectedChannel && IsBlackReadable(selectedChannel) ? darkContentClass : lightContentClass}`}>
-            <ChannelsIcon />
+    let className = contentClass;
+
+    if (selectedChannel && selectedChannelColor) {
+        className = `${contentClass} ${IsBlackReadable(selectedChannelColor) ? "t42-channel-selector-content-dark" : "t42-channel-selector-content-light"}`;
+    }
+
+    const style = {
+        background: selectedChannelColor
+    };
+
+    return <div title={selectedChannel ?? ""} ref={ref}
+        style={style}
+        onClick={wrappedOnClick} className={`t42-buttons ${outsideClass}`} >
+        <div className={className}>
         </div>
     </div >
 };

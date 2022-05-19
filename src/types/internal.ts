@@ -5,19 +5,20 @@ export interface BaseChannelSelectorProps {
 	showSelector: (bounds: Bounds) => void;
 	outsideClass: string;
 	contentClass: string;
-	lightContentClass: string;
-	darkContentClass: string;
 	selectedChannel: string;
+	selectedChannelColor: string;
 }
 
 export interface FrameChannelSelectorProps {
 	showSelector: (bounds: Bounds) => void;
 	selectedChannel: string;
+	selectedChannelColor: string;
 }
 
 export interface TabChannelSelectorProps {
 	showSelector: (bounds: Bounds) => void;
 	selectedChannel: string;
+	selectedChannelColor: string;
 }
 
 export interface PortalProps {
@@ -36,33 +37,88 @@ export interface GroupCaptionBarProps {
 	close: ButtonProps;
 }
 
+export interface GroupMoveAreaProps {
+	moveAreaId: string;
+}
+
+export interface GroupButtonsProps {
+	minimize: ButtonProps;
+	maximize: ButtonProps;
+	restore: ButtonProps;
+	close: ButtonProps;
+}
+
+export interface GroupCaptionProps {
+	caption: string;
+}
+
+export interface GroupOverlayProps {
+
+}
+
 export interface MoveAreaProps {
 	elementId: string;
 }
 
 export interface FrameCaptionBarProps {
+	frameId: string;
 	moveAreaId: string;
 	caption: string;
-	extract: ButtonProps;
-	minimize: ButtonProps;
-	maximize: ButtonProps;
-	restore: ButtonProps;
-	close: ButtonProps;
+	extract?: ButtonProps;
+	minimize?: ButtonProps;
+	maximize?: ButtonProps;
+	restore?: ButtonProps;
+	close?: ButtonProps;
 	channels: ChannelProps;
+	selectedWindow: string;
+}
+
+export interface FrameMoveAreaProps {
+	moveAreaId: string;
+}
+
+export interface FrameButtonsProps {
+	extract?: ButtonProps;
+	minimize?: ButtonProps;
+	maximize?: ButtonProps;
+	restore?: ButtonProps;
+	close?: ButtonProps;
+}
+
+export interface FrameCaptionProps {
+	caption: string;
+}
+
+export interface FrameWindowOverlayProps {
+	frameId: string;
+	selectedWindow: string;
+}
+
+export interface BelowWindowProps {
+	frameId: string;
+	selectedWindow: string;
 }
 
 export interface ChannelProps {
 	visible: boolean;
 	selectedChannel: string;
 	showSelector: (bounds: Bounds) => void;
+	selectedChannelColor: string;
+}
+
+export interface AboveTabsProps {
+	frameId: string;
+	selectedWindow: string;
 }
 
 export interface BeforeTabsZoneProps {
-
+	frameId: string;
+	selectedWindow: string;
 }
 
 export interface TabElementProps {
 	targetId: string;
+	windowId: string;
 	caption: string;
 	selected: boolean;
 	close: () => void;
@@ -80,15 +136,23 @@ export interface TabCloseButtonProps {
 }
 
 export interface AfterTabsZoneProps {
-
+	frameId: string;
+	selectedWindow: string;
 }
 
 export interface TabHeaderButtonsProps {
-	extract: ButtonProps;
-	minimize: ButtonProps;
-	maximize: ButtonProps;
-	restore: ButtonProps;
-	close: ButtonProps;
+	extract?: ButtonProps;
+	minimize?: ButtonProps;
+	maximize?: ButtonProps;
+	restore?: ButtonProps;
+	close?: ButtonProps;
+	frameId: string;
+	selectedWindow: string;
+}
+
+export interface BelowTabsProps {
+	frameId: string;
+	selectedWindow: string;
 }
 
 export interface ButtonProps {
@@ -109,19 +173,31 @@ export interface RestoreButtonProps extends ButtonProps {
 export interface CloseButtonProps extends ButtonProps {
 }
 
+export interface BaseButtonProps {
+	outerElement: React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>;
+	innerElement: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
+}
+
 export interface GroupProps extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
 	components?: {
 		group?: {
 			CaptionBar?: React.ComponentType<GroupCaptionBarProps>;
+			Overlay?: React.ComponentType<GroupOverlayProps>;
 		}
 		frame?: {
+			Overlay?: React.ComponentType<FrameWindowOverlayProps>;
+			BelowWindow?: React.ComponentType<BelowWindowProps>;
+		};
+		flat?: {
 			CaptionBar?: React.ComponentType<FrameCaptionBarProps>;
 		};
 		tabs?: {
+			Above?: React.ComponentType<AboveTabsProps>;
 			Before?: React.ComponentType<BeforeTabsZoneProps>;
 			Element?: React.ComponentType<TabElementProps>;
 			After?: React.ComponentType<AfterTabsZoneProps>;
-			Buttons?: React.ComponentType<TabHeaderButtonsProps>; // TODO create a default element
+			Buttons?: React.ComponentType<TabHeaderButtonsProps>;
+			Below?: React.ComponentType<BelowTabsProps>;
 		}
 	},
 	glue?: any;
@@ -130,24 +206,50 @@ export interface GroupProps extends React.DetailedHTMLProps<React.HTMLAttributes
 export interface GroupWrapperProps {
 	onCreateGroupCaptionBarRequested?: (options: CreateGroupCaptionBarRequestOptions) => void;
 	onUpdateGroupCaptionBarRequested?: (options: UpdateGroupCaptionBarRequestOptions) => void;
+
+	onCreateGroupOverlayRequested?: (options: CreateElementRequestOptions) => void;
+
 	onCreateFrameCaptionBarRequested?: (options: CreateFrameCaptionBarRequestOptions) => void;
 	onUpdateFrameCaptionBarRequested?: (options: UpdateFrameCaptionBarRequestOptions) => void;
-	onCreateBeforeTabsComponentRequested?: (options: CreateBeforeTabsZoneRequestOptions) => void;
+
+	onCreateFrameWindowOverlayRequested?: (options: CreateFrameElementRequestOptions) => void;
+	onUpdateFrameWindowOverlayRequested?: (options: CreateFrameElementRequestOptions) => void;
+
+	onCreateBelowWindowRequested?: (options: CreateFrameElementRequestOptions) => void;
+
+	onCreateAboveTabsRequested?: (options: CreateFrameElementRequestOptions) => void;
+	onUpdateAboveTabsRequested?: (options: CreateFrameElementRequestOptions) => void;
+
+	onCreateBeforeTabsComponentRequested?: (options: CreateFrameElementRequestOptions) => void;
+	onUpdateBeforeTabsComponentRequested?: (options: CreateFrameElementRequestOptions) => void;
+
 	onCreateTabRequested?: (options: CreateTabRequestOptions) => void;
 	onUpdateTabRequested?: (options: UpdateTabRequestOptions) => void;
-	onCreateAfterTabsComponentRequested?: (options: CreateAfterTabsZoneRequestOptions) => void;
+
+	onCreateAfterTabsComponentRequested?: (options: CreateFrameElementRequestOptions) => void;
+	onUpdateAfterTabsComponentRequested?: (options: CreateFrameElementRequestOptions) => void;
+
 	onCreateTabHeaderButtonsRequested?: (options: CreateTabHeaderButtonsOptions) => void;
+
+	onCreateBelowTabsRequested?: (options: CreateFrameElementRequestOptions) => void;
+	onUpdateBelowTabsRequested?: (options: CreateFrameElementRequestOptions) => void;
+
+	onUpdateFrameRequested?: (options: UpdateFrameRequestionOptions) => void;
 	onUpdateStandardButtonRequested?: (options: UpdateStandardButtonRequestOptions) => void;
+
 	onRemoveFrameCaptionBarRequested?: (options: RemoveRequestOptions) => void;
+	onRemoveFrameWindowOverlayRequested?: (options: RemoveRequestOptions) => void;
+	onRemoveBelowWindowRequested?: (options: RemoveRequestOptions) => void;
+	onRemoveAboveTabsRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveBeforeTabsComponentRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveTabRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveAfterTabsComponentRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveTabHeaderButtonsRequested?: (options: RemoveRequestOptions) => void;
+	onRemoveBelowTabsRequested?: (options: RemoveRequestOptions) => void;
 }
 
 export interface CreateGroupCaptionBarRequestOptions extends CreateElementRequestOptions {
 	moveAreaId: string;
-	targetId: string;
 	caption: string;
 	extract: {
 		tooltip: string;
@@ -179,15 +281,12 @@ export interface UpdateFrameCaptionBarRequestOptions extends BaseElementOptions 
 
 }
 
-export interface UpdateTabRequestOptions extends BaseElementOptions {
-
-}
-
-export interface CreateFrameCaptionBarRequestOptions extends CreateElementRequestOptions {
+export interface CreateFrameCaptionBarRequestOptions extends CreateFrameElementRequestOptions {
 	caption: string;
 	moveAreaId: string;
 	channelSelectorVisible: boolean;
 	selectedChannel: string;
+	selectedChannelColor: string;
 	minimize: {
 		tooltip: string;
 		visible: boolean;
@@ -211,6 +310,11 @@ export interface CreateTabRequestOptions extends CreateElementRequestOptions {
 	selected: boolean;
 	channelSelectorVisible: boolean;
 	selectedChannel: string;
+	selectedChannelColor: string;
+}
+
+export interface UpdateTabRequestOptions extends BaseElementOptions {
+
 }
 
 export interface UpdateStandardButtonRequestOptions extends CreateElementRequestOptions {
@@ -219,15 +323,7 @@ export interface UpdateStandardButtonRequestOptions extends CreateElementRequest
 	tooltip: string;
 }
 
-export interface CreateBeforeTabsZoneRequestOptions extends CreateElementRequestOptions {
-
-}
-
-export interface CreateAfterTabsZoneRequestOptions extends CreateElementRequestOptions {
-
-}
-
-export interface CreateTabHeaderButtonsOptions extends CreateElementRequestOptions {
+export interface CreateTabHeaderButtonsOptions extends CreateFrameElementRequestOptions {
 	minimize: {
 		tooltip: string;
 		visible: boolean;
@@ -257,8 +353,14 @@ export interface BaseElementOptions {
 export interface CreateElementRequestOptions extends BaseElementOptions {
 	parentElement: HTMLElement;
 	targetType: TargetType;
-	[k: string]: any;
+	elementId: string;
 }
+
+export interface CreateFrameElementRequestOptions extends CreateElementRequestOptions {
+	selectedWindow: string;
+}
+
+export type UpdateFrameRequestionOptions = CreateFrameElementRequestOptions;
 
 export enum TargetType {
 	Group = "group",
@@ -276,15 +378,23 @@ export enum StandardButtons {
 
 export interface ElementCreationWrapperState {
 	groupCaptionBar?: CreateGroupCaptionBarRequestOptions;
+	groupOverlay?: CreateElementRequestOptions;
 	frameCaptionBars: { [targetId: string]: CreateFrameCaptionBarRequestOptions };
-	beforeTabsZones: { [targetId: string]: CreateBeforeTabsZoneRequestOptions };
+	frameWindowOverlays: { [targetId: string]: CreateFrameElementRequestOptions };
+	belowWindowZones: { [targetId: string]: CreateFrameElementRequestOptions };
+	aboveTabsZones: { [targetId: string]: CreateFrameElementRequestOptions };
+	beforeTabsZones: { [targetId: string]: CreateFrameElementRequestOptions };
 	tabElements: { [targetId: string]: CreateTabRequestOptions };
-	afterTabsZones: { [targetId: string]: CreateAfterTabsZoneRequestOptions };
+	afterTabsZones: { [targetId: string]: CreateFrameElementRequestOptions };
 	tabHeaderButtons: { [targetId: string]: CreateTabHeaderButtonsOptions };
+	belowTabsZones: { [targetId: string]: CreateFrameElementRequestOptions };
 }
 
 export interface ExternalLibraryFactory {
 	readonly groupId: string;
+	focusPage(): void;
+	focusFrame(frameId: string): void;
+	focusGroup(): void;
 	onStandardButtonClick(targetType: TargetType, targetId: string, buttonId: StandardButtons): void;
 	onTabCloseButtonClick(targetId: string): void;
 	onTabChannelSelectorClick(targetId: string, channelSelectorBounds: Bounds): void;
@@ -300,7 +410,6 @@ export interface WebGroupsManager {
 	removePopupById(elementId: string): void;
 	subscribeForWindowFocused(cb: () => any): () => void;
 	unmount(): void;
-	requestFocus(): void;
 	externalLibraryFactory: ExternalLibraryFactory;
 }
 

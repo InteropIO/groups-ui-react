@@ -3,11 +3,11 @@ import { Bounds, StandardButtons, TargetType, WebGroupsManager } from "./types/i
 declare const window: Window & { webGroupsManager: WebGroupsManager };
 
 class WorkspacesManagerDecorator {
+    public readonly skipFocusStyle = "t42-skip-focus";
+
     public init(glue: any, componentFactory: any) {
         if (window.webGroupsManager) {
             window.webGroupsManager.init(componentFactory);
-
-            console.log("init invoked with", componentFactory);
         } else {
             throw new Error(`Could not find the webGroupsManager the groups library should be loaded as a group application`);
         }
@@ -41,8 +41,16 @@ class WorkspacesManagerDecorator {
         return window.webGroupsManager.unmount();
     }
 
-    public requestFocus(): void {
-        return window.webGroupsManager.requestFocus();
+    public requestPageFocus(): void {
+        return window.webGroupsManager.externalLibraryFactory.focusPage();
+    }
+
+    public requestFrameFocus(frameId: string): void {
+        return window.webGroupsManager.externalLibraryFactory.focusFrame(frameId);
+    }
+
+    public requestGroupFocus(): void {
+        return window.webGroupsManager.externalLibraryFactory.focusGroup();
     }
 
     public closeFrame(targetId: string): void {
@@ -116,8 +124,6 @@ class WorkspacesManagerDecorator {
     public onFrameChannelSelectorClick(targetId: string, selectorBounds: Bounds): void {
         window.webGroupsManager.externalLibraryFactory.onFrameChannelSelectorClick(targetId, selectorBounds);
     }
-
-    // TODO wrap all the methods of the externalLibrary factory
 }
 
 export default new WorkspacesManagerDecorator();

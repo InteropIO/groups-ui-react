@@ -1,7 +1,7 @@
 {
     "name": "@glue42/groups-ui-react",
     "version": "1.0.0",
-    "description": "React version of the groups ui component",
+    "description": "React version of the groups ui library",
     "author": "",
     "license": "MIT",
     "repository": "{{repo}}",
@@ -23,8 +23,7 @@
         "access": "public"
     },
     "dependencies": {
-        "color2k": "^2.0.0",
-        "reactjs-popup": "^2.0.4"
+        "color2k": "^2.0.0"
     },
     "peerDependencies": {
         "@glue42/react-hooks": "^2.0.0",
@@ -57,8 +56,6 @@
         "eslint-plugin-promise": "^4.2.1",
         "eslint-plugin-react": "^7.17.0",
         "eslint-plugin-standard": "^4.0.1",
-        "gh-pages": "^2.2.0",
-        "microbundle-crl": "^0.13.10",
         "npm-run-all": "^4.1.5",
         "prettier": "^2.0.4",
         "react-scripts": "^4.0.3",
