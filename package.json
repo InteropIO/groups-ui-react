@@ -16,6 +16,7 @@
     },
     "scripts": {
         "build": "rollup -c ./rollup.config.js",
+        "prepublishOnly": "npm run build",
         "preversion": "npm run build",
         "version": "npm run build"
     },
@@ -27,8 +28,8 @@
     },
     "peerDependencies": {
         "@glue42/react-hooks": "^2.0.0",
-        "react": ">=16.8.0",
-        "react-dom": ">=16.8.0"
+        "react": "^16.8.0 || 17.x",
+        "react-dom": "^16.8.0 || 17.x"
     },
     "devDependencies": {
         "@rollup/plugin-commonjs": "^15.1.0",
