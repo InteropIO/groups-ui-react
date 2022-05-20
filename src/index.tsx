@@ -29,6 +29,7 @@ import FrameCaption from "./defaultComponents/frameCaptionBar/FrameCaption";
 import GroupCaption from "./defaultComponents/groupCaptionBar/GroupCaption";
 import FrameChannelSelector from "./defaultComponents/channelSelector/FrameChannelSelector";
 import TabChannelSelector from "./defaultComponents/channelSelector/TabChannelSelector";
+import RestoreButton from "./defaultComponents/RestoreButton";
 export {
     GroupCaptionBar,
     GroupMoveArea,
@@ -38,6 +39,7 @@ export {
     TabCaption,
     TabCloseButton,
     MinimizeButton,
+    RestoreButton,
     MaximizeButton,
     CloseButton,
     FrameCaptionBar,
