@@ -1,30 +1,27 @@
-# {{name}}
+## Overview
 
-> {{description}}
-
-[![NPM](https://img.shields.io/npm/v/{{name}}.svg)](https://www.npmjs.com/package/{{name}}) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+The `@glue42/groups-ui-react` library enables you to create your own Web Group App for [**Glue42 Enterprise**](https://glue42.com/enterprise/). It provides all necessary functionalities as a single React component - `<Group />`. The library allows complete customization of the Glue42 Window group elements and the elements of the different types of Glue42 Windows (flat, tab and HTML) participating in the group. The provided default components can be replaced or extended with your custom ones.
 
 ## Install
 
-```bash
-npm install --save {{name}}
+To use the library in your project, execute the following command:
+
+```cmd
+npm install @glue42/groups-ui-react
 ```
 
 ## Usage
 
-```tsx
-import React, { Component } from 'react'
+The following example demonstrates a basic usage of the `<Group />` component:
 
-import MyComponent from '{{name}}'
-import '{{name}}/dist/index.css'
+```javascript
+import React from 'react'
+import Group from "@glue42/groups-ui-react";
+import "@glue42/groups-ui-react/dist/styles/styles.css";
 
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
-}
+const App = () => {
+  return <Group />
+};
+
+export default App;
 ```
-
-## License
-
-{{license}} © [{{author}}](https://github.com/{{author}})
