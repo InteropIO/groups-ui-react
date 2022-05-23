@@ -1,6 +1,6 @@
 {
     "name": "@glue42/groups-ui-react",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "React version of the groups ui library",
     "author": {
         "name": "Glue42",
@@ -14,6 +14,13 @@
     "engines": {
         "node": ">=10"
     },
+    "keywords": [
+        "glue",
+        "glue42",
+        "desktop",
+        "groups",
+        "react"
+    ],
     "scripts": {
         "build": "rollup -c ./rollup.config.js",
         "prepublishOnly": "npm run build",
