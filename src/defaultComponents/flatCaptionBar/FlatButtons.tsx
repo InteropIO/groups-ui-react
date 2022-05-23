@@ -1,12 +1,12 @@
 import React from "react";
-import { FrameButtonsProps } from "../../types/internal";
+import { FlatButtonsProps } from "../../types/internal";
 import CloseButton from "../CloseButton";
 import ExtractButton from "../ExtractButton";
 import MaximizeButton from "../MaximizeButton";
 import MinimizeButton from "../MinimizeButton";
 import RestoreButton from "../RestoreButton";
 
-const FrameButtons: React.FC<FrameButtonsProps> = ({ extract, minimize, maximize, restore, close }) => {
+const FlatButtons: React.FC<FlatButtonsProps> = ({ extract, minimize, maximize, restore, close }) => {
     return <div className="t42-buttons-container t42-frame-caption-bar-element">
         <ul className="t42-buttons t42-frame-caption-bar-element">
             {extract?.visible && <ExtractButton {...extract} />}
@@ -18,4 +18,4 @@ const FrameButtons: React.FC<FrameButtonsProps> = ({ extract, minimize, maximize
     </div>
 }
 
-export default FrameButtons;
+export default FlatButtons;

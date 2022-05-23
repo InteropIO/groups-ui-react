@@ -1,6 +1,6 @@
 import React from "react";
-import { TabElementProps } from "../types/internal";
-import TabChannelSelector from "./channelSelector/TabChannelSelector";
+import { TabElementProps } from "../../types/internal";
+import TabChannelSelector from "../channelSelector/TabChannelSelector";
 import TabCaption from "./TabCaption";
 import TabCloseButton from "./TabCloseButton";
 

@@ -9,7 +9,7 @@ export interface BaseChannelSelectorProps {
 	selectedChannelColor: string;
 }
 
-export interface FrameChannelSelectorProps {
+export interface FlatChannelSelectorProps {
 	showSelector: (bounds: Bounds) => void;
 	selectedChannel: string;
 	selectedChannelColor: string;
@@ -62,7 +62,7 @@ export interface MoveAreaProps {
 	elementId: string;
 }
 
-export interface FrameCaptionBarProps {
+export interface FlatCaptionBarProps {
 	frameId: string;
 	moveAreaId: string;
 	caption: string;
@@ -75,12 +75,12 @@ export interface FrameCaptionBarProps {
 	selectedWindow: string;
 }
 
-export interface FrameMoveAreaProps {
+export interface FlatMoveAreaProps {
 	moveAreaId: string;
 	children?: React.ReactNode;
 }
 
-export interface FrameButtonsProps {
+export interface FlatButtonsProps {
 	extract?: ButtonProps;
 	minimize?: ButtonProps;
 	maximize?: ButtonProps;
@@ -88,7 +88,7 @@ export interface FrameButtonsProps {
 	close?: ButtonProps;
 }
 
-export interface FrameCaptionProps {
+export interface FlatCaptionProps {
 	caption: string;
 }
 
@@ -192,7 +192,7 @@ export interface GroupProps {
 			BelowWindow?: React.ComponentType<BelowWindowProps>;
 		};
 		flat?: {
-			CaptionBar?: React.ComponentType<FrameCaptionBarProps>;
+			CaptionBar?: React.ComponentType<FlatCaptionBarProps>;
 		};
 		tabs?: {
 			Above?: React.ComponentType<AboveTabsProps>;
@@ -226,7 +226,7 @@ export interface GroupWrapperProps {
 	onUpdateBeforeTabsComponentRequested?: (options: CreateFrameElementRequestOptions) => void;
 
 	onCreateTabRequested?: (options: CreateTabRequestOptions) => void;
-	onUpdateTabRequested?: (options: UpdateTabRequestOptions) => void;
+	onUpdateTabRequested?: (options: CreateTabRequestOptions) => void;
 
 	onCreateAfterTabsComponentRequested?: (options: CreateFrameElementRequestOptions) => void;
 	onUpdateAfterTabsComponentRequested?: (options: CreateFrameElementRequestOptions) => void;
@@ -313,10 +313,6 @@ export interface CreateTabRequestOptions extends CreateElementRequestOptions {
 	channelSelectorVisible: boolean;
 	selectedChannel: string;
 	selectedChannelColor: string;
-}
-
-export interface UpdateTabRequestOptions extends BaseElementOptions {
-
 }
 
 export interface UpdateStandardButtonRequestOptions extends CreateElementRequestOptions {

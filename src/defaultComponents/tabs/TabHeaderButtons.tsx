@@ -1,10 +1,10 @@
 import React from "react";
-import { TabHeaderButtonsProps } from "../types/internal";
-import CloseButton from "./CloseButton";
-import ExtractButton from "./ExtractButton";
-import MaximizeButton from "./MaximizeButton";
-import MinimizeButton from "./MinimizeButton";
-import RestoreButton from "./RestoreButton";
+import { TabHeaderButtonsProps } from "../../types/internal";
+import CloseButton from "../CloseButton";
+import ExtractButton from "../ExtractButton";
+import MaximizeButton from "../MaximizeButton";
+import MinimizeButton from "../MinimizeButton";
+import RestoreButton from "../RestoreButton";
 
 const TabHeaderButtons: React.FC<TabHeaderButtonsProps> = ({ extract, minimize, maximize, restore, close }) => {
     return <div className="t42-buttons-container t42-tab-bar-element">

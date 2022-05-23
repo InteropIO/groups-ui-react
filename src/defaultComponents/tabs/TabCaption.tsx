@@ -1,5 +1,5 @@
 import React from "react";
-import { TabCaptionProps } from "../types/internal";
+import { TabCaptionProps } from "../../types/internal";
 
 const TabCaption: React.FC<TabCaptionProps> = ({ caption, selected }) => {
     const normalClassName = "t42-caption t42-tab-caption";

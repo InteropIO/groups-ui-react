@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { TabCloseButtonProps } from "../types/internal";
+import { TabCloseButtonProps } from "../../types/internal";
 
 const TabCloseButton: React.FC<TabCloseButtonProps> = ({ selected, close }) => {
     const normalClassName = "t42-tab-close-button t42-tab-bar-element";

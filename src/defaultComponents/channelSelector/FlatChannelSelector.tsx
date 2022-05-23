@@ -1,8 +1,8 @@
 import React from "react";
-import { FrameChannelSelectorProps } from "../../types/internal";
+import { FlatChannelSelectorProps } from "../../types/internal";
 import BaseChannelSelector from "./BaseChannelSelector";
 
-const FrameChannelSelector: React.FC<FrameChannelSelectorProps> = ({ showSelector, selectedChannel, selectedChannelColor }) => {
+const FlatChannelSelector: React.FC<FlatChannelSelectorProps> = ({ showSelector, selectedChannel, selectedChannelColor }) => {
     return <BaseChannelSelector outsideClass={"t42-frame-caption-bar-element t42-frame-channel-selector"}
         contentClass={"t42-frame-channel-selector-content"}
         showSelector={showSelector}
@@ -11,4 +11,4 @@ const FrameChannelSelector: React.FC<FrameChannelSelectorProps> = ({ showSelecto
     />
 };
 
-export default FrameChannelSelector;
+export default FlatChannelSelector;

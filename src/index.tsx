@@ -1,12 +1,12 @@
 import CloseButton from "./defaultComponents/CloseButton";
-import FrameCaptionBar from "./defaultComponents/frameCaptionBar/FrameCaptionBar";
+import FlatCaptionBar from "./defaultComponents/flatCaptionBar/FlatCaptionBar";
 import GroupCaptionBar from "./defaultComponents/groupCaptionBar/GroupCaptionBar";
 import MaximizeButton from "./defaultComponents/MaximizeButton";
 import MinimizeButton from "./defaultComponents/MinimizeButton";
-import Tab from "./defaultComponents/Tab";
-import TabHeaderButtons from "./defaultComponents/TabHeaderButtons";
-import TabCaption from "./defaultComponents/TabCaption";
-import TabCloseButton from "./defaultComponents/TabCloseButton";
+import Tab from "./defaultComponents/tabs/Tab";
+import TabHeaderButtons from "./defaultComponents/tabs/TabHeaderButtons";
+import TabCaption from "./defaultComponents/tabs/TabCaption";
+import TabCloseButton from "./defaultComponents/tabs/TabCloseButton";
 import GroupElementCreationWrapper from "./GroupElementCreationWrapper";
 import {
     GroupCaptionBarProps,
@@ -15,19 +15,25 @@ import {
     TabElementProps,
     TabCaptionProps,
     TabCloseButtonProps,
-    FrameCaptionBarProps,
+    FlatCaptionBarProps,
+    FrameWindowOverlayProps,
+    FlatMoveAreaProps,
+    FlatChannelSelectorProps,
     TabHeaderButtonsProps,
     GroupMoveAreaProps,
-    GroupButtonsProps
+    GroupButtonsProps,
+    FlatCaptionProps,
+    FlatButtonsProps,
+    GroupOverlayProps
 } from "./types/internal";
 import webGroupsManager from "./webGroupsManager";
 import GroupMoveArea from "./defaultComponents/groupCaptionBar/GroupMoveArea";
 import GroupButtons from "./defaultComponents/groupCaptionBar/GroupButtons";
-import FrameMoveArea from "./defaultComponents/frameCaptionBar/FrameMoveArea";
-import FrameButtons from "./defaultComponents/frameCaptionBar/FrameButtons";
-import FrameCaption from "./defaultComponents/frameCaptionBar/FrameCaption";
+import FlatMoveArea from "./defaultComponents/flatCaptionBar/FlatMoveArea";
+import FlatButtons from "./defaultComponents/flatCaptionBar/FlatButtons";
+import FlatCaption from "./defaultComponents/flatCaptionBar/FlatCaption";
 import GroupCaption from "./defaultComponents/groupCaptionBar/GroupCaption";
-import FrameChannelSelector from "./defaultComponents/channelSelector/FrameChannelSelector";
+import FlatChannelSelector from "./defaultComponents/channelSelector/FlatChannelSelector";
 import TabChannelSelector from "./defaultComponents/channelSelector/TabChannelSelector";
 import RestoreButton from "./defaultComponents/RestoreButton";
 export {
@@ -42,12 +48,12 @@ export {
     RestoreButton,
     MaximizeButton,
     CloseButton,
-    FrameCaptionBar,
-    FrameChannelSelector,
-    FrameCaption,
-    FrameMoveArea,
-    FrameButtons,
-    TabHeaderButtons
+    FlatCaptionBar,
+    FlatChannelSelector,
+    FlatCaption,
+    FlatMoveArea,
+    FlatButtons,
+    TabHeaderButtons,
 }
 
 export const getGroupId: () => string = () => webGroupsManager?.getGroupId();
@@ -61,12 +67,18 @@ export {
     GroupCaption,
     GroupCaptionBarProps,
     GroupMoveAreaProps,
+    GroupOverlayProps,
     GroupButtonsProps,
     TabElementProps,
     TabCaptionProps,
     TabCloseButtonProps,
-    FrameCaptionBarProps,
     TabHeaderButtonsProps,
+    FlatCaptionBarProps,
+    FlatCaptionProps,
+    FrameWindowOverlayProps,
+    FlatMoveAreaProps,
+    FlatChannelSelectorProps,
+    FlatButtonsProps
 }
 
 export default GroupElementCreationWrapper;
