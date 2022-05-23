@@ -24,7 +24,12 @@ import {
     GroupButtonsProps,
     FlatCaptionProps,
     FlatButtonsProps,
-    GroupOverlayProps
+    GroupOverlayProps,
+    MinimizeButtonProps,
+    MaximizeButtonProps,
+    RestoreButtonProps,
+    CloseButtonProps,
+    TabChannelSelectorProps
 } from "./types/internal";
 import webGroupsManager from "./webGroupsManager";
 import GroupMoveArea from "./defaultComponents/groupCaptionBar/GroupMoveArea";
@@ -70,6 +75,7 @@ export {
     GroupOverlayProps,
     GroupButtonsProps,
     TabElementProps,
+    TabChannelSelectorProps,
     TabCaptionProps,
     TabCloseButtonProps,
     TabHeaderButtonsProps,
@@ -78,7 +84,11 @@ export {
     FrameWindowOverlayProps,
     FlatMoveAreaProps,
     FlatChannelSelectorProps,
-    FlatButtonsProps
+    FlatButtonsProps,
+    MinimizeButtonProps,
+    MaximizeButtonProps,
+    RestoreButtonProps,
+    CloseButtonProps,
 }
 
 export default GroupElementCreationWrapper;
