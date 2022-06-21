@@ -1,9 +1,9 @@
 import React from "react";
 import { GroupButtonsProps } from "../../types/internal";
-import CloseButton from "../CloseButton";
-import MaximizeButton from "../MaximizeButton";
-import MinimizeButton from "../MinimizeButton";
-import RestoreButton from "../RestoreButton";
+import CloseButton from "../buttons/CloseButton";
+import MaximizeButton from "../buttons/MaximizeButton";
+import MinimizeButton from "../buttons/MinimizeButton";
+import RestoreButton from "../buttons/RestoreButton";
 
 const GroupButtons: React.FC<GroupButtonsProps> = ({ minimize, restore, maximize, close }) => {
     return <div className="t42-buttons-container t42-group-caption-bar-element">

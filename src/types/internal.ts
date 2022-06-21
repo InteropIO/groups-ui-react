@@ -67,6 +67,8 @@ export interface FlatCaptionBarProps {
 	moveAreaId: string;
 	caption: string;
 	extract?: ButtonProps;
+	lock?: ButtonProps;
+	unlock?: ButtonProps;
 	minimize?: ButtonProps;
 	maximize?: ButtonProps;
 	restore?: ButtonProps;
@@ -82,6 +84,8 @@ export interface FlatMoveAreaProps {
 
 export interface FlatButtonsProps {
 	extract?: ButtonProps;
+	lock?: ButtonProps;
+	unlock?: ButtonProps;
 	minimize?: ButtonProps;
 	maximize?: ButtonProps;
 	restore?: ButtonProps;
@@ -145,6 +149,8 @@ export interface AfterTabsZoneProps {
 
 export interface TabHeaderButtonsProps {
 	extract?: ButtonProps;
+	lock?: ButtonProps;
+	unlock?: ButtonProps;
 	minimize?: ButtonProps;
 	maximize?: ButtonProps;
 	restore?: ButtonProps;
@@ -162,6 +168,12 @@ export interface ButtonProps {
 	onClick: () => void;
 	tooltip: string;
 	visible: boolean;
+}
+
+export interface LockButtonProps extends ButtonProps {
+}
+
+export interface UnlockButtonProps extends ButtonProps {
 }
 
 export interface MinimizeButtonProps extends ButtonProps {
@@ -289,6 +301,14 @@ export interface CreateFrameCaptionBarRequestOptions extends CreateFrameElementR
 	channelSelectorVisible: boolean;
 	selectedChannel: string;
 	selectedChannelColor: string;
+	lock: {
+		tooltip: string;
+		visible: boolean;
+	};
+	unlock: {
+		tooltip: string;
+		visible: boolean;
+	};
 	minimize: {
 		tooltip: string;
 		visible: boolean;
@@ -322,6 +342,14 @@ export interface UpdateStandardButtonRequestOptions extends CreateElementRequest
 }
 
 export interface CreateTabHeaderButtonsOptions extends CreateFrameElementRequestOptions {
+	lock: {
+		tooltip: string;
+		visible: boolean;
+	};
+	unlock: {
+		tooltip: string;
+		visible: boolean;
+	};
 	minimize: {
 		tooltip: string;
 		visible: boolean;
@@ -368,10 +396,12 @@ export enum TargetType {
 }
 
 export enum StandardButtons {
+	Lock = "lock",
+	Unlock = "unlock",
 	Minimize = "minimize",
 	Maximize = "maximize",
 	Restore = "restore",
-	Close = "close"
+	Close = "close",
 }
 
 export interface ElementCreationWrapperState {

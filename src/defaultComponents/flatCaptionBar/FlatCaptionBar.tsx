@@ -5,7 +5,7 @@ import FlatButtons from "./FlatButtons";
 import FlatCaption from "./FlatCaption";
 import FlatMoveArea from "./FlatMoveArea";
 
-const FlatCaptionBar: React.FC<FlatCaptionBarProps> = ({ moveAreaId, caption, close, maximize, restore, minimize, extract, channels }) => {
+const FlatCaptionBar: React.FC<FlatCaptionBarProps> = ({ moveAreaId, caption, close, maximize, restore, minimize, extract, channels, lock, unlock }) => {
     return (
         <div className="t42-react-caption-bar">
             {channels?.visible && <FlatChannelSelector
@@ -15,7 +15,7 @@ const FlatCaptionBar: React.FC<FlatCaptionBarProps> = ({ moveAreaId, caption, cl
             <FlatMoveArea moveAreaId={moveAreaId}>
                 <FlatCaption caption={caption} />
             </FlatMoveArea>
-            <FlatButtons extract={extract} minimize={minimize} maximize={maximize} restore={restore} close={close} />
+            <FlatButtons extract={extract} lock={lock} unlock={unlock} minimize={minimize} maximize={maximize} restore={restore} close={close} />
         </div>);
 };
 

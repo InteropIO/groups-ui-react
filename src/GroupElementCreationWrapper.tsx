@@ -484,6 +484,20 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
             //     ...options.extract
             // };
 
+            const lock = {
+                onClick: () => {
+                    webGroupsManager.lockFrame(options.targetId);
+                },
+                ...options.lock
+            };
+
+            const unlock = {
+                onClick: () => {
+                    webGroupsManager.unlockFrame(options.targetId);
+                },
+                ...options.unlock
+            };
+
             const minimize = {
                 onClick: () => {
                     webGroupsManager.minimizeFrame(options.targetId);
@@ -525,6 +539,8 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
 
             return <Portal key={options.targetId} parentElement={parentElement}>
                 <FrameCaptionBarCustomElement {...options}
+                    lock={lock}
+                    unlock={unlock}
                     minimize={minimize}
                     maximize={maximize}
                     restore={restore}
@@ -649,6 +665,20 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
             //     ...options.extract
             // };
 
+            const lock = {
+                onClick: () => {
+                    webGroupsManager.lockTabBar(options.targetId);
+                },
+                ...options.lock
+            }
+
+            const unlock = {
+                onClick: () => {
+                    webGroupsManager.unlockTabBar(options.targetId);
+                },
+                ...options.unlock
+            }
+
             const minimize = {
                 onClick: () => {
                     webGroupsManager.minimizeTabBar(options.targetId);
@@ -678,6 +708,8 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
             }
 
             return <Portal key={options.targetId} parentElement={parentElement}><TabButtonsCustomElement {...options}
+                lock={lock}
+                unlock={unlock}
                 minimize={minimize}
                 maximize={maximize}
                 restore={restore}
