@@ -236,7 +236,7 @@ export interface GroupWrapperProps {
 	onCreateBelowTabsRequested?: (options: CreateFrameElementRequestOptions) => void;
 	onUpdateBelowTabsRequested?: (options: CreateFrameElementRequestOptions) => void;
 
-	onUpdateFrameRequested?: (options: UpdateFrameRequestionOptions) => void;
+	onUpdateFrameRequested?: (options: UpdateFrameRequestOptions) => void;
 	onUpdateStandardButtonRequested?: (options: UpdateStandardButtonRequestOptions) => void;
 
 	onRemoveFrameCaptionBarRequested?: (options: RemoveRequestOptions) => void;
@@ -358,7 +358,7 @@ export interface CreateFrameElementRequestOptions extends CreateElementRequestOp
 	selectedWindow: string;
 }
 
-export type UpdateFrameRequestionOptions = CreateFrameElementRequestOptions;
+export type UpdateFrameRequestOptions = CreateFrameElementRequestOptions;
 
 export enum TargetType {
 	Group = "group",
