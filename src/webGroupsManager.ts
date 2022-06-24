@@ -69,16 +69,16 @@ class WorkspacesManagerDecorator {
         window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Frame, targetId, StandardButtons.Minimize);
     }
 
-    public lockFrame(targetId:string):void{
+    public lockFrame(targetId: string): void {
         window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Frame, targetId, StandardButtons.Lock);
     }
 
-    public unlockFrame(targetId:string):void{
+    public unlockFrame(targetId: string): void {
         window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Frame, targetId, StandardButtons.Unlock);
     }
 
     public extractFrame(targetId: string): void {
-        // TODO
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Frame, targetId, StandardButtons.Extract);
     }
 
     public closeTabBar(targetId: string): void {
@@ -97,16 +97,16 @@ class WorkspacesManagerDecorator {
         window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.TabBar, targetId, StandardButtons.Minimize);
     }
 
-    public lockTabBar(targetId:string):void{
+    public lockTabBar(targetId: string): void {
         window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.TabBar, targetId, StandardButtons.Lock);
     }
 
-    public unlockTabBar(targetId:string):void{
-        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.TabBar,targetId, StandardButtons.Unlock);
+    public unlockTabBar(targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.TabBar, targetId, StandardButtons.Unlock);
     }
 
     public extractTabBar(targetId: string): void {
-        // TODO
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.TabBar, targetId, StandardButtons.Extract);
     }
 
     public closeGroup(targetId: string): void {

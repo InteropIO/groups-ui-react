@@ -170,6 +170,9 @@ export interface ButtonProps {
 	visible: boolean;
 }
 
+export interface ExtractButtonProps extends ButtonProps {
+}
+
 export interface LockButtonProps extends ButtonProps {
 }
 
@@ -301,6 +304,10 @@ export interface CreateFrameCaptionBarRequestOptions extends CreateFrameElementR
 	channelSelectorVisible: boolean;
 	selectedChannel: string;
 	selectedChannelColor: string;
+	extract: {
+		tooltip: string;
+		visible: boolean;
+	};
 	lock: {
 		tooltip: string;
 		visible: boolean;
@@ -342,6 +349,10 @@ export interface UpdateStandardButtonRequestOptions extends CreateElementRequest
 }
 
 export interface CreateTabHeaderButtonsOptions extends CreateFrameElementRequestOptions {
+	extract: {
+		tooltip: string;
+		visible: boolean;
+	};
 	lock: {
 		tooltip: string;
 		visible: boolean;
@@ -396,6 +407,7 @@ export enum TargetType {
 }
 
 export enum StandardButtons {
+	Extract = "extract",
 	Lock = "lock",
 	Unlock = "unlock",
 	Minimize = "minimize",

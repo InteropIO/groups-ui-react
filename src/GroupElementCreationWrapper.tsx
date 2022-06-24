@@ -404,6 +404,7 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
                     ...options
                 }
             };
+            console.log("Updating frame standard buttons");
             this.onUpdateFrameCaptionBarRequested(newOptions);
         } else if (isTabHeaderButtons && options.targetType === TargetType.TabBar) {
             const newOptions = {
@@ -476,13 +477,13 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
             }
 
             const { parentElement, ...options } = fcb;
-
-            // const extract = {
-            //     onClick: () => {
-            //         webGroupsManager.extractFrame(options.targetId);
-            //     },
-            //     ...options.extract
-            // };
+            console.log("render frame caption bar options", options);
+            const extract = {
+                onClick: () => {
+                    webGroupsManager.extractFrame(options.targetId);
+                },
+                ...options.extract
+            };
 
             const lock = {
                 onClick: () => {
@@ -539,6 +540,7 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
 
             return <Portal key={options.targetId} parentElement={parentElement}>
                 <FrameCaptionBarCustomElement {...options}
+                    extract={extract}
                     lock={lock}
                     unlock={unlock}
                     minimize={minimize}
@@ -658,12 +660,12 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
             }
             const { parentElement, ...options } = te;
 
-            // const extract = {
-            //     onClick: () => {
-            //         webGroupsManager.extractTabBar(options.targetId);
-            //     },
-            //     ...options.extract
-            // };
+            const extract = {
+                onClick: () => {
+                    webGroupsManager.extractTabBar(options.targetId);
+                },
+                ...options.extract
+            };
 
             const lock = {
                 onClick: () => {
@@ -708,6 +710,7 @@ class GroupElementCreationWrapper extends React.Component<GroupProps, ElementCre
             }
 
             return <Portal key={options.targetId} parentElement={parentElement}><TabButtonsCustomElement {...options}
+                extract={extract}
                 lock={lock}
                 unlock={unlock}
                 minimize={minimize}

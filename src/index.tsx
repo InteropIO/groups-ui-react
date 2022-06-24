@@ -31,7 +31,8 @@ import {
     CloseButtonProps,
     TabChannelSelectorProps,
     LockButtonProps,
-    UnlockButtonProps
+    UnlockButtonProps,
+    ExtractButtonProps
 } from "./types/internal";
 import webGroupsManager from "./webGroupsManager";
 import GroupMoveArea from "./defaultComponents/groupCaptionBar/GroupMoveArea";
@@ -45,6 +46,7 @@ import TabChannelSelector from "./defaultComponents/channelSelector/TabChannelSe
 import RestoreButton from "./defaultComponents/buttons/RestoreButton";
 import LockButton from "./defaultComponents/buttons/LockButtons";
 import UnlockButton from "./defaultComponents/buttons/UnlockButton";
+import ExtractButton from "./defaultComponents/buttons/ExtractButton";
 export {
     GroupCaptionBar,
     GroupMoveArea,
@@ -53,6 +55,7 @@ export {
     TabChannelSelector,
     TabCaption,
     TabCloseButton,
+    ExtractButton,
     LockButton,
     UnlockButton,
     MinimizeButton,
@@ -91,6 +94,7 @@ export {
     FlatMoveAreaProps,
     FlatChannelSelectorProps,
     FlatButtonsProps,
+    ExtractButtonProps,
     LockButtonProps,
     UnlockButtonProps,
     MinimizeButtonProps,
