@@ -31,12 +31,13 @@
         "access": "public"
     },
     "dependencies": {
-        "color2k": "^2.0.0"
+        "color2k": "^2.0.0",
+        "use-sync-external-store": "^1.2.0"
     },
     "peerDependencies": {
         "@glue42/react-hooks": "^2.0.0",
-        "react": "^16.8.0 || 17.x",
-        "react-dom": "^16.8.0 || 17.x"
+        "react": ">=16.8.0",
+        "react-dom": ">=16.8.0"
     },
     "devDependencies": {
         "@rollup/plugin-commonjs": "^15.1.0",
@@ -46,6 +47,7 @@
         "@types/node": "^12.12.38",
         "@types/react": "^18.0.9",
         "@types/react-dom": "^18.0.4",
+        "@types/use-sync-external-store": "0.0.3",
         "@typescript-eslint/eslint-plugin": "^2.26.0",
         "@typescript-eslint/parser": "^2.26.0",
         "babel-eslint": "^10.0.3",

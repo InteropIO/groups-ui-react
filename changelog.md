@@ -1,3 +1,5 @@
+1.1.0
+feat: added support for react 18
 1.0.1
 feat: renamed some of the frame components to flat
 chore: added keywords to the package.json
