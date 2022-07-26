@@ -2,7 +2,7 @@ import { Bounds, StandardButtons, TargetType, WebGroupsManager } from "./types/i
 
 declare const window: Window & { webGroupsManager: WebGroupsManager };
 
-class WorkspacesManagerDecorator {
+class WebGroupsManagerDecorator {
     public readonly skipFocusStyle = "t42-skip-focus";
 
     public init(glue: any, componentFactory: any) {
@@ -142,4 +142,4 @@ class WorkspacesManagerDecorator {
     }
 }
 
-export default new WorkspacesManagerDecorator();
+export default new WebGroupsManagerDecorator();
