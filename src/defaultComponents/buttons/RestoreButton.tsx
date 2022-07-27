@@ -1,5 +1,5 @@
 import React from "react";
-import { RestoreButtonProps } from "../types/internal";
+import { RestoreButtonProps } from "../../types/internal";
 import BaseButton from "./BaseButton";
 
 const RestoreButton: React.FC<RestoreButtonProps> = ({ tooltip, onClick }) => {

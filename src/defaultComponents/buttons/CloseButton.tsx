@@ -1,5 +1,5 @@
 import React from "react";
-import { CloseButtonProps } from "../types/internal";
+import { CloseButtonProps } from "../../types/internal";
 import BaseButton from "./BaseButton";
 
 const CloseButton: React.FC<CloseButtonProps> = ({ onClick, tooltip }) => {

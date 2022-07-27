@@ -69,13 +69,26 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             }
 
             const { parentElement, ...options } = fcb;
+            const extract = {
+                onClick: () => {
+                    webGroupsManager.extractFrame(options.targetId);
+                },
+                ...options.extract
+            };
 
-            // const extract = {
-            //     onClick: () => {
-            //         webGroupsManager.extractFrame(options.targetId);
-            //     },
-            //     ...options.extract
-            // };
+            const lock = {
+                onClick: () => {
+                    webGroupsManager.lockFrame(options.targetId);
+                },
+                ...options.lock
+            };
+
+            const unlock = {
+                onClick: () => {
+                    webGroupsManager.unlockFrame(options.targetId);
+                },
+                ...options.unlock
+            };
 
             const minimize = {
                 onClick: () => {
@@ -118,6 +131,9 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
 
             return <Portal key={options.targetId} parentElement={parentElement}>
                 <FrameCaptionBarCustomElement {...options}
+                    extract={extract}
+                    lock={lock}
+                    unlock={unlock}
                     minimize={minimize}
                     maximize={maximize}
                     restore={restore}
@@ -235,12 +251,26 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             }
             const { parentElement, ...options } = te;
 
-            // const extract = {
-            //     onClick: () => {
-            //         webGroupsManager.extractTabBar(options.targetId);
-            //     },
-            //     ...options.extract
-            // };
+            const extract = {
+                onClick: () => {
+                    webGroupsManager.extractTabBar(options.targetId);
+                },
+                ...options.extract
+            };
+
+            const lock = {
+                onClick: () => {
+                    webGroupsManager.lockTabBar(options.targetId);
+                },
+                ...options.lock
+            }
+
+            const unlock = {
+                onClick: () => {
+                    webGroupsManager.unlockTabBar(options.targetId);
+                },
+                ...options.unlock
+            }
 
             const minimize = {
                 onClick: () => {
@@ -271,6 +301,9 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             }
 
             return <Portal key={options.targetId} parentElement={parentElement}><TabButtonsCustomElement {...options}
+                extract={extract}
+                lock={lock}
+                unlock={unlock}
                 minimize={minimize}
                 maximize={maximize}
                 restore={restore}

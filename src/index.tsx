@@ -1,8 +1,8 @@
-import CloseButton from "./defaultComponents/CloseButton";
+import CloseButton from "./defaultComponents/buttons/CloseButton";
 import FlatCaptionBar from "./defaultComponents/flatCaptionBar/FlatCaptionBar";
 import GroupCaptionBar from "./defaultComponents/groupCaptionBar/GroupCaptionBar";
-import MaximizeButton from "./defaultComponents/MaximizeButton";
-import MinimizeButton from "./defaultComponents/MinimizeButton";
+import MaximizeButton from "./defaultComponents/buttons/MaximizeButton";
+import MinimizeButton from "./defaultComponents/buttons/MinimizeButton";
 import Tab from "./defaultComponents/tabs/Tab";
 import TabHeaderButtons from "./defaultComponents/tabs/TabHeaderButtons";
 import TabCaption from "./defaultComponents/tabs/TabCaption";
@@ -29,7 +29,10 @@ import {
     MaximizeButtonProps,
     RestoreButtonProps,
     CloseButtonProps,
-    TabChannelSelectorProps
+    TabChannelSelectorProps,
+    LockButtonProps,
+    UnlockButtonProps,
+    ExtractButtonProps
 } from "./types/internal";
 import webGroupsManager from "./webGroupsManager";
 import GroupMoveArea from "./defaultComponents/groupCaptionBar/GroupMoveArea";
@@ -40,7 +43,10 @@ import FlatCaption from "./defaultComponents/flatCaptionBar/FlatCaption";
 import GroupCaption from "./defaultComponents/groupCaptionBar/GroupCaption";
 import FlatChannelSelector from "./defaultComponents/channelSelector/FlatChannelSelector";
 import TabChannelSelector from "./defaultComponents/channelSelector/TabChannelSelector";
-import RestoreButton from "./defaultComponents/RestoreButton";
+import RestoreButton from "./defaultComponents/buttons/RestoreButton";
+import LockButton from "./defaultComponents/buttons/LockButtons";
+import UnlockButton from "./defaultComponents/buttons/UnlockButton";
+import ExtractButton from "./defaultComponents/buttons/ExtractButton";
 export {
     GroupCaptionBar,
     GroupMoveArea,
@@ -49,6 +55,9 @@ export {
     TabChannelSelector,
     TabCaption,
     TabCloseButton,
+    ExtractButton,
+    LockButton,
+    UnlockButton,
     MinimizeButton,
     RestoreButton,
     MaximizeButton,
@@ -85,6 +94,9 @@ export {
     FlatMoveAreaProps,
     FlatChannelSelectorProps,
     FlatButtonsProps,
+    ExtractButtonProps,
+    LockButtonProps,
+    UnlockButtonProps,
     MinimizeButtonProps,
     MaximizeButtonProps,
     RestoreButtonProps,
