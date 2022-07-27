@@ -69,7 +69,6 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             }
 
             const { parentElement, ...options } = fcb;
-            console.log("render frame caption bar options", options);
             const extract = {
                 onClick: () => {
                     webGroupsManager.extractFrame(options.targetId);
