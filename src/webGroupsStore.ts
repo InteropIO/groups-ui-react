@@ -409,7 +409,6 @@ class WebGroupsStore {
         const isCaptionBar = options.targetType === TargetType.Group; //this.state.groupCaptionBar?.targetId === options.targetId;
         const isFrame = options.targetType === TargetType.Frame;
         const isTabHeaderButtons = options.targetType === TargetType.TabBar;
-        console.log("incoming request", options);
 
         if (isCaptionBar) {
             const currentState = this.state.groupCaptionBar || { targetId: options.targetId } as CreateGroupCaptionBarRequestOptions;
@@ -428,7 +427,6 @@ class WebGroupsStore {
                     ...options
                 }
             };
-            console.log("updating standard buttons with", newOptions);
             this.onUpdateFrameCaptionBarRequested(newOptions);
         } else if (isTabHeaderButtons && options.targetType === TargetType.TabBar) {
             const currentState = this.state.tabHeaderButtons[options.targetId] || { targetId: options.targetId } as CreateTabHeaderButtonsOptions;
