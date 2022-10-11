@@ -1,3 +1,5 @@
+1.1.2
+feat: useGDWindow and waitForWindow
 1.1.1
 feat: extract, lock and unlock buttons
 1.1.0
