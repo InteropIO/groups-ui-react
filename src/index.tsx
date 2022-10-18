@@ -47,6 +47,10 @@ import RestoreButton from "./defaultComponents/buttons/RestoreButton";
 import LockButton from "./defaultComponents/buttons/LockButtons";
 import UnlockButton from "./defaultComponents/buttons/UnlockButton";
 import ExtractButton from "./defaultComponents/buttons/ExtractButton";
+
+import useGDWindow from "./useGDWindow";
+import { waitForWindow } from "./utils";
+
 export {
     GroupCaptionBar,
     GroupMoveArea,
@@ -68,6 +72,8 @@ export {
     FlatMoveArea,
     FlatButtons,
     TabHeaderButtons,
+    useGDWindow,
+    waitForWindow
 }
 
 export const getGroupId: () => string = () => webGroupsManager?.getGroupId();
