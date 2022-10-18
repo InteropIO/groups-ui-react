@@ -5,7 +5,6 @@ function useGDWindow(windowId: string) {
     const [gdWindow, setGdWindow] = useState<any>(undefined);
 
     const glue = (window as any).glue || useContext(GlueContext);
-
     useEffect(() => {
         const unsub = glue.windows.onWindowAdded((w: any) => {
             if (w.id === windowId) {
@@ -21,7 +20,7 @@ function useGDWindow(windowId: string) {
         }
 
         return unsub;
-    }, []);
+    }, [windowId]);
 
     return gdWindow;
 }
