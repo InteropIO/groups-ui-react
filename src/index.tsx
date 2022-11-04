@@ -32,7 +32,8 @@ import {
     TabChannelSelectorProps,
     LockButtonProps,
     UnlockButtonProps,
-    ExtractButtonProps
+    ExtractButtonProps,
+    GroupComponentVisibilityState
 } from "./types/internal";
 import webGroupsManager from "./webGroupsManager";
 import GroupMoveArea from "./defaultComponents/groupCaptionBar/GroupMoveArea";
@@ -73,6 +74,7 @@ export {
     FlatMoveArea,
     FlatButtons,
     TabHeaderButtons,
+    GroupComponentVisibilityState,
     useGDWindow,
     useGroupComponentVisibility,
     waitForWindow
