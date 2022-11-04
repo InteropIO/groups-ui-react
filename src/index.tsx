@@ -50,6 +50,7 @@ import ExtractButton from "./defaultComponents/buttons/ExtractButton";
 
 import useGDWindow from "./useGDWindow";
 import { waitForWindow } from "./utils";
+import useGroupComponentVisibility from "./useGroupComponentVisibility";
 
 export {
     GroupCaptionBar,
@@ -73,6 +74,7 @@ export {
     FlatButtons,
     TabHeaderButtons,
     useGDWindow,
+    useGroupComponentVisibility,
     waitForWindow
 }
 
