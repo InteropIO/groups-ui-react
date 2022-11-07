@@ -1,3 +1,5 @@
+1.1.3
+feat: expose "visible" for group caption bar and add useGroupComponentVisibility hook
 1.1.2
 feat: useGDWindow and waitForWindow
 1.1.1

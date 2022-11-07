@@ -31,6 +31,7 @@ export interface GroupCaptionBarProps {
 	targetType: string;
 	targetId: string;
 	caption: string;
+	visible: boolean,
 
 	minimize: ButtonProps;
 	maximize: ButtonProps;
@@ -268,6 +269,7 @@ export interface GroupWrapperProps {
 export interface CreateGroupCaptionBarRequestOptions extends CreateElementRequestOptions {
 	moveAreaId: string;
 	caption: string;
+	visible: boolean;
 	extract: {
 		tooltip: string;
 		visible: boolean;
@@ -461,4 +463,8 @@ export interface Size {
 export interface Bounds extends Size {
 	left: number;
 	top: number;
+}
+
+export interface GroupComponentVisibilityState {
+	groupCaptionBarVisible?: boolean;
 }
