@@ -345,7 +345,7 @@ class WebGroupsStore {
         this.setState(s => {
             const newState = { ...s };
 
-            if (s.frameWindowOverlays[options.targetId] && s.frameWindowOverlays[options.targetId]?.selectedWindow != options.selectedWindow) {
+            if (s.frameCaptionBars[options.targetId] && s.frameCaptionBars[options.targetId]?.selectedWindow != options.selectedWindow) {
                 newState.frameCaptionBars = {
                     ...s.frameCaptionBars,
                     [options.targetId]: { ...s.frameCaptionBars[options.targetId], selectedWindow: options.selectedWindow }
