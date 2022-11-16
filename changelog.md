@@ -1,3 +1,5 @@
+1.1.4
+fix: selected window is undefined when none of the frame components are customized
 1.1.3
 feat: expose "visible" for group caption bar and add useGroupComponentVisibility hook
 1.1.2
