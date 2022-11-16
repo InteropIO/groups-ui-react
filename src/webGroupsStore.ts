@@ -345,61 +345,27 @@ class WebGroupsStore {
         this.setState(s => {
             const newState = { ...s };
 
-            if (s.frameCaptionBars[options.targetId] && s.frameCaptionBars[options.targetId]?.selectedWindow != options.selectedWindow) {
-                newState.frameCaptionBars = {
-                    ...s.frameCaptionBars,
-                    [options.targetId]: { ...s.frameCaptionBars[options.targetId], selectedWindow: options.selectedWindow }
+            const updateSelectionWindow = <T extends keyof ElementCreationWrapperState>(stateProp: T, targetId: string, selectedWindow: string) => {
+                if (stateProp === "groupOverlay" || stateProp === "groupCaptionBar" || stateProp === "tabElements") {
+                    return;
                 }
-            }
 
-            if (s.frameWindowOverlays[options.targetId] && s.frameWindowOverlays[options.targetId]?.selectedWindow != options.selectedWindow) {
-                newState.frameWindowOverlays = {
-                    ...s.frameWindowOverlays,
-                    [options.targetId]: { ...s.frameWindowOverlays[options.targetId], selectedWindow: options.selectedWindow }
+                if (s[stateProp]![targetId] && s[stateProp]![targetId]?.selectedWindow !== selectedWindow) {
+                    newState[stateProp] = {
+                        ...s[stateProp],
+                        [targetId]: { ...s[stateProp]![targetId], selectedWindow: selectedWindow }
+                    }
                 }
-            }
+            };
 
-            if (s.belowWindowZones[options.targetId] && s.belowWindowZones[options.targetId]?.selectedWindow != options.selectedWindow) {
-                newState.belowWindowZones = {
-                    ...s.belowWindowZones,
-                    [options.targetId]: { ...s.belowWindowZones[options.targetId], selectedWindow: options.selectedWindow }
-                }
-            }
-
-            if (s.aboveTabsZones[options.targetId] && s.frameWindowOverlays[options.targetId]?.selectedWindow != options.selectedWindow) {
-                newState.aboveTabsZones = {
-                    ...s.aboveTabsZones,
-                    [options.targetId]: { ...s.aboveTabsZones[options.targetId], selectedWindow: options.selectedWindow }
-                }
-            }
-
-            if (s.beforeTabsZones[options.targetId] && s.frameWindowOverlays[options.targetId]?.selectedWindow != options.selectedWindow) {
-                newState.beforeTabsZones = {
-                    ...s.beforeTabsZones,
-                    [options.targetId]: { ...s.beforeTabsZones[options.targetId], selectedWindow: options.selectedWindow }
-                }
-            }
-
-            if (s.afterTabsZones[options.targetId] && s.frameWindowOverlays[options.targetId]?.selectedWindow != options.selectedWindow) {
-                newState.afterTabsZones = {
-                    ...s.afterTabsZones,
-                    [options.targetId]: { ...s.afterTabsZones[options.targetId], selectedWindow: options.selectedWindow }
-                }
-            }
-
-            if (s.tabHeaderButtons[options.targetId] && s.frameWindowOverlays[options.targetId]?.selectedWindow != options.selectedWindow) {
-                newState.tabHeaderButtons = {
-                    ...s.tabHeaderButtons,
-                    [options.targetId]: { ...s.tabHeaderButtons[options.targetId], selectedWindow: options.selectedWindow }
-                }
-            }
-
-            if (s.belowTabsZones[options.targetId] && s.frameWindowOverlays[options.targetId]?.selectedWindow != options.selectedWindow) {
-                newState.belowTabsZones = {
-                    ...s.belowTabsZones,
-                    [options.targetId]: { ...s.belowTabsZones[options.targetId], selectedWindow: options.selectedWindow }
-                }
-            }
+            updateSelectionWindow("frameCaptionBars", options.targetId, options.selectedWindow);
+            updateSelectionWindow("frameWindowOverlays", options.targetId, options.selectedWindow);
+            updateSelectionWindow("belowWindowZones", options.targetId, options.selectedWindow);
+            updateSelectionWindow("aboveTabsZones", options.targetId, options.selectedWindow);
+            updateSelectionWindow("beforeTabsZones", options.targetId, options.selectedWindow);
+            updateSelectionWindow("afterTabsZones", options.targetId, options.selectedWindow);
+            updateSelectionWindow("tabHeaderButtons", options.targetId, options.selectedWindow);
+            updateSelectionWindow("belowTabsZones", options.targetId, options.selectedWindow);
 
             return newState;
         });
