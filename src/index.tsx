@@ -8,33 +8,6 @@ import TabHeaderButtons from "./defaultComponents/tabs/TabHeaderButtons";
 import TabCaption from "./defaultComponents/tabs/TabCaption";
 import TabCloseButton from "./defaultComponents/tabs/TabCloseButton";
 import GroupElementCreationWrapper from "./GroupElementCreationWrapper";
-import {
-    GroupCaptionBarProps,
-    GroupProps,
-    MoveAreaProps,
-    TabElementProps,
-    TabCaptionProps,
-    TabCloseButtonProps,
-    FlatCaptionBarProps,
-    FrameWindowOverlayProps,
-    FlatMoveAreaProps,
-    FlatChannelSelectorProps,
-    TabHeaderButtonsProps,
-    GroupMoveAreaProps,
-    GroupButtonsProps,
-    FlatCaptionProps,
-    FlatButtonsProps,
-    GroupOverlayProps,
-    MinimizeButtonProps,
-    MaximizeButtonProps,
-    RestoreButtonProps,
-    CloseButtonProps,
-    TabChannelSelectorProps,
-    LockButtonProps,
-    UnlockButtonProps,
-    ExtractButtonProps,
-    GroupComponentVisibilityState
-} from "./types/internal";
 import webGroupsManager from "./webGroupsManager";
 import GroupMoveArea from "./defaultComponents/groupCaptionBar/GroupMoveArea";
 import GroupButtons from "./defaultComponents/groupCaptionBar/GroupButtons";
@@ -48,10 +21,44 @@ import RestoreButton from "./defaultComponents/buttons/RestoreButton";
 import LockButton from "./defaultComponents/buttons/LockButtons";
 import UnlockButton from "./defaultComponents/buttons/UnlockButton";
 import ExtractButton from "./defaultComponents/buttons/ExtractButton";
-
 import useGDWindow from "./useGDWindow";
 import { waitForWindow } from "./utils";
 import useGroupComponentVisibility from "./useGroupComponentVisibility";
+import {
+    CloseButtonProps,
+    ExtractButtonProps,
+    FlatButtonsProps,
+    FlatCaptionProps,
+    FlatChannelSelectorProps,
+    FlatMoveAreaProps,
+    GroupButtonsProps,
+    GroupMoveAreaProps,
+    LockButtonProps,
+    MaximizeButtonProps,
+    MinimizeButtonProps,
+    RestoreButtonProps,
+    TabCaptionProps,
+    TabChannelSelectorProps,
+    TabCloseButtonProps,
+    UnlockButtonProps
+} from "./types/defaultComponents";
+import {
+    FlatCaptionBarProps,
+    FrameWindowOverlayProps,
+    GroupCaptionBarProps,
+    GroupComponentVisibilityState,
+    GroupOverlayProps,
+    GroupProps,
+    MoveAreaProps,
+    TabElementProps,
+    TabHeaderButtonsProps
+} from "./types/api";
+import useTabCaption from "./defaultComponents/tabs/useEditableTabCaption";
+import useTabCaptionEditor from "./defaultComponents/tabs/useTabCaptionEditor";
+import useEditableGroupCaption from "./defaultComponents/groupCaptionBar/useEditableGroupCaption";
+import useGroupCaptionEditor from "./defaultComponents/groupCaptionBar/useGroupCaptionEditor";
+import useFlatCaption from "./defaultComponents/flatCaptionBar/useEditableFlatCaption";
+import useFlatCaptionEditor from "./defaultComponents/flatCaptionBar/useFlatCaptionEditor";
 
 export {
     GroupCaptionBar,
@@ -77,7 +84,13 @@ export {
     GroupComponentVisibilityState,
     useGDWindow,
     useGroupComponentVisibility,
-    waitForWindow
+    waitForWindow,
+    useTabCaption,
+    useTabCaptionEditor,
+    useEditableGroupCaption as useGroupCaption,
+    useGroupCaptionEditor,
+    useFlatCaption,
+    useFlatCaptionEditor
 }
 
 export const getGroupId: () => string = () => webGroupsManager?.getGroupId();

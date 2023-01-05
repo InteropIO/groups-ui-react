@@ -1,5 +1,6 @@
 import { useSyncExternalStore } from "use-sync-external-store/shim";
-import { ElementCreationWrapperState, GroupComponentVisibilityState } from "./types/internal";
+import { GroupComponentVisibilityState } from "./types/api";
+import { ElementCreationWrapperState } from "./types/internal";
 import webGroupsStore from "./webGroupsStore";
 
 function useGroupComponentVisibility(): GroupComponentVisibilityState {

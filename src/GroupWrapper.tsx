@@ -44,7 +44,11 @@ class GroupWrapper extends React.Component<GroupWrapperProps> {
             destroyTab: this.props.onRemoveTabRequested,
             destroyAfterTabs: this.props.onRemoveAfterTabsComponentRequested,
             destroyTabBarButtonsContainerElement: this.props.onRemoveTabHeaderButtonsRequested,
-            destroyBelowTabs: this.props.onRemoveBelowTabsRequested
+            destroyBelowTabs: this.props.onRemoveBelowTabsRequested,
+
+            showCaptionEditor:this.props.onShowCaptionEditorRequested,
+            commitCaptionEditing: this.props.onCommitCaptionEditingRequested,
+            hideCaptionEditor: this.props.onHideCaptionEditorRequested
         };
 
         webGroupsManager.init(undefined, componentFactory);

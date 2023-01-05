@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { BaseChannelSelectorProps } from "../../types/internal";
+import { BaseChannelSelectorProps } from "../../types/defaultComponents";
 import { IsBlackReadable } from "./utils";
 
 const BaseChannelSelector: React.FC<BaseChannelSelectorProps> = ({ outsideClass, contentClass, showSelector, selectedChannel, selectedChannelColor }) => {
