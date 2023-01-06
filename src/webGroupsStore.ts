@@ -13,6 +13,7 @@ import {
     UpdateStandardButtonRequestOptions,
     UpdateFrameRequestOptions
 } from "./types/internal";
+import webGroupsManager from "./webGroupsManager";
 
 class WebGroupsStore {
 
@@ -589,8 +590,7 @@ class WebGroupsStore {
     }
 
     public onCommitCaptionEditingRequested = (targetType: TargetType, targetId: string) => {
-        // todo
-        console.log("Commit TODO");
+        webGroupsManager.requestCommitCaptionEditing(targetType, targetId);
     }
 
     public onHideCaptionEditorRequested = (targetType: TargetType, targetId: string) => {

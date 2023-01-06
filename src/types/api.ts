@@ -32,12 +32,21 @@ export interface BelowTabsProps {
     selectedWindow: string;
 }
 
+export interface CaptionEditorProps {
+    show: boolean;
+    text?: string;
+    commitChanges: (text: string) => void;
+    hideEditor: () => void;
+    notifyBoundsChanged: (bounds: Bounds) => void;
+    notifyEditorVisibilityChanged: (visible: boolean) => void;
+}
+
 export interface GroupCaptionBarProps {
     moveAreaId: string;
     targetType: string;
     targetId: string;
     caption: string;
-    captionEditor?: any;
+    captionEditor?: CaptionEditorProps;
     visible: boolean,
     notifyCaptionBoundsChanged: (bounds: Bounds) => void;
 
@@ -65,7 +74,7 @@ export interface FlatCaptionBarProps {
     channels: ChannelProps;
     selectedWindow: string;
     notifyCaptionBoundsChanged: (bounds: Bounds) => void;
-    captionEditor: any;
+    captionEditor: CaptionEditorProps;
 }
 
 export interface TabElementProps {
@@ -76,7 +85,7 @@ export interface TabElementProps {
     close: () => void;
     channels: ChannelProps;
     notifyCaptionBoundsChanged: (bounds: Bounds) => void;
-    captionEditor: any;
+    captionEditor: CaptionEditorProps;
 }
 
 export interface AfterTabsZoneProps {
@@ -121,36 +130,30 @@ export interface GroupProps {
 }
 
 export interface UseGroupCaptionEditorOptions {
-    targetId: string;
-    text: string;
     notifyEditorVisibilityChanged: (visible: boolean) => void;
     notifyBoundsChanged: (bounds: Bounds) => void;
 }
 
 export interface UseEditableGroupCaptionOptions {
-    notifyBoundsChanged: (bounds: Bounds) => void;
+    notifyBoundsChanged?: (bounds: Bounds) => void;
 }
 
 export interface UseFlatCaptionEditorOptions {
-    targetId: string;
-    text: string;
     notifyEditorVisibilityChanged: (visible: boolean) => void;
     notifyBoundsChanged: (bounds: Bounds) => void;
 }
 
 export interface UseEditableFlatCaptionOptions {
-    notifyBoundsChanged: (bounds: Bounds) => void;
+    notifyBoundsChanged?: (bounds: Bounds) => void;
 }
 
 export interface UseTabCaptionEditorOptions {
-    targetId: string;
-    text: string;
     notifyEditorVisibilityChanged: (visible: boolean) => void;
     notifyBoundsChanged: (bounds: Bounds) => void;
 }
 
 export interface UseEditableTabCaptionOptions {
-    notifyBoundsChanged: (bounds: Bounds) => void;
+    notifyBoundsChanged?: (bounds: Bounds) => void;
 }
 
 export interface MoveAreaProps {

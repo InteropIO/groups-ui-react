@@ -12,7 +12,7 @@ export interface CaptionEditorProps {
 }
 
 export interface GroupCaptionEditorProps {
-    targetId: string;
+    groupId: string;
     commitChanges: (title: string) => void;
     notifyEditorVisibilityChanged: (visible: boolean) => void;
     notifyBoundsChanged: (bounds: Bounds) => void;
@@ -67,7 +67,7 @@ export interface TabChannelSelectorProps {
 }
 
 export interface FlatCaptionEditorProps {
-    targetId: string;
+    frameId: string;
     commitChanges: (title: string) => void;
     notifyEditorVisibilityChanged: (visible: boolean) => void;
     notifyBoundsChanged: (bounds: Bounds) => void;
@@ -92,7 +92,7 @@ export interface FlatButtonsProps {
 
 export interface FlatCaptionProps {
     caption: string;
-    notifyBoundsChanged: (bounds: Bounds) => void;
+    notifyBoundsChanged?: (bounds: Bounds) => void;
 }
 
 export interface GroupMoveAreaProps {
@@ -109,13 +109,13 @@ export interface GroupButtonsProps {
 
 export interface GroupCaptionProps {
     caption: string;
-    notifyBoundsChanged: (bounds: Bounds) => void;
+    notifyBoundsChanged?: (bounds: Bounds) => void;
 }
 
 export interface TabCaptionProps {
     caption: string;
     selected: boolean;
-    notifyBoundsChanged: (bounds: Bounds) => void;
+    notifyBoundsChanged?: (bounds: Bounds) => void;
 }
 
 export interface TabCloseButtonProps {
@@ -124,7 +124,7 @@ export interface TabCloseButtonProps {
 }
 
 export interface TabCaptionEditorProps {
-    targetId: string;
+    windowId: string;
     selected: boolean;
     commitChanges: (title: string) => void;
     notifyEditorVisibilityChanged: (visible: boolean) => void;
@@ -134,13 +134,10 @@ export interface TabCaptionEditorProps {
 }
 
 export interface UseCaptionEditorOptions {
-    targetType: TargetType;
-    targetId: string;
-    text: string;
     notifyEditorVisibilityChanged: (visible: boolean) => void;
     notifyBoundsChanged: (bounds: Bounds) => void;
 }
 
 export interface UseEditableCaptionOptions {
-    notifyBoundsChanged: (bounds: Bounds) => void;
+    notifyBoundsChanged?: (bounds: Bounds) => void;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useLayoutEffect } from "react";
 import { getElementBounds } from "../../utils";
 import ResizeObserver from 'resize-observer-polyfill';
 import { UseEditableCaptionOptions } from "../../types/defaultComponents";
@@ -10,14 +10,15 @@ function useEditableCaption(ref: React.RefObject<HTMLElement>, options: UseEdita
         }
 
         const observer = new ResizeObserver(() => {
-            if (ref.current) {
+            console.log("in resize observer");
+            if (ref.current && typeof options.notifyBoundsChanged === "function") {
                 options.notifyBoundsChanged(getElementBounds(ref.current));
             }
         });
 
         observer.observe(ref.current);
 
-        if (ref.current) {
+        if (ref.current && typeof options.notifyBoundsChanged === "function") {
             options.notifyBoundsChanged(getElementBounds(ref.current));
         }
 

@@ -1,8 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { CaptionEditorProps, } from "../../types/defaultComponents";
 import useCaptionEditor from "./useCaptionEditor";
+import useCommitEditingRequested from "./useCommitEditingRequested";
 
-const CaptionEditor: React.FC<CaptionEditorProps> = ({ className, commitChanges, hideEditor, notifyBoundsChanged, caption, notifyEditorVisibilityChanged, targetType, targetId }) => {
+const CaptionEditor: React.FC<CaptionEditorProps> = ({ className,
+    commitChanges,
+    hideEditor,
+    notifyBoundsChanged,
+    caption,
+    notifyEditorVisibilityChanged,
+    targetType,
+    targetId }) => {
     const [captionInEditor, setCaptionInEditor] = useState(caption);
     const [inputWidth, setInputWidth] = useState(0);
     const ref = useRef<HTMLInputElement>(null);
@@ -31,21 +39,29 @@ const CaptionEditor: React.FC<CaptionEditorProps> = ({ className, commitChanges,
         }
     }
 
-    const onMouseDown = (e: MouseEvent) => {
-        e.stopPropagation();
-    }
-
-    useCaptionEditor(ref, { notifyBoundsChanged, notifyEditorVisibilityChanged, targetType, targetId,text: captionInEditor });
+    useCaptionEditor(ref, { notifyBoundsChanged, notifyEditorVisibilityChanged });
+    useCommitEditingRequested(targetType, targetId, captionInEditor);
 
     useEffect(() => {
         if (!ref.current) {
             return;
         }
+        const onMouseDown = (e: MouseEvent) => {
+            e.stopPropagation();
+        };
 
-        window.addEventListener("mousedown", onMouseDown);
+        const element = ref.current;
+        element.addEventListener("mousedown", onMouseDown);
+
+        if (ref.current) {
+            setTimeout(() => {
+                element?.focus();
+                element?.select();
+            }, 0);
+        }
 
         return () => {
-            window.removeEventListener("mousedown", onMouseDown);
+            element?.removeEventListener("mousedown", onMouseDown);
         }
     }, [ref]);
 
