@@ -10,7 +10,6 @@ function useEditableCaption(ref: React.RefObject<HTMLElement>, options: UseEdita
         }
 
         const observer = new ResizeObserver(() => {
-            console.log("in resize observer");
             if (ref.current && typeof options.notifyBoundsChanged === "function") {
                 options.notifyBoundsChanged(getElementBounds(ref.current));
             }
