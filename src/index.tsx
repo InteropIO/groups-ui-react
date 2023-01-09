@@ -43,7 +43,9 @@ import {
     TabCaptionProps,
     TabChannelSelectorProps,
     TabCloseButtonProps,
-    UnlockButtonProps
+    UnlockButtonProps,
+    UseCaptionEditorOptions,
+    UseEditableCaptionOptions
 } from "./types/defaultComponents";
 import {
     FlatCaptionBarProps,
@@ -55,19 +57,7 @@ import {
     MoveAreaProps,
     TabElementProps,
     TabHeaderButtonsProps,
-    UseTabCaptionEditorOptions,
-    UseGroupCaptionEditorOptions,
-    UseFlatCaptionEditorOptions,
-    UseEditableTabCaptionOptions,
-    UseEditableGroupCaptionOptions,
-    UseEditableFlatCaptionOptions
 } from "./types/api";
-import useEditableTabCaption from "./defaultComponents/tabs/useEditableTabCaption";
-import useTabCaptionEditor from "./defaultComponents/tabs/useTabCaptionEditor";
-import useEditableGroupCaption from "./defaultComponents/groupCaptionBar/useEditableGroupCaption";
-import useGroupCaptionEditor from "./defaultComponents/groupCaptionBar/useGroupCaptionEditor";
-import useEditableFlatCaption from "./defaultComponents/flatCaptionBar/useEditableFlatCaption";
-import useFlatCaptionEditor from "./defaultComponents/flatCaptionBar/useFlatCaptionEditor";
 import GroupCaptionEditor from "./defaultComponents/groupCaptionBar/GroupCaptionEditor";
 import FlatCaptionEditor from "./defaultComponents/flatCaptionBar/FlatCaptionEditor";
 import TabCaptionEditor from "./defaultComponents/tabs/TabCaptionEditor";
@@ -75,6 +65,8 @@ import { TargetType } from "./types/internal";
 import useCommitTabCaptionEditingRequested from "./defaultComponents/tabs/useCommitTabCaptionEditingRequested";
 import useCommitGroupCaptionEditingRequested from "./defaultComponents/groupCaptionBar/useCommitGroupCaptionEditingRequested";
 import useCommitFlatCaptionEditingRequested from "./defaultComponents/flatCaptionBar/useCommitFlatCaptionEditingRequested";
+import useEditableCaption from "./defaultComponents/captionEditor/useEditableCaption";
+import useCaptionEditor from "./defaultComponents/captionEditor/useCaptionEditor";
 
 export {
     GroupCaptionBar,
@@ -104,12 +96,8 @@ export {
     useGDWindow,
     useGroupComponentVisibility,
     waitForWindow,
-    useEditableTabCaption,
-    useTabCaptionEditor,
-    useEditableGroupCaption,
-    useGroupCaptionEditor,
-    useEditableFlatCaption,
-    useFlatCaptionEditor,
+    useEditableCaption,
+    useCaptionEditor,
     useCommitGroupCaptionEditingRequested,
     useCommitFlatCaptionEditingRequested,
     useCommitTabCaptionEditingRequested,
@@ -153,12 +141,8 @@ export {
     MaximizeButtonProps,
     RestoreButtonProps,
     CloseButtonProps,
-    UseTabCaptionEditorOptions,
-    UseGroupCaptionEditorOptions,
-    UseFlatCaptionEditorOptions,
-    UseEditableTabCaptionOptions,
-    UseEditableGroupCaptionOptions,
-    UseEditableFlatCaptionOptions
+    UseCaptionEditorOptions,
+    UseEditableCaptionOptions
 }
 
 export default GroupElementCreationWrapper;

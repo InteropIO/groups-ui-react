@@ -129,33 +129,6 @@ export interface GroupProps {
     }
 }
 
-export interface UseGroupCaptionEditorOptions {
-    notifyEditorVisibilityChanged: (visible: boolean) => void;
-    notifyBoundsChanged: (bounds: Bounds) => void;
-}
-
-export interface UseEditableGroupCaptionOptions {
-    notifyBoundsChanged?: (bounds: Bounds) => void;
-}
-
-export interface UseFlatCaptionEditorOptions {
-    notifyEditorVisibilityChanged: (visible: boolean) => void;
-    notifyBoundsChanged: (bounds: Bounds) => void;
-}
-
-export interface UseEditableFlatCaptionOptions {
-    notifyBoundsChanged?: (bounds: Bounds) => void;
-}
-
-export interface UseTabCaptionEditorOptions {
-    notifyEditorVisibilityChanged: (visible: boolean) => void;
-    notifyBoundsChanged: (bounds: Bounds) => void;
-}
-
-export interface UseEditableTabCaptionOptions {
-    notifyBoundsChanged?: (bounds: Bounds) => void;
-}
-
 export interface MoveAreaProps {
     elementId: string;
 }

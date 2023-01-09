@@ -2,7 +2,6 @@ import React from "react";
 import { GroupWrapperProps } from "./types/internal";
 import webGroupsManager from "./webGroupsManager";
 
-
 class GroupWrapper extends React.Component<GroupWrapperProps> {
     containerRef: HTMLElement | null;
 
