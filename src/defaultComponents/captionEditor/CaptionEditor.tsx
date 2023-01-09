@@ -54,6 +54,7 @@ const CaptionEditor: React.FC<CaptionEditorProps> = ({ className,
         element.addEventListener("mousedown", onMouseDown);
 
         if (ref.current) {
+             // Focus element on the next tick to have properly focused page
             setTimeout(() => {
                 element?.focus();
                 element?.select();
