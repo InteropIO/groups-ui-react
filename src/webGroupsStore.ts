@@ -13,6 +13,7 @@ import {
     UpdateStandardButtonRequestOptions,
     UpdateFrameRequestOptions
 } from "./types/internal";
+import webGroupsManager from "./webGroupsManager";
 
 class WebGroupsStore {
 
@@ -575,6 +576,175 @@ class WebGroupsStore {
                 ...s,
                 belowTabsZones: newTabElementsObj
             }
+        });
+    }
+
+    public onShowCaptionEditorRequested = (targetType: TargetType, targetId: string, text: string) => {
+        if (targetType === TargetType.Group) {
+            this.onShowGroupCaptionEditorRequested(targetId, text);
+        } else if (targetType === TargetType.Frame) {
+            this.onShowFlatCaptionEditorRequested(targetId, text);
+        } else if (targetType === TargetType.Tab) {
+            this.onShowTabCaptionEditorRequested(targetId, text);
+        }
+    }
+
+    public onCommitCaptionEditingRequested = (targetType: TargetType, targetId: string) => {
+        webGroupsManager.requestCommitCaptionEditing(targetType, targetId);
+    }
+
+    public onHideCaptionEditorRequested = (targetType: TargetType, targetId: string) => {
+        if (targetType === TargetType.Group) {
+            this.onHideGroupCaptionEditorRequested(targetId);
+        } else if (targetType === TargetType.Frame) {
+            this.onHideFlatCaptionEditorRequested(targetId);
+        } else if (targetType === TargetType.Tab) {
+            this.onHideTabCaptionEditorRequested(targetId)
+        }
+    }
+
+    private onShowGroupCaptionEditorRequested = (_: string, text: string) => {
+        if (!this.state.groupCaptionBar) {
+            return;
+        }
+
+        this.setState(s => {
+            const captionEditor = s.groupCaptionBar?.captionEditor || {};
+            const newState: ElementCreationWrapperState = {
+                ...s,
+                groupCaptionBar: {
+                    ...s.groupCaptionBar!,
+                    captionEditor: {
+                        ...captionEditor,
+                        show: true,
+                        text
+                    }
+                }
+            }
+            return newState;
+        });
+    }
+
+    private onHideGroupCaptionEditorRequested = (_: string) => {
+        if (!this.state.groupCaptionBar) {
+            return;
+        }
+
+        this.setState(s => {
+            const captionEditor = s.groupCaptionBar?.captionEditor || {};
+            const newState: ElementCreationWrapperState = {
+                ...s,
+                groupCaptionBar: {
+                    ...s.groupCaptionBar!,
+                    captionEditor: {
+                        ...captionEditor,
+                        show: false,
+                    }
+                }
+            }
+            return newState;
+        });
+    }
+
+    private onShowFlatCaptionEditorRequested = (targetId: string, text: string) => {
+        if (!this.state.frameCaptionBars[targetId]) {
+            return;
+        }
+
+        this.setState(s => {
+            const captionEditor = s.frameCaptionBars[targetId]?.captionEditor || {};
+            const newState: ElementCreationWrapperState = {
+                ...s,
+                frameCaptionBars: {
+                    ...s.frameCaptionBars!,
+                    [targetId]: {
+                        ...s.frameCaptionBars[targetId],
+                        captionEditor: {
+                            ...captionEditor,
+                            show: true,
+                            text
+                        }
+                    }
+
+                }
+            }
+            return newState;
+        });
+    }
+
+    private onHideFlatCaptionEditorRequested = (targetId: string) => {
+        if (!this.state.frameCaptionBars[targetId]) {
+            return;
+        }
+
+        this.setState(s => {
+            const captionEditor = s.frameCaptionBars[targetId]?.captionEditor || {};
+            const newState: ElementCreationWrapperState = {
+                ...s,
+                frameCaptionBars: {
+                    ...s.frameCaptionBars!,
+                    [targetId]: {
+                        ...s.frameCaptionBars[targetId],
+                        captionEditor: {
+                            ...captionEditor,
+                            show: false,
+                        }
+                    }
+
+                }
+            }
+            return newState;
+        });
+    }
+
+    private onShowTabCaptionEditorRequested = (targetId: string, text: string) => {
+        if (!this.state.tabElements[targetId]) {
+            return;
+        }
+
+        this.setState(s => {
+            const captionEditor = s.tabElements[targetId]?.captionEditor || {};
+            const newState: ElementCreationWrapperState = {
+                ...s,
+                tabElements: {
+                    ...s.tabElements!,
+                    [targetId]: {
+                        ...s.tabElements[targetId],
+                        captionEditor: {
+                            ...captionEditor,
+                            show: true,
+                            text
+                        }
+                    }
+
+                }
+            }
+            return newState;
+        });
+    }
+
+    private onHideTabCaptionEditorRequested = (targetId: string) => {
+        if (!this.state.tabElements[targetId]) {
+            return;
+        }
+
+        this.setState(s => {
+            const captionEditor = s.tabElements[targetId]?.captionEditor || {};
+            const newState: ElementCreationWrapperState = {
+                ...s,
+                tabElements: {
+                    ...s.tabElements!,
+                    [targetId]: {
+                        ...s.tabElements[targetId],
+                        captionEditor: {
+                            ...captionEditor,
+                            show: false,
+                        }
+                    }
+
+                }
+            }
+            return newState;
         });
     }
 

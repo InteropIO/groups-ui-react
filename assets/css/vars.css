@@ -5,6 +5,9 @@
     --t42-title-margin: 5px;
     --t42-title-color: var(--t42-content-color);
 
+    --t42-caption-editor-margin: 5px;
+    --t42-caption-editor-color: var(--t42-content-color);
+
     --t42-move-area-min-width: 30px;
 
     --t42-standard-button-size: 10px;

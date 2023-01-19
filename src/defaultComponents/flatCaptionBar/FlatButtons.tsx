@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatButtonsProps } from "../../types/internal";
+import { FlatButtonsProps } from "../../types/defaultComponents";
 import CloseButton from "../buttons/CloseButton";
 import ExtractButton from "../buttons/ExtractButton";
 import LockButton from "../buttons/LockButtons";

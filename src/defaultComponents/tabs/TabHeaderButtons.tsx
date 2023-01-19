@@ -1,5 +1,5 @@
 import React from "react";
-import { TabHeaderButtonsProps } from "../../types/internal";
+import { TabHeaderButtonsProps } from "../../types/api";
 import CloseButton from "../buttons/CloseButton";
 import ExtractButton from "../buttons/ExtractButton";
 import LockButton from "../buttons/LockButtons";

@@ -17,6 +17,12 @@ body {
     font-size: var(--t42-font-size);
 }
 
+input {
+    font-weight: var(--bs-body-font-weight);
+    font-family: var(--t42-font-family);
+    font-size: var(--t42-font-size);
+}
+
 #t42-group-container {
     display: flex;
     flex-direction: column;
@@ -73,6 +79,18 @@ body {
     text-align: left;
     text-overflow: ellipsis;
     user-select: none;
+}
+
+.t42-caption-editor {
+    display: inline-block;
+    color: var(--t42-caption-editor-color);
+    margin: var(--t42-caption-editor-margin);
+    border: 1px solid var(--primary);
+    outline: none;
+    min-width: 150px;
+    padding: 0px 2px 0px 2px;
+    white-space: nowrap;
+    overflow-x: hidden;
 }
 
 .t42-title {
@@ -454,6 +472,10 @@ body {
     flex-grow: 1;
     color: var(--t42-tab-bar-tab-text);
     margin: var(--t42-tab-bar-tab-caption-margin);
+}
+
+.t42-tab-caption-editor {
+    min-width: unset;
 }
 
 .t42-tab-close-button {

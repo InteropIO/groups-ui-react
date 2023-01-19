@@ -1,8 +1,10 @@
 import { Bounds, StandardButtons, TargetType, WebGroupsManager } from "./types/internal";
+import callbackRegistry from "callback-registry";
 
 declare const window: Window & { webGroupsManager: WebGroupsManager };
 
 class WebGroupsManagerDecorator {
+    private readonly registry = callbackRegistry();
     public readonly skipFocusStyle = "t42-skip-focus";
 
     public init(glue: any, componentFactory: any) {
@@ -139,6 +141,46 @@ class WebGroupsManagerDecorator {
 
     public onFrameChannelSelectorClick(targetId: string, selectorBounds: Bounds): void {
         window.webGroupsManager.externalLibraryFactory.onFrameChannelSelectorClick(targetId, selectorBounds);
+    }
+
+    public onCaptionTextBoundsChanged(targetType: TargetType, targetId: string, bounds: Bounds): void {
+        if (typeof window.webGroupsManager.externalLibraryFactory.onCaptionTextBoundsChanged !== "function") {
+            // Handling the case when a new library is used with an older version of Glue42Desktop
+            return;
+        }
+        window.webGroupsManager.externalLibraryFactory.onCaptionTextBoundsChanged(targetType, targetId, bounds);
+    }
+
+    public onCaptionEditorVisibleChanged(targetType: TargetType, targetId: string, visible: boolean): void {
+        if (typeof window.webGroupsManager.externalLibraryFactory.onCaptionEditorVisibleChanged !== "function") {
+            // Handling the case when a new library is used with an older version of Glue42Desktop
+            return;
+        }
+        window.webGroupsManager.externalLibraryFactory.onCaptionEditorVisibleChanged(targetType, targetId, visible);
+    }
+
+    public onCaptionEditorBoundsChanged(targetType: TargetType, targetId: string, bounds: Bounds): void {
+        if (typeof window.webGroupsManager.externalLibraryFactory.onCaptionEditorBoundsChanged !== "function") {
+            // Handling the case when a new library is used with an older version of Glue42Desktop
+            return;
+        }
+        window.webGroupsManager.externalLibraryFactory.onCaptionEditorBoundsChanged(targetType, targetId, bounds);
+    }
+
+    public commitCaptionEditing(targetType: TargetType, targetId: string, text: string): void {
+        if (typeof window.webGroupsManager.externalLibraryFactory.commitCaptionEditing !== "function") {
+            // Handling the case when a new library is used with an older version of Glue42Desktop
+            return;
+        }
+        window.webGroupsManager.externalLibraryFactory.commitCaptionEditing(targetType, targetId, text);
+    }
+
+    public onCommitCaptionEditingRequested(targetType: TargetType, targetId: string, callback: () => void): () => void {
+        return this.registry.add(`${targetType}-${targetId}`, callback);
+    }
+
+    public requestCommitCaptionEditing(targetType: TargetType, targetId: string) {
+        this.registry.execute(`${targetType}-${targetId}`);
     }
 }
 

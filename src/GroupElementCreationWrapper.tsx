@@ -2,7 +2,8 @@ import React from "react";
 import { useSyncExternalStore } from "use-sync-external-store/shim";
 import GroupWrapper from "./GroupWrapper";
 import Portal from "./Portal";
-import { Bounds, ChannelProps, ElementCreationWrapperState, GroupProps } from "./types/internal";
+import { ChannelProps, GroupProps } from "./types/api";
+import { Bounds, ElementCreationWrapperState, TargetType } from "./types/internal";
 import webGroupsManager from "./webGroupsManager";
 import webGroupsStore from "./webGroupsStore";
 
@@ -46,7 +47,35 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             ...options.close
         }
 
-        return <Portal parentElement={parentElement}><GroupCaptionBarCustomElement {...options} minimize={minimize} maximize={maximize} restore={restore} close={close} /></Portal>;
+        const captionEditor = {
+            ...options.captionEditor,
+            commitChanges: (text: string) => {
+                webGroupsManager.commitCaptionEditing(TargetType.Group, options.targetId, text);
+            },
+            hideEditor: () => {
+                webGroupsStore.onHideCaptionEditorRequested(TargetType.Group, options.targetId);
+            },
+            notifyBoundsChanged: (bounds: Bounds) => {
+                webGroupsManager.onCaptionEditorBoundsChanged(TargetType.Group, options.targetId, bounds);
+            },
+            notifyEditorVisibilityChanged: (visible: boolean) => {
+                webGroupsManager.onCaptionEditorVisibleChanged(TargetType.Group, options.targetId, visible);
+            }
+        };
+
+        const notifyCaptionBoundsChanged = (bounds: Bounds) => webGroupsManager.onCaptionTextBoundsChanged(TargetType.Group, options.targetId, bounds);
+
+        return (
+            <Portal parentElement={parentElement}>
+                <GroupCaptionBarCustomElement {...options}
+                    minimize={minimize}
+                    maximize={maximize}
+                    restore={restore}
+                    close={close}
+                    captionEditor={captionEditor}
+                    notifyCaptionBoundsChanged={notifyCaptionBoundsChanged} />
+            </Portal>
+        );
     }
 
     const renderGroupOverlay = () => {
@@ -129,6 +158,24 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                 selectedChannelColor: options.selectedChannelColor
             }
 
+            const captionEditor = {
+                ...options.captionEditor,
+                commitChanges: (text: string) => {
+                    webGroupsManager.commitCaptionEditing(TargetType.Frame, options.targetId, text);
+                },
+                hideEditor: () => {
+                    webGroupsStore.onHideCaptionEditorRequested(TargetType.Frame, options.targetId);
+                },
+                notifyBoundsChanged: (bounds: Bounds) => {
+                    webGroupsManager.onCaptionEditorBoundsChanged(TargetType.Frame, options.targetId, bounds);
+                },
+                notifyEditorVisibilityChanged: (visible: boolean) => {
+                    webGroupsManager.onCaptionEditorVisibleChanged(TargetType.Frame, options.targetId, visible);
+                }
+            };
+
+            const notifyCaptionBoundsChanged = (bounds: Bounds) => webGroupsManager.onCaptionTextBoundsChanged(TargetType.Frame, options.targetId, bounds);
+
             return <Portal key={options.targetId} parentElement={parentElement}>
                 <FrameCaptionBarCustomElement {...options}
                     extract={extract}
@@ -139,7 +186,9 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                     restore={restore}
                     close={close}
                     channels={channels}
-                    frameId={options.targetId} />
+                    frameId={options.targetId}
+                    captionEditor={captionEditor}
+                    notifyCaptionBoundsChanged={notifyCaptionBoundsChanged} />
             </Portal>
         });
     }
@@ -225,7 +274,33 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                 selectedChannelColor: options.selectedChannelColor ?? options.selectedChannel // TODO remove the null check when the variable has been added
             };
 
-            return <Portal key={options.targetId} parentElement={parentElement}><TabCustomElement {...options} close={onCloseClick} channels={channels} windowId={options.targetId} /></Portal>
+            const captionEditor = {
+                ...options.captionEditor,
+                commitChanges: (text: string) => {
+                    webGroupsManager.commitCaptionEditing(TargetType.Tab, options.targetId, text);
+                },
+                hideEditor: () => {
+                    webGroupsStore.onHideCaptionEditorRequested(TargetType.Tab, options.targetId);
+                },
+                notifyBoundsChanged: (bounds: Bounds) => {
+                    webGroupsManager.onCaptionEditorBoundsChanged(TargetType.Tab, options.targetId, bounds);
+                },
+                notifyEditorVisibilityChanged: (visible: boolean) => {
+                    webGroupsManager.onCaptionEditorVisibleChanged(TargetType.Tab, options.targetId, visible);
+                }
+            };
+
+            const notifyCaptionBoundsChanged = (bounds: Bounds) => webGroupsManager.onCaptionTextBoundsChanged(TargetType.Tab, options.targetId, bounds);
+
+            return <Portal key={options.targetId} parentElement={parentElement}>
+                <TabCustomElement {...options}
+                    close={onCloseClick}
+                    channels={channels}
+                    windowId={options.targetId}
+                    captionEditor={captionEditor}
+                    notifyCaptionBoundsChanged={notifyCaptionBoundsChanged}
+                />
+            </Portal>
         });
     }
 
@@ -369,6 +444,9 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             onRemoveAfterTabsComponentRequested={webGroupsStore.onRemoveAfterTabsComponentRequested}
             onRemoveTabHeaderButtonsRequested={webGroupsStore.onRemoveTabHeaderButtonsRequested}
             onRemoveBelowTabsRequested={webGroupsStore.onRemoveBelowTabsRequested}
+            onShowCaptionEditorRequested={webGroupsStore.onShowCaptionEditorRequested}
+            onCommitCaptionEditingRequested={webGroupsStore.onCommitCaptionEditingRequested}
+            onHideCaptionEditorRequested={webGroupsStore.onHideCaptionEditorRequested}
         />
     </>
 }
