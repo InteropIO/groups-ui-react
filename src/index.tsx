@@ -27,6 +27,7 @@ import useGroupComponentVisibility from "./useGroupComponentVisibility";
 import {
     CloseButtonProps,
     ExtractButtonProps,
+    FeedbackButtonProps,
     FlatButtonsProps,
     FlatCaptionEditorProps,
     FlatCaptionProps,
@@ -67,6 +68,7 @@ import useCommitGroupCaptionEditingRequested from "./defaultComponents/groupCapt
 import useCommitFlatCaptionEditingRequested from "./defaultComponents/flatCaptionBar/useCommitFlatCaptionEditingRequested";
 import useEditableCaption from "./defaultComponents/captionEditor/useEditableCaption";
 import useCaptionEditor from "./defaultComponents/captionEditor/useCaptionEditor";
+import FeedbackButton from "./defaultComponents/buttons/FeedbackButton";
 
 export {
     GroupCaptionBar,
@@ -78,6 +80,7 @@ export {
     TabCaption,
     TabCloseButton,
     TabCaptionEditor,
+    FeedbackButton,
     ExtractButton,
     LockButton,
     UnlockButton,
@@ -134,6 +137,7 @@ export {
     FlatChannelSelectorProps,
     FlatButtonsProps,
     FlatCaptionEditorProps,
+    FeedbackButtonProps,
     ExtractButtonProps,
     LockButtonProps,
     UnlockButtonProps,

@@ -20,6 +20,9 @@ export interface GroupCaptionEditorProps {
     caption: string;
 }
 
+export interface FeedbackButtonProps extends ButtonProps {
+}
+
 export interface ExtractButtonProps extends ButtonProps {
 }
 
@@ -81,6 +84,7 @@ export interface FlatMoveAreaProps {
 }
 
 export interface FlatButtonsProps {
+    feedback?: ButtonProps;
     extract?: ButtonProps;
     lock?: ButtonProps;
     unlock?: ButtonProps;

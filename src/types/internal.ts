@@ -104,6 +104,10 @@ export interface CreateFrameCaptionBarRequestOptions extends CreateFrameElementR
 	channelSelectorVisible: boolean;
 	selectedChannel: string;
 	selectedChannelColor: string;
+	feedback: {
+		tooltip: string;
+		visible: boolean;
+	};
 	extract: {
 		tooltip: string;
 		visible: boolean;
@@ -157,6 +161,10 @@ export interface UpdateStandardButtonRequestOptions extends CreateElementRequest
 }
 
 export interface CreateTabHeaderButtonsOptions extends CreateFrameElementRequestOptions {
+	feedback: {
+		tooltip: string;
+		visible: boolean;
+	};
 	extract: {
 		tooltip: string;
 		visible: boolean;
@@ -215,6 +223,7 @@ export enum TargetType {
 }
 
 export enum StandardButtons {
+	Feedback = "feedback",
 	Extract = "extract",
 	Lock = "lock",
 	Unlock = "unlock",
