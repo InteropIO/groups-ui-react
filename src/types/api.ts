@@ -1,3 +1,4 @@
+import React from "react";
 import { Bounds, ButtonProps } from "./internal";
 
 export interface ChannelProps {
@@ -8,6 +9,16 @@ export interface ChannelProps {
 }
 
 export interface FrameWindowOverlayProps {
+    frameId: string;
+    selectedWindow: string;
+}
+
+export interface AboveWindowProps {
+    frameId: string;
+    selectedWindow: string;
+}
+
+export interface WindowContentOverlayProps {
     frameId: string;
     selectedWindow: string;
 }
@@ -115,6 +126,8 @@ export interface GroupProps {
         }
         frame?: {
             Overlay?: React.ComponentType<FrameWindowOverlayProps>;
+            AboveWindow?: React.ComponentType<AboveWindowProps>;
+            WindowContentOverlay?: React.ComponentType<WindowContentOverlayProps>;
             BelowWindow?: React.ComponentType<BelowWindowProps>;
         };
         flat?: {

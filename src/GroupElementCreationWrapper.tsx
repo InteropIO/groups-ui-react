@@ -217,6 +217,34 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
         });
     }
 
+    const renderAboveWindow = () => {
+        const AboveWindowCustomElement = components?.frame?.AboveWindow;
+        return Object.values(state.aboveWindowZones).map((bwz) => {
+            if (!AboveWindowCustomElement || !bwz.parentElement) {
+                return;
+            }
+            const { parentElement, ...options } = bwz;
+
+            return <Portal key={options.targetId} parentElement={parentElement}>
+                <AboveWindowCustomElement {...options} frameId={options.targetId} />
+            </Portal>
+        });
+    }
+
+    const renderWindowContentOverlays = () => {
+        const WindowContentCustomElement = components?.frame?.WindowContentOverlay;
+        return Object.values(state.windowContentOverlays).map((bwz) => {
+            if (!WindowContentCustomElement || !bwz.parentElement) {
+                return;
+            }
+            const { parentElement, ...options } = bwz;
+
+            return <Portal key={options.targetId} parentElement={parentElement}>
+                <WindowContentCustomElement {...options} frameId={options.targetId} />
+            </Portal>
+        });
+    }
+
     const renderBelowWindow = () => {
         const BelowWindowCustomElement = components?.frame?.BelowWindow;
         return Object.values(state.belowWindowZones).map((bwz) => {
@@ -423,6 +451,8 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
         {renderGroupOverlay()}
         {renderFrameCaptionBar()}
         {renderFrameWindowOverlay()}
+        {renderAboveWindow()}
+        {renderWindowContentOverlays()}
         {renderBelowWindow()}
         {renderAboveTabs()}
         {renderBeforeTabsZones()}
@@ -435,6 +465,8 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             onCreateGroupOverlayRequested={components?.group?.Overlay ? webGroupsStore.onCreateGroupOverlayRequested : undefined}
             onCreateFrameCaptionBarRequested={components?.flat?.CaptionBar ? webGroupsStore.onCreateFrameCaptionBarRequested : undefined}
             onCreateFrameWindowOverlayRequested={components?.frame?.Overlay ? webGroupsStore.onCreateFrameWindowOverlayRequested : undefined}
+            onCreateAboveWindowRequested={components?.frame?.AboveWindow ? webGroupsStore.onCreateAboveWindowRequested : undefined}
+            onCreateWindowContentOverlayRequested={components?.frame?.WindowContentOverlay ? webGroupsStore.onCreateWindowContentOverlayRequested : undefined}
             onCreateBelowWindowRequested={components?.frame?.BelowWindow ? webGroupsStore.onCreateBelowWindowRequested : undefined}
             onCreateAboveTabsRequested={components?.tabs?.Above ? webGroupsStore.onCreateAboveTabsComponentRequested : undefined}
             onCreateBeforeTabsComponentRequested={components?.tabs?.Before ? webGroupsStore.onCreateBeforeTabsComponentRequested : undefined}
@@ -454,6 +486,8 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             onUpdateBelowTabsRequested={components?.tabs?.Below ? webGroupsStore.onUpdateBelowTabsRequested : undefined}
             onRemoveFrameCaptionBarRequested={webGroupsStore.onRemoveFrameCaptionBarRequested}
             onRemoveFrameWindowOverlayRequested={webGroupsStore.onRemoveFrameWindowOverlayRequested}
+            onRemoveAboveWindowRequested={webGroupsStore.onRemoveAboveWindowRequested}
+            onRemoveWindowContentOverlayRequested={webGroupsStore.onRemoveWindowContentOverlayRequested}
             onRemoveBelowWindowRequested={webGroupsStore.onRemoveBelowWindowRequested}
             onRemoveAboveTabsRequested={webGroupsStore.onRemoveAboveTabsRequested}
             onRemoveBeforeTabsComponentRequested={webGroupsStore.onRemoveBeforeTabsComponentRequested}
