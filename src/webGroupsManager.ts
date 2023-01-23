@@ -79,6 +79,10 @@ class WebGroupsManagerDecorator {
         window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Frame, targetId, StandardButtons.Unlock);
     }
 
+    public feedbackFrame(targetId: string):void{
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Frame, targetId, StandardButtons.Feedback);
+    }
+
     public extractFrame(targetId: string): void {
         window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Frame, targetId, StandardButtons.Extract);
     }
@@ -105,6 +109,10 @@ class WebGroupsManagerDecorator {
 
     public unlockTabBar(targetId: string): void {
         window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.TabBar, targetId, StandardButtons.Unlock);
+    }
+
+    public feedbackTabBar(targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.TabBar, targetId, StandardButtons.Feedback);
     }
 
     public extractTabBar(targetId: string): void {

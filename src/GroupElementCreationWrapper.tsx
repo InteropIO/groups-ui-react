@@ -98,6 +98,14 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             }
 
             const { parentElement, ...options } = fcb;
+
+            const feedback = {
+                onClick: () => {
+                    webGroupsManager.feedbackFrame(options.targetId);
+                },
+                ...options.feedback
+            };
+
             const extract = {
                 onClick: () => {
                     webGroupsManager.extractFrame(options.targetId);
@@ -178,6 +186,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
 
             return <Portal key={options.targetId} parentElement={parentElement}>
                 <FrameCaptionBarCustomElement {...options}
+                    feedback={feedback}
                     extract={extract}
                     lock={lock}
                     unlock={unlock}
@@ -326,6 +335,13 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             }
             const { parentElement, ...options } = te;
 
+            const feedback = {
+                onClick: () => {
+                    webGroupsManager.feedbackTabBar(options.targetId);
+                },
+                ...options.feedback
+            };
+
             const extract = {
                 onClick: () => {
                     webGroupsManager.extractTabBar(options.targetId);
@@ -376,6 +392,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             }
 
             return <Portal key={options.targetId} parentElement={parentElement}><TabButtonsCustomElement {...options}
+                feedback={feedback}
                 extract={extract}
                 lock={lock}
                 unlock={unlock}
