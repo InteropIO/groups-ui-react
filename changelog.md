@@ -1,3 +1,5 @@
+1.1.5
+chore: updated the exports and removed terser
 1.1.4
 fix: selected window is undefined when none of the frame components are customized
 1.1.3
