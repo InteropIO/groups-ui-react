@@ -23,6 +23,8 @@ class WebGroupsStore {
         groupOverlay: undefined,
         frameCaptionBars: {}, // dict frameId to create caption bar options
         frameWindowOverlays: {}, // dict frameId to create options
+        aboveWindowZones: {}, // dict frameId to create options
+        windowContentOverlays: {},//dict frameId to create options
         belowWindowZones: {}, // dict frameId to create options
         aboveTabsZones: {}, // dict frameId to create options
         beforeTabsZones: {}, // dict frameId to create before tabs zones options
@@ -91,6 +93,36 @@ class WebGroupsStore {
                 ...s,
                 frameWindowOverlays: {
                     ...s.frameWindowOverlays,
+                    [options.targetId]: options
+                }
+            }
+        });
+    }
+
+    public onCreateAboveWindowRequested = (options: CreateFrameElementRequestOptions) => {
+        if (options === this.state.aboveWindowZones[options.targetId] || !options) {
+            return;
+        }
+        this.setState(s => {
+            return {
+                ...s,
+                aboveWindowZones: {
+                    ...s.aboveWindowZones,
+                    [options.targetId]: options
+                }
+            }
+        });
+    }
+
+    public onCreateWindowContentOverlayRequested=(options: CreateFrameCaptionBarRequestOptions)=>{
+        if (options === this.state.windowContentOverlays[options.targetId] || !options) {
+            return;
+        }
+        this.setState(s => {
+            return {
+                ...s,
+                windowContentOverlays: {
+                    ...s.windowContentOverlays,
                     [options.targetId]: options
                 }
             }
@@ -361,6 +393,8 @@ class WebGroupsStore {
 
             updateSelectionWindow("frameCaptionBars", options.targetId, options.selectedWindow);
             updateSelectionWindow("frameWindowOverlays", options.targetId, options.selectedWindow);
+            updateSelectionWindow("windowContentOverlays", options.targetId, options.selectedWindow);
+            updateSelectionWindow("aboveWindowZones", options.targetId, options.selectedWindow);
             updateSelectionWindow("belowWindowZones", options.targetId, options.selectedWindow);
             updateSelectionWindow("aboveTabsZones", options.targetId, options.selectedWindow);
             updateSelectionWindow("beforeTabsZones", options.targetId, options.selectedWindow);
@@ -442,6 +476,44 @@ class WebGroupsStore {
             return {
                 ...s,
                 frameWindowOverlays: newCaptionBarsObj
+            }
+        });
+    }
+
+    public onRemoveAboveWindowRequested = (options: RemoveRequestOptions) => {
+        if (!this.state.aboveWindowZones[options.targetId]) {
+            return;
+        }
+        this.setState(s => {
+            const newCaptionBarsObj = Object.keys(s.aboveWindowZones).reduce((acc, targetId) => {
+                if (targetId !== options.targetId) {
+                    acc[targetId] = s.aboveWindowZones[targetId];
+                }
+                return acc;
+            }, {});
+
+            return {
+                ...s,
+                aboveWindowZones: newCaptionBarsObj
+            }
+        });
+    }
+
+    public onRemoveWindowContentOverlayRequested = (options: RemoveRequestOptions) => {
+        if (!this.state.windowContentOverlays[options.targetId]) {
+            return;
+        }
+        this.setState(s => {
+            const newOverlaysObj = Object.keys(s.windowContentOverlays).reduce((acc, targetId) => {
+                if (targetId !== options.targetId) {
+                    acc[targetId] = s.windowContentOverlays[targetId];
+                }
+                return acc;
+            }, {});
+
+            return {
+                ...s,
+                windowContentOverlays: newOverlaysObj
             }
         });
     }
@@ -753,7 +825,6 @@ class WebGroupsStore {
 
         this.listeners.forEach((l) => l());
     }
-
 }
 
 export default new WebGroupsStore();
