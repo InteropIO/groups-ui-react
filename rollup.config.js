@@ -4,6 +4,14 @@ import typescript from 'rollup-plugin-typescript2'
 import external from 'rollup-plugin-peer-deps-external';
 import copy from 'rollup-plugin-copy';
 import svgr from "@svgr/rollup";
+const packageJson = require('./package.json');
+
+const globals = {
+    react: 'React',
+    'react-dom': 'ReactDOM',
+    '@glue42/react-hooks': "glue-hooks"
+};
+
 
 export default [
     {
@@ -21,6 +29,19 @@ export default [
                 ]
             })
         ],
-        output: [{ dir: 'dist', format: 'es', sourcemap: true }]
+        output: [
+            {
+                file: packageJson.module,
+                format: 'esm',
+                sourcemap: true
+            },
+            {
+                file: packageJson.main,
+                name: 'groups-ui-react',
+                format: 'umd',
+                sourcemap: true,
+                globals,
+            }
+        ],
     }
 ]
