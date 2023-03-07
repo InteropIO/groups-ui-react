@@ -1,3 +1,7 @@
+1.2.0
+feat: added AboveWindow zone and WindowContentOverlay
+feat: added the feedback button
+feat: added editable captions
 1.1.5
 chore: updated the exports and removed terser
 1.1.4
