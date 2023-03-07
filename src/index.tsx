@@ -8,33 +8,6 @@ import TabHeaderButtons from "./defaultComponents/tabs/TabHeaderButtons";
 import TabCaption from "./defaultComponents/tabs/TabCaption";
 import TabCloseButton from "./defaultComponents/tabs/TabCloseButton";
 import GroupElementCreationWrapper from "./GroupElementCreationWrapper";
-import {
-    GroupCaptionBarProps,
-    GroupProps,
-    MoveAreaProps,
-    TabElementProps,
-    TabCaptionProps,
-    TabCloseButtonProps,
-    FlatCaptionBarProps,
-    FrameWindowOverlayProps,
-    FlatMoveAreaProps,
-    FlatChannelSelectorProps,
-    TabHeaderButtonsProps,
-    GroupMoveAreaProps,
-    GroupButtonsProps,
-    FlatCaptionProps,
-    FlatButtonsProps,
-    GroupOverlayProps,
-    MinimizeButtonProps,
-    MaximizeButtonProps,
-    RestoreButtonProps,
-    CloseButtonProps,
-    TabChannelSelectorProps,
-    LockButtonProps,
-    UnlockButtonProps,
-    ExtractButtonProps,
-    GroupComponentVisibilityState
-} from "./types/internal";
 import webGroupsManager from "./webGroupsManager";
 import GroupMoveArea from "./defaultComponents/groupCaptionBar/GroupMoveArea";
 import GroupButtons from "./defaultComponents/groupCaptionBar/GroupButtons";
@@ -48,19 +21,66 @@ import RestoreButton from "./defaultComponents/buttons/RestoreButton";
 import LockButton from "./defaultComponents/buttons/LockButtons";
 import UnlockButton from "./defaultComponents/buttons/UnlockButton";
 import ExtractButton from "./defaultComponents/buttons/ExtractButton";
-
 import useGDWindow from "./useGDWindow";
 import { waitForWindow } from "./utils";
 import useGroupComponentVisibility from "./useGroupComponentVisibility";
+import {
+    CloseButtonProps,
+    ExtractButtonProps,
+    FeedbackButtonProps,
+    FlatButtonsProps,
+    FlatCaptionEditorProps,
+    FlatCaptionProps,
+    FlatChannelSelectorProps,
+    FlatMoveAreaProps,
+    GroupButtonsProps,
+    GroupCaptionEditorProps,
+    GroupMoveAreaProps,
+    LockButtonProps,
+    MaximizeButtonProps,
+    MinimizeButtonProps,
+    RestoreButtonProps,
+    TabCaptionEditorProps,
+    TabCaptionProps,
+    TabChannelSelectorProps,
+    TabCloseButtonProps,
+    UnlockButtonProps,
+    UseCaptionEditorOptions,
+    UseEditableCaptionOptions
+} from "./types/defaultComponents";
+import {
+    FlatCaptionBarProps,
+    FrameWindowOverlayProps,
+    GroupCaptionBarProps,
+    GroupComponentVisibilityState,
+    GroupOverlayProps,
+    GroupProps,
+    MoveAreaProps,
+    TabElementProps,
+    TabHeaderButtonsProps,
+} from "./types/api";
+import GroupCaptionEditor from "./defaultComponents/groupCaptionBar/GroupCaptionEditor";
+import FlatCaptionEditor from "./defaultComponents/flatCaptionBar/FlatCaptionEditor";
+import TabCaptionEditor from "./defaultComponents/tabs/TabCaptionEditor";
+import { TargetType } from "./types/internal";
+import useCommitTabCaptionEditingRequested from "./defaultComponents/tabs/useCommitTabCaptionEditingRequested";
+import useCommitGroupCaptionEditingRequested from "./defaultComponents/groupCaptionBar/useCommitGroupCaptionEditingRequested";
+import useCommitFlatCaptionEditingRequested from "./defaultComponents/flatCaptionBar/useCommitFlatCaptionEditingRequested";
+import useEditableCaption from "./defaultComponents/captionEditor/useEditableCaption";
+import useCaptionEditor from "./defaultComponents/captionEditor/useCaptionEditor";
+import FeedbackButton from "./defaultComponents/buttons/FeedbackButton";
 
 export {
     GroupCaptionBar,
     GroupMoveArea,
     GroupButtons,
+    GroupCaptionEditor,
     Tab,
     TabChannelSelector,
     TabCaption,
     TabCloseButton,
+    TabCaptionEditor,
+    FeedbackButton,
     ExtractButton,
     LockButton,
     UnlockButton,
@@ -73,17 +93,27 @@ export {
     FlatCaption,
     FlatMoveArea,
     FlatButtons,
+    FlatCaptionEditor,
     TabHeaderButtons,
     GroupComponentVisibilityState,
     useGDWindow,
     useGroupComponentVisibility,
-    waitForWindow
+    waitForWindow,
+    useEditableCaption,
+    useCaptionEditor,
+    useCommitGroupCaptionEditingRequested,
+    useCommitFlatCaptionEditingRequested,
+    useCommitTabCaptionEditingRequested,
 }
 
 export const getGroupId: () => string = () => webGroupsManager?.getGroupId();
 export const requestPageFocus: () => void = () => webGroupsManager?.requestPageFocus();
 export const requestFrameFocus: (frameId: string) => void = (frameId) => webGroupsManager?.requestFrameFocus(frameId);
 export const requestGroupFocus: () => void = () => webGroupsManager?.requestGroupFocus();
+
+export const onCommitGroupCaptionEditingRequested = (targetId: string, cb: () => void) => webGroupsManager.onCommitCaptionEditingRequested(TargetType.Group, targetId, cb);
+export const onCommitFlatCaptionEditingRequested = (targetId: string, cb: () => void) => webGroupsManager.onCommitCaptionEditingRequested(TargetType.Frame, targetId, cb);
+export const onCommitTabCaptionEditingRequested = (targetId: string, cb: () => void) => webGroupsManager.onCommitCaptionEditingRequested(TargetType.Tab, targetId, cb);
 
 export {
     MoveAreaProps,
@@ -93,17 +123,21 @@ export {
     GroupMoveAreaProps,
     GroupOverlayProps,
     GroupButtonsProps,
+    GroupCaptionEditorProps,
     TabElementProps,
     TabChannelSelectorProps,
     TabCaptionProps,
     TabCloseButtonProps,
     TabHeaderButtonsProps,
+    TabCaptionEditorProps,
     FlatCaptionBarProps,
     FlatCaptionProps,
     FrameWindowOverlayProps,
     FlatMoveAreaProps,
     FlatChannelSelectorProps,
     FlatButtonsProps,
+    FlatCaptionEditorProps,
+    FeedbackButtonProps,
     ExtractButtonProps,
     LockButtonProps,
     UnlockButtonProps,
@@ -111,6 +145,8 @@ export {
     MaximizeButtonProps,
     RestoreButtonProps,
     CloseButtonProps,
+    UseCaptionEditorOptions,
+    UseEditableCaptionOptions
 }
 
 export default GroupElementCreationWrapper;

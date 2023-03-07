@@ -1,5 +1,5 @@
 import React from "react";
-import { MaximizeButtonProps } from "../../types/internal";
+import { MaximizeButtonProps } from "../../types/defaultComponents";
 import BaseButton from "./BaseButton";
 
 const MaximizeButton: React.FC<MaximizeButtonProps> = ({ tooltip, onClick }) => {

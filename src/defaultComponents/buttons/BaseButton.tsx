@@ -1,5 +1,5 @@
 import React from "react";
-import { BaseButtonProps } from "../../types/internal";
+import { BaseButtonProps } from "../../types/defaultComponents";
 import webGroupsManager from "../../webGroupsManager";
 
 const BaseButton: React.FC<BaseButtonProps> = ({ outerElement, innerElement }) => {

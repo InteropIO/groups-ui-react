@@ -32,6 +32,7 @@
         "access": "public"
     },
     "dependencies": {
+        "callback-registry": "^2.7.2",
         "color2k": "^2.0.0",
         "use-sync-external-store": "^1.2.0"
     },

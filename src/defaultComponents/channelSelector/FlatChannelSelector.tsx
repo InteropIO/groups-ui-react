@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatChannelSelectorProps } from "../../types/internal";
+import { FlatChannelSelectorProps } from "../../types/defaultComponents";
 import BaseChannelSelector from "./BaseChannelSelector";
 
 const FlatChannelSelector: React.FC<FlatChannelSelectorProps> = ({ showSelector, selectedChannel, selectedChannelColor }) => {

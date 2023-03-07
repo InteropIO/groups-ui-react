@@ -1,5 +1,5 @@
 import React from "react";
-import { TabChannelSelectorProps } from "../../types/internal";
+import { TabChannelSelectorProps } from "../../types/defaultComponents";
 import BaseChannelSelector from "./BaseChannelSelector";
 
 const TabChannelSelector: React.FC<TabChannelSelectorProps> = ({ showSelector, selectedChannel, selectedChannelColor }) => {
