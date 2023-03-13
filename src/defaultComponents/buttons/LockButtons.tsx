@@ -1,5 +1,5 @@
 import React from "react";
-import { LockButtonProps } from "../../types/internal";
+import { LockButtonProps } from "../../types/defaultComponents";
 import BaseButton from "./BaseButton";
 
 const LockButton: React.FC<LockButtonProps> = ({ tooltip, onClick }) => {

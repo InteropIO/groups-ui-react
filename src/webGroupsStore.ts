@@ -13,6 +13,7 @@ import {
     UpdateStandardButtonRequestOptions,
     UpdateFrameRequestOptions
 } from "./types/internal";
+import webGroupsManager from "./webGroupsManager";
 
 class WebGroupsStore {
 
@@ -22,6 +23,8 @@ class WebGroupsStore {
         groupOverlay: undefined,
         frameCaptionBars: {}, // dict frameId to create caption bar options
         frameWindowOverlays: {}, // dict frameId to create options
+        aboveWindowZones: {}, // dict frameId to create options
+        windowContentOverlays: {},//dict frameId to create options
         belowWindowZones: {}, // dict frameId to create options
         aboveTabsZones: {}, // dict frameId to create options
         beforeTabsZones: {}, // dict frameId to create before tabs zones options
@@ -90,6 +93,36 @@ class WebGroupsStore {
                 ...s,
                 frameWindowOverlays: {
                     ...s.frameWindowOverlays,
+                    [options.targetId]: options
+                }
+            }
+        });
+    }
+
+    public onCreateAboveWindowRequested = (options: CreateFrameElementRequestOptions) => {
+        if (options === this.state.aboveWindowZones[options.targetId] || !options) {
+            return;
+        }
+        this.setState(s => {
+            return {
+                ...s,
+                aboveWindowZones: {
+                    ...s.aboveWindowZones,
+                    [options.targetId]: options
+                }
+            }
+        });
+    }
+
+    public onCreateWindowContentOverlayRequested=(options: CreateFrameCaptionBarRequestOptions)=>{
+        if (options === this.state.windowContentOverlays[options.targetId] || !options) {
+            return;
+        }
+        this.setState(s => {
+            return {
+                ...s,
+                windowContentOverlays: {
+                    ...s.windowContentOverlays,
                     [options.targetId]: options
                 }
             }
@@ -360,6 +393,8 @@ class WebGroupsStore {
 
             updateSelectionWindow("frameCaptionBars", options.targetId, options.selectedWindow);
             updateSelectionWindow("frameWindowOverlays", options.targetId, options.selectedWindow);
+            updateSelectionWindow("windowContentOverlays", options.targetId, options.selectedWindow);
+            updateSelectionWindow("aboveWindowZones", options.targetId, options.selectedWindow);
             updateSelectionWindow("belowWindowZones", options.targetId, options.selectedWindow);
             updateSelectionWindow("aboveTabsZones", options.targetId, options.selectedWindow);
             updateSelectionWindow("beforeTabsZones", options.targetId, options.selectedWindow);
@@ -441,6 +476,44 @@ class WebGroupsStore {
             return {
                 ...s,
                 frameWindowOverlays: newCaptionBarsObj
+            }
+        });
+    }
+
+    public onRemoveAboveWindowRequested = (options: RemoveRequestOptions) => {
+        if (!this.state.aboveWindowZones[options.targetId]) {
+            return;
+        }
+        this.setState(s => {
+            const newCaptionBarsObj = Object.keys(s.aboveWindowZones).reduce((acc, targetId) => {
+                if (targetId !== options.targetId) {
+                    acc[targetId] = s.aboveWindowZones[targetId];
+                }
+                return acc;
+            }, {});
+
+            return {
+                ...s,
+                aboveWindowZones: newCaptionBarsObj
+            }
+        });
+    }
+
+    public onRemoveWindowContentOverlayRequested = (options: RemoveRequestOptions) => {
+        if (!this.state.windowContentOverlays[options.targetId]) {
+            return;
+        }
+        this.setState(s => {
+            const newOverlaysObj = Object.keys(s.windowContentOverlays).reduce((acc, targetId) => {
+                if (targetId !== options.targetId) {
+                    acc[targetId] = s.windowContentOverlays[targetId];
+                }
+                return acc;
+            }, {});
+
+            return {
+                ...s,
+                windowContentOverlays: newOverlaysObj
             }
         });
     }
@@ -578,12 +651,180 @@ class WebGroupsStore {
         });
     }
 
+    public onShowCaptionEditorRequested = (targetType: TargetType, targetId: string, text: string) => {
+        if (targetType === TargetType.Group) {
+            this.onShowGroupCaptionEditorRequested(targetId, text);
+        } else if (targetType === TargetType.Frame) {
+            this.onShowFlatCaptionEditorRequested(targetId, text);
+        } else if (targetType === TargetType.Tab) {
+            this.onShowTabCaptionEditorRequested(targetId, text);
+        }
+    }
+
+    public onCommitCaptionEditingRequested = (targetType: TargetType, targetId: string) => {
+        webGroupsManager.requestCommitCaptionEditing(targetType, targetId);
+    }
+
+    public onHideCaptionEditorRequested = (targetType: TargetType, targetId: string) => {
+        if (targetType === TargetType.Group) {
+            this.onHideGroupCaptionEditorRequested(targetId);
+        } else if (targetType === TargetType.Frame) {
+            this.onHideFlatCaptionEditorRequested(targetId);
+        } else if (targetType === TargetType.Tab) {
+            this.onHideTabCaptionEditorRequested(targetId)
+        }
+    }
+
+    private onShowGroupCaptionEditorRequested = (_: string, text: string) => {
+        if (!this.state.groupCaptionBar) {
+            return;
+        }
+
+        this.setState(s => {
+            const captionEditor = s.groupCaptionBar?.captionEditor || {};
+            const newState: ElementCreationWrapperState = {
+                ...s,
+                groupCaptionBar: {
+                    ...s.groupCaptionBar!,
+                    captionEditor: {
+                        ...captionEditor,
+                        show: true,
+                        text
+                    }
+                }
+            }
+            return newState;
+        });
+    }
+
+    private onHideGroupCaptionEditorRequested = (_: string) => {
+        if (!this.state.groupCaptionBar) {
+            return;
+        }
+
+        this.setState(s => {
+            const captionEditor = s.groupCaptionBar?.captionEditor || {};
+            const newState: ElementCreationWrapperState = {
+                ...s,
+                groupCaptionBar: {
+                    ...s.groupCaptionBar!,
+                    captionEditor: {
+                        ...captionEditor,
+                        show: false,
+                    }
+                }
+            }
+            return newState;
+        });
+    }
+
+    private onShowFlatCaptionEditorRequested = (targetId: string, text: string) => {
+        if (!this.state.frameCaptionBars[targetId]) {
+            return;
+        }
+
+        this.setState(s => {
+            const captionEditor = s.frameCaptionBars[targetId]?.captionEditor || {};
+            const newState: ElementCreationWrapperState = {
+                ...s,
+                frameCaptionBars: {
+                    ...s.frameCaptionBars!,
+                    [targetId]: {
+                        ...s.frameCaptionBars[targetId],
+                        captionEditor: {
+                            ...captionEditor,
+                            show: true,
+                            text
+                        }
+                    }
+
+                }
+            }
+            return newState;
+        });
+    }
+
+    private onHideFlatCaptionEditorRequested = (targetId: string) => {
+        if (!this.state.frameCaptionBars[targetId]) {
+            return;
+        }
+
+        this.setState(s => {
+            const captionEditor = s.frameCaptionBars[targetId]?.captionEditor || {};
+            const newState: ElementCreationWrapperState = {
+                ...s,
+                frameCaptionBars: {
+                    ...s.frameCaptionBars!,
+                    [targetId]: {
+                        ...s.frameCaptionBars[targetId],
+                        captionEditor: {
+                            ...captionEditor,
+                            show: false,
+                        }
+                    }
+
+                }
+            }
+            return newState;
+        });
+    }
+
+    private onShowTabCaptionEditorRequested = (targetId: string, text: string) => {
+        if (!this.state.tabElements[targetId]) {
+            return;
+        }
+
+        this.setState(s => {
+            const captionEditor = s.tabElements[targetId]?.captionEditor || {};
+            const newState: ElementCreationWrapperState = {
+                ...s,
+                tabElements: {
+                    ...s.tabElements!,
+                    [targetId]: {
+                        ...s.tabElements[targetId],
+                        captionEditor: {
+                            ...captionEditor,
+                            show: true,
+                            text
+                        }
+                    }
+
+                }
+            }
+            return newState;
+        });
+    }
+
+    private onHideTabCaptionEditorRequested = (targetId: string) => {
+        if (!this.state.tabElements[targetId]) {
+            return;
+        }
+
+        this.setState(s => {
+            const captionEditor = s.tabElements[targetId]?.captionEditor || {};
+            const newState: ElementCreationWrapperState = {
+                ...s,
+                tabElements: {
+                    ...s.tabElements!,
+                    [targetId]: {
+                        ...s.tabElements[targetId],
+                        captionEditor: {
+                            ...captionEditor,
+                            show: false,
+                        }
+                    }
+
+                }
+            }
+            return newState;
+        });
+    }
+
     private setState = (cb: (s: ElementCreationWrapperState) => ElementCreationWrapperState) => {
         this.state = cb(this.state);
 
         this.listeners.forEach((l) => l());
     }
-
 }
 
 export default new WebGroupsStore();

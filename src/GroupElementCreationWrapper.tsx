@@ -2,7 +2,8 @@ import React from "react";
 import { useSyncExternalStore } from "use-sync-external-store/shim";
 import GroupWrapper from "./GroupWrapper";
 import Portal from "./Portal";
-import { Bounds, ChannelProps, ElementCreationWrapperState, GroupProps } from "./types/internal";
+import { ChannelProps, GroupProps } from "./types/api";
+import { Bounds, ElementCreationWrapperState, TargetType } from "./types/internal";
 import webGroupsManager from "./webGroupsManager";
 import webGroupsStore from "./webGroupsStore";
 
@@ -46,7 +47,35 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             ...options.close
         }
 
-        return <Portal parentElement={parentElement}><GroupCaptionBarCustomElement {...options} minimize={minimize} maximize={maximize} restore={restore} close={close} /></Portal>;
+        const captionEditor = {
+            ...options.captionEditor,
+            commitChanges: (text: string) => {
+                webGroupsManager.commitCaptionEditing(TargetType.Group, options.targetId, text);
+            },
+            hideEditor: () => {
+                webGroupsStore.onHideCaptionEditorRequested(TargetType.Group, options.targetId);
+            },
+            notifyBoundsChanged: (bounds: Bounds) => {
+                webGroupsManager.onCaptionEditorBoundsChanged(TargetType.Group, options.targetId, bounds);
+            },
+            notifyEditorVisibilityChanged: (visible: boolean) => {
+                webGroupsManager.onCaptionEditorVisibleChanged(TargetType.Group, options.targetId, visible);
+            }
+        };
+
+        const notifyCaptionBoundsChanged = (bounds: Bounds) => webGroupsManager.onCaptionTextBoundsChanged(TargetType.Group, options.targetId, bounds);
+
+        return (
+            <Portal parentElement={parentElement}>
+                <GroupCaptionBarCustomElement {...options}
+                    minimize={minimize}
+                    maximize={maximize}
+                    restore={restore}
+                    close={close}
+                    captionEditor={captionEditor}
+                    notifyCaptionBoundsChanged={notifyCaptionBoundsChanged} />
+            </Portal>
+        );
     }
 
     const renderGroupOverlay = () => {
@@ -69,6 +98,14 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             }
 
             const { parentElement, ...options } = fcb;
+
+            const feedback = {
+                onClick: () => {
+                    webGroupsManager.feedbackFrame(options.targetId);
+                },
+                ...options.feedback
+            };
+
             const extract = {
                 onClick: () => {
                     webGroupsManager.extractFrame(options.targetId);
@@ -129,8 +166,27 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                 selectedChannelColor: options.selectedChannelColor
             }
 
+            const captionEditor = {
+                ...options.captionEditor,
+                commitChanges: (text: string) => {
+                    webGroupsManager.commitCaptionEditing(TargetType.Frame, options.targetId, text);
+                },
+                hideEditor: () => {
+                    webGroupsStore.onHideCaptionEditorRequested(TargetType.Frame, options.targetId);
+                },
+                notifyBoundsChanged: (bounds: Bounds) => {
+                    webGroupsManager.onCaptionEditorBoundsChanged(TargetType.Frame, options.targetId, bounds);
+                },
+                notifyEditorVisibilityChanged: (visible: boolean) => {
+                    webGroupsManager.onCaptionEditorVisibleChanged(TargetType.Frame, options.targetId, visible);
+                }
+            };
+
+            const notifyCaptionBoundsChanged = (bounds: Bounds) => webGroupsManager.onCaptionTextBoundsChanged(TargetType.Frame, options.targetId, bounds);
+
             return <Portal key={options.targetId} parentElement={parentElement}>
                 <FrameCaptionBarCustomElement {...options}
+                    feedback={feedback}
                     extract={extract}
                     lock={lock}
                     unlock={unlock}
@@ -139,7 +195,9 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                     restore={restore}
                     close={close}
                     channels={channels}
-                    frameId={options.targetId} />
+                    frameId={options.targetId}
+                    captionEditor={captionEditor}
+                    notifyCaptionBoundsChanged={notifyCaptionBoundsChanged} />
             </Portal>
         });
     }
@@ -155,6 +213,34 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
 
             return <Portal key={options.targetId} parentElement={parentElement}>
                 <FrameWindowOverlayCustomElement {...options} frameId={options.targetId} />
+            </Portal>
+        });
+    }
+
+    const renderAboveWindow = () => {
+        const AboveWindowCustomElement = components?.frame?.AboveWindow;
+        return Object.values(state.aboveWindowZones).map((bwz) => {
+            if (!AboveWindowCustomElement || !bwz.parentElement) {
+                return;
+            }
+            const { parentElement, ...options } = bwz;
+
+            return <Portal key={options.targetId} parentElement={parentElement}>
+                <AboveWindowCustomElement {...options} frameId={options.targetId} />
+            </Portal>
+        });
+    }
+
+    const renderWindowContentOverlays = () => {
+        const WindowContentCustomElement = components?.frame?.WindowContentOverlay;
+        return Object.values(state.windowContentOverlays).map((bwz) => {
+            if (!WindowContentCustomElement || !bwz.parentElement) {
+                return;
+            }
+            const { parentElement, ...options } = bwz;
+
+            return <Portal key={options.targetId} parentElement={parentElement}>
+                <WindowContentCustomElement {...options} frameId={options.targetId} />
             </Portal>
         });
     }
@@ -225,7 +311,33 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                 selectedChannelColor: options.selectedChannelColor ?? options.selectedChannel // TODO remove the null check when the variable has been added
             };
 
-            return <Portal key={options.targetId} parentElement={parentElement}><TabCustomElement {...options} close={onCloseClick} channels={channels} windowId={options.targetId} /></Portal>
+            const captionEditor = {
+                ...options.captionEditor,
+                commitChanges: (text: string) => {
+                    webGroupsManager.commitCaptionEditing(TargetType.Tab, options.targetId, text);
+                },
+                hideEditor: () => {
+                    webGroupsStore.onHideCaptionEditorRequested(TargetType.Tab, options.targetId);
+                },
+                notifyBoundsChanged: (bounds: Bounds) => {
+                    webGroupsManager.onCaptionEditorBoundsChanged(TargetType.Tab, options.targetId, bounds);
+                },
+                notifyEditorVisibilityChanged: (visible: boolean) => {
+                    webGroupsManager.onCaptionEditorVisibleChanged(TargetType.Tab, options.targetId, visible);
+                }
+            };
+
+            const notifyCaptionBoundsChanged = (bounds: Bounds) => webGroupsManager.onCaptionTextBoundsChanged(TargetType.Tab, options.targetId, bounds);
+
+            return <Portal key={options.targetId} parentElement={parentElement}>
+                <TabCustomElement {...options}
+                    close={onCloseClick}
+                    channels={channels}
+                    windowId={options.targetId}
+                    captionEditor={captionEditor}
+                    notifyCaptionBoundsChanged={notifyCaptionBoundsChanged}
+                />
+            </Portal>
         });
     }
 
@@ -250,6 +362,13 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                 return;
             }
             const { parentElement, ...options } = te;
+
+            const feedback = {
+                onClick: () => {
+                    webGroupsManager.feedbackTabBar(options.targetId);
+                },
+                ...options.feedback
+            };
 
             const extract = {
                 onClick: () => {
@@ -301,6 +420,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             }
 
             return <Portal key={options.targetId} parentElement={parentElement}><TabButtonsCustomElement {...options}
+                feedback={feedback}
                 extract={extract}
                 lock={lock}
                 unlock={unlock}
@@ -331,6 +451,8 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
         {renderGroupOverlay()}
         {renderFrameCaptionBar()}
         {renderFrameWindowOverlay()}
+        {renderAboveWindow()}
+        {renderWindowContentOverlays()}
         {renderBelowWindow()}
         {renderAboveTabs()}
         {renderBeforeTabsZones()}
@@ -343,6 +465,8 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             onCreateGroupOverlayRequested={components?.group?.Overlay ? webGroupsStore.onCreateGroupOverlayRequested : undefined}
             onCreateFrameCaptionBarRequested={components?.flat?.CaptionBar ? webGroupsStore.onCreateFrameCaptionBarRequested : undefined}
             onCreateFrameWindowOverlayRequested={components?.frame?.Overlay ? webGroupsStore.onCreateFrameWindowOverlayRequested : undefined}
+            onCreateAboveWindowRequested={components?.frame?.AboveWindow ? webGroupsStore.onCreateAboveWindowRequested : undefined}
+            onCreateWindowContentOverlayRequested={components?.frame?.WindowContentOverlay ? webGroupsStore.onCreateWindowContentOverlayRequested : undefined}
             onCreateBelowWindowRequested={components?.frame?.BelowWindow ? webGroupsStore.onCreateBelowWindowRequested : undefined}
             onCreateAboveTabsRequested={components?.tabs?.Above ? webGroupsStore.onCreateAboveTabsComponentRequested : undefined}
             onCreateBeforeTabsComponentRequested={components?.tabs?.Before ? webGroupsStore.onCreateBeforeTabsComponentRequested : undefined}
@@ -362,6 +486,8 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             onUpdateBelowTabsRequested={components?.tabs?.Below ? webGroupsStore.onUpdateBelowTabsRequested : undefined}
             onRemoveFrameCaptionBarRequested={webGroupsStore.onRemoveFrameCaptionBarRequested}
             onRemoveFrameWindowOverlayRequested={webGroupsStore.onRemoveFrameWindowOverlayRequested}
+            onRemoveAboveWindowRequested={webGroupsStore.onRemoveAboveWindowRequested}
+            onRemoveWindowContentOverlayRequested={webGroupsStore.onRemoveWindowContentOverlayRequested}
             onRemoveBelowWindowRequested={webGroupsStore.onRemoveBelowWindowRequested}
             onRemoveAboveTabsRequested={webGroupsStore.onRemoveAboveTabsRequested}
             onRemoveBeforeTabsComponentRequested={webGroupsStore.onRemoveBeforeTabsComponentRequested}
@@ -369,6 +495,9 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             onRemoveAfterTabsComponentRequested={webGroupsStore.onRemoveAfterTabsComponentRequested}
             onRemoveTabHeaderButtonsRequested={webGroupsStore.onRemoveTabHeaderButtonsRequested}
             onRemoveBelowTabsRequested={webGroupsStore.onRemoveBelowTabsRequested}
+            onShowCaptionEditorRequested={webGroupsStore.onShowCaptionEditorRequested}
+            onCommitCaptionEditingRequested={webGroupsStore.onCommitCaptionEditingRequested}
+            onHideCaptionEditorRequested={webGroupsStore.onHideCaptionEditorRequested}
         />
     </>
 }

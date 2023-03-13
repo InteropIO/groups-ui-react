@@ -2,7 +2,6 @@ import React from "react";
 import { GroupWrapperProps } from "./types/internal";
 import webGroupsManager from "./webGroupsManager";
 
-
 class GroupWrapper extends React.Component<GroupWrapperProps> {
     containerRef: HTMLElement | null;
 
@@ -16,6 +15,10 @@ class GroupWrapper extends React.Component<GroupWrapperProps> {
             updateFrameCaptionBar: this.props.onUpdateFrameCaptionBarRequested,
             createFrameWindowOverlay: this.props.onCreateFrameWindowOverlayRequested,
             updateFrameWindowOverlay: this.props.onUpdateFrameWindowOverlayRequested,
+            createAboveWindow: this.props.onCreateAboveWindowRequested,
+            destroyAboveWindow: this.props.onRemoveAboveWindowRequested,
+            createWindowContentOverlay: this.props.onCreateWindowContentOverlayRequested,
+            destroyWindowContentOverlay: this.props.onRemoveWindowContentOverlayRequested,
             createBelowWindow: this.props.onCreateBelowWindowRequested,
             destroyBelowWindow: this.props.onRemoveBelowWindowRequested,
 
@@ -44,7 +47,11 @@ class GroupWrapper extends React.Component<GroupWrapperProps> {
             destroyTab: this.props.onRemoveTabRequested,
             destroyAfterTabs: this.props.onRemoveAfterTabsComponentRequested,
             destroyTabBarButtonsContainerElement: this.props.onRemoveTabHeaderButtonsRequested,
-            destroyBelowTabs: this.props.onRemoveBelowTabsRequested
+            destroyBelowTabs: this.props.onRemoveBelowTabsRequested,
+
+            showCaptionEditor: this.props.onShowCaptionEditorRequested,
+            commitCaptionEditing: this.props.onCommitCaptionEditingRequested,
+            hideCaptionEditor: this.props.onHideCaptionEditorRequested
         };
 
         webGroupsManager.init(undefined, componentFactory);

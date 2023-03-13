@@ -1,5 +1,5 @@
 import React from "react";
-import { MinimizeButtonProps } from "../../types/internal";
+import { MinimizeButtonProps } from "../../types/defaultComponents";
 import BaseButton from "./BaseButton";
 
 const MinimizeButton: React.FC<MinimizeButtonProps> = ({ onClick, tooltip }) => {

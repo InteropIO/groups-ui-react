@@ -1,5 +1,5 @@
 import React from "react";
-import { GroupButtonsProps } from "../../types/internal";
+import { GroupButtonsProps } from "../../types/defaultComponents";
 import CloseButton from "../buttons/CloseButton";
 import MaximizeButton from "../buttons/MaximizeButton";
 import MinimizeButton from "../buttons/MinimizeButton";
