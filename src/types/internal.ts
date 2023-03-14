@@ -25,6 +25,7 @@ export interface GroupWrapperProps {
 
 	onCreateAboveWindowRequested?: (options: CreateFrameElementRequestOptions) => void;
 	onCreateWindowContentOverlayRequested?: (options: CreateFrameElementRequestOptions) => void;
+	onCreateLoadingAnimationRequested?: (options: CreateFrameElementRequestOptions) => void;
 	onCreateBelowWindowRequested?: (options: CreateFrameElementRequestOptions) => void;
 
 	onCreateAboveTabsRequested?: (options: CreateFrameElementRequestOptions) => void;
@@ -51,6 +52,7 @@ export interface GroupWrapperProps {
 	onRemoveFrameWindowOverlayRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveAboveWindowRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveWindowContentOverlayRequested?: (options: RemoveRequestOptions) => void;
+	onRemoveLoadingAnimationRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveBelowWindowRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveAboveTabsRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveBeforeTabsComponentRequested?: (options: RemoveRequestOptions) => void;
@@ -243,6 +245,7 @@ export interface ElementCreationWrapperState {
 	frameCaptionBars: { [targetId: string]: CreateFrameCaptionBarRequestOptions };
 	frameWindowOverlays: { [targetId: string]: CreateFrameElementRequestOptions };
 	windowContentOverlays: { [targetId: string]: CreateFrameElementRequestOptions };
+	loadingAnimation: { [targetId: string]: CreateFrameElementRequestOptions };
 	aboveWindowZones: { [targetId: string]: CreateFrameElementRequestOptions };
 	belowWindowZones: { [targetId: string]: CreateFrameElementRequestOptions };
 	aboveTabsZones: { [targetId: string]: CreateFrameElementRequestOptions };

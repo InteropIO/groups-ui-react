@@ -31,7 +31,8 @@ class WebGroupsStore {
         tabElements: {}, // dict windowId to create tab elements options
         afterTabsZones: {}, // dict frameId to after tabs zones options
         tabHeaderButtons: {}, // dict frameId to crate tab header buttons options
-        belowTabsZones: {} // dict frameId to create options
+        belowTabsZones: {}, // dict frameId to create options
+        loadingAnimation: {}, // dict frameId to create options
     }
 
     public subscribe = (cb: () => void) => {
@@ -114,7 +115,7 @@ class WebGroupsStore {
         });
     }
 
-    public onCreateWindowContentOverlayRequested=(options: CreateFrameCaptionBarRequestOptions)=>{
+    public onCreateWindowContentOverlayRequested = (options: CreateFrameElementRequestOptions) => {
         if (options === this.state.windowContentOverlays[options.targetId] || !options) {
             return;
         }
@@ -123,6 +124,21 @@ class WebGroupsStore {
                 ...s,
                 windowContentOverlays: {
                     ...s.windowContentOverlays,
+                    [options.targetId]: options
+                }
+            }
+        });
+    }
+
+    public onCreateLoadingAnimationRequested = (options: CreateFrameElementRequestOptions) => {
+        if (options === this.state.loadingAnimation[options.targetId] || !options) {
+            return;
+        }
+        this.setState(s => {
+            return {
+                ...s,
+                loadingAnimation: {
+                    ...s.loadingAnimation,
                     [options.targetId]: options
                 }
             }
@@ -401,6 +417,7 @@ class WebGroupsStore {
             updateSelectionWindow("afterTabsZones", options.targetId, options.selectedWindow);
             updateSelectionWindow("tabHeaderButtons", options.targetId, options.selectedWindow);
             updateSelectionWindow("belowTabsZones", options.targetId, options.selectedWindow);
+            updateSelectionWindow("loadingAnimation", options.targetId, options.selectedWindow);
 
             return newState;
         });
@@ -516,6 +533,24 @@ class WebGroupsStore {
                 windowContentOverlays: newOverlaysObj
             }
         });
+    }
+
+    public onRemoveLoadingAnimationRequested = (options: RemoveRequestOptions) => {
+        if (!this.state.loadingAnimation[options.targetId]) {
+            return;
+        }
+        this.setState(s => {
+            const newLoadingAnimationObj = Object.keys(s.loadingAnimation).reduce((acc, targetId) => {
+                if (targetId !== options.targetId) {
+                    acc[targetId] = s.loadingAnimation[targetId];
+                }
+                return acc;
+            }, {});
+            return {
+                ...s,
+                loadingAnimation: newLoadingAnimationObj
+            }
+        })
     }
 
     public onRemoveBelowWindowRequested = (options: RemoveRequestOptions) => {
