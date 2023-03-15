@@ -69,6 +69,7 @@ import useCommitFlatCaptionEditingRequested from "./defaultComponents/flatCaptio
 import useEditableCaption from "./defaultComponents/captionEditor/useEditableCaption";
 import useCaptionEditor from "./defaultComponents/captionEditor/useCaptionEditor";
 import FeedbackButton from "./defaultComponents/buttons/FeedbackButton";
+import LoadingAnimation from "./defaultComponents/loadingAnimation/LoadingAnimation";
 
 export {
     GroupCaptionBar,
@@ -95,6 +96,7 @@ export {
     FlatButtons,
     FlatCaptionEditor,
     TabHeaderButtons,
+    LoadingAnimation,
     GroupComponentVisibilityState,
     useGDWindow,
     useGroupComponentVisibility,
