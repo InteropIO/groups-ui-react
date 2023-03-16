@@ -515,6 +515,8 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             onShowCaptionEditorRequested={webGroupsStore.onShowCaptionEditorRequested}
             onCommitCaptionEditingRequested={webGroupsStore.onCommitCaptionEditingRequested}
             onHideCaptionEditorRequested={webGroupsStore.onHideCaptionEditorRequested}
+            onShowLoadingAnimationRequested={webGroupsStore.onShowLoadingAnimationRequested}
+            onHideLoadingAnimationRequested={webGroupsStore.onHideLoadingAnimationRequested}
         />
     </>
 }

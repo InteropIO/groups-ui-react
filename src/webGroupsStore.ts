@@ -11,7 +11,8 @@ import {
     UpdateFrameCaptionBarRequestOptions,
     UpdateGroupCaptionBarRequestOptions,
     UpdateStandardButtonRequestOptions,
-    UpdateFrameRequestOptions
+    UpdateFrameRequestOptions,
+    CreateLoadingAnimationRequestOptions
 } from "./types/internal";
 import webGroupsManager from "./webGroupsManager";
 
@@ -130,7 +131,7 @@ class WebGroupsStore {
         });
     }
 
-    public onCreateLoadingAnimationRequested = (options: CreateFrameElementRequestOptions) => {
+    public onCreateLoadingAnimationRequested = (options: CreateLoadingAnimationRequestOptions) => {
         if (options === this.state.loadingAnimation[options.targetId] || !options) {
             return;
         }
@@ -708,6 +709,46 @@ class WebGroupsStore {
         } else if (targetType === TargetType.Tab) {
             this.onHideTabCaptionEditorRequested(targetId)
         }
+    }
+
+    public onShowLoadingAnimationRequested = (targetId: string) => {
+        if (!this.state.loadingAnimation[targetId]) {
+            return;
+        }
+
+        this.setState(s => {
+            const newState: ElementCreationWrapperState = {
+                ...s,
+                loadingAnimation: {
+                    [targetId]: {
+                        ...s.loadingAnimation[targetId],
+                        show: true,
+                    }
+
+                }
+            }
+            return newState;
+        });
+    }
+
+    public onHideLoadingAnimationRequested = (targetId: string) => {
+        if (!this.state.loadingAnimation[targetId]) {
+            return;
+        }
+
+        this.setState(s => {
+            const newState: ElementCreationWrapperState = {
+                ...s,
+                loadingAnimation: {
+                    [targetId]: {
+                        ...s.loadingAnimation[targetId],
+                        show: false,
+                    }
+
+                }
+            }
+            return newState;
+        });
     }
 
     private onShowGroupCaptionEditorRequested = (_: string, text: string) => {

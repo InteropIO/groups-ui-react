@@ -25,7 +25,8 @@ export interface WindowContentOverlayProps {
 
 export interface LoadingAnimationProps {
     frameId: string;
-    selectedWindow: string
+    selectedWindow: string;
+    show: boolean;
 }
 
 export interface BelowWindowProps {

@@ -25,7 +25,7 @@ export interface GroupWrapperProps {
 
 	onCreateAboveWindowRequested?: (options: CreateFrameElementRequestOptions) => void;
 	onCreateWindowContentOverlayRequested?: (options: CreateFrameElementRequestOptions) => void;
-	onCreateLoadingAnimationRequested?: (options: CreateFrameElementRequestOptions) => void;
+	onCreateLoadingAnimationRequested?: (options: CreateLoadingAnimationRequestOptions) => void;
 	onCreateBelowWindowRequested?: (options: CreateFrameElementRequestOptions) => void;
 
 	onCreateAboveTabsRequested?: (options: CreateFrameElementRequestOptions) => void;
@@ -64,6 +64,9 @@ export interface GroupWrapperProps {
 	onShowCaptionEditorRequested?: (targetType: TargetType, targetId: string, text: string) => void;
 	onCommitCaptionEditingRequested?: (targetType: TargetType, targetId: string) => void;
 	onHideCaptionEditorRequested?: (targetType: TargetType, targetId: string) => void;
+
+	onShowLoadingAnimationRequested?: (targetId: string) => void;
+	onHideLoadingAnimationRequested?: (targetId: string) => void;
 }
 
 export interface CreateGroupCaptionBarRequestOptions extends CreateElementRequestOptions {
@@ -219,6 +222,10 @@ export interface CreateFrameElementRequestOptions extends CreateElementRequestOp
 	selectedWindow: string;
 }
 
+export interface CreateLoadingAnimationRequestOptions extends CreateFrameElementRequestOptions {
+	show: boolean;
+}
+
 export type UpdateFrameRequestOptions = CreateFrameElementRequestOptions;
 
 export enum TargetType {
@@ -245,7 +252,7 @@ export interface ElementCreationWrapperState {
 	frameCaptionBars: { [targetId: string]: CreateFrameCaptionBarRequestOptions };
 	frameWindowOverlays: { [targetId: string]: CreateFrameElementRequestOptions };
 	windowContentOverlays: { [targetId: string]: CreateFrameElementRequestOptions };
-	loadingAnimation: { [targetId: string]: CreateFrameElementRequestOptions };
+	loadingAnimation: { [targetId: string]: CreateLoadingAnimationRequestOptions };
 	aboveWindowZones: { [targetId: string]: CreateFrameElementRequestOptions };
 	belowWindowZones: { [targetId: string]: CreateFrameElementRequestOptions };
 	aboveTabsZones: { [targetId: string]: CreateFrameElementRequestOptions };

@@ -53,7 +53,10 @@ class GroupWrapper extends React.Component<GroupWrapperProps> {
 
             showCaptionEditor: this.props.onShowCaptionEditorRequested,
             commitCaptionEditing: this.props.onCommitCaptionEditingRequested,
-            hideCaptionEditor: this.props.onHideCaptionEditorRequested
+            hideCaptionEditor: this.props.onHideCaptionEditorRequested,
+
+            showLoadingAnimation: this.props.onShowLoadingAnimationRequested,
+            hideLoadingAnimation: this.props.onHideLoadingAnimationRequested,
         };
 
         webGroupsManager.init(undefined, componentFactory);
