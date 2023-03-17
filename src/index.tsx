@@ -69,7 +69,7 @@ import useCommitFlatCaptionEditingRequested from "./defaultComponents/flatCaptio
 import useEditableCaption from "./defaultComponents/captionEditor/useEditableCaption";
 import useCaptionEditor from "./defaultComponents/captionEditor/useCaptionEditor";
 import FeedbackButton from "./defaultComponents/buttons/FeedbackButton";
-import LoadingAnimation from "./defaultComponents/loadingAnimation/LoadingAnimation";
+import LoadingAnimation from "./defaultComponents/LoadingAnimation";
 
 export {
     GroupCaptionBar,
