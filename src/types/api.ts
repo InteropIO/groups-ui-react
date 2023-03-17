@@ -76,6 +76,7 @@ export interface FlatCaptionBarProps {
     moveAreaId: string;
     caption: string;
     feedback?: ButtonProps;
+    sticky?: ButtonProps;
     extract?: ButtonProps;
     lock?: ButtonProps;
     unlock?: ButtonProps;
@@ -107,6 +108,7 @@ export interface AfterTabsZoneProps {
 
 export interface TabHeaderButtonsProps {
     feedback?: ButtonProps;
+    sticky?: ButtonProps;
     extract?: ButtonProps;
     lock?: ButtonProps;
     unlock?: ButtonProps;
