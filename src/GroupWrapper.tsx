@@ -19,8 +19,8 @@ class GroupWrapper extends React.Component<GroupWrapperProps> {
             destroyAboveWindow: this.props.onRemoveAboveWindowRequested,
             createWindowContentOverlay: this.props.onCreateWindowContentOverlayRequested,
             destroyWindowContentOverlay: this.props.onRemoveWindowContentOverlayRequested,
-            createLoadingAnimation: this.props.onCreateLoadingAnimationRequested,
-            destroyLoadingAnimation: this.props.onRemoveLoadingAnimationRequested,
+            createFrameLoadingAnimation: this.props.onCreateFrameLoadingAnimationRequested,
+            destroyFrameLoadingAnimation: this.props.onRemoveFrameLoadingAnimationRequested,
             createBelowWindow: this.props.onCreateBelowWindowRequested,
             destroyBelowWindow: this.props.onRemoveBelowWindowRequested,
 

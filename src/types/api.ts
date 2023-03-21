@@ -23,7 +23,7 @@ export interface WindowContentOverlayProps {
     selectedWindow: string;
 }
 
-export interface LoadingAnimationProps {
+export interface FrameLoadingAnimationProps {
     frameId: string;
     selectedWindow: string;
     show: boolean;
@@ -135,7 +135,7 @@ export interface GroupProps {
             AboveWindow?: React.ComponentType<AboveWindowProps>;
             WindowContentOverlay?: React.ComponentType<WindowContentOverlayProps>;
             BelowWindow?: React.ComponentType<BelowWindowProps>;
-            LoadingAnimation?: React.ComponentType<LoadingAnimationProps>;
+            LoadingAnimation?: React.ComponentType<FrameLoadingAnimationProps>;
         };
         flat?: {
             CaptionBar?: React.ComponentType<FlatCaptionBarProps>;

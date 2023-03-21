@@ -247,7 +247,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
 
     const renderWindowLoadingAnimation = () => {
         const LoadingAnimationCustomElement = components?.frame?.LoadingAnimation;
-        return Object.values(state.loadingAnimation).map((wla) => {
+        return Object.values(state.frameLoadingAnimations).map((wla) => {
             if (!LoadingAnimationCustomElement || !wla.parentElement) {
                 return;
             }
@@ -482,7 +482,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             onCreateFrameWindowOverlayRequested={components?.frame?.Overlay ? webGroupsStore.onCreateFrameWindowOverlayRequested : undefined}
             onCreateAboveWindowRequested={components?.frame?.AboveWindow ? webGroupsStore.onCreateAboveWindowRequested : undefined}
             onCreateWindowContentOverlayRequested={components?.frame?.WindowContentOverlay ? webGroupsStore.onCreateWindowContentOverlayRequested : undefined}
-            onCreateLoadingAnimationRequested={components?.frame?.LoadingAnimation ? webGroupsStore.onCreateLoadingAnimationRequested : undefined}
+            onCreateFrameLoadingAnimationRequested={components?.frame?.LoadingAnimation ? webGroupsStore.onCreateFrameLoadingAnimationRequested : undefined}
             onCreateBelowWindowRequested={components?.frame?.BelowWindow ? webGroupsStore.onCreateBelowWindowRequested : undefined}
             onCreateAboveTabsRequested={components?.tabs?.Above ? webGroupsStore.onCreateAboveTabsComponentRequested : undefined}
             onCreateBeforeTabsComponentRequested={components?.tabs?.Before ? webGroupsStore.onCreateBeforeTabsComponentRequested : undefined}
@@ -504,7 +504,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             onRemoveFrameWindowOverlayRequested={webGroupsStore.onRemoveFrameWindowOverlayRequested}
             onRemoveAboveWindowRequested={webGroupsStore.onRemoveAboveWindowRequested}
             onRemoveWindowContentOverlayRequested={webGroupsStore.onRemoveWindowContentOverlayRequested}
-            onRemoveLoadingAnimationRequested={webGroupsStore.onRemoveLoadingAnimationRequested}
+            onRemoveFrameLoadingAnimationRequested={webGroupsStore.onRemoveFrameLoadingAnimationRequested}
             onRemoveBelowWindowRequested={webGroupsStore.onRemoveBelowWindowRequested}
             onRemoveAboveTabsRequested={webGroupsStore.onRemoveAboveTabsRequested}
             onRemoveBeforeTabsComponentRequested={webGroupsStore.onRemoveBeforeTabsComponentRequested}

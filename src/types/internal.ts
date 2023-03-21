@@ -25,7 +25,7 @@ export interface GroupWrapperProps {
 
 	onCreateAboveWindowRequested?: (options: CreateFrameElementRequestOptions) => void;
 	onCreateWindowContentOverlayRequested?: (options: CreateFrameElementRequestOptions) => void;
-	onCreateLoadingAnimationRequested?: (options: CreateLoadingAnimationRequestOptions) => void;
+	onCreateFrameLoadingAnimationRequested?: (options: CreateFrameLoadingAnimationRequestOptions) => void;
 	onCreateBelowWindowRequested?: (options: CreateFrameElementRequestOptions) => void;
 
 	onCreateAboveTabsRequested?: (options: CreateFrameElementRequestOptions) => void;
@@ -52,7 +52,7 @@ export interface GroupWrapperProps {
 	onRemoveFrameWindowOverlayRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveAboveWindowRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveWindowContentOverlayRequested?: (options: RemoveRequestOptions) => void;
-	onRemoveLoadingAnimationRequested?: (options: RemoveRequestOptions) => void;
+	onRemoveFrameLoadingAnimationRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveBelowWindowRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveAboveTabsRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveBeforeTabsComponentRequested?: (options: RemoveRequestOptions) => void;
@@ -65,8 +65,8 @@ export interface GroupWrapperProps {
 	onCommitCaptionEditingRequested?: (targetType: TargetType, targetId: string) => void;
 	onHideCaptionEditorRequested?: (targetType: TargetType, targetId: string) => void;
 
-	onShowLoadingAnimationRequested?: (targetId: string) => void;
-	onHideLoadingAnimationRequested?: (targetId: string) => void;
+	onShowLoadingAnimationRequested?: (targetType: TargetType ,targetId: string) => void;
+	onHideLoadingAnimationRequested?: (targetType: TargetType ,targetId: string) => void;
 }
 
 export interface CreateGroupCaptionBarRequestOptions extends CreateElementRequestOptions {
@@ -222,7 +222,7 @@ export interface CreateFrameElementRequestOptions extends CreateElementRequestOp
 	selectedWindow: string;
 }
 
-export interface CreateLoadingAnimationRequestOptions extends CreateFrameElementRequestOptions {
+export interface CreateFrameLoadingAnimationRequestOptions extends CreateFrameElementRequestOptions {
 	show: boolean;
 }
 
@@ -252,7 +252,7 @@ export interface ElementCreationWrapperState {
 	frameCaptionBars: { [targetId: string]: CreateFrameCaptionBarRequestOptions };
 	frameWindowOverlays: { [targetId: string]: CreateFrameElementRequestOptions };
 	windowContentOverlays: { [targetId: string]: CreateFrameElementRequestOptions };
-	loadingAnimation: { [targetId: string]: CreateLoadingAnimationRequestOptions };
+	frameLoadingAnimations: { [targetId: string]: CreateFrameLoadingAnimationRequestOptions };
 	aboveWindowZones: { [targetId: string]: CreateFrameElementRequestOptions };
 	belowWindowZones: { [targetId: string]: CreateFrameElementRequestOptions };
 	aboveTabsZones: { [targetId: string]: CreateFrameElementRequestOptions };

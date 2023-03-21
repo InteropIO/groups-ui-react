@@ -50,6 +50,7 @@ import {
 } from "./types/defaultComponents";
 import {
     FlatCaptionBarProps,
+    FrameLoadingAnimationProps,
     FrameWindowOverlayProps,
     GroupCaptionBarProps,
     GroupComponentVisibilityState,
@@ -69,7 +70,7 @@ import useCommitFlatCaptionEditingRequested from "./defaultComponents/flatCaptio
 import useEditableCaption from "./defaultComponents/captionEditor/useEditableCaption";
 import useCaptionEditor from "./defaultComponents/captionEditor/useCaptionEditor";
 import FeedbackButton from "./defaultComponents/buttons/FeedbackButton";
-import LoadingAnimation from "./defaultComponents/LoadingAnimation";
+import FrameLoadingAnimation from "./defaultComponents/loadingAnimation/FrameLoadingAnimation";
 
 export {
     GroupCaptionBar,
@@ -96,7 +97,7 @@ export {
     FlatButtons,
     FlatCaptionEditor,
     TabHeaderButtons,
-    LoadingAnimation,
+    FrameLoadingAnimation,
     GroupComponentVisibilityState,
     useGDWindow,
     useGroupComponentVisibility,
@@ -147,6 +148,7 @@ export {
     MaximizeButtonProps,
     RestoreButtonProps,
     CloseButtonProps,
+    FrameLoadingAnimationProps,
     UseCaptionEditorOptions,
     UseEditableCaptionOptions
 }

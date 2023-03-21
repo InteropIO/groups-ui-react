@@ -12,7 +12,7 @@ import {
     UpdateGroupCaptionBarRequestOptions,
     UpdateStandardButtonRequestOptions,
     UpdateFrameRequestOptions,
-    CreateLoadingAnimationRequestOptions
+    CreateFrameLoadingAnimationRequestOptions
 } from "./types/internal";
 import webGroupsManager from "./webGroupsManager";
 
@@ -33,7 +33,7 @@ class WebGroupsStore {
         afterTabsZones: {}, // dict frameId to after tabs zones options
         tabHeaderButtons: {}, // dict frameId to crate tab header buttons options
         belowTabsZones: {}, // dict frameId to create options
-        loadingAnimation: {}, // dict frameId to create options
+        frameLoadingAnimations: {}, // dict frameId to create options
     }
 
     public subscribe = (cb: () => void) => {
@@ -131,15 +131,15 @@ class WebGroupsStore {
         });
     }
 
-    public onCreateLoadingAnimationRequested = (options: CreateLoadingAnimationRequestOptions) => {
-        if (options === this.state.loadingAnimation[options.targetId] || !options) {
+    public onCreateFrameLoadingAnimationRequested = (options: CreateFrameLoadingAnimationRequestOptions) => {
+        if (options === this.state.frameLoadingAnimations[options.targetId] || !options) {
             return;
         }
         this.setState(s => {
             return {
                 ...s,
-                loadingAnimation: {
-                    ...s.loadingAnimation,
+                frameLoadingAnimations: {
+                    ...s.frameLoadingAnimations,
                     [options.targetId]: options
                 }
             }
@@ -418,7 +418,7 @@ class WebGroupsStore {
             updateSelectionWindow("afterTabsZones", options.targetId, options.selectedWindow);
             updateSelectionWindow("tabHeaderButtons", options.targetId, options.selectedWindow);
             updateSelectionWindow("belowTabsZones", options.targetId, options.selectedWindow);
-            updateSelectionWindow("loadingAnimation", options.targetId, options.selectedWindow);
+            updateSelectionWindow("frameLoadingAnimations", options.targetId, options.selectedWindow);
 
             return newState;
         });
@@ -536,20 +536,20 @@ class WebGroupsStore {
         });
     }
 
-    public onRemoveLoadingAnimationRequested = (options: RemoveRequestOptions) => {
-        if (!this.state.loadingAnimation[options.targetId]) {
+    public onRemoveFrameLoadingAnimationRequested = (options: RemoveRequestOptions) => {
+        if (!this.state.frameLoadingAnimations[options.targetId]) {
             return;
         }
         this.setState(s => {
-            const newLoadingAnimationObj = Object.keys(s.loadingAnimation).reduce((acc, targetId) => {
+            const newLoadingAnimationObj = Object.keys(s.frameLoadingAnimations).reduce((acc, targetId) => {
                 if (targetId !== options.targetId) {
-                    acc[targetId] = s.loadingAnimation[targetId];
+                    acc[targetId] = s.frameLoadingAnimations[targetId];
                 }
                 return acc;
             }, {});
             return {
                 ...s,
-                loadingAnimation: newLoadingAnimationObj
+                frameLoadingAnimation: newLoadingAnimationObj
             }
         })
     }
@@ -711,44 +711,20 @@ class WebGroupsStore {
         }
     }
 
-    public onShowLoadingAnimationRequested = (targetId: string) => {
-        if (!this.state.loadingAnimation[targetId]) {
-            return;
-        }
-
-        this.setState(s => {
-            const newState: ElementCreationWrapperState = {
-                ...s,
-                loadingAnimation: {
-                    [targetId]: {
-                        ...s.loadingAnimation[targetId],
-                        show: true,
-                    }
-
-                }
-            }
-            return newState;
-        });
+    public onShowLoadingAnimationRequested = (targetType: TargetType,targetId: string) => {
+       if (targetType === TargetType.Frame) {
+            this.onShowLoadingAnimation(targetId);
+       } else {
+            console.warn(`Loading animation for elements other than Frame are not supported`);
+       }
     }
 
-    public onHideLoadingAnimationRequested = (targetId: string) => {
-        if (!this.state.loadingAnimation[targetId]) {
-            return;
+    public onHideLoadingAnimationRequested = (targetType: TargetType,targetId: string) => {
+        if (targetType === TargetType.Frame) {
+            this.onHideLoadingAnimation(targetId);
+        } else {
+            console.warn(`Loading animation for elements other than Frame are not supported`);
         }
-
-        this.setState(s => {
-            const newState: ElementCreationWrapperState = {
-                ...s,
-                loadingAnimation: {
-                    [targetId]: {
-                        ...s.loadingAnimation[targetId],
-                        show: false,
-                    }
-
-                }
-            }
-            return newState;
-        });
     }
 
     private onShowGroupCaptionEditorRequested = (_: string, text: string) => {
@@ -888,6 +864,48 @@ class WebGroupsStore {
                             ...captionEditor,
                             show: false,
                         }
+                    }
+
+                }
+            }
+            return newState;
+        });
+    }
+
+    private onShowLoadingAnimation = (targetId: string) => {
+        if (!this.state.frameLoadingAnimations[targetId]) {
+            return;
+        }
+
+        this.setState(s => {
+            const newState: ElementCreationWrapperState = {
+                ...s,
+                frameLoadingAnimations: {
+                    ...s.frameLoadingAnimations,
+                    [targetId]: {
+                        ...s.frameLoadingAnimations[targetId],
+                        show: true,
+                    }
+
+                }
+            }
+            return newState;
+        });
+    }
+
+    private onHideLoadingAnimation = (targetId: string) => {
+        if (!this.state.frameLoadingAnimations[targetId]) {
+            return;
+        }
+
+        this.setState(s => {
+            const newState: ElementCreationWrapperState = {
+                ...s,
+                frameLoadingAnimations: {
+                    ...s.frameLoadingAnimations,
+                    [targetId]: {
+                        ...s.frameLoadingAnimations[targetId],
+                        show: false,
                     }
 
                 }
