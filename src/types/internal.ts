@@ -9,6 +9,9 @@ export interface ButtonProps {
 	onClick: () => void;
 	tooltip: string;
 	visible: boolean;
+}
+
+export interface ToggleButtonProps extends  ButtonProps{
 	isPressed: boolean;
 }
 
@@ -116,6 +119,7 @@ export interface CreateFrameCaptionBarRequestOptions extends CreateFrameElementR
 	sticky: {
 		tooltip: string;
 		visible: boolean;
+		isPressed: boolean;
 	};
 	extract: {
 		tooltip: string;
@@ -178,6 +182,7 @@ export interface CreateTabHeaderButtonsOptions extends CreateFrameElementRequest
 	sticky: {
 		tooltip: string;
 		visible: boolean;
+		isPressed: boolean;
 	};
 	extract: {
 		tooltip: string;

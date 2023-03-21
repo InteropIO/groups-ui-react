@@ -1,4 +1,4 @@
-import { Bounds, ButtonProps, TargetType } from "./internal";
+import { Bounds, ButtonProps, TargetType, ToggleButtonProps } from "./internal";
 
 export interface CaptionEditorProps {
     targetId: string;
@@ -20,7 +20,7 @@ export interface GroupCaptionEditorProps {
     caption: string;
 }
 
-export interface StickyButtonProps extends ButtonProps {
+export interface StickyButtonProps extends ToggleButtonProps {
 }
 
 export interface FeedbackButtonProps extends ButtonProps {
@@ -88,7 +88,7 @@ export interface FlatMoveAreaProps {
 
 export interface FlatButtonsProps {
     feedback?: ButtonProps;
-    sticky?: ButtonProps;
+    sticky?: ToggleButtonProps;
     extract?: ButtonProps;
     lock?: ButtonProps;
     unlock?: ButtonProps;
