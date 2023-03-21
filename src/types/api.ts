@@ -33,7 +33,7 @@ export interface AboveTabsProps {
     selectedWindow: string;
 }
 
-export interface BeforeTabsZoneProps {
+export interface BeforeTabsProps {
     frameId: string;
     selectedWindow: string;
 }
@@ -100,7 +100,7 @@ export interface TabElementProps {
     captionEditor: CaptionEditorProps;
 }
 
-export interface AfterTabsZoneProps {
+export interface AfterTabsProps {
     frameId: string;
     selectedWindow: string;
 }
@@ -135,9 +135,9 @@ export interface GroupProps {
         };
         tabs?: {
             Above?: React.ComponentType<AboveTabsProps>;
-            Before?: React.ComponentType<BeforeTabsZoneProps>;
+            Before?: React.ComponentType<BeforeTabsProps>;
             Element?: React.ComponentType<TabElementProps>;
-            After?: React.ComponentType<AfterTabsZoneProps>;
+            After?: React.ComponentType<AfterTabsProps>;
             Buttons?: React.ComponentType<TabHeaderButtonsProps>;
             Below?: React.ComponentType<BelowTabsProps>;
         }
