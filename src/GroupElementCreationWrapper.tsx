@@ -106,6 +106,13 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                 ...options.feedback
             };
 
+            const sticky = {
+                onClick: () => {
+                    webGroupsManager.stickyFrame(options.targetId);
+                },
+                ...options.sticky
+            };
+
             const extract = {
                 onClick: () => {
                     webGroupsManager.extractFrame(options.targetId);
@@ -187,6 +194,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             return <Portal key={options.targetId} parentElement={parentElement}>
                 <FrameCaptionBarCustomElement {...options}
                     feedback={feedback}
+                    sticky={sticky}
                     extract={extract}
                     lock={lock}
                     unlock={unlock}
@@ -384,6 +392,13 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                 ...options.feedback
             };
 
+            const sticky = {
+                onClick: () => {
+                    webGroupsManager.stickyTabBar(options.targetId);
+                },
+                ...options.sticky
+            };
+
             const extract = {
                 onClick: () => {
                     webGroupsManager.extractTabBar(options.targetId);
@@ -435,6 +450,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
 
             return <Portal key={options.targetId} parentElement={parentElement}><TabButtonsCustomElement {...options}
                 feedback={feedback}
+                sticky={sticky}
                 extract={extract}
                 lock={lock}
                 unlock={unlock}
