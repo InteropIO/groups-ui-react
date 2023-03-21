@@ -9,6 +9,7 @@ export interface ButtonProps {
 	onClick: () => void;
 	tooltip: string;
 	visible: boolean;
+	isPressed: boolean;
 }
 
 export interface GroupWrapperProps {
@@ -112,6 +113,10 @@ export interface CreateFrameCaptionBarRequestOptions extends CreateFrameElementR
 		tooltip: string;
 		visible: boolean;
 	};
+	sticky: {
+		tooltip: string;
+		visible: boolean;
+	};
 	extract: {
 		tooltip: string;
 		visible: boolean;
@@ -162,10 +167,15 @@ export interface UpdateStandardButtonRequestOptions extends CreateElementRequest
 	buttonId: StandardButtons;
 	visible: boolean;
 	tooltip: string;
+	isPressed: boolean;
 }
 
 export interface CreateTabHeaderButtonsOptions extends CreateFrameElementRequestOptions {
 	feedback: {
+		tooltip: string;
+		visible: boolean;
+	};
+	sticky: {
 		tooltip: string;
 		visible: boolean;
 	};
@@ -228,6 +238,7 @@ export enum TargetType {
 
 export enum StandardButtons {
 	Feedback = "feedback",
+	Sticky = "sticky",
 	Extract = "extract",
 	Lock = "lock",
 	Unlock = "unlock",

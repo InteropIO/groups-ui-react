@@ -21,12 +21,15 @@ import RestoreButton from "./defaultComponents/buttons/RestoreButton";
 import LockButton from "./defaultComponents/buttons/LockButtons";
 import UnlockButton from "./defaultComponents/buttons/UnlockButton";
 import ExtractButton from "./defaultComponents/buttons/ExtractButton";
+import FeedbackButton from "./defaultComponents/buttons/FeedbackButton";
+import StickyButton from "./defaultComponents/buttons/StickyButton";
 import useGDWindow from "./useGDWindow";
 import { waitForWindow } from "./utils";
 import useGroupComponentVisibility from "./useGroupComponentVisibility";
 import {
     CloseButtonProps,
     ExtractButtonProps,
+    StickyButtonProps,
     FeedbackButtonProps,
     FlatButtonsProps,
     FlatCaptionEditorProps,
@@ -68,7 +71,6 @@ import useCommitGroupCaptionEditingRequested from "./defaultComponents/groupCapt
 import useCommitFlatCaptionEditingRequested from "./defaultComponents/flatCaptionBar/useCommitFlatCaptionEditingRequested";
 import useEditableCaption from "./defaultComponents/captionEditor/useEditableCaption";
 import useCaptionEditor from "./defaultComponents/captionEditor/useCaptionEditor";
-import FeedbackButton from "./defaultComponents/buttons/FeedbackButton";
 
 export {
     GroupCaptionBar,
@@ -81,6 +83,7 @@ export {
     TabCloseButton,
     TabCaptionEditor,
     FeedbackButton,
+    StickyButton,
     ExtractButton,
     LockButton,
     UnlockButton,
@@ -137,6 +140,7 @@ export {
     FlatChannelSelectorProps,
     FlatButtonsProps,
     FlatCaptionEditorProps,
+    StickyButtonProps,
     FeedbackButtonProps,
     ExtractButtonProps,
     LockButtonProps,
