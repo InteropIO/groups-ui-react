@@ -1,5 +1,5 @@
 import React from "react";
-import { Bounds, ButtonProps } from "./internal";
+import { Bounds, ButtonProps, ToggleButtonProps } from "./internal";
 
 export interface ChannelProps {
     visible: boolean;
@@ -76,7 +76,7 @@ export interface FlatCaptionBarProps {
     moveAreaId: string;
     caption: string;
     feedback?: ButtonProps;
-    sticky?: ButtonProps;
+    sticky?: ToggleButtonProps;
     extract?: ButtonProps;
     lock?: ButtonProps;
     unlock?: ButtonProps;
@@ -108,7 +108,7 @@ export interface AfterTabsZoneProps {
 
 export interface TabHeaderButtonsProps {
     feedback?: ButtonProps;
-    sticky?: ButtonProps;
+    sticky?: ToggleButtonProps;
     extract?: ButtonProps;
     lock?: ButtonProps;
     unlock?: ButtonProps;
