@@ -245,7 +245,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
         });
     }
 
-    const renderWindowLoadingAnimation = () => {
+    const renderFrameLoadingAnimations = () => {
         const LoadingAnimationCustomElement = components?.frame?.LoadingAnimation;
         return Object.values(state.frameLoadingAnimations).map((wla) => {
             if (!LoadingAnimationCustomElement || !wla.parentElement) {
@@ -467,7 +467,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
         {renderFrameWindowOverlay()}
         {renderAboveWindow()}
         {renderWindowContentOverlays()}
-        {renderWindowLoadingAnimation()}
+        {renderFrameLoadingAnimations()}
         {renderBelowWindow()}
         {renderAboveTabs()}
         {renderBeforeTabsZones()}
