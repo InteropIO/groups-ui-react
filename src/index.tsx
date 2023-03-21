@@ -49,6 +49,12 @@ import {
     UseEditableCaptionOptions
 } from "./types/defaultComponents";
 import {
+    AboveTabsProps,
+    AboveWindowProps,
+    AfterTabsProps,
+    BeforeTabsProps,
+    BelowTabsProps,
+    BelowWindowProps,
     FlatCaptionBarProps,
     FrameWindowOverlayProps,
     GroupCaptionBarProps,
@@ -58,6 +64,7 @@ import {
     MoveAreaProps,
     TabElementProps,
     TabHeaderButtonsProps,
+    WindowContentOverlayProps,
 } from "./types/api";
 import GroupCaptionEditor from "./defaultComponents/groupCaptionBar/GroupCaptionEditor";
 import FlatCaptionEditor from "./defaultComponents/flatCaptionBar/FlatCaptionEditor";
@@ -146,7 +153,14 @@ export {
     RestoreButtonProps,
     CloseButtonProps,
     UseCaptionEditorOptions,
-    UseEditableCaptionOptions
+    UseEditableCaptionOptions,
+    AboveWindowProps,
+    BelowWindowProps,
+    AboveTabsProps,
+    BelowTabsProps,
+    BeforeTabsProps,
+    AfterTabsProps,
+    WindowContentOverlayProps
 }
 
 export default GroupElementCreationWrapper;

@@ -1,3 +1,5 @@
+1.2.1
+chore: updated the exports
 1.2.0
 feat: added AboveWindow zone and WindowContentOverlay
 feat: added the feedback button
