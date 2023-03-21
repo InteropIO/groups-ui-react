@@ -83,6 +83,10 @@ class WebGroupsManagerDecorator {
         window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Frame, targetId, StandardButtons.Feedback);
     }
 
+    public stickyFrame(targetId: string):void{
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Frame, targetId, StandardButtons.Sticky);
+    }
+
     public extractFrame(targetId: string): void {
         window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Frame, targetId, StandardButtons.Extract);
     }
@@ -113,6 +117,10 @@ class WebGroupsManagerDecorator {
 
     public feedbackTabBar(targetId: string): void {
         window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.TabBar, targetId, StandardButtons.Feedback);
+    }
+
+    public stickyTabBar(targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.TabBar, targetId, StandardButtons.Sticky);
     }
 
     public extractTabBar(targetId: string): void {
