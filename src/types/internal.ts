@@ -29,6 +29,7 @@ export interface GroupWrapperProps {
 
 	onCreateAboveWindowRequested?: (options: CreateFrameElementRequestOptions) => void;
 	onCreateWindowContentOverlayRequested?: (options: CreateFrameElementRequestOptions) => void;
+	onCreateFrameLoadingAnimationRequested?: (options: CreateFrameLoadingAnimationRequestOptions) => void;
 	onCreateBelowWindowRequested?: (options: CreateFrameElementRequestOptions) => void;
 
 	onCreateAboveTabsRequested?: (options: CreateFrameElementRequestOptions) => void;
@@ -55,6 +56,7 @@ export interface GroupWrapperProps {
 	onRemoveFrameWindowOverlayRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveAboveWindowRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveWindowContentOverlayRequested?: (options: RemoveRequestOptions) => void;
+	onRemoveFrameLoadingAnimationRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveBelowWindowRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveAboveTabsRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveBeforeTabsComponentRequested?: (options: RemoveRequestOptions) => void;
@@ -66,6 +68,9 @@ export interface GroupWrapperProps {
 	onShowCaptionEditorRequested?: (targetType: TargetType, targetId: string, text: string) => void;
 	onCommitCaptionEditingRequested?: (targetType: TargetType, targetId: string) => void;
 	onHideCaptionEditorRequested?: (targetType: TargetType, targetId: string) => void;
+
+	onShowLoadingAnimationRequested?: (targetType: TargetType ,targetId: string) => void;
+	onHideLoadingAnimationRequested?: (targetType: TargetType ,targetId: string) => void;
 }
 
 export interface CreateGroupCaptionBarRequestOptions extends CreateElementRequestOptions {
@@ -232,6 +237,10 @@ export interface CreateFrameElementRequestOptions extends CreateElementRequestOp
 	selectedWindow: string;
 }
 
+export interface CreateFrameLoadingAnimationRequestOptions extends CreateFrameElementRequestOptions {
+	show: boolean;
+}
+
 export type UpdateFrameRequestOptions = CreateFrameElementRequestOptions;
 
 export enum TargetType {
@@ -259,6 +268,7 @@ export interface ElementCreationWrapperState {
 	frameCaptionBars: { [targetId: string]: CreateFrameCaptionBarRequestOptions };
 	frameWindowOverlays: { [targetId: string]: CreateFrameElementRequestOptions };
 	windowContentOverlays: { [targetId: string]: CreateFrameElementRequestOptions };
+	frameLoadingAnimations: { [targetId: string]: CreateFrameLoadingAnimationRequestOptions };
 	aboveWindowZones: { [targetId: string]: CreateFrameElementRequestOptions };
 	belowWindowZones: { [targetId: string]: CreateFrameElementRequestOptions };
 	aboveTabsZones: { [targetId: string]: CreateFrameElementRequestOptions };
