@@ -106,6 +106,13 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                 ...options.feedback
             };
 
+            const sticky = {
+                onClick: () => {
+                    webGroupsManager.stickyFrame(options.targetId);
+                },
+                ...options.sticky
+            };
+
             const extract = {
                 onClick: () => {
                     webGroupsManager.extractFrame(options.targetId);
@@ -187,6 +194,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             return <Portal key={options.targetId} parentElement={parentElement}>
                 <FrameCaptionBarCustomElement {...options}
                     feedback={feedback}
+                    sticky={sticky}
                     extract={extract}
                     lock={lock}
                     unlock={unlock}
@@ -219,11 +227,11 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
 
     const renderAboveWindow = () => {
         const AboveWindowCustomElement = components?.frame?.AboveWindow;
-        return Object.values(state.aboveWindowZones).map((bwz) => {
-            if (!AboveWindowCustomElement || !bwz.parentElement) {
+        return Object.values(state.aboveWindowZones).map((awz) => {
+            if (!AboveWindowCustomElement || !awz.parentElement) {
                 return;
             }
-            const { parentElement, ...options } = bwz;
+            const { parentElement, ...options } = awz;
 
             return <Portal key={options.targetId} parentElement={parentElement}>
                 <AboveWindowCustomElement {...options} frameId={options.targetId} />
@@ -233,14 +241,28 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
 
     const renderWindowContentOverlays = () => {
         const WindowContentCustomElement = components?.frame?.WindowContentOverlay;
-        return Object.values(state.windowContentOverlays).map((bwz) => {
-            if (!WindowContentCustomElement || !bwz.parentElement) {
+        return Object.values(state.windowContentOverlays).map((wco) => {
+            if (!WindowContentCustomElement || !wco.parentElement) {
                 return;
             }
-            const { parentElement, ...options } = bwz;
+            const { parentElement, ...options } = wco;
 
             return <Portal key={options.targetId} parentElement={parentElement}>
                 <WindowContentCustomElement {...options} frameId={options.targetId} />
+            </Portal>
+        });
+    }
+
+    const renderFrameLoadingAnimations = () => {
+        const LoadingAnimationCustomElement = components?.frame?.LoadingAnimation;
+        return Object.values(state.frameLoadingAnimations).map((wla) => {
+            if (!LoadingAnimationCustomElement || !wla.parentElement) {
+                return;
+            }
+            const { parentElement, ...options } = wla;
+
+            return <Portal key={options.targetId} parentElement={parentElement}>
+                <LoadingAnimationCustomElement {...options} frameId={options.targetId} />
             </Portal>
         });
     }
@@ -370,6 +392,13 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                 ...options.feedback
             };
 
+            const sticky = {
+                onClick: () => {
+                    webGroupsManager.stickyTabBar(options.targetId);
+                },
+                ...options.sticky
+            };
+
             const extract = {
                 onClick: () => {
                     webGroupsManager.extractTabBar(options.targetId);
@@ -421,6 +450,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
 
             return <Portal key={options.targetId} parentElement={parentElement}><TabButtonsCustomElement {...options}
                 feedback={feedback}
+                sticky={sticky}
                 extract={extract}
                 lock={lock}
                 unlock={unlock}
@@ -453,6 +483,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
         {renderFrameWindowOverlay()}
         {renderAboveWindow()}
         {renderWindowContentOverlays()}
+        {renderFrameLoadingAnimations()}
         {renderBelowWindow()}
         {renderAboveTabs()}
         {renderBeforeTabsZones()}
@@ -467,6 +498,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             onCreateFrameWindowOverlayRequested={components?.frame?.Overlay ? webGroupsStore.onCreateFrameWindowOverlayRequested : undefined}
             onCreateAboveWindowRequested={components?.frame?.AboveWindow ? webGroupsStore.onCreateAboveWindowRequested : undefined}
             onCreateWindowContentOverlayRequested={components?.frame?.WindowContentOverlay ? webGroupsStore.onCreateWindowContentOverlayRequested : undefined}
+            onCreateFrameLoadingAnimationRequested={components?.frame?.LoadingAnimation ? webGroupsStore.onCreateFrameLoadingAnimationRequested : undefined}
             onCreateBelowWindowRequested={components?.frame?.BelowWindow ? webGroupsStore.onCreateBelowWindowRequested : undefined}
             onCreateAboveTabsRequested={components?.tabs?.Above ? webGroupsStore.onCreateAboveTabsComponentRequested : undefined}
             onCreateBeforeTabsComponentRequested={components?.tabs?.Before ? webGroupsStore.onCreateBeforeTabsComponentRequested : undefined}
@@ -488,6 +520,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             onRemoveFrameWindowOverlayRequested={webGroupsStore.onRemoveFrameWindowOverlayRequested}
             onRemoveAboveWindowRequested={webGroupsStore.onRemoveAboveWindowRequested}
             onRemoveWindowContentOverlayRequested={webGroupsStore.onRemoveWindowContentOverlayRequested}
+            onRemoveFrameLoadingAnimationRequested={webGroupsStore.onRemoveFrameLoadingAnimationRequested}
             onRemoveBelowWindowRequested={webGroupsStore.onRemoveBelowWindowRequested}
             onRemoveAboveTabsRequested={webGroupsStore.onRemoveAboveTabsRequested}
             onRemoveBeforeTabsComponentRequested={webGroupsStore.onRemoveBeforeTabsComponentRequested}
@@ -498,6 +531,8 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             onShowCaptionEditorRequested={webGroupsStore.onShowCaptionEditorRequested}
             onCommitCaptionEditingRequested={webGroupsStore.onCommitCaptionEditingRequested}
             onHideCaptionEditorRequested={webGroupsStore.onHideCaptionEditorRequested}
+            onShowLoadingAnimationRequested={webGroupsStore.onShowLoadingAnimationRequested}
+            onHideLoadingAnimationRequested={webGroupsStore.onHideLoadingAnimationRequested}
         />
     </>
 }

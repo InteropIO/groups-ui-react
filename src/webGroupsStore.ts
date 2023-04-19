@@ -11,7 +11,8 @@ import {
     UpdateFrameCaptionBarRequestOptions,
     UpdateGroupCaptionBarRequestOptions,
     UpdateStandardButtonRequestOptions,
-    UpdateFrameRequestOptions
+    UpdateFrameRequestOptions,
+    CreateFrameLoadingAnimationRequestOptions
 } from "./types/internal";
 import webGroupsManager from "./webGroupsManager";
 
@@ -31,7 +32,8 @@ class WebGroupsStore {
         tabElements: {}, // dict windowId to create tab elements options
         afterTabsZones: {}, // dict frameId to after tabs zones options
         tabHeaderButtons: {}, // dict frameId to crate tab header buttons options
-        belowTabsZones: {} // dict frameId to create options
+        belowTabsZones: {}, // dict frameId to create options
+        frameLoadingAnimations: {}, // dict frameId to create options
     }
 
     public subscribe = (cb: () => void) => {
@@ -114,7 +116,7 @@ class WebGroupsStore {
         });
     }
 
-    public onCreateWindowContentOverlayRequested=(options: CreateFrameCaptionBarRequestOptions)=>{
+    public onCreateWindowContentOverlayRequested = (options: CreateFrameElementRequestOptions) => {
         if (options === this.state.windowContentOverlays[options.targetId] || !options) {
             return;
         }
@@ -123,6 +125,21 @@ class WebGroupsStore {
                 ...s,
                 windowContentOverlays: {
                     ...s.windowContentOverlays,
+                    [options.targetId]: options
+                }
+            }
+        });
+    }
+
+    public onCreateFrameLoadingAnimationRequested = (options: CreateFrameLoadingAnimationRequestOptions) => {
+        if (options === this.state.frameLoadingAnimations[options.targetId] || !options) {
+            return;
+        }
+        this.setState(s => {
+            return {
+                ...s,
+                frameLoadingAnimations: {
+                    ...s.frameLoadingAnimations,
                     [options.targetId]: options
                 }
             }
@@ -401,6 +418,7 @@ class WebGroupsStore {
             updateSelectionWindow("afterTabsZones", options.targetId, options.selectedWindow);
             updateSelectionWindow("tabHeaderButtons", options.targetId, options.selectedWindow);
             updateSelectionWindow("belowTabsZones", options.targetId, options.selectedWindow);
+            updateSelectionWindow("frameLoadingAnimations", options.targetId, options.selectedWindow);
 
             return newState;
         });
@@ -516,6 +534,24 @@ class WebGroupsStore {
                 windowContentOverlays: newOverlaysObj
             }
         });
+    }
+
+    public onRemoveFrameLoadingAnimationRequested = (options: RemoveRequestOptions) => {
+        if (!this.state.frameLoadingAnimations[options.targetId]) {
+            return;
+        }
+        this.setState(s => {
+            const newLoadingAnimationObj = Object.keys(s.frameLoadingAnimations).reduce((acc, targetId) => {
+                if (targetId !== options.targetId) {
+                    acc[targetId] = s.frameLoadingAnimations[targetId];
+                }
+                return acc;
+            }, {});
+            return {
+                ...s,
+                frameLoadingAnimation: newLoadingAnimationObj
+            }
+        })
     }
 
     public onRemoveBelowWindowRequested = (options: RemoveRequestOptions) => {
@@ -675,6 +711,22 @@ class WebGroupsStore {
         }
     }
 
+    public onShowLoadingAnimationRequested = (targetType: TargetType,targetId: string) => {
+       if (targetType === TargetType.Frame) {
+            this.onShowLoadingAnimation(targetId);
+       } else {
+            console.warn(`Loading animation for elements other than Frame are not supported`);
+       }
+    }
+
+    public onHideLoadingAnimationRequested = (targetType: TargetType,targetId: string) => {
+        if (targetType === TargetType.Frame) {
+            this.onHideLoadingAnimation(targetId);
+        } else {
+            console.warn(`Loading animation for elements other than Frame are not supported`);
+        }
+    }
+
     private onShowGroupCaptionEditorRequested = (_: string, text: string) => {
         if (!this.state.groupCaptionBar) {
             return;
@@ -812,6 +864,48 @@ class WebGroupsStore {
                             ...captionEditor,
                             show: false,
                         }
+                    }
+
+                }
+            }
+            return newState;
+        });
+    }
+
+    private onShowLoadingAnimation = (targetId: string) => {
+        if (!this.state.frameLoadingAnimations[targetId]) {
+            return;
+        }
+
+        this.setState(s => {
+            const newState: ElementCreationWrapperState = {
+                ...s,
+                frameLoadingAnimations: {
+                    ...s.frameLoadingAnimations,
+                    [targetId]: {
+                        ...s.frameLoadingAnimations[targetId],
+                        show: true,
+                    }
+
+                }
+            }
+            return newState;
+        });
+    }
+
+    private onHideLoadingAnimation = (targetId: string) => {
+        if (!this.state.frameLoadingAnimations[targetId]) {
+            return;
+        }
+
+        this.setState(s => {
+            const newState: ElementCreationWrapperState = {
+                ...s,
+                frameLoadingAnimations: {
+                    ...s.frameLoadingAnimations,
+                    [targetId]: {
+                        ...s.frameLoadingAnimations[targetId],
+                        show: false,
                     }
 
                 }

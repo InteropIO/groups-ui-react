@@ -19,6 +19,8 @@ class GroupWrapper extends React.Component<GroupWrapperProps> {
             destroyAboveWindow: this.props.onRemoveAboveWindowRequested,
             createWindowContentOverlay: this.props.onCreateWindowContentOverlayRequested,
             destroyWindowContentOverlay: this.props.onRemoveWindowContentOverlayRequested,
+            createFrameLoadingAnimation: this.props.onCreateFrameLoadingAnimationRequested,
+            destroyFrameLoadingAnimation: this.props.onRemoveFrameLoadingAnimationRequested,
             createBelowWindow: this.props.onCreateBelowWindowRequested,
             destroyBelowWindow: this.props.onRemoveBelowWindowRequested,
 
@@ -51,7 +53,10 @@ class GroupWrapper extends React.Component<GroupWrapperProps> {
 
             showCaptionEditor: this.props.onShowCaptionEditorRequested,
             commitCaptionEditing: this.props.onCommitCaptionEditingRequested,
-            hideCaptionEditor: this.props.onHideCaptionEditorRequested
+            hideCaptionEditor: this.props.onHideCaptionEditorRequested,
+
+            showLoadingAnimation: this.props.onShowLoadingAnimationRequested,
+            hideLoadingAnimation: this.props.onHideLoadingAnimationRequested,
         };
 
         webGroupsManager.init(undefined, componentFactory);

@@ -213,14 +213,8 @@ input {
 }
 
 .t42-standard-button-restore::after {
-    width: calc(
-        var(--t42-standard-button-size) -
-            (var(--t42-caption-bar-button-correction) / 2)
-    );
-    height: calc(
-        var(--t42-standard-button-size) -
-            (var(--t42-caption-bar-button-correction) / 2)
-    );
+    width: calc(var(--t42-standard-button-size) - (var(--t42-caption-bar-button-correction) / 2));
+    height: calc(var(--t42-standard-button-size) - (var(--t42-caption-bar-button-correction) / 2));
     top: 0;
     border-top: 1px solid;
     border-right: 1px solid;
@@ -232,14 +226,8 @@ input {
 
 .t42-standard-button-extract::before {
     background-color: var(--t42-standard-button-color);
-    width: calc(
-        var(--t42-standard-button-size) +
-            var(--t42-caption-bar-button-correction)
-    );
-    height: calc(
-        var(--t42-standard-button-size) +
-            var(--t42-caption-bar-button-correction)
-    );
+    width: calc(var(--t42-standard-button-size) + var(--t42-caption-bar-button-correction));
+    height: calc(var(--t42-standard-button-size) + var(--t42-caption-bar-button-correction));
     top: calc(var(--t42-caption-bar-button-correction) / 2 * -1);
     position: absolute;
     left: calc(var(--t42-caption-bar-button-correction) / 2 * -1);
@@ -485,14 +473,8 @@ input {
 
 .t42-tab-close-button-content {
     display: flex;
-    width: calc(
-        var(--t42-tab-bar-tab-close-button-size) +
-            var(--t42-tab-bar-tab-close-button-padding) * 2
-    );
-    height: calc(
-        var(--t42-tab-bar-tab-close-button-size) +
-            var(--t42-tab-bar-tab-close-button-padding) * 2
-    );
+    width: calc(var(--t42-tab-bar-tab-close-button-size) + var(--t42-tab-bar-tab-close-button-padding) * 2);
+    height: calc(var(--t42-tab-bar-tab-close-button-size) + var(--t42-tab-bar-tab-close-button-padding) * 2);
     border-radius: 50%;
     background-color: transparent;
     transition-property: background-color, fill;
@@ -594,4 +576,75 @@ input {
 .t42-skip-focus {
     /* We used non-standard rule to have non-empty style */
     -moz-user-focus: ignore;
+}
+.t42-loading-animation {
+    width: 100%;
+    height: 100%;
+    background: var(--t42-background);
+}
+
+@keyframes clipMe {
+
+    0%,
+    100% {
+        clip: rect(0, 25vh, 2px, 0)
+    }
+
+    25% {
+        clip: rect(0, 2px, 25vh, 0)
+    }
+
+    50% {
+        clip: rect(calc(25vh - 2px), 25vh, 25vh, 0)
+    }
+
+    75% {
+        clip: rect(0, 25vh, 25vh, calc(25vh - 2px))
+    }
+}
+
+.t42-loading,
+.t42-loading.active::before,
+.t42-loading.active::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0
+}
+
+.t42-loading {
+    width: 25vh;
+    height: 25vh;
+    margin: auto;
+    border-radius: .25rem;
+    color: var(--primary);
+    background: var(--t42-logo-icon) no-repeat 50% 35%;
+    background-size: 50%;
+    box-shadow: inset 0 0 0 0.0625rem rgba(var(--primary), 0.1);
+}
+
+.t42-loading::before,
+.t42-loading::after {
+    border-radius: .375rem;
+    box-shadow: inset 0 0 0 2px;
+    animation: clipMe 8s linear infinite;
+    content: ""
+}
+
+.t42-loading .t42-loading-text {
+    position: relative;
+    top: 70%;
+    width: 100%;
+    height: 2.5rem;
+    margin: 0 auto;
+    padding: 0 0.833rem;
+    overflow: hidden;
+    color: var(--t42-content-color-muted);
+    text-align: center;
+    text-overflow: ellipsis
+}
+
+.t42-loading.active::before {
+    animation-delay: -4s
 }

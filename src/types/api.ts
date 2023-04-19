@@ -1,5 +1,5 @@
 import React from "react";
-import { Bounds, ButtonProps } from "./internal";
+import { Bounds, ButtonProps, ToggleButtonProps } from "./internal";
 
 export interface ChannelProps {
     visible: boolean;
@@ -21,6 +21,12 @@ export interface AboveWindowProps {
 export interface WindowContentOverlayProps {
     frameId: string;
     selectedWindow: string;
+}
+
+export interface FrameLoadingAnimationProps {
+    frameId: string;
+    selectedWindow: string;
+    show: boolean;
 }
 
 export interface BelowWindowProps {
@@ -76,6 +82,7 @@ export interface FlatCaptionBarProps {
     moveAreaId: string;
     caption: string;
     feedback?: ButtonProps;
+    sticky?: ToggleButtonProps;
     extract?: ButtonProps;
     lock?: ButtonProps;
     unlock?: ButtonProps;
@@ -107,6 +114,7 @@ export interface AfterTabsProps {
 
 export interface TabHeaderButtonsProps {
     feedback?: ButtonProps;
+    sticky?: ToggleButtonProps;
     extract?: ButtonProps;
     lock?: ButtonProps;
     unlock?: ButtonProps;
@@ -129,6 +137,7 @@ export interface GroupProps {
             AboveWindow?: React.ComponentType<AboveWindowProps>;
             WindowContentOverlay?: React.ComponentType<WindowContentOverlayProps>;
             BelowWindow?: React.ComponentType<BelowWindowProps>;
+            LoadingAnimation?: React.ComponentType<FrameLoadingAnimationProps>;
         };
         flat?: {
             CaptionBar?: React.ComponentType<FlatCaptionBarProps>;
