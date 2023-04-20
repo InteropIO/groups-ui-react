@@ -1,3 +1,6 @@
+1.3.0
+feat: added loading animations
+feat: added the sticky button
 1.2.1
 chore: updated the exports
 1.2.0
