@@ -163,6 +163,7 @@ export interface CreateFrameCaptionBarRequestOptions extends CreateFrameElementR
 export interface CreateTabRequestOptions extends CreateElementRequestOptions {
 	caption: string;
 	selected: boolean;
+	flashing: boolean;
 	channelSelectorVisible: boolean;
 	selectedChannel: string;
 	selectedChannelColor: string;
