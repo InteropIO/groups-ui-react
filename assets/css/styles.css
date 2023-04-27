@@ -658,26 +658,22 @@ input {
 
 @keyframes flash {
     0% {
-        opacity: 0;
+        background-color: transparent;
     }
     50% {
-        opacity: 1;
+        background-color: var(--t42-tab-bar-tab-flashing-background);
     }
     100% {
-        opacity: 0;
+        background-color: transparent;
     }
 }
 
-.t42-tab-flashing::after {
-    content: "";
-    display: block;
-    width: 8px;
-    height: 8px;
-    background-color: orange;
-    border-radius: 50%;
-    position: absolute;
-    right: 25px;
-    top: 11px;
-    left: auto;
+.t42-tab-flashing {
     animation: flash 500ms linear infinite;
+}
+
+.t42-tab-flashing .t42-tab-bar-element,
+.t42-tab-flashing .t42-tab-caption {
+    background-color: transparent;
+    color: var(--white);
 }

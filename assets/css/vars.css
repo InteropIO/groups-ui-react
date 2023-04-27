@@ -47,6 +47,7 @@
     
     --t42-tab-bar-tab-background: rgb(var(--t42-bg-mid));
     --t42-tab-bar-tab-hover-background: rgba(var(--t42-bg-light), 0.75);
+    --t42-tab-bar-tab-flashing-background: #f9a825b0;
 
     --t42-tab-bar-tab-channels-size: 18px;
     --t42-tab-bar-tab-channels-margin: 0px 0px 2px 4px;
