@@ -338,6 +338,12 @@ input {
     background-color: var(--t42-background);
 }
 
+.t42-frame-window-header {
+    display: flex;
+    flex-grow: 0;
+    background-color: var(--t42-background);
+}
+
 .t42-frame-window-footer {
     display: flex;
     flex-grow: 0;
@@ -577,6 +583,7 @@ input {
     /* We used non-standard rule to have non-empty style */
     -moz-user-focus: ignore;
 }
+
 .t42-loading-animation {
     width: 100%;
     height: 100%;
@@ -647,4 +654,26 @@ input {
 
 .t42-loading.active::before {
     animation-delay: -4s
+}
+
+@keyframes flash {
+    0% {
+        background-color: transparent;
+    }
+    50% {
+        background-color: var(--t42-tab-bar-tab-flashing-background);
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
+.t42-tab-flashing {
+    animation: flash 500ms linear infinite;
+}
+
+.t42-tab-flashing .t42-tab-bar-element,
+.t42-tab-flashing .t42-tab-caption {
+    background-color: transparent;
+    color: var(--white);
 }
