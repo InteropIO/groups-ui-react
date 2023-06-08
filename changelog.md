@@ -1,3 +1,5 @@
+1.4.0
+feat: added tab flashing
 1.3.0
 feat: added loading animations
 feat: added the sticky button
