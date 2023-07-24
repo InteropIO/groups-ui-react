@@ -584,76 +584,42 @@ input {
     -moz-user-focus: ignore;
 }
 
-.t42-loading-animation {
-    width: 100%;
-    height: 100%;
+.loader-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 1rem;
     background: var(--t42-background);
+
 }
 
-@keyframes clipMe {
-
-    0%,
-    100% {
-        clip: rect(0, 25vh, 2px, 0)
-    }
-
-    25% {
-        clip: rect(0, 2px, 25vh, 0)
-    }
-
-    50% {
-        clip: rect(calc(25vh - 2px), 25vh, 25vh, 0)
-    }
-
-    75% {
-        clip: rect(0, 25vh, 25vh, calc(25vh - 2px))
-    }
+.loader-wrapper .loader {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: radial-gradient(farthest-side, #999d9e 94%, rgba(0, 0, 0, 0)) center top / 4px 4px no-repeat, conic-gradient(rgba(0, 0, 0, 0) 15%, #999d9e);
+    -webkit-mask: radial-gradient(farthest-side, rgba(0, 0, 0, 0) calc(100% - 4px), #000 0px);
 }
 
-.t42-loading,
-.t42-loading.active::before,
-.t42-loading.active::after {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0
-}
-
-.t42-loading {
-    width: 25vh;
-    height: 25vh;
-    margin: auto;
-    border-radius: .25rem;
-    color: var(--primary);
-    background: var(--t42-logo-icon) no-repeat 50% 35%;
-    background-size: 50%;
-    box-shadow: inset 0 0 0 0.0625rem rgba(var(--primary), 0.1);
-}
-
-.t42-loading::before,
-.t42-loading::after {
-    border-radius: .375rem;
-    box-shadow: inset 0 0 0 2px;
-    animation: clipMe 8s linear infinite;
-    content: ""
-}
-
-.t42-loading .t42-loading-text {
-    position: relative;
-    top: 70%;
-    width: 100%;
-    height: 2.5rem;
+.loader-wrapper .loader-text {
     margin: 0 auto;
     padding: 0 0.833rem;
     overflow: hidden;
     color: var(--t42-content-color-muted);
     text-align: center;
-    text-overflow: ellipsis
+    text-overflow: ellipsis;
 }
 
-.t42-loading.active::before {
-    animation-delay: -4s
+.loader.active {
+    animation: s3 1.5s infinite linear;
+}
+
+@keyframes s3 {
+    to {
+        transform: rotate(1turn);
+    }
 }
 
 @keyframes flash {

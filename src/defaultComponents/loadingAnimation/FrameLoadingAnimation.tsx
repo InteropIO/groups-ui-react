@@ -5,10 +5,9 @@ const FrameLoadingAnimation: React.FC<FrameLoadingAnimationProps> = ({show}) => 
     return (
         show ?
         (
-        <div className="t42-loading-animation">
-            <div className="t42-loading active">
-                <div className="t42-loading-text">Loading...</div>
-            </div>
+        <div className="loader-wraper active">
+            <div className="loader"></div>
+            <div className="loader-text">Loading...</div>
         </div>
         ) : <></>
     );
