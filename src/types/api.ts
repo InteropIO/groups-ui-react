@@ -1,5 +1,5 @@
 import React from "react";
-import { Bounds, ButtonProps, ToggleButtonProps } from "./internal";
+import { Bounds, ButtonProps, CustomButtonProps, ToggleButtonProps } from "./internal";
 
 export interface ChannelProps {
     visible: boolean;
@@ -91,6 +91,7 @@ export interface FlatCaptionBarProps {
     restore?: ButtonProps;
     close?: ButtonProps;
     channels: ChannelProps;
+    customButtons: CustomButtonProps[];
     selectedWindow: string;
     notifyCaptionBoundsChanged: (bounds: Bounds) => void;
     captionEditor: CaptionEditorProps;
@@ -123,6 +124,7 @@ export interface TabHeaderButtonsProps {
     maximize?: ButtonProps;
     restore?: ButtonProps;
     close?: ButtonProps;
+    customButtons: Array<CustomButtonProps>;
     frameId: string;
     selectedWindow: string;
 }

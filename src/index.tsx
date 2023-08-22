@@ -23,6 +23,7 @@ import UnlockButton from "./defaultComponents/buttons/UnlockButton";
 import ExtractButton from "./defaultComponents/buttons/ExtractButton";
 import FeedbackButton from "./defaultComponents/buttons/FeedbackButton";
 import StickyButton from "./defaultComponents/buttons/StickyButton";
+import CustomButton from "./defaultComponents/buttons/CustomButton";
 import useGDWindow from "./useGDWindow";
 import { waitForWindow } from "./utils";
 import useGroupComponentVisibility from "./useGroupComponentVisibility";
@@ -101,6 +102,7 @@ export {
     MinimizeButton,
     RestoreButton,
     MaximizeButton,
+    CustomButton,
     CloseButton,
     FlatCaptionBar,
     FlatChannelSelector,

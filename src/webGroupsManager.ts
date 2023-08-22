@@ -147,6 +147,10 @@ class WebGroupsManagerDecorator {
         window.webGroupsManager.externalLibraryFactory.onTabCloseButtonClick(targetId);
     }
 
+    public clickCustomButton(targetId: string, buttonId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onCustomButtonClick(TargetType.Frame, targetId, buttonId);
+    }
+
     public onGroupMoveAreaChanged(targetId: string): void {
         window.webGroupsManager.externalLibraryFactory.onMoveAreaChanged(TargetType.Group, targetId);
     }

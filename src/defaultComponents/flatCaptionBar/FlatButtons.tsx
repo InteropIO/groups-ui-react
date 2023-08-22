@@ -9,9 +9,17 @@ import MaximizeButton from "../buttons/MaximizeButton";
 import MinimizeButton from "../buttons/MinimizeButton";
 import RestoreButton from "../buttons/RestoreButton";
 import UnlockButton from "../buttons/UnlockButton";
+import CustomButton from "../buttons/CustomButton";
 
-const FlatButtons: React.FC<FlatButtonsProps> = ({ extract, minimize, maximize, restore, close, lock, unlock, feedback, sticky }) => {
+const FlatButtons: React.FC<FlatButtonsProps> = ({ extract, minimize, maximize, restore, close, lock, unlock, feedback, sticky, customButtons }) => {
     return <div className="t42-buttons-container t42-frame-caption-bar-element">
+        <ul className="t42-buttons t42-tab-bar-element">
+            {
+                customButtons.map(customButton => {
+                    return customButton.visible && <CustomButton {...customButton} />
+                })
+            }
+        </ul>
         <ul className="t42-buttons t42-frame-caption-bar-element">
             {feedback?.visible && <FeedbackButton {...feedback} />}
             {sticky?.visible && <StickyButton {...sticky} />}

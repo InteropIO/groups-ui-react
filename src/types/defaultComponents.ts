@@ -1,4 +1,4 @@
-import { Bounds, ButtonProps, TargetType, ToggleButtonProps } from "./internal";
+import { Bounds, ButtonProps, CustomButtonProps, TargetType, ToggleButtonProps } from "./internal";
 
 export interface CaptionEditorProps {
     targetId: string;
@@ -96,6 +96,7 @@ export interface FlatButtonsProps {
     maximize?: ButtonProps;
     restore?: ButtonProps;
     close?: ButtonProps;
+    customButtons: Array<CustomButtonProps>;
 }
 
 export interface FlatCaptionProps {

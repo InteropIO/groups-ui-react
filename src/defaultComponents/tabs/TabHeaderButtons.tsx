@@ -9,9 +9,17 @@ import MinimizeButton from "../buttons/MinimizeButton";
 import RestoreButton from "../buttons/RestoreButton";
 import StickyButton from "../buttons/StickyButton";
 import UnlockButton from "../buttons/UnlockButton";
+import CustomButton from "../buttons/CustomButton";
 
-const TabHeaderButtons: React.FC<TabHeaderButtonsProps> = ({ extract, minimize, maximize, restore, close, lock, unlock, feedback, sticky }) => {
+const TabHeaderButtons: React.FC<TabHeaderButtonsProps> = ({ extract, minimize, maximize, restore, close, lock, unlock, feedback, sticky, customButtons }) => {
     return <div className="t42-buttons-container t42-tab-bar-element">
+        <ul className="t42-buttons t42-tab-bar-element">
+            {
+                customButtons.map(customButton => {
+                    return customButton.visible && <CustomButton {...customButton} />
+                })
+            }
+        </ul>
         <ul className="t42-buttons t42-tab-bar-element">
             {feedback?.visible && <FeedbackButton {...feedback} />}
             {sticky?.visible && <StickyButton {...sticky} />}

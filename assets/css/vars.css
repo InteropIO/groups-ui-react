@@ -13,7 +13,9 @@
     --t42-standard-button-size: 10px;
     --t42-standard-button-color: var(--t42-content-color);
     --t42-standard-button-hover-color:var(--t42-link-color);
-
+    
+    --t42-custom-button-size: 20px;
+    
     --t42-group-border-size: 0px;
     --t42-group-border-color: var(--t42-color-opacity-10);
     --t42-group-caption-height: 30px;
