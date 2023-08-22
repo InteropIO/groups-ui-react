@@ -16,7 +16,7 @@ const TabHeaderButtons: React.FC<TabHeaderButtonsProps> = ({ extract, minimize, 
         <ul className="t42-buttons t42-tab-bar-element">
             {
                 customButtons.map(customButton => {
-                    return customButton.visible && <CustomButton {...customButton} />
+                    return customButton.visible && <CustomButton key={customButton.buttonId} {...customButton} />
                 })
             }
         </ul>

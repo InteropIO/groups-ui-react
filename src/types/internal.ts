@@ -17,6 +17,7 @@ export interface ToggleButtonProps extends  ButtonProps{
 
 export interface CustomButtonProps extends ButtonProps {
 	imageData: string;
+	buttonId: string;
 }
 
 export interface GroupWrapperProps {

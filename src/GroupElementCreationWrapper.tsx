@@ -171,7 +171,8 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                         },
                         visible: true,
                         imageData: cButton.imageData,
-                        tooltip: cButton.tooltip}});
+                        tooltip: cButton.tooltip,
+                        buttonId: cButton.buttonId}});
             }
 
             const showSelector = (bounds: Bounds) => {
@@ -470,7 +471,8 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                         },
                         visible: true,
                         imageData: cButton.imageData,
-                        tooltip: cButton.tooltip}});
+                        tooltip: cButton.tooltip,
+                        buttonId: cButton.buttonId}});
             }
            
             return <Portal key={options.targetId} parentElement={parentElement}><TabButtonsCustomElement {...options}
