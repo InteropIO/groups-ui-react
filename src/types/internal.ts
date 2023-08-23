@@ -183,7 +183,7 @@ export interface UpdateStandardButtonRequestOptions extends CreateElementRequest
 }
 
 export interface UpdateCustomButtonsRequestOptions extends CreateElementRequestOptions {
-	customButtons: Array<UpdateCustomButtonOptions>;
+	customButtons: UpdateCustomButtonOptions[];
 }
 
 export interface UpdateCustomButtonOptions {
