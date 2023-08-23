@@ -101,7 +101,7 @@ export interface FlatButtonsProps {
     maximize?: ButtonProps;
     restore?: ButtonProps;
     close?: ButtonProps;
-    customButtons: Array<CustomButtonProps>;
+    customButtons: CustomButtonProps[];
 }
 
 export interface FlatCaptionProps {
