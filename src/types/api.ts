@@ -1,5 +1,6 @@
 import React from "react";
-import { Bounds, ButtonProps, CustomButtonProps, ToggleButtonProps } from "./internal";
+import { Bounds, ButtonProps, ToggleButtonProps } from "./internal";
+import { CustomButtonProps } from "./defaultComponents";
 
 export interface ChannelProps {
     visible: boolean;
@@ -124,7 +125,7 @@ export interface TabHeaderButtonsProps {
     maximize?: ButtonProps;
     restore?: ButtonProps;
     close?: ButtonProps;
-    customButtons: Array<CustomButtonProps>;
+    customButtons: CustomButtonProps[];
     frameId: string;
     selectedWindow: string;
 }

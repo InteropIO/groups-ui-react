@@ -1,4 +1,4 @@
-import { Bounds, ButtonProps, CustomButtonProps, TargetType, ToggleButtonProps } from "./internal";
+import { Bounds, ButtonProps, TargetType, ToggleButtonProps } from "./internal";
 
 export interface CaptionEditorProps {
     targetId: string;
@@ -45,6 +45,11 @@ export interface RestoreButtonProps extends ButtonProps {
 }
 
 export interface CloseButtonProps extends ButtonProps {
+}
+
+export interface CustomButtonProps extends ButtonProps {
+	imageData: string;
+	buttonId: string;
 }
 
 export interface BaseButtonProps {

@@ -1,6 +1,6 @@
 import React from "react";
 import BaseButton from "./BaseButton";
-import { CustomButtonProps } from "../../types/internal";
+import { CustomButtonProps } from "../../types/defaultComponents";
 
 const CustomButton: React.FC<CustomButtonProps> = ({ onClick, tooltip, imageData }) => {
     return <BaseButton

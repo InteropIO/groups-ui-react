@@ -15,11 +15,6 @@ export interface ToggleButtonProps extends  ButtonProps{
 	isPressed: boolean;
 }
 
-export interface CustomButtonProps extends ButtonProps {
-	imageData: string;
-	buttonId: string;
-}
-
 export interface GroupWrapperProps {
 	onCreateGroupCaptionBarRequested?: (options: CreateGroupCaptionBarRequestOptions) => void;
 	onUpdateGroupCaptionBarRequested?: (options: UpdateGroupCaptionBarRequestOptions) => void;

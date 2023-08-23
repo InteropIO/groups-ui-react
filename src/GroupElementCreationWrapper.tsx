@@ -3,7 +3,8 @@ import { useSyncExternalStore } from "use-sync-external-store/shim";
 import GroupWrapper from "./GroupWrapper";
 import Portal from "./Portal";
 import { ChannelProps, GroupProps } from "./types/api";
-import { Bounds, CustomButtonProps, ElementCreationWrapperState, TargetType } from "./types/internal";
+import { Bounds, ElementCreationWrapperState, TargetType } from "./types/internal";
+import { CustomButtonProps } from "./types/defaultComponents";
 import webGroupsManager from "./webGroupsManager";
 import webGroupsStore from "./webGroupsStore";
 
