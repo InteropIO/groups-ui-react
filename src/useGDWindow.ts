@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { GlueContext } from "@glue42/react-hooks";
+import { GlueContext } from "@interopio/react-hooks";
 
 function useGDWindow(windowId: string) {
     const [gdWindow, setGdWindow] = useState<any>(undefined);

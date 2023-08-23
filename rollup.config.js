@@ -9,7 +9,7 @@ const packageJson = require('./package.json');
 const globals = {
     react: 'React',
     'react-dom': 'ReactDOM',
-    '@glue42/react-hooks': "glue-hooks"
+    '@interopio/react-hooks': "interopio-hooks"
 };
 
 
