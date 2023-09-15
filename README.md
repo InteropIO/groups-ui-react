@@ -1,6 +1,6 @@
 ## Overview
 
-The `@interopio/groups-ui-react` library enables you to create your own Web Group App for [**io.Connect Desktop**](https://interop.io//). It provides all necessary functionalities as a single React component - `<Group />`. The library allows complete customization of the io.Connect Desktop Window group elements and the elements of the different types of Connect Windows (flat, tab and HTML) participating in the group. The provided default components can be replaced or extended with your custom ones.
+The `@interopio/groups-ui-react` library enables you to create your own Web Group App for [**io.Connect Desktop**](https://interop.io//). It provides all necessary functionalities as a single React component - `<Group />`. The library allows complete customization of the io.Connect Window group elements and the elements of the different types of io.Connect Windows (flat, tab and HTML) participating in the group. The provided default components can be replaced or extended with your custom ones.
 
 ## Install
 
