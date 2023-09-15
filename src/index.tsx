@@ -23,7 +23,7 @@ import UnlockButton from "./defaultComponents/buttons/UnlockButton";
 import ExtractButton from "./defaultComponents/buttons/ExtractButton";
 import FeedbackButton from "./defaultComponents/buttons/FeedbackButton";
 import StickyButton from "./defaultComponents/buttons/StickyButton";
-import useGDWindow from "./useGDWindow";
+import useIOConnectWindow from "./useIOConnectWindow";
 import { waitForWindow } from "./utils";
 import useGroupComponentVisibility from "./useGroupComponentVisibility";
 import {
@@ -111,7 +111,7 @@ export {
     TabHeaderButtons,
     FrameLoadingAnimation,
     GroupComponentVisibilityState,
-    useGDWindow,
+    useIOConnectWindow,
     useGroupComponentVisibility,
     waitForWindow,
     useEditableCaption,

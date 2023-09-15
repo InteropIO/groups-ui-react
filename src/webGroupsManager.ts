@@ -7,7 +7,7 @@ class WebGroupsManagerDecorator {
     private readonly registry = callbackRegistry();
     public readonly skipFocusStyle = "t42-skip-focus";
 
-    public init(glue: any, componentFactory: any) {
+    public init(io: any, componentFactory: any) {
         if (window.webGroupsManager) {
             window.webGroupsManager.init(componentFactory);
         } else {
