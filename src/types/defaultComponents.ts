@@ -47,6 +47,11 @@ export interface RestoreButtonProps extends ButtonProps {
 export interface CloseButtonProps extends ButtonProps {
 }
 
+export interface CustomButtonProps extends ButtonProps {
+	imageData: string;
+	buttonId: string;
+}
+
 export interface BaseButtonProps {
     outerElement: React.DetailedHTMLProps<React.LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>;
     innerElement: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
@@ -96,6 +101,7 @@ export interface FlatButtonsProps {
     maximize?: ButtonProps;
     restore?: ButtonProps;
     close?: ButtonProps;
+    customButtons: CustomButtonProps[];
 }
 
 export interface FlatCaptionProps {

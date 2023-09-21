@@ -40,6 +40,7 @@ class GroupWrapper extends React.Component<GroupWrapperProps> {
 
             updateFrame: this.props.onUpdateFrameRequested,
             updateStandardButton: this.props.onUpdateStandardButtonRequested,
+            updateCustomButtons: this.props.onUpdateCustomButtonsRequested,
 
             destroyFrameCaptionBar: this.props.onRemoveFrameCaptionBarRequested, // needed to prevent a memory leak
             destroyFrameWindowOverlay: this.props.onRemoveFrameWindowOverlayRequested,

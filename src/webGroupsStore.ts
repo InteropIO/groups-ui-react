@@ -12,7 +12,8 @@ import {
     UpdateGroupCaptionBarRequestOptions,
     UpdateStandardButtonRequestOptions,
     UpdateFrameRequestOptions,
-    CreateFrameLoadingAnimationRequestOptions
+    CreateFrameLoadingAnimationRequestOptions,
+    UpdateCustomButtonsRequestOptions
 } from "./types/internal";
 import webGroupsManager from "./webGroupsManager";
 
@@ -456,6 +457,27 @@ class WebGroupsStore {
                 }
             };
 
+            this.onUpdateTabHeaderButtonsRequested(newOptions);
+        }
+    }
+
+    public onUpdateCustomButtons = (options: UpdateCustomButtonsRequestOptions) => {
+        const isFrame = options.targetType === TargetType.Frame;
+        const isTabHeaderButtons = options.targetType === TargetType.TabBar;
+
+        if (isFrame && options.targetType === TargetType.Frame) {
+            const currentState = this.state.frameCaptionBars[options.targetId] || { targetId: options.targetId } as CreateTabHeaderButtonsOptions;
+            const newOptions = {
+                ...currentState,
+                ...options
+            };
+            this.onUpdateFrameCaptionBarRequested(newOptions);
+        } else if (isTabHeaderButtons && options.targetType === TargetType.TabBar) {
+            const currentState = this.state.tabHeaderButtons.customButtons || { customButtons: options.customButtons } as CreateTabHeaderButtonsOptions;
+            const newOptions = {
+                ...currentState,
+                ...options
+            };
             this.onUpdateTabHeaderButtonsRequested(newOptions);
         }
     }

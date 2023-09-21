@@ -139,6 +139,13 @@ input {
     position: relative;
 }
 
+.t42-custom-button {
+    height: var(--t42-custom-button-size);
+    width: var(--t42-custom-button-size);
+    background-size: cover;
+    position: relative;
+}
+
 .t42-standard-button::before,
 .t42-tab-channel-selector-content::before,
 .t42-frame-channel-selector-content::before,
