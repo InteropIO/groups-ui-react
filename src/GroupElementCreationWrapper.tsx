@@ -4,6 +4,7 @@ import GroupWrapper from "./GroupWrapper";
 import Portal from "./Portal";
 import { ChannelProps, GroupProps } from "./types/api";
 import { Bounds, ElementCreationWrapperState, TargetType } from "./types/internal";
+import { CustomButtonProps } from "./types/defaultComponents";
 import webGroupsManager from "./webGroupsManager";
 import webGroupsStore from "./webGroupsStore";
 
@@ -162,6 +163,19 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                 ...options.close
             }
 
+            let customButtonsProps = new Array<CustomButtonProps>();
+            if (options.customButtons) {
+                customButtonsProps = options.customButtons.map((cButton) => { 
+                    return {
+                        onClick: () => {
+                            webGroupsManager.clickCustomButton(options.targetId, cButton.buttonId);
+                        },
+                        visible: true,
+                        imageData: cButton.imageData,
+                        tooltip: cButton.tooltip,
+                        buttonId: cButton.buttonId}});
+            }
+
             const showSelector = (bounds: Bounds) => {
                 webGroupsManager.onFrameChannelSelectorClick(options.targetId, bounds);
             }
@@ -203,6 +217,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                     restore={restore}
                     close={close}
                     channels={channels}
+                    customButtons={customButtonsProps}
                     frameId={options.targetId}
                     captionEditor={captionEditor}
                     notifyCaptionBoundsChanged={notifyCaptionBoundsChanged} />
@@ -448,6 +463,19 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                 ...options.close
             }
 
+            let customButtonsProps = new Array<CustomButtonProps>();
+            if (options.customButtons) {
+                customButtonsProps = options.customButtons.map((cButton) => { 
+                    return {
+                        onClick: () => {
+                            webGroupsManager.clickCustomButton(options.targetId, cButton.buttonId);
+                        },
+                        visible: true,
+                        imageData: cButton.imageData,
+                        tooltip: cButton.tooltip,
+                        buttonId: cButton.buttonId}});
+            }
+           
             return <Portal key={options.targetId} parentElement={parentElement}><TabButtonsCustomElement {...options}
                 feedback={feedback}
                 sticky={sticky}
@@ -458,6 +486,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                 maximize={maximize}
                 restore={restore}
                 close={close}
+                customButtons={customButtonsProps}
                 frameId={options.targetId}
             /></Portal>
         });
@@ -511,6 +540,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             onUpdateFrameCaptionBarRequested={components?.flat?.CaptionBar ? webGroupsStore.onUpdateFrameCaptionBarRequested : undefined}
             onUpdateFrameRequested={webGroupsStore.onUpdateFrame}
             onUpdateStandardButtonRequested={webGroupsStore.onUpdateStandardButton}
+            onUpdateCustomButtonsRequested={webGroupsStore.onUpdateCustomButtons}
             onUpdateAboveTabsRequested={components?.tabs?.Above ? webGroupsStore.onUpdateAboveTabsRequested : undefined}
             onUpdateBeforeTabsComponentRequested={components?.tabs?.Before ? webGroupsStore.onUpdateBeforeTabsRequested : undefined}
             onUpdateTabRequested={components?.tabs?.Element ? webGroupsStore.onUpdateTabElementRequested : undefined}

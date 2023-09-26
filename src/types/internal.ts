@@ -51,6 +51,7 @@ export interface GroupWrapperProps {
 
 	onUpdateFrameRequested?: (options: UpdateFrameRequestOptions) => void;
 	onUpdateStandardButtonRequested?: (options: UpdateStandardButtonRequestOptions) => void;
+	onUpdateCustomButtonsRequested?: (options: UpdateCustomButtonsRequestOptions) => void;
 
 	onRemoveFrameCaptionBarRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveFrameWindowOverlayRequested?: (options: RemoveRequestOptions) => void;
@@ -158,6 +159,7 @@ export interface CreateFrameCaptionBarRequestOptions extends CreateFrameElementR
 		show: boolean;
 		text?: string;
 	};
+	customButtons: UpdateCustomButtonOptions[]
 }
 
 export interface CreateTabRequestOptions extends CreateElementRequestOptions {
@@ -178,6 +180,16 @@ export interface UpdateStandardButtonRequestOptions extends CreateElementRequest
 	visible: boolean;
 	tooltip: string;
 	isPressed: boolean;
+}
+
+export interface UpdateCustomButtonsRequestOptions extends CreateElementRequestOptions {
+	customButtons: UpdateCustomButtonOptions[];
+}
+
+export interface UpdateCustomButtonOptions {
+	buttonId: string;
+	tooltip: string;
+	imageData: string;
 }
 
 export interface CreateTabHeaderButtonsOptions extends CreateFrameElementRequestOptions {
@@ -218,6 +230,7 @@ export interface CreateTabHeaderButtonsOptions extends CreateFrameElementRequest
 		tooltip: string;
 		visible: boolean;
 	};
+	customButtons: UpdateCustomButtonOptions[]
 }
 
 export interface RemoveRequestOptions {
@@ -286,6 +299,7 @@ export interface ExternalLibraryFactory {
 	focusFrame(frameId: string): void;
 	focusGroup(): void;
 	onStandardButtonClick(targetType: TargetType, targetId: string, buttonId: StandardButtons): void;
+	onCustomButtonClick(targetType: TargetType, targetId: string, buttonId: string): void;
 	onTabCloseButtonClick(targetId: string): void;
 	onTabChannelSelectorClick(targetId: string, channelSelectorBounds: Bounds): void;
 	onFrameChannelSelectorClick(targetId: string, channelSelectorBounds: Bounds): void;

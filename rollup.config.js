@@ -3,13 +3,14 @@ import commonjs from '@rollup/plugin-commonjs'
 import typescript from 'rollup-plugin-typescript2'
 import external from 'rollup-plugin-peer-deps-external';
 import copy from 'rollup-plugin-copy';
+import execute from 'rollup-plugin-execute';
 import svgr from "@svgr/rollup";
 const packageJson = require('./package.json');
 
 const globals = {
     react: 'React',
     'react-dom': 'ReactDOM',
-    '@glue42/react-hooks': "glue-hooks"
+    '@interopio/react-hooks': "interopio-hooks"
 };
 
 
@@ -27,7 +28,8 @@ export default [
                     { src: './assets/css/*', dest: 'dist/styles' },
 
                 ]
-            })
+            }),
+            execute('npm run bundle:css')
         ],
         output: [
             {

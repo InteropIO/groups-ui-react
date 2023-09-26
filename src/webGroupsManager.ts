@@ -7,7 +7,7 @@ class WebGroupsManagerDecorator {
     private readonly registry = callbackRegistry();
     public readonly skipFocusStyle = "t42-skip-focus";
 
-    public init(glue: any, componentFactory: any) {
+    public init(io: any, componentFactory: any) {
         if (window.webGroupsManager) {
             window.webGroupsManager.init(componentFactory);
         } else {
@@ -147,6 +147,10 @@ class WebGroupsManagerDecorator {
         window.webGroupsManager.externalLibraryFactory.onTabCloseButtonClick(targetId);
     }
 
+    public clickCustomButton(targetId: string, buttonId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onCustomButtonClick(TargetType.Frame, targetId, buttonId);
+    }
+
     public onGroupMoveAreaChanged(targetId: string): void {
         window.webGroupsManager.externalLibraryFactory.onMoveAreaChanged(TargetType.Group, targetId);
     }
@@ -161,7 +165,7 @@ class WebGroupsManagerDecorator {
 
     public onCaptionTextBoundsChanged(targetType: TargetType, targetId: string, bounds: Bounds): void {
         if (typeof window.webGroupsManager.externalLibraryFactory.onCaptionTextBoundsChanged !== "function") {
-            // Handling the case when a new library is used with an older version of Glue42Desktop
+            // Handling the case when a new library is used with an older version of io.Connect Desktop
             return;
         }
         window.webGroupsManager.externalLibraryFactory.onCaptionTextBoundsChanged(targetType, targetId, bounds);
@@ -169,7 +173,7 @@ class WebGroupsManagerDecorator {
 
     public onCaptionEditorVisibleChanged(targetType: TargetType, targetId: string, visible: boolean): void {
         if (typeof window.webGroupsManager.externalLibraryFactory.onCaptionEditorVisibleChanged !== "function") {
-            // Handling the case when a new library is used with an older version of Glue42Desktop
+            // Handling the case when a new library is used with an older version of io.Connect Desktop
             return;
         }
         window.webGroupsManager.externalLibraryFactory.onCaptionEditorVisibleChanged(targetType, targetId, visible);
@@ -177,7 +181,7 @@ class WebGroupsManagerDecorator {
 
     public onCaptionEditorBoundsChanged(targetType: TargetType, targetId: string, bounds: Bounds): void {
         if (typeof window.webGroupsManager.externalLibraryFactory.onCaptionEditorBoundsChanged !== "function") {
-            // Handling the case when a new library is used with an older version of Glue42Desktop
+            // Handling the case when a new library is used with an older version of io.Connect Desktop
             return;
         }
         window.webGroupsManager.externalLibraryFactory.onCaptionEditorBoundsChanged(targetType, targetId, bounds);
@@ -185,7 +189,7 @@ class WebGroupsManagerDecorator {
 
     public commitCaptionEditing(targetType: TargetType, targetId: string, text: string): void {
         if (typeof window.webGroupsManager.externalLibraryFactory.commitCaptionEditing !== "function") {
-            // Handling the case when a new library is used with an older version of Glue42Desktop
+            // Handling the case when a new library is used with an older version of io.Connect Desktop
             return;
         }
         window.webGroupsManager.externalLibraryFactory.commitCaptionEditing(targetType, targetId, text);
