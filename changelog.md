@@ -1,3 +1,5 @@
+2.0.0
+feat: rebranding
 1.4.0
 feat: added tab flashing
 1.3.0
