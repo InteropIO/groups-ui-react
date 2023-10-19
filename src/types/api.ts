@@ -159,6 +159,9 @@ export interface GroupProps {
         tabs?: {
             header?: StylesOptions;
             moveArea?: StylesOptions;
+        },
+        frame?: {
+            element?: StylesOptions;
         }
     }
 }

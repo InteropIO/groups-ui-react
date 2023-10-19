@@ -79,6 +79,9 @@ export interface GroupWrapperProps {
 		tabs?: {
 			header?: StylesOptions;
 			moveArea?: StylesOptions;
+		},
+		frame?: {
+			element?: StylesOptions;
 		}
 	};
 }
@@ -318,8 +321,9 @@ export interface ExternalLibraryFactory {
 	onCaptionEditorBoundsChanged(targetType: TargetType, targetId: string, bounds: Bounds): void;
 	commitCaptionEditing(targetType: TargetType, targetId: string, text: string): void;
 
-	updateTabHeaderStyles(styles: any): void;
-	updateTabMoveAreaStyles(styles: any): void;
+	updateTabHeaderStyles(styles: StylesOptions): void;
+	updateTabMoveAreaStyles(styles: StylesOptions): void;
+	updateFrameStyles(styles: StylesOptions): void;
 }
 
 export interface WebGroupsManager {

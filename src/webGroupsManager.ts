@@ -210,6 +210,10 @@ class WebGroupsManagerDecorator {
     public updateTabMoveAreaStyles(styles: StylesOptions) {
         window.webGroupsManager.externalLibraryFactory.updateTabMoveAreaStyles(styles);
     }
+
+    public updateFrameStyles(styles: StylesOptions) {
+        window.webGroupsManager.externalLibraryFactory.updateFrameStyles(styles);
+    }
 }
 
 export default new WebGroupsManagerDecorator();
