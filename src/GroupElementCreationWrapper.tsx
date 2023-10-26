@@ -7,7 +7,7 @@ import { Bounds, ElementCreationWrapperState, TargetType } from "./types/interna
 import webGroupsManager from "./webGroupsManager";
 import webGroupsStore from "./webGroupsStore";
 
-const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
+const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components, styles }) => {
 
     const state = useSyncExternalStore<ElementCreationWrapperState>(webGroupsStore.subscribe, webGroupsStore.getSnapshot);
 
@@ -533,6 +533,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             onHideCaptionEditorRequested={webGroupsStore.onHideCaptionEditorRequested}
             onShowLoadingAnimationRequested={webGroupsStore.onShowLoadingAnimationRequested}
             onHideLoadingAnimationRequested={webGroupsStore.onHideLoadingAnimationRequested}
+            styles={styles}
         />
     </>
 }
