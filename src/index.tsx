@@ -73,15 +73,13 @@ import {
 import GroupCaptionEditor from "./defaultComponents/groupCaptionBar/GroupCaptionEditor";
 import FlatCaptionEditor from "./defaultComponents/flatCaptionBar/FlatCaptionEditor";
 import TabCaptionEditor from "./defaultComponents/tabs/TabCaptionEditor";
-import { TargetType } from "./types/internal";
+import { StylesOptions, TargetType } from "./types/internal";
 import useCommitTabCaptionEditingRequested from "./defaultComponents/tabs/useCommitTabCaptionEditingRequested";
 import useCommitGroupCaptionEditingRequested from "./defaultComponents/groupCaptionBar/useCommitGroupCaptionEditingRequested";
 import useCommitFlatCaptionEditingRequested from "./defaultComponents/flatCaptionBar/useCommitFlatCaptionEditingRequested";
 import useEditableCaption from "./defaultComponents/captionEditor/useEditableCaption";
 import useCaptionEditor from "./defaultComponents/captionEditor/useCaptionEditor";
 import FrameLoadingAnimation from "./defaultComponents/loadingAnimation/FrameLoadingAnimation";
-
-
 
 export {
     GroupCaptionBar,
@@ -170,7 +168,8 @@ export {
     BelowTabsProps,
     BeforeTabsProps,
     AfterTabsProps,
-    WindowContentOverlayProps
+    WindowContentOverlayProps,
+    StylesOptions
 }
 
 export default GroupElementCreationWrapper;
