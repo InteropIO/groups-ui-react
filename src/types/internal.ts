@@ -53,6 +53,8 @@ export interface GroupWrapperProps {
 	onUpdateStandardButtonRequested?: (options: UpdateStandardButtonRequestOptions) => void;
 	onUpdateCustomButtonsRequested?: (options: UpdateCustomButtonsRequestOptions) => void;
 
+	onCreateHtmlButtonsRequested?: (options: CreateTabHeaderButtonsOptions) => void;
+
 	onRemoveFrameCaptionBarRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveFrameWindowOverlayRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveAboveWindowRequested?: (options: RemoveRequestOptions) => void;
@@ -261,7 +263,8 @@ export enum TargetType {
 	Group = "group",
 	Frame = "frame",
 	TabBar = "tabBar",
-	Tab = "tab"
+	Tab = "tab",
+	HtmlButtons = "html"
 }
 
 export enum StandardButtons {
@@ -291,6 +294,7 @@ export interface ElementCreationWrapperState {
 	afterTabsZones: { [targetId: string]: CreateFrameElementRequestOptions };
 	tabHeaderButtons: { [targetId: string]: CreateTabHeaderButtonsOptions };
 	belowTabsZones: { [targetId: string]: CreateFrameElementRequestOptions };
+	htmlButtons: { [targetId: string]: CreateTabHeaderButtonsOptions };
 }
 
 export interface ExternalLibraryFactory {

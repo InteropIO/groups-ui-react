@@ -112,6 +112,18 @@ input {
     flex-direction: row;
 }
 
+.t42-html-buttons-container {
+    display: flex;
+    position: absolute;
+    right: var(--spacing-4);
+    top: var(--spacing-4);
+    background-color: Hsl(var(--g42-bg-01));
+}
+
+.t42-html-buttons-container ul:first-of-type {
+    padding-left: var(--spacing-4);
+}
+
 .t42-buttons {
     display: flex;
     flex-shrink: 0;
