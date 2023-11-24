@@ -54,6 +54,7 @@ export interface GroupWrapperProps {
 	onUpdateCustomButtonsRequested?: (options: UpdateCustomButtonsRequestOptions) => void;
 
 	onCreateHtmlButtonsRequested?: (options: CreateTabHeaderButtonsOptions) => void;
+	onRemoveHtmlButtonsRequested?: (options: RemoveRequestOptions) => void;
 
 	onRemoveFrameCaptionBarRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveFrameWindowOverlayRequested?: (options: RemoveRequestOptions) => void;

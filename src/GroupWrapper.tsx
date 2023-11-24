@@ -39,7 +39,8 @@ class GroupWrapper extends React.Component<GroupWrapperProps> {
             updateBelowTabs: this.props.onUpdateBelowTabsRequested,
             
             createHtmlButtonsContainerElement: this.props.onCreateHtmlButtonsRequested,
-
+            destroyHtmlButtonsContainerElement: this.props.onRemoveHtmlButtonsRequested,
+            
             updateFrame: this.props.onUpdateFrameRequested,
             updateStandardButton: this.props.onUpdateStandardButtonRequested,
             updateCustomButtons: this.props.onUpdateCustomButtonsRequested,

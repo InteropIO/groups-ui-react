@@ -506,10 +506,10 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
     }
 
     const renderHtmlButtons = () => {
-        const TabButtonsCustomElement = components?.html?.Buttons;
+        const HtmlButtonsCustomElement = components?.html?.Buttons;
 
         return Object.values(state.htmlButtons).map((te) => {
-            if (!TabButtonsCustomElement || !te.parentElement) {
+            if (!HtmlButtonsCustomElement || !te.parentElement) {
                 return;
             }
             const { parentElement, ...options } = te;
@@ -590,7 +590,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                         buttonId: cButton.buttonId}});
             }
            
-            return <Portal key={options.targetId} parentElement={parentElement}><TabButtonsCustomElement {...options}
+            return <Portal key={options.targetId} parentElement={parentElement}><HtmlButtonsCustomElement {...options}
                 feedback={feedback}
                 sticky={sticky}
                 extract={extract}
@@ -661,6 +661,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             onRemoveAfterTabsComponentRequested={webGroupsStore.onRemoveAfterTabsComponentRequested}
             onRemoveTabHeaderButtonsRequested={webGroupsStore.onRemoveTabHeaderButtonsRequested}
             onRemoveBelowTabsRequested={webGroupsStore.onRemoveBelowTabsRequested}
+            onRemoveHtmlButtonsRequested={webGroupsStore.onRemoveHtmlButtonsRequested}
             onShowCaptionEditorRequested={webGroupsStore.onShowCaptionEditorRequested}
             onCommitCaptionEditingRequested={webGroupsStore.onCommitCaptionEditingRequested}
             onHideCaptionEditorRequested={webGroupsStore.onHideCaptionEditorRequested}

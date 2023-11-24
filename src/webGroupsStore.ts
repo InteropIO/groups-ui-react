@@ -758,6 +758,25 @@ class WebGroupsStore {
         });
     }
 
+    public onRemoveHtmlButtonsRequested = (options: RemoveRequestOptions) => {
+        if (!this.state.htmlButtons[options.targetId]) {
+            return;
+        }
+        this.setState(s => {
+            const newHtmlObj = Object.keys(s.htmlButtons).reduce((acc, targetId) => {
+                if (targetId != options.targetId) {
+                    acc[targetId] = s.htmlButtons[targetId];
+                }
+                return acc;
+            }, {});
+
+            return {
+                ...s,
+                htmlButtons: newHtmlObj
+            }
+        });
+    }
+
     public onShowCaptionEditorRequested = (targetType: TargetType, targetId: string, text: string) => {
         if (targetType === TargetType.Group) {
             this.onShowGroupCaptionEditorRequested(targetId, text);
