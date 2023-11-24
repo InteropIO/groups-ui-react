@@ -12,15 +12,15 @@ import UnlockButton from "../buttons/UnlockButton";
 import CustomButton from "../buttons/CustomButton";
 
 const HtmlButtons: React.FC<HtmlButtonsProps> = ({ extract, minimize, maximize, restore, close, lock, unlock, feedback, sticky, customButtons }) => {
-    return <div className="t42-buttons-container t42-tab-bar-element">
-        <ul className="t42-buttons t42-tab-bar-element">
+    return <div className="t42-buttons-container t42-html-buttons-bar-element">
+        <ul className="t42-buttons t42-html-buttons-bar-element">
             {
                 customButtons.map(customButton => {
                     return customButton.visible && <CustomButton key={customButton.buttonId} {...customButton} />
                 })
             }
         </ul>
-        <ul className="t42-buttons t42-tab-bar-element">
+        <ul className="t42-buttons t42-html-buttons-bar-element">
             {feedback?.visible && <FeedbackButton {...feedback} />}
             {sticky?.visible && <StickyButton {...sticky} />}
             {extract?.visible && <ExtractButton {...extract} />}

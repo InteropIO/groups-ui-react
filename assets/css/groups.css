@@ -396,6 +396,10 @@ input {
     background-color: var(--t42-tab-bar-background);
 }
 
+.t42-html-buttons-bar-element {
+    background-color: var(--t42-html-buttons-bar-background); 
+}
+
 .t42-tab-bar-button {
     width: var(--t42-tab-bar-button-size);
     height: var(--t42-tab-bar-button-size);
