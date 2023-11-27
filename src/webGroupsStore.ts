@@ -3,7 +3,7 @@ import {
     CreateFrameCaptionBarRequestOptions,
     CreateFrameElementRequestOptions,
     CreateGroupCaptionBarRequestOptions,
-    CreateTabHeaderButtonsOptions,
+    CreateButtonsOptions,
     CreateTabRequestOptions,
     ElementCreationWrapperState,
     RemoveRequestOptions,
@@ -230,7 +230,7 @@ class WebGroupsStore {
         });
     }
 
-    public onCreateTabHeaderButtonsRequested = (options: CreateTabHeaderButtonsOptions) => {
+    public onCreateTabHeaderButtonsRequested = (options: CreateButtonsOptions) => {
         if (options === this.state.tabHeaderButtons[options.targetId] || !options) {
             return;
         }
@@ -260,7 +260,7 @@ class WebGroupsStore {
         });
     }
 
-    public onCreateHtmlButtonsRequested = (options: CreateTabHeaderButtonsOptions) => {
+    public onCreateHtmlButtonsRequested = (options: CreateButtonsOptions) => {
         if (options === this.state.htmlButtons[options.targetId] || !options) {
             return;
         }
@@ -275,7 +275,7 @@ class WebGroupsStore {
         });
     }
 
-    public onUpdateHtmlButtonsRequested = (options: CreateTabHeaderButtonsOptions) => {
+    public onUpdateHtmlButtonsRequested = (options: CreateButtonsOptions) => {
         if (options === this.state.htmlButtons[options.targetId] || !options) {
             return;
         }
@@ -393,7 +393,7 @@ class WebGroupsStore {
         });
     }
 
-    public onUpdateTabHeaderButtonsRequested = (options: CreateTabHeaderButtonsOptions) => {
+    public onUpdateTabHeaderButtonsRequested = (options: CreateButtonsOptions) => {
         if (options === this.state.tabHeaderButtons[options.targetId] || !options) {
             return;
         }
@@ -480,7 +480,7 @@ class WebGroupsStore {
                 this.onUpdateFrameCaptionBarRequested(newFrameOptions);
                 break;
             case TargetType.TabBar:
-                const currentTabButtonsState = this.state.tabHeaderButtons[options.targetId] || targetState as CreateTabHeaderButtonsOptions;
+                const currentTabButtonsState = this.state.tabHeaderButtons[options.targetId] || targetState as CreateButtonsOptions;
                 const newTabButtonsOptions = {
                     ...currentTabButtonsState,
                     [options.buttonId]: {
@@ -490,7 +490,7 @@ class WebGroupsStore {
                 this.onUpdateTabHeaderButtonsRequested(newTabButtonsOptions);
                 break;
             case TargetType.HtmlButtons:
-                const currentHtmlButtonsState = this.state.htmlButtons[options.targetId] || targetState as CreateTabHeaderButtonsOptions;
+                const currentHtmlButtonsState = this.state.htmlButtons[options.targetId] || targetState as CreateButtonsOptions;
                 const newHtmlButtonsOptions = {
                     ...currentHtmlButtonsState,
                     [options.buttonId]: {
@@ -505,7 +505,7 @@ class WebGroupsStore {
     public onUpdateCustomButtons = (options: UpdateCustomButtonsRequestOptions) => {
         switch(options.targetType) {
             case TargetType.Frame:
-                const currentFrameState = this.state.frameCaptionBars[options.targetId] || { targetId: options.targetId } as CreateTabHeaderButtonsOptions;
+                const currentFrameState = this.state.frameCaptionBars[options.targetId] || { targetId: options.targetId } as CreateButtonsOptions;
                 const newFrameOptions = {
                     ...currentFrameState,
                     ...options
@@ -513,7 +513,7 @@ class WebGroupsStore {
                 this.onUpdateFrameCaptionBarRequested(newFrameOptions);
                 break;
             case TargetType.TabBar:
-                const currentTabBarState = this.state.tabHeaderButtons.customButtons || { customButtons: options.customButtons } as CreateTabHeaderButtonsOptions;
+                const currentTabBarState = this.state.tabHeaderButtons.customButtons || { customButtons: options.customButtons } as CreateButtonsOptions;
                 const newTabBarOptions = {
                     ...currentTabBarState,
                     ...options
@@ -521,7 +521,7 @@ class WebGroupsStore {
                 this.onUpdateTabHeaderButtonsRequested(newTabBarOptions);
                 break;
             case TargetType.HtmlButtons:
-                const currentHtmlButtonsState = this.state.htmlButtons.customButtons || { customButtons: options.customButtons } as CreateTabHeaderButtonsOptions;
+                const currentHtmlButtonsState = this.state.htmlButtons.customButtons || { customButtons: options.customButtons } as CreateButtonsOptions;
                 const newHtmlButtonsOptions = {
                     ...currentHtmlButtonsState,
                     ...options

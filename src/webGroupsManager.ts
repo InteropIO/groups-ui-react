@@ -127,6 +127,42 @@ class WebGroupsManagerDecorator {
         window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.TabBar, targetId, StandardButtons.Extract);
     }
 
+    public closeHtml(targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.HtmlButtons, targetId, StandardButtons.Close);
+    }
+
+    public restoreHtml(targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.HtmlButtons, targetId, StandardButtons.Restore);
+    }
+
+    public maximizeHtml(targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.HtmlButtons, targetId, StandardButtons.Maximize);
+    }
+
+    public minimizeHtml(targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.HtmlButtons, targetId, StandardButtons.Minimize);
+    }
+
+    public lockHtml(targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.HtmlButtons, targetId, StandardButtons.Lock);
+    }
+
+    public unlockHtml(targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.HtmlButtons, targetId, StandardButtons.Unlock);
+    }
+
+    public feedbackHtml(targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.HtmlButtons, targetId, StandardButtons.Feedback);
+    }
+
+    public stickyHtml(targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.HtmlButtons, targetId, StandardButtons.Sticky);
+    }
+
+    public extractHtml(targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.HtmlButtons, targetId, StandardButtons.Extract);
+    }
+
     public closeGroup(targetId: string): void {
         window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Group, targetId, StandardButtons.Close);
     }

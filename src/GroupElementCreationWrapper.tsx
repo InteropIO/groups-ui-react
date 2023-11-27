@@ -516,63 +516,63 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
 
             const feedback = {
                 onClick: () => {
-                    webGroupsManager.feedbackTabBar(options.targetId);
+                    webGroupsManager.feedbackHtml(options.targetId);
                 },
                 ...options.feedback
             };
 
             const sticky = {
                 onClick: () => {
-                    webGroupsManager.stickyTabBar(options.targetId);
+                    webGroupsManager.stickyHtml(options.targetId);
                 },
                 ...options.sticky
             };
 
             const extract = {
                 onClick: () => {
-                    webGroupsManager.extractTabBar(options.targetId);
+                    webGroupsManager.extractHtml(options.targetId);
                 },
                 ...options.extract
             };
 
             const lock = {
                 onClick: () => {
-                    webGroupsManager.lockTabBar(options.targetId);
+                    webGroupsManager.lockHtml(options.targetId);
                 },
                 ...options.lock
             }
 
             const unlock = {
                 onClick: () => {
-                    webGroupsManager.unlockTabBar(options.targetId);
+                    webGroupsManager.unlockHtml(options.targetId);
                 },
                 ...options.unlock
             }
 
             const minimize = {
                 onClick: () => {
-                    webGroupsManager.minimizeTabBar(options.targetId);
+                    webGroupsManager.minimizeHtml(options.targetId);
                 },
                 ...options.minimize
             }
 
             const restore = {
                 onClick: () => {
-                    webGroupsManager.restoreTabBar(options.targetId);
+                    webGroupsManager.restoreHtml(options.targetId);
                 },
                 ...options.restore
             }
 
             const maximize = {
                 onClick: () => {
-                    webGroupsManager.maximizeTabBar(options.targetId);
+                    webGroupsManager.maximizeHtml(options.targetId);
                 },
                 ...options.maximize
             }
 
             const close = {
                 onClick: () => {
-                    webGroupsManager.closeTabBar(options.targetId);
+                    webGroupsManager.closeHtml(options.targetId);
                 },
                 ...options.close
             }
