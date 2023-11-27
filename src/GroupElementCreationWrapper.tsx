@@ -22,28 +22,28 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
 
         const minimize = {
             onClick: () => {
-                webGroupsManager.minimizeGroup(options.targetId);
+                webGroupsManager.onMinimizeButtonClick(TargetType.Group, options.targetId);
             },
             ...options.minimize
         }
 
         const restore = {
             onClick: () => {
-                webGroupsManager.restoreGroup(options.targetId);
+                webGroupsManager.onRestoreButtonClick(TargetType.Group, options.targetId);
             },
             ...options.restore
         }
 
         const maximize = {
             onClick: () => {
-                webGroupsManager.maximizeGroup(options.targetId);
+                webGroupsManager.onMaximizeButtonClick(TargetType.Group, options.targetId);
             },
             ...options.maximize
         }
 
         const close = {
             onClick: () => {
-                webGroupsManager.closeGroup(options.targetId);
+                webGroupsManager.onCloseButtonClick(TargetType.Group, options.targetId);
             },
             ...options.close
         }
@@ -102,63 +102,63 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
 
             const feedback = {
                 onClick: () => {
-                    webGroupsManager.feedbackFrame(options.targetId);
+                    webGroupsManager.onFeedbackButtonClick(TargetType.Frame, options.targetId);
                 },
                 ...options.feedback
             };
 
             const sticky = {
                 onClick: () => {
-                    webGroupsManager.stickyFrame(options.targetId);
+                    webGroupsManager.onStickyButtonClick(TargetType.Frame, options.targetId);
                 },
                 ...options.sticky
             };
 
             const extract = {
                 onClick: () => {
-                    webGroupsManager.extractFrame(options.targetId);
+                    webGroupsManager.onExtractButtonClick(TargetType.Frame, options.targetId);
                 },
                 ...options.extract
             };
 
             const lock = {
                 onClick: () => {
-                    webGroupsManager.lockFrame(options.targetId);
+                    webGroupsManager.onLockButtonClick(TargetType.Frame, options.targetId);
                 },
                 ...options.lock
             };
 
             const unlock = {
                 onClick: () => {
-                    webGroupsManager.unlockFrame(options.targetId);
+                    webGroupsManager.onUnlockButtonClick(TargetType.Frame, options.targetId);
                 },
                 ...options.unlock
             };
 
             const minimize = {
                 onClick: () => {
-                    webGroupsManager.minimizeFrame(options.targetId);
+                    webGroupsManager.onMinimizeButtonClick(TargetType.Frame, options.targetId);
                 },
                 ...options.minimize
             }
 
             const restore = {
                 onClick: () => {
-                    webGroupsManager.restoreFrame(options.targetId);
+                    webGroupsManager.onRestoreButtonClick(TargetType.Frame, options.targetId);
                 },
                 ...options.restore
             }
 
             const maximize = {
                 onClick: () => {
-                    webGroupsManager.maximizeFrame(options.targetId);
+                    webGroupsManager.onMaximizeButtonClick(TargetType.Frame, options.targetId);
                 },
                 ...options.maximize
             }
 
             const close = {
                 onClick: () => {
-                    webGroupsManager.closeFrame(options.targetId);
+                    webGroupsManager.onCloseButtonClick(TargetType.Frame, options.targetId);
                 },
                 ...options.close
             }
@@ -402,63 +402,63 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
 
             const feedback = {
                 onClick: () => {
-                    webGroupsManager.feedbackTabBar(options.targetId);
+                    webGroupsManager.onFeedbackButtonClick(TargetType.TabBar, options.targetId);
                 },
                 ...options.feedback
             };
 
             const sticky = {
                 onClick: () => {
-                    webGroupsManager.stickyTabBar(options.targetId);
+                    webGroupsManager.onStickyButtonClick(TargetType.TabBar, options.targetId);
                 },
                 ...options.sticky
             };
 
             const extract = {
                 onClick: () => {
-                    webGroupsManager.extractTabBar(options.targetId);
+                    webGroupsManager.onExtractButtonClick(TargetType.TabBar, options.targetId);
                 },
                 ...options.extract
             };
 
             const lock = {
                 onClick: () => {
-                    webGroupsManager.lockTabBar(options.targetId);
+                    webGroupsManager.onLockButtonClick(TargetType.TabBar, options.targetId);
                 },
                 ...options.lock
             }
 
             const unlock = {
                 onClick: () => {
-                    webGroupsManager.unlockTabBar(options.targetId);
+                    webGroupsManager.onUnlockButtonClick(TargetType.TabBar, options.targetId);
                 },
                 ...options.unlock
             }
 
             const minimize = {
                 onClick: () => {
-                    webGroupsManager.minimizeTabBar(options.targetId);
+                    webGroupsManager.onMinimizeButtonClick(TargetType.TabBar, options.targetId);
                 },
                 ...options.minimize
             }
 
             const restore = {
                 onClick: () => {
-                    webGroupsManager.restoreTabBar(options.targetId);
+                    webGroupsManager.onRestoreButtonClick(TargetType.TabBar, options.targetId);
                 },
                 ...options.restore
             }
 
             const maximize = {
                 onClick: () => {
-                    webGroupsManager.maximizeTabBar(options.targetId);
+                    webGroupsManager.onMaximizeButtonClick(TargetType.TabBar, options.targetId);
                 },
                 ...options.maximize
             }
 
             const close = {
                 onClick: () => {
-                    webGroupsManager.closeTabBar(options.targetId);
+                    webGroupsManager.onCloseButtonClick(TargetType.TabBar, options.targetId);
                 },
                 ...options.close
             }
@@ -516,63 +516,63 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
 
             const feedback = {
                 onClick: () => {
-                    webGroupsManager.feedbackHtml(options.targetId);
+                    webGroupsManager.onFeedbackButtonClick(TargetType.HtmlButtons, options.targetId);
                 },
                 ...options.feedback
             };
 
             const sticky = {
                 onClick: () => {
-                    webGroupsManager.stickyHtml(options.targetId);
+                    webGroupsManager.onStickyButtonClick(TargetType.HtmlButtons, options.targetId);
                 },
                 ...options.sticky
             };
 
             const extract = {
                 onClick: () => {
-                    webGroupsManager.extractHtml(options.targetId);
+                    webGroupsManager.onExtractButtonClick(TargetType.HtmlButtons, options.targetId);
                 },
                 ...options.extract
             };
 
             const lock = {
                 onClick: () => {
-                    webGroupsManager.lockHtml(options.targetId);
+                    webGroupsManager.onLockButtonClick(TargetType.HtmlButtons, options.targetId);
                 },
                 ...options.lock
             }
 
             const unlock = {
                 onClick: () => {
-                    webGroupsManager.unlockHtml(options.targetId);
+                    webGroupsManager.onUnlockButtonClick(TargetType.HtmlButtons, options.targetId);
                 },
                 ...options.unlock
             }
 
             const minimize = {
                 onClick: () => {
-                    webGroupsManager.minimizeHtml(options.targetId);
+                    webGroupsManager.onMinimizeButtonClick(TargetType.HtmlButtons, options.targetId);
                 },
                 ...options.minimize
             }
 
             const restore = {
                 onClick: () => {
-                    webGroupsManager.restoreHtml(options.targetId);
+                    webGroupsManager.onRestoreButtonClick(TargetType.HtmlButtons, options.targetId);
                 },
                 ...options.restore
             }
 
             const maximize = {
                 onClick: () => {
-                    webGroupsManager.maximizeHtml(options.targetId);
+                    webGroupsManager.onMaximizeButtonClick(TargetType.HtmlButtons, options.targetId);
                 },
                 ...options.maximize
             }
 
             const close = {
                 onClick: () => {
-                    webGroupsManager.closeHtml(options.targetId);
+                    webGroupsManager.onCloseButtonClick(TargetType.HtmlButtons, options.targetId);
                 },
                 ...options.close
             }
