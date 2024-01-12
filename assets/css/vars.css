@@ -32,6 +32,8 @@
     --t42-frame-caption-separator-size: 0;
     --t42-frame-caption-background: Hsl(var(--g42-bg-01));
 
+    --t42-html-buttons-bar-background: Hsl(var(--g42-bg-01));
+
     --t42-tab-bar-height: 32px;
     --t42-tab-bar-button-size: 26px;
     --t42-tab-bar-separator-size: 0;

@@ -3,7 +3,7 @@ import {
     CreateFrameCaptionBarRequestOptions,
     CreateFrameElementRequestOptions,
     CreateGroupCaptionBarRequestOptions,
-    CreateTabHeaderButtonsOptions,
+    CreateButtonsOptions,
     CreateTabRequestOptions,
     ElementCreationWrapperState,
     RemoveRequestOptions,
@@ -35,6 +35,7 @@ class WebGroupsStore {
         tabHeaderButtons: {}, // dict frameId to crate tab header buttons options
         belowTabsZones: {}, // dict frameId to create options
         frameLoadingAnimations: {}, // dict frameId to create options
+        htmlButtons: {}, // dict frameId to crate html buttons options
     }
 
     public subscribe = (cb: () => void) => {
@@ -229,7 +230,7 @@ class WebGroupsStore {
         });
     }
 
-    public onCreateTabHeaderButtonsRequested = (options: CreateTabHeaderButtonsOptions) => {
+    public onCreateTabHeaderButtonsRequested = (options: CreateButtonsOptions) => {
         if (options === this.state.tabHeaderButtons[options.targetId] || !options) {
             return;
         }
@@ -254,6 +255,36 @@ class WebGroupsStore {
                 belowTabsZones: {
                     ...s.belowTabsZones,
                     [options.targetId]: options
+                }
+            }
+        });
+    }
+
+    public onCreateHtmlButtonsRequested = (options: CreateButtonsOptions) => {
+        if (options === this.state.htmlButtons[options.targetId] || !options) {
+            return;
+        }
+        this.setState(s => {
+            return {
+                ...s,
+                htmlButtons: {
+                    ...s.htmlButtons,
+                    [options.targetId]: options
+                }
+            }
+        });
+    }
+
+    public onUpdateHtmlButtonsRequested = (options: CreateButtonsOptions) => {
+        if (options === this.state.htmlButtons[options.targetId] || !options) {
+            return;
+        }
+        this.setState(s => {
+            return {
+                ...s,
+                htmlButtons: {
+                    ...s.htmlButtons,
+                    [options.targetId]: { ...s.htmlButtons[options.targetId], ...options }
                 }
             }
         });
@@ -362,7 +393,7 @@ class WebGroupsStore {
         });
     }
 
-    public onUpdateTabHeaderButtonsRequested = (options: CreateTabHeaderButtonsOptions) => {
+    public onUpdateTabHeaderButtonsRequested = (options: CreateButtonsOptions) => {
         if (options === this.state.tabHeaderButtons[options.targetId] || !options) {
             return;
         }
@@ -426,59 +457,77 @@ class WebGroupsStore {
     }
 
     public onUpdateStandardButton = (options: UpdateStandardButtonRequestOptions) => {
-        const isCaptionBar = options.targetType === TargetType.Group; //this.state.groupCaptionBar?.targetId === options.targetId;
-        const isFrame = options.targetType === TargetType.Frame;
-        const isTabHeaderButtons = options.targetType === TargetType.TabBar;
-
-        if (isCaptionBar) {
-            const currentState = this.state.groupCaptionBar || { targetId: options.targetId } as CreateGroupCaptionBarRequestOptions;
-            const newOptions = {
-                ...currentState,
-                [options.buttonId]: {
-                    ...options
-                }
-            };
-            this.onUpdateGroupCaptionBarRequested(newOptions as UpdateGroupCaptionBarRequestOptions);
-        } else if (isFrame && options.targetType === TargetType.Frame) {
-            const currentState = this.state.frameCaptionBars[options.targetId] || { targetId: options.targetId } as CreateTabHeaderButtonsOptions;
-            const newOptions = {
-                ...currentState,
-                [options.buttonId]: {
-                    ...options
-                }
-            };
-            this.onUpdateFrameCaptionBarRequested(newOptions);
-        } else if (isTabHeaderButtons && options.targetType === TargetType.TabBar) {
-            const currentState = this.state.tabHeaderButtons[options.targetId] || { targetId: options.targetId } as CreateTabHeaderButtonsOptions;
-            const newOptions = {
-                ...currentState,
-                [options.buttonId]: {
-                    ...options
-                }
-            };
-
-            this.onUpdateTabHeaderButtonsRequested(newOptions);
+        const targetState = { targetId: options.targetId };
+        switch(options.targetType) {
+            case TargetType.Group:
+                const currentGroupState = this.state.groupCaptionBar || targetState as CreateGroupCaptionBarRequestOptions;
+                const newGroupOptions = {
+                    ...currentGroupState,
+                    [options.buttonId]: {
+                        ...options
+                    }
+                };
+                this.onUpdateGroupCaptionBarRequested(newGroupOptions);
+                break;
+            case TargetType.Frame:
+                const currentFrameState = this.state.frameCaptionBars[options.targetId] || targetState as CreateFrameCaptionBarRequestOptions;
+                const newFrameOptions = {
+                    ...currentFrameState,
+                    [options.buttonId]: {
+                        ...options
+                    }
+                };
+                this.onUpdateFrameCaptionBarRequested(newFrameOptions);
+                break;
+            case TargetType.TabBar:
+                const currentTabButtonsState = this.state.tabHeaderButtons[options.targetId] || targetState as CreateButtonsOptions;
+                const newTabButtonsOptions = {
+                    ...currentTabButtonsState,
+                    [options.buttonId]: {
+                        ...options
+                    }
+                };
+                this.onUpdateTabHeaderButtonsRequested(newTabButtonsOptions);
+                break;
+            case TargetType.HtmlButtons:
+                const currentHtmlButtonsState = this.state.htmlButtons[options.targetId] || targetState as CreateButtonsOptions;
+                const newHtmlButtonsOptions = {
+                    ...currentHtmlButtonsState,
+                    [options.buttonId]: {
+                        ...options
+                    }
+                };
+                this.onUpdateHtmlButtonsRequested(newHtmlButtonsOptions);
+                break;
         }
     }
 
     public onUpdateCustomButtons = (options: UpdateCustomButtonsRequestOptions) => {
-        const isFrame = options.targetType === TargetType.Frame;
-        const isTabHeaderButtons = options.targetType === TargetType.TabBar;
-
-        if (isFrame && options.targetType === TargetType.Frame) {
-            const currentState = this.state.frameCaptionBars[options.targetId] || { targetId: options.targetId } as CreateTabHeaderButtonsOptions;
-            const newOptions = {
-                ...currentState,
-                ...options
-            };
-            this.onUpdateFrameCaptionBarRequested(newOptions);
-        } else if (isTabHeaderButtons && options.targetType === TargetType.TabBar) {
-            const currentState = this.state.tabHeaderButtons.customButtons || { customButtons: options.customButtons } as CreateTabHeaderButtonsOptions;
-            const newOptions = {
-                ...currentState,
-                ...options
-            };
-            this.onUpdateTabHeaderButtonsRequested(newOptions);
+        switch(options.targetType) {
+            case TargetType.Frame:
+                const currentFrameState = this.state.frameCaptionBars[options.targetId] || { targetId: options.targetId } as CreateButtonsOptions;
+                const newFrameOptions = {
+                    ...currentFrameState,
+                    ...options
+                };
+                this.onUpdateFrameCaptionBarRequested(newFrameOptions);
+                break;
+            case TargetType.TabBar:
+                const currentTabBarState = this.state.tabHeaderButtons.customButtons || { customButtons: options.customButtons } as CreateButtonsOptions;
+                const newTabBarOptions = {
+                    ...currentTabBarState,
+                    ...options
+                };
+                this.onUpdateTabHeaderButtonsRequested(newTabBarOptions);
+                break;
+            case TargetType.HtmlButtons:
+                const currentHtmlButtonsState = this.state.htmlButtons.customButtons || { customButtons: options.customButtons } as CreateButtonsOptions;
+                const newHtmlButtonsOptions = {
+                    ...currentHtmlButtonsState,
+                    ...options
+                };
+                this.onUpdateHtmlButtonsRequested(newHtmlButtonsOptions);
+                break;
         }
     }
 
@@ -705,6 +754,25 @@ class WebGroupsStore {
             return {
                 ...s,
                 belowTabsZones: newTabElementsObj
+            }
+        });
+    }
+
+    public onRemoveHtmlButtonsRequested = (options: RemoveRequestOptions) => {
+        if (!this.state.htmlButtons[options.targetId]) {
+            return;
+        }
+        this.setState(s => {
+            const newHtmlObj = Object.keys(s.htmlButtons).reduce((acc, targetId) => {
+                if (targetId != options.targetId) {
+                    acc[targetId] = s.htmlButtons[targetId];
+                }
+                return acc;
+            }, {});
+
+            return {
+                ...s,
+                htmlButtons: newHtmlObj
             }
         });
     }

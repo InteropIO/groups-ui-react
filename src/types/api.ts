@@ -130,6 +130,9 @@ export interface TabHeaderButtonsProps {
     selectedWindow: string;
 }
 
+export interface HtmlButtonsProps extends TabHeaderButtonsProps {
+}
+
 export interface GroupProps {
     components?: {
         group?: {
@@ -153,6 +156,9 @@ export interface GroupProps {
             After?: React.ComponentType<AfterTabsProps>;
             Buttons?: React.ComponentType<TabHeaderButtonsProps>;
             Below?: React.ComponentType<BelowTabsProps>;
+        };
+        html?: {
+            Buttons?: React.ComponentType<HtmlButtonsProps>;
         }
     }
 }
