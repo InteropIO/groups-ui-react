@@ -1,3 +1,5 @@
+2.0.1
+feat: customizable html buttons
 2.0.0
 feat: rebranding
 1.4.0
