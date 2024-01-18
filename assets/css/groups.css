@@ -117,11 +117,15 @@ input {
     position: absolute;
     right: var(--spacing-4);
     top: var(--spacing-4);
-    background-color: Hsl(var(--g42-bg-01));
+    background-color: var(--t42-html-buttons-bar-background);
 }
 
 .t42-html-buttons-container ul:first-of-type {
     padding-left: var(--spacing-4);
+}
+
+.t42-html-buttons-bar-element {
+    background-color: var(--t42-html-buttons-bar-background); 
 }
 
 .t42-buttons {
