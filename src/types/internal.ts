@@ -162,6 +162,10 @@ export interface CreateButtonsOptions extends CreateFrameElementRequestOptions {
 		tooltip: string;
 		visible: boolean;
 	};
+	clone: {
+		tooltip: string;
+		visible: boolean;
+	};
 	sticky: {
 		tooltip: string;
 		visible: boolean;
@@ -232,6 +236,7 @@ export enum TargetType {
 
 export enum StandardButtons {
 	Feedback = "feedback",
+	Clone = "clone",
 	Sticky = "sticky",
 	Extract = "extract",
 	Lock = "lock",

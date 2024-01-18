@@ -33,7 +33,7 @@
         "access": "public"
     },
     "dependencies": {
-        "@interopio/theme": "^1.0.4",
+        "@interopio/theme": "^2.0.4",
         "callback-registry": "^2.7.2",
         "color2k": "^2.0.0",
         "use-sync-external-store": "^1.2.0"

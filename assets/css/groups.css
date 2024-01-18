@@ -74,14 +74,14 @@ input {
     white-space: nowrap;
     text-align: left;
     user-select: none;
-    font-size: var(--g42-font-size);
+    font-size: var(--io-font-size);
 }
 
 .t42-caption-editor {
     display: inline-block;
     color: var(--t42-caption-editor-color);
     margin: var(--t42-caption-editor-margin);
-    border: var(--spacing-1) solid hsl(var(--g42-interactive-primary));
+    border: var(--spacing-1) solid hsl(var(--io-interactive-primary));
     border-radius: var(--border-radius-4);
     outline: none;
     min-width: 150px;
@@ -151,13 +151,6 @@ input {
     position: relative;
 }
 
-.t42-custom-button {
-    height: var(--t42-custom-button-size);
-    width: var(--t42-custom-button-size);
-    background-size: cover;
-    position: relative;
-}
-
 .t42-standard-button::before,
 .t42-tab-channel-selector-content::before,
 .t42-frame-channel-selector-content::before,
@@ -173,7 +166,6 @@ input {
 .t42-standard-button-image {
     fill: var(--t42-standard-button-color);
 }
-
 
 .t42-caption-bar-button-lock,
 .t42-caption-bar-button-unlock,
@@ -235,6 +227,10 @@ input {
     content: "\e91c";
 }
 
+.t42-standard-button-clone::before {
+    content: "\e91f";
+}
+
 .t42-standard-button-sticky::before {
     content: var(--sticky-icon-off);
     display: block;
@@ -242,7 +238,6 @@ input {
     width: var(--spacing-14);
     line-height: var(--spacing-14);
 }
-
 
 .t42-caption-bar-button:hover .t42-standard-button-sticky::before {
     content: var(--sticky-icon-off-hover);
@@ -396,10 +391,6 @@ input {
     background-color: var(--t42-tab-bar-background);
 }
 
-.t42-html-buttons-bar-element {
-    background-color: var(--t42-html-buttons-bar-background); 
-}
-
 .t42-tab-bar-button {
     width: var(--t42-tab-bar-button-size);
     height: var(--t42-tab-bar-button-size);
@@ -423,6 +414,7 @@ input {
 .t42-caption-bar-button-maximize,
 .t42-caption-bar-button-minimize,
 .t42-caption-bar-button-restore,
+.t42-caption-bar-button-clone,
 .t42-caption-bar-button-close {
     width: var(--t42-caption-bar-button-width);
     height: var(--t42-tab-bar-height);
@@ -509,7 +501,7 @@ input {
 .t42-tab-caption {
     flex-grow: 1;
     color: var(--t42-tab-bar-tab-text);
-    -webkit-mask-image: linear-gradient(90deg, Hsl(var(--g42-bg-00)) 75%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, Hsl(var(--io-bg-00)) 75%, transparent);
 }
 
 .t42-tab-caption-editor {
@@ -545,7 +537,7 @@ input {
 
 .t42-tab-close-button-content:hover {
     background-color: var(--t42-tab-bar-tab-close-button-bg-hover);
-    color: Hsl(var(--g42-label-primary));
+    color: Hsl(var(--io-label-primary));
 
 }
 
@@ -584,12 +576,12 @@ input {
 }
 
 .t42-channel-selector-content-light::before {
-    color: hsl(var(--g42-white));
+    color: hsl(var(--io-white));
     transition-property: color;
 }
 
 .t42-channel-selector-content-dark::before {
-    color: hsl(var(--g42-black));
+    color: hsl(var(--io-black));
     transition-property: color;
 }
 
@@ -627,13 +619,57 @@ input {
     -moz-user-focus: ignore;
 }
 
-.loader.active {
-    animation: s3 1.5s infinite linear;
+
+@keyframes clipMe {
+
+    0%,
+    100% {
+        clip: rect(0, 25vh, 2px, 0);
+    }
+
+    25% {
+        clip: rect(0, 2px, 25vh, 0);
+    }
+
+    50% {
+        clip: rect(calc(25vh - 2px), 25vh, 25vh, 0);
+    }
+
+    75% {
+        clip: rect(0, 25vh, 25vh, calc(25vh - 2px));
+    }
 }
 
 .loader-wrapper {
-    background-color: var(--t42-background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     flex-grow: 1;
+    gap: 1rem;
+    background: var(--t42-background);
+
+}
+
+.loader-wrapper .loader {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: radial-gradient(farthest-side, #999d9e 94%, rgba(0, 0, 0, 0)) center top / 4px 4px no-repeat, conic-gradient(rgba(0, 0, 0, 0) 15%, #999d9e);
+    -webkit-mask: radial-gradient(farthest-side, rgba(0, 0, 0, 0) calc(100% - 4px), #000 0px);
+}
+
+.loader-wrapper .loader-text {
+    margin: 0 auto;
+    padding: 0 0.833rem;
+    overflow: hidden;
+    color: var(--io-secondary-primary);
+    text-align: center;
+    text-overflow: ellipsis;
+}
+
+.loader.active {
+    animation: s3 1.5s infinite linear;
 }
 
 @keyframes s3 {
