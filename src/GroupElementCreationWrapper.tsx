@@ -6,10 +6,12 @@ import { ChannelProps, GroupProps } from "./types/api";
 import { Bounds, ElementCreationWrapperState, TargetType } from "./types/internal";
 import webGroupsManager from "./webGroupsManager";
 import webGroupsStore from "./webGroupsStore";
+import FrameLoadingAnimation from "./defaultComponents/loadingAnimation/FrameLoadingAnimation";
 
 const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
 
     const state = useSyncExternalStore<ElementCreationWrapperState>(webGroupsStore.subscribe, webGroupsStore.getSnapshot);
+    const LoadingAnimation =  components?.frame?.LoadingAnimation ?? FrameLoadingAnimation;
 
     const renderGroupCaptionBar = () => {
         const GroupCaptionBarCustomElement = components?.group?.CaptionBar;
@@ -254,7 +256,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
     }
 
     const renderFrameLoadingAnimations = () => {
-        const LoadingAnimationCustomElement = components?.frame?.LoadingAnimation;
+        const LoadingAnimationCustomElement = LoadingAnimation;
         return Object.values(state.frameLoadingAnimations).map((wla) => {
             if (!LoadingAnimationCustomElement || !wla.parentElement) {
                 return;
@@ -498,7 +500,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             onCreateFrameWindowOverlayRequested={components?.frame?.Overlay ? webGroupsStore.onCreateFrameWindowOverlayRequested : undefined}
             onCreateAboveWindowRequested={components?.frame?.AboveWindow ? webGroupsStore.onCreateAboveWindowRequested : undefined}
             onCreateWindowContentOverlayRequested={components?.frame?.WindowContentOverlay ? webGroupsStore.onCreateWindowContentOverlayRequested : undefined}
-            onCreateFrameLoadingAnimationRequested={components?.frame?.LoadingAnimation ? webGroupsStore.onCreateFrameLoadingAnimationRequested : undefined}
+            onCreateFrameLoadingAnimationRequested={LoadingAnimation ? webGroupsStore.onCreateFrameLoadingAnimationRequested : undefined}
             onCreateBelowWindowRequested={components?.frame?.BelowWindow ? webGroupsStore.onCreateBelowWindowRequested : undefined}
             onCreateAboveTabsRequested={components?.tabs?.Above ? webGroupsStore.onCreateAboveTabsComponentRequested : undefined}
             onCreateBeforeTabsComponentRequested={components?.tabs?.Before ? webGroupsStore.onCreateBeforeTabsComponentRequested : undefined}
