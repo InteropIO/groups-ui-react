@@ -1,6 +1,6 @@
 {
     "name": "@glue42/groups-ui-react",
-    "version": "1.4.0",
+    "version": "1.4.1",
     "description": "React version of the groups ui library",
     "author": {
         "name": "Glue42",
