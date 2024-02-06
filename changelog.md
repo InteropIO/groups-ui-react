@@ -1,3 +1,5 @@
+1.4.2
+chore: release process issue
 1.4.1
 fix: started using the default loading animation component instead of the native implementation
 1.4.0
