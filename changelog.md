@@ -1,3 +1,5 @@
+2.0.4
+fix: typo in loading animation class name
 2.0.3
 chore: release process issue
 2.0.2
