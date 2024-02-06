@@ -1,3 +1,7 @@
+2.0.3
+chore: release process issue
+2.0.2
+fix: started using the default loading animation component
 2.0.1
 feat: customizable html buttons
 2.0.0
