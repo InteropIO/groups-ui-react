@@ -83,6 +83,10 @@ class WebGroupsManagerDecorator {
         window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(targetType, targetId, StandardButtons.Feedback);
     }
 
+    public onCloneButtonClick(targetType: TargetType, targetId: string):void{
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(targetType, targetId, StandardButtons.Clone);
+    }
+
     public onStickyButtonClick(targetType: TargetType, targetId: string):void{
         window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(targetType, targetId, StandardButtons.Sticky);
     }

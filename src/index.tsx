@@ -22,6 +22,7 @@ import LockButton from "./defaultComponents/buttons/LockButtons";
 import UnlockButton from "./defaultComponents/buttons/UnlockButton";
 import ExtractButton from "./defaultComponents/buttons/ExtractButton";
 import FeedbackButton from "./defaultComponents/buttons/FeedbackButton";
+import CloneButton from "./defaultComponents/buttons/CloneButton";
 import StickyButton from "./defaultComponents/buttons/StickyButton";
 import useIOConnectWindow from "./useIOConnectWindow";
 import CustomButton from "./defaultComponents/buttons/CustomButton";
@@ -97,6 +98,7 @@ export {
     TabCloseButton,
     TabCaptionEditor,
     FeedbackButton,
+    CloneButton,
     StickyButton,
     ExtractButton,
     LockButton,

@@ -109,6 +109,13 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                 ...options.feedback
             };
 
+            const clone = {
+                onClick: () => {
+                    webGroupsManager.onCloneButtonClick(TargetType.Frame, options.targetId);
+                },
+                ...options.clone
+            };
+
             const sticky = {
                 onClick: () => {
                     webGroupsManager.onStickyButtonClick(TargetType.Frame, options.targetId);
@@ -210,6 +217,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             return <Portal key={options.targetId} parentElement={parentElement}>
                 <FrameCaptionBarCustomElement {...options}
                     feedback={feedback}
+                    clone={clone}
                     sticky={sticky}
                     extract={extract}
                     lock={lock}
@@ -409,6 +417,13 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                 ...options.feedback
             };
 
+            const clone = {
+                onClick: () => {
+                    webGroupsManager.onCloneButtonClick(TargetType.TabBar, options.targetId);
+                },
+                ...options.clone
+            };
+
             const sticky = {
                 onClick: () => {
                     webGroupsManager.onStickyButtonClick(TargetType.TabBar, options.targetId);
@@ -480,6 +495,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
            
             return <Portal key={options.targetId} parentElement={parentElement}><TabButtonsCustomElement {...options}
                 feedback={feedback}
+                clone={clone}
                 sticky={sticky}
                 extract={extract}
                 lock={lock}
@@ -521,6 +537,13 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                     webGroupsManager.onFeedbackButtonClick(TargetType.HtmlButtons, options.targetId);
                 },
                 ...options.feedback
+            };
+
+            const clone = {
+                onClick: () => {
+                    webGroupsManager.onCloneButtonClick(TargetType.HtmlButtons, options.targetId);
+                },
+                ...options.clone
             };
 
             const sticky = {
@@ -594,6 +617,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
            
             return <Portal key={options.targetId} parentElement={parentElement}><HtmlButtonsCustomElement {...options}
                 feedback={feedback}
+                clone={clone}
                 sticky={sticky}
                 extract={extract}
                 lock={lock}
