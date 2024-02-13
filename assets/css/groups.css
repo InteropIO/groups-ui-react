@@ -319,6 +319,7 @@ input {
 
 .t42-frame-channel-selector {
     align-self: center;
+    border-radius: var(--t42-frame-channel-selector-border-radius);
     width: var(--t42-frame-channel-selector-size);
     height: var(--t42-frame-channel-selector-size);
     margin: var(--t42-frame-channel-selector-margin);
@@ -326,8 +327,8 @@ input {
 }
 
 .t42-frame-channel-selector-content {
-    width: var(--t42-standard-button-size);
-    height: var(--t42-standard-button-size);
+    width: var(--t42-frame-channel-selector-size);
+    height: var(--t42-frame-channel-selector-size);
 }
 
 .t42-frame-channel-selector-content .t42-standard-button-image {
