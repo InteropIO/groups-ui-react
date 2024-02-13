@@ -26,8 +26,9 @@
     --t42-frame-border-color: hsl(var(--io-border-secondary));
     --t42-focused-frame-border-color: hsl(var(--io-border-primary));
 
-    --t42-frame-channel-selector-size: 18px;
-    --t42-frame-channel-selector-margin: 0px 0px 1px 4px;
+    --t42-frame-channel-selector-border-radius: var(--spacing-4);
+    --t42-frame-channel-selector-size: 16px;
+    --t42-frame-channel-selector-margin: 0 0 0 4px;
     --t42-frame-caption-height: 30px;
     --t42-frame-caption-separator-size: 0;
     --t42-frame-caption-background: Hsl(var(--io-bg-01));
