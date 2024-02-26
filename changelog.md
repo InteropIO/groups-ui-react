@@ -1,3 +1,5 @@
+2.1.0
+chore: official 9.2 support
 2.0.6
 fix: flat channels selector fix
 2.0.4
