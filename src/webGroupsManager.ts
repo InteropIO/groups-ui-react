@@ -55,92 +55,44 @@ class WebGroupsManagerDecorator {
         return window.webGroupsManager.externalLibraryFactory.focusGroup();
     }
 
-    public closeFrame(targetId: string): void {
-        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Frame, targetId, StandardButtons.Close);
+    public onCloseButtonClick(targetType: TargetType, targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(targetType, targetId, StandardButtons.Close);
     }
 
-    public restoreFrame(targetId: string): void {
-        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Frame, targetId, StandardButtons.Restore);
+    public onRestoreButtonClick(targetType: TargetType, targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(targetType, targetId, StandardButtons.Restore);
     }
 
-    public maximizeFrame(targetId: string): void {
-        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Frame, targetId, StandardButtons.Maximize);
+    public onMaximizeButtonClick(targetType: TargetType, targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(targetType, targetId, StandardButtons.Maximize);
     }
 
-    public minimizeFrame(targetId: string): void {
-        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Frame, targetId, StandardButtons.Minimize);
+    public onMinimizeButtonClick(targetType: TargetType, targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(targetType, targetId, StandardButtons.Minimize);
     }
 
-    public lockFrame(targetId: string): void {
-        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Frame, targetId, StandardButtons.Lock);
+    public onLockButtonClick(targetType: TargetType, targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(targetType, targetId, StandardButtons.Lock);
     }
 
-    public unlockFrame(targetId: string): void {
-        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Frame, targetId, StandardButtons.Unlock);
+    public onUnlockButtonClick(targetType: TargetType, targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(targetType, targetId, StandardButtons.Unlock);
     }
 
-    public feedbackFrame(targetId: string):void{
-        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Frame, targetId, StandardButtons.Feedback);
+    public onFeedbackButtonClick(targetType: TargetType, targetId: string):void{
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(targetType, targetId, StandardButtons.Feedback);
     }
 
-    public stickyFrame(targetId: string):void{
-        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Frame, targetId, StandardButtons.Sticky);
+    public onCloneButtonClick(targetType: TargetType, targetId: string):void{
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(targetType, targetId, StandardButtons.Clone);
     }
 
-    public extractFrame(targetId: string): void {
-        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Frame, targetId, StandardButtons.Extract);
+    public onStickyButtonClick(targetType: TargetType, targetId: string):void{
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(targetType, targetId, StandardButtons.Sticky);
     }
 
-    public closeTabBar(targetId: string): void {
-        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.TabBar, targetId, StandardButtons.Close);
-    }
-
-    public restoreTabBar(targetId: string): void {
-        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.TabBar, targetId, StandardButtons.Restore);
-    }
-
-    public maximizeTabBar(targetId: string): void {
-        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.TabBar, targetId, StandardButtons.Maximize);
-    }
-
-    public minimizeTabBar(targetId: string): void {
-        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.TabBar, targetId, StandardButtons.Minimize);
-    }
-
-    public lockTabBar(targetId: string): void {
-        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.TabBar, targetId, StandardButtons.Lock);
-    }
-
-    public unlockTabBar(targetId: string): void {
-        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.TabBar, targetId, StandardButtons.Unlock);
-    }
-
-    public feedbackTabBar(targetId: string): void {
-        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.TabBar, targetId, StandardButtons.Feedback);
-    }
-
-    public stickyTabBar(targetId: string): void {
-        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.TabBar, targetId, StandardButtons.Sticky);
-    }
-
-    public extractTabBar(targetId: string): void {
-        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.TabBar, targetId, StandardButtons.Extract);
-    }
-
-    public closeGroup(targetId: string): void {
-        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Group, targetId, StandardButtons.Close);
-    }
-
-    public restoreGroup(targetId: string): void {
-        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Group, targetId, StandardButtons.Restore);
-    }
-
-    public maximizeGroup(targetId: string): void {
-        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Group, targetId, StandardButtons.Maximize);
-    }
-
-    public minimizeGroup(targetId: string): void {
-        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(TargetType.Group, targetId, StandardButtons.Minimize);
+    public onExtractButtonClick(targetType: TargetType, targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(targetType, targetId, StandardButtons.Extract);
     }
 
     public closeTab(targetId: string): void {

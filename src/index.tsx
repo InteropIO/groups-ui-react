@@ -22,6 +22,7 @@ import LockButton from "./defaultComponents/buttons/LockButtons";
 import UnlockButton from "./defaultComponents/buttons/UnlockButton";
 import ExtractButton from "./defaultComponents/buttons/ExtractButton";
 import FeedbackButton from "./defaultComponents/buttons/FeedbackButton";
+import CloneButton from "./defaultComponents/buttons/CloneButton";
 import StickyButton from "./defaultComponents/buttons/StickyButton";
 import useIOConnectWindow from "./useIOConnectWindow";
 import CustomButton from "./defaultComponents/buttons/CustomButton";
@@ -66,6 +67,7 @@ import {
     GroupComponentVisibilityState,
     GroupOverlayProps,
     GroupProps,
+    HtmlButtonsProps,
     MoveAreaProps,
     TabElementProps,
     TabHeaderButtonsProps,
@@ -81,6 +83,7 @@ import useCommitFlatCaptionEditingRequested from "./defaultComponents/flatCaptio
 import useEditableCaption from "./defaultComponents/captionEditor/useEditableCaption";
 import useCaptionEditor from "./defaultComponents/captionEditor/useCaptionEditor";
 import FrameLoadingAnimation from "./defaultComponents/loadingAnimation/FrameLoadingAnimation";
+import HtmlButtons from "./defaultComponents/htmlButtonsBar/buttons";
 
 
 
@@ -95,6 +98,7 @@ export {
     TabCloseButton,
     TabCaptionEditor,
     FeedbackButton,
+    CloneButton,
     StickyButton,
     ExtractButton,
     LockButton,
@@ -112,6 +116,7 @@ export {
     FlatCaptionEditor,
     TabHeaderButtons,
     FrameLoadingAnimation,
+    HtmlButtons,
     GroupComponentVisibilityState,
     useIOConnectWindow,
     useGroupComponentVisibility,
@@ -147,6 +152,7 @@ export {
     TabCloseButtonProps,
     TabHeaderButtonsProps,
     TabCaptionEditorProps,
+    HtmlButtonsProps,
     FlatCaptionBarProps,
     FlatCaptionProps,
     FrameWindowOverlayProps,

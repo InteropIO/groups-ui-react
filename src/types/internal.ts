@@ -44,7 +44,7 @@ export interface GroupWrapperProps {
 	onCreateAfterTabsComponentRequested?: (options: CreateFrameElementRequestOptions) => void;
 	onUpdateAfterTabsComponentRequested?: (options: CreateFrameElementRequestOptions) => void;
 
-	onCreateTabHeaderButtonsRequested?: (options: CreateTabHeaderButtonsOptions) => void;
+	onCreateTabHeaderButtonsRequested?: (options: CreateButtonsOptions) => void;
 
 	onCreateBelowTabsRequested?: (options: CreateFrameElementRequestOptions) => void;
 	onUpdateBelowTabsRequested?: (options: CreateFrameElementRequestOptions) => void;
@@ -52,6 +52,9 @@ export interface GroupWrapperProps {
 	onUpdateFrameRequested?: (options: UpdateFrameRequestOptions) => void;
 	onUpdateStandardButtonRequested?: (options: UpdateStandardButtonRequestOptions) => void;
 	onUpdateCustomButtonsRequested?: (options: UpdateCustomButtonsRequestOptions) => void;
+
+	onCreateHtmlButtonsRequested?: (options: CreateButtonsOptions) => void;
+	onRemoveHtmlButtonsRequested?: (options: RemoveRequestOptions) => void;
 
 	onRemoveFrameCaptionBarRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveFrameWindowOverlayRequested?: (options: RemoveRequestOptions) => void;
@@ -112,54 +115,16 @@ export interface UpdateFrameCaptionBarRequestOptions extends BaseElementOptions 
 
 }
 
-export interface CreateFrameCaptionBarRequestOptions extends CreateFrameElementRequestOptions {
+export interface CreateFrameCaptionBarRequestOptions extends CreateButtonsOptions {
 	caption: string;
 	moveAreaId: string;
 	channelSelectorVisible: boolean;
 	selectedChannel: string;
 	selectedChannelColor: string;
-	feedback: {
-		tooltip: string;
-		visible: boolean;
-	};
-	sticky: {
-		tooltip: string;
-		visible: boolean;
-		isPressed: boolean;
-	};
-	extract: {
-		tooltip: string;
-		visible: boolean;
-	};
-	lock: {
-		tooltip: string;
-		visible: boolean;
-	};
-	unlock: {
-		tooltip: string;
-		visible: boolean;
-	};
-	minimize: {
-		tooltip: string;
-		visible: boolean;
-	};
-	restore: {
-		tooltip: string;
-		visible: boolean;
-	};
-	maximize: {
-		tooltip: string;
-		visible: boolean;
-	};
-	close: {
-		tooltip: string;
-		visible: boolean;
-	};
 	captionEditor: {
 		show: boolean;
 		text?: string;
 	};
-	customButtons: UpdateCustomButtonOptions[]
 }
 
 export interface CreateTabRequestOptions extends CreateElementRequestOptions {
@@ -192,8 +157,12 @@ export interface UpdateCustomButtonOptions {
 	imageData: string;
 }
 
-export interface CreateTabHeaderButtonsOptions extends CreateFrameElementRequestOptions {
+export interface CreateButtonsOptions extends CreateFrameElementRequestOptions {
 	feedback: {
+		tooltip: string;
+		visible: boolean;
+	};
+	clone: {
 		tooltip: string;
 		visible: boolean;
 	};
@@ -261,11 +230,13 @@ export enum TargetType {
 	Group = "group",
 	Frame = "frame",
 	TabBar = "tabBar",
-	Tab = "tab"
+	Tab = "tab",
+	HtmlButtons = "html"
 }
 
 export enum StandardButtons {
 	Feedback = "feedback",
+	Clone = "clone",
 	Sticky = "sticky",
 	Extract = "extract",
 	Lock = "lock",
@@ -289,8 +260,9 @@ export interface ElementCreationWrapperState {
 	beforeTabsZones: { [targetId: string]: CreateFrameElementRequestOptions };
 	tabElements: { [targetId: string]: CreateTabRequestOptions };
 	afterTabsZones: { [targetId: string]: CreateFrameElementRequestOptions };
-	tabHeaderButtons: { [targetId: string]: CreateTabHeaderButtonsOptions };
+	tabHeaderButtons: { [targetId: string]: CreateButtonsOptions };
 	belowTabsZones: { [targetId: string]: CreateFrameElementRequestOptions };
+	htmlButtons: { [targetId: string]: CreateButtonsOptions };
 }
 
 export interface ExternalLibraryFactory {

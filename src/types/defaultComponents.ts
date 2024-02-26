@@ -26,6 +26,10 @@ export interface StickyButtonProps extends ToggleButtonProps {
 export interface FeedbackButtonProps extends ButtonProps {
 }
 
+export interface CloneButtonProps extends ButtonProps {
+}
+
+
 export interface ExtractButtonProps extends ButtonProps {
 }
 
@@ -93,6 +97,7 @@ export interface FlatMoveAreaProps {
 
 export interface FlatButtonsProps {
     feedback?: ButtonProps;
+    clone?: ButtonProps;
     sticky?: ToggleButtonProps;
     extract?: ButtonProps;
     lock?: ButtonProps;

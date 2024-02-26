@@ -83,6 +83,7 @@ export interface FlatCaptionBarProps {
     moveAreaId: string;
     caption: string;
     feedback?: ButtonProps;
+    clone?: ButtonProps;
     sticky?: ToggleButtonProps;
     extract?: ButtonProps;
     lock?: ButtonProps;
@@ -117,6 +118,7 @@ export interface AfterTabsProps {
 
 export interface TabHeaderButtonsProps {
     feedback?: ButtonProps;
+    clone?: ButtonProps;
     sticky?: ToggleButtonProps;
     extract?: ButtonProps;
     lock?: ButtonProps;
@@ -128,6 +130,9 @@ export interface TabHeaderButtonsProps {
     customButtons: CustomButtonProps[];
     frameId: string;
     selectedWindow: string;
+}
+
+export interface HtmlButtonsProps extends TabHeaderButtonsProps {
 }
 
 export interface GroupProps {
@@ -153,6 +158,9 @@ export interface GroupProps {
             After?: React.ComponentType<AfterTabsProps>;
             Buttons?: React.ComponentType<TabHeaderButtonsProps>;
             Below?: React.ComponentType<BelowTabsProps>;
+        };
+        html?: {
+            Buttons?: React.ComponentType<HtmlButtonsProps>;
         }
     }
 }
