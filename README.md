@@ -17,7 +17,7 @@ The following example demonstrates a basic usage of the `<Group />` component:
 ```javascript
 import React from 'react'
 import Group from "@interopio/groups-ui-react";
-import "@interopio/groups-ui-react/dist/styles/styles.css";
+import "@interopio/groups-ui-react/dist/styles/groups.css";
 
 const App = () => {
   return <Group />
