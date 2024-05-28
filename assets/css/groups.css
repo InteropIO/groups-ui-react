@@ -434,8 +434,9 @@ input {
     list-style-type: none;
     position: relative;
     padding: 0px;
-    margin: var(--t42-tab-bar-tabs-margin);
+    margin: 0px;
     border-top-right-radius: var(--border-radius-4);
+    -webkit-app-region: drag;
 }
 
 .t42-react-tab {
@@ -453,6 +454,7 @@ input {
     position: relative;
     padding: 0px var(--spacing-8);
     margin-right: var(--spacing-2);
+    margin-top: var(--spacing-4);
     width: 150px;
     min-width: var(--t42-tab-bar-tab-min-width);
     max-width: var(--t42-tab-bar-tab-width);
@@ -460,9 +462,8 @@ input {
     border-top-right-radius: var(--spacing-4);
     border-top-left-radius: var(--spacing-4);
     transition-property: padding;
-
     container-type: size;
-    
+    -webkit-app-region: no-drag;
 }
 
 .t42-tab::before {
