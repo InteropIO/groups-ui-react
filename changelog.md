@@ -1,3 +1,7 @@
+2.2.0
+chore: official 9.3 support
+chore: updated the css file name in the readme
+feat: added support for defining the drag area with CSS
 2.1.0
 chore: official 9.2 support
 2.0.6
