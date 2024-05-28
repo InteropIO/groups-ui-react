@@ -1,4 +1,4 @@
-@import "../../../assets/styles/io.platform.css";
+@import "@interopio/theme/dist/io.platform.css";
 
 :root {
     --t42-body-color: hsl(var(--io-label-secondary));
