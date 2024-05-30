@@ -620,14 +620,69 @@ input {
     width: var(--t42-approaching-edge-size);
 }
 
+.t42-sizing-border-group {
+    pointer-events: none; 
+    list-style-type: none;
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    position: absolute;
+    overflow: hidden;
+    z-index: 100;
+    background-color: var(--t42-sizing-border-group-color);
+}
+
+.t42-vertical-sizing-border-group {
+    flex-direction: column;
+    cursor: ew-resize;
+}
+
+.t42-horizontal-sizing-border-group {
+    flex-direction: row;
+    cursor: ns-resize;
+}
+
+.t42-sizing-border-group:hover {
+    background-color: var(--t42-hover-sizing-border-group-color);
+}
+
+.t42-active-sizing-border-group {
+    z-index: 200;
+    background-color: var(--t42-active-sizing-border-group-color);
+}
+
+.t42-active-sizing-border-group:hover {
+    background-color: var(--t42-active-sizing-border-group-color);
+}
+
+.t42-sizing-border {
+    pointer-events: auto;
+    margin: 0px;
+    padding: 0px;
+    flex-shrink: 0;
+}
+
+.t42-frame-sizing-border {
+    flex-grow: 0;
+}
+
+.t42-cross-sizing-border {
+    flex-grow: 1;
+    cursor: ne-resize;
+}
+
+.t42-active-sizing-border {
+    background-color: transparent;
+}
+
 .t42-skip-focus {
     /* We used non-standard rule to have non-empty style */
     -moz-user-focus: ignore;
 }
 
-
 @keyframes clipMe {
-
     0%,
     100% {
         clip: rect(0, 25vh, 2px, 0);
