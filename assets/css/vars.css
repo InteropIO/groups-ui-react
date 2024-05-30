@@ -86,6 +86,10 @@
 
     --t42-approaching-edge-start-color: #4b92fb;
     --t42-approaching-edge-end-color: hsl(var(--io-highlight-Interactive));
+
+    --t42-sizing-border-group-color: hsl(var(--io-bg-01));
+    --t42-hover-sizing-border-group-color: hsl(var(--io-highlight-Interactive));
+    --t42-active-sizing-border-group-color: hsl(var(--io-interactive-primary));
 }
 
 .dark {
