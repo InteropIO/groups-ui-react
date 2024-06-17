@@ -801,13 +801,13 @@ input {
     overflow: auto;
 }
 
-.t42-wg-page-popup {
+.t42-page-popup {
     position: absolute;
     z-index: 999;
     margin-top: var(--t42-wg-tab-over-top-offset);
 }
 
-.t42-wg-tab-overflow-popup {
+.t42-tab-overflow-popup {
     display: flex;
     flex-direction: column;
     min-width: var(--t42-wg-tab-over-min-width);
@@ -819,7 +819,7 @@ input {
     background-color: var(--t42-wg-tab-over-background);
 }
 
-.t42-wg-tab-overflow-popup li {
+.t42-tab-overflow-popup li {
     display: flex;
     gap: var(--t42-wg-tab-over-item-gap);
     align-items: center;
@@ -827,26 +827,26 @@ input {
     padding: var(--t42-wg-tab-over-item-padding);
 }
 
-.t42-wg-tab-overflow-popup li span {
+.t42-tab-overflow-popup li span {
     flex-grow: 1;
     overflow: hidden;
     text-wrap: nowrap;
     text-overflow: clip;
 }
 
-.t42-wg-tab-overflow-popup li:not(.title):hover {
+.t42-tab-overflow-popup li:not(.title):hover {
     color: var(--t42-wg-tab-over-item-color-hover);
     background-color: var(--t42-wg-tab-over-item-background-hover);
 }
 
-.t42-wg-tab-overflow-popup hr {
+.t42-tab-overflow-popup hr {
     height: var(--t42-wg-tab-over-separator-size);
     margin: var(--t42-wg-tab-over-separator-space);
     border: 0;
     background-color: var(--t42-wg-tab-over-separator-color);
 }
 
-.t42-wg-tab-overflow-popup .title {
+.t42-tab-overflow-popup .title {
     color: var(--t42-wg-tab-over-item-title-color);
     font-size: var(--t42-wg-tab-over-item-title-size);
     letter-spacing: var(--t42-wg-tab-over-item-title-spacing);
