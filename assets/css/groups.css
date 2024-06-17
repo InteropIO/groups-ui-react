@@ -789,23 +789,15 @@ input {
     }
 }
 
-.t42-tab {
-    flex-shrink: 0;
-}
-
-.t42-tabs {
-    overflow: auto;
-}
-
 .os-scrollbar-horizontal {
     z-index: 1001;
 }
 
-.t42-wg-tab-overflow .t42-tab {
+.t42-tabs-overflow .t42-tab {
     flex-shrink: 0;
 }
 
-.t42-wg-tab-overflow .t42-tabs {
+.t42-tabs-overflow .t42-tabs {
     overflow: auto;
 }
 
