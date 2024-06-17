@@ -11,7 +11,7 @@ export interface ButtonProps {
 	visible: boolean;
 }
 
-export interface ToggleButtonProps extends  ButtonProps{
+export interface ToggleButtonProps extends ButtonProps {
 	isPressed: boolean;
 }
 
@@ -46,6 +46,8 @@ export interface GroupWrapperProps {
 
 	onCreateTabHeaderButtonsRequested?: (options: CreateButtonsOptions) => void;
 
+	onCreateTabOverflowPopupRequested?: (options: CreateTabOverflowPopupRequestOptions) => void;
+
 	onCreateBelowTabsRequested?: (options: CreateFrameElementRequestOptions) => void;
 	onUpdateBelowTabsRequested?: (options: CreateFrameElementRequestOptions) => void;
 
@@ -67,14 +69,15 @@ export interface GroupWrapperProps {
 	onRemoveTabRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveAfterTabsComponentRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveTabHeaderButtonsRequested?: (options: RemoveRequestOptions) => void;
+	onRemoveTabOverflowPopupRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveBelowTabsRequested?: (options: RemoveRequestOptions) => void;
 
 	onShowCaptionEditorRequested?: (targetType: TargetType, targetId: string, text: string) => void;
 	onCommitCaptionEditingRequested?: (targetType: TargetType, targetId: string) => void;
 	onHideCaptionEditorRequested?: (targetType: TargetType, targetId: string) => void;
 
-	onShowLoadingAnimationRequested?: (targetType: TargetType ,targetId: string) => void;
-	onHideLoadingAnimationRequested?: (targetType: TargetType ,targetId: string) => void;
+	onShowLoadingAnimationRequested?: (targetType: TargetType, targetId: string) => void;
+	onHideLoadingAnimationRequested?: (targetType: TargetType, targetId: string) => void;
 }
 
 export interface CreateGroupCaptionBarRequestOptions extends CreateElementRequestOptions {
@@ -158,6 +161,10 @@ export interface UpdateCustomButtonOptions {
 }
 
 export interface CreateButtonsOptions extends CreateFrameElementRequestOptions {
+	overflow: {
+		tooltip: string;
+		visible: boolean;
+	},
 	feedback: {
 		tooltip: string;
 		visible: boolean;
@@ -220,6 +227,16 @@ export interface CreateFrameElementRequestOptions extends CreateElementRequestOp
 	selectedWindow: string;
 }
 
+export interface OverflowedTabInfo {
+	title: string;
+	windowId: string;
+}
+
+export interface CreateTabOverflowPopupRequestOptions extends CreateElementRequestOptions {
+	hiddenTabsToTheLeft: OverflowedTabInfo[];
+	hiddenTabsToTheRight: OverflowedTabInfo[];
+}
+
 export interface CreateFrameLoadingAnimationRequestOptions extends CreateFrameElementRequestOptions {
 	show: boolean;
 }
@@ -235,6 +252,7 @@ export enum TargetType {
 }
 
 export enum StandardButtons {
+	Overflow = "overflow",
 	Feedback = "feedback",
 	Clone = "clone",
 	Sticky = "sticky",
@@ -261,6 +279,7 @@ export interface ElementCreationWrapperState {
 	tabElements: { [targetId: string]: CreateTabRequestOptions };
 	afterTabsZones: { [targetId: string]: CreateFrameElementRequestOptions };
 	tabHeaderButtons: { [targetId: string]: CreateButtonsOptions };
+	tabOverflowPopups: { [targetId: string]: CreateTabOverflowPopupRequestOptions };
 	belowTabsZones: { [targetId: string]: CreateFrameElementRequestOptions };
 	htmlButtons: { [targetId: string]: CreateButtonsOptions };
 }
@@ -280,6 +299,8 @@ export interface ExternalLibraryFactory {
 	onCaptionEditorVisibleChanged(targetType: TargetType, targetId: string, visible: boolean): void;
 	onCaptionEditorBoundsChanged(targetType: TargetType, targetId: string, bounds: Bounds): void;
 	commitCaptionEditing(targetType: TargetType, targetId: string, text: string): void;
+
+	selectTab(windowId: string): void;
 }
 
 export interface WebGroupsManager {
