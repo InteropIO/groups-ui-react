@@ -24,6 +24,7 @@ import ExtractButton from "./defaultComponents/buttons/ExtractButton";
 import FeedbackButton from "./defaultComponents/buttons/FeedbackButton";
 import CloneButton from "./defaultComponents/buttons/CloneButton";
 import StickyButton from "./defaultComponents/buttons/StickyButton";
+import OverflowButton from "./defaultComponents/buttons/OverflowButton";
 import useIOConnectWindow from "./useIOConnectWindow";
 import CustomButton from "./defaultComponents/buttons/CustomButton";
 import { waitForWindow } from "./utils";
@@ -51,7 +52,8 @@ import {
     TabCloseButtonProps,
     UnlockButtonProps,
     UseCaptionEditorOptions,
-    UseEditableCaptionOptions
+    UseEditableCaptionOptions,
+    OverflowButtonProps
 } from "./types/defaultComponents";
 import {
     AboveTabsProps,
@@ -71,6 +73,7 @@ import {
     MoveAreaProps,
     TabElementProps,
     TabHeaderButtonsProps,
+    TabOverflowPopupProps,
     WindowContentOverlayProps,
 } from "./types/api";
 import GroupCaptionEditor from "./defaultComponents/groupCaptionBar/GroupCaptionEditor";
@@ -84,8 +87,7 @@ import useEditableCaption from "./defaultComponents/captionEditor/useEditableCap
 import useCaptionEditor from "./defaultComponents/captionEditor/useCaptionEditor";
 import FrameLoadingAnimation from "./defaultComponents/loadingAnimation/FrameLoadingAnimation";
 import HtmlButtons from "./defaultComponents/htmlButtonsBar/buttons";
-
-
+import TabOverflowPopup from "./defaultComponents/popups/TabOverflowPopup";
 
 export {
     GroupCaptionBar,
@@ -117,6 +119,8 @@ export {
     TabHeaderButtons,
     FrameLoadingAnimation,
     HtmlButtons,
+    TabOverflowPopup,
+    OverflowButton,
     GroupComponentVisibilityState,
     useIOConnectWindow,
     useGroupComponentVisibility,
@@ -160,6 +164,7 @@ export {
     FlatChannelSelectorProps,
     FlatButtonsProps,
     FlatCaptionEditorProps,
+    OverflowButtonProps,
     StickyButtonProps,
     FeedbackButtonProps,
     ExtractButtonProps,
@@ -178,7 +183,8 @@ export {
     BelowTabsProps,
     BeforeTabsProps,
     AfterTabsProps,
-    WindowContentOverlayProps
+    WindowContentOverlayProps,
+    TabOverflowPopupProps,
 }
 
 export default GroupElementCreationWrapper;

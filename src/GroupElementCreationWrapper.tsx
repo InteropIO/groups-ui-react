@@ -12,7 +12,7 @@ import FrameLoadingAnimation from "./defaultComponents/loadingAnimation/FrameLoa
 const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
 
     const state = useSyncExternalStore<ElementCreationWrapperState>(webGroupsStore.subscribe, webGroupsStore.getSnapshot);
-    const LoadingAnimation =  components?.frame?.LoadingAnimation ?? FrameLoadingAnimation;
+    const LoadingAnimation = components?.frame?.LoadingAnimation ?? FrameLoadingAnimation;
 
     const renderGroupCaptionBar = () => {
         const GroupCaptionBarCustomElement = components?.group?.CaptionBar;
@@ -174,7 +174,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
 
             let customButtonsProps = new Array<CustomButtonProps>();
             if (options.customButtons) {
-                customButtonsProps = options.customButtons.map((cButton) => { 
+                customButtonsProps = options.customButtons.map((cButton) => {
                     return {
                         onClick: () => {
                             webGroupsManager.clickCustomButton(options.targetId, cButton.buttonId);
@@ -182,7 +182,9 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                         visible: true,
                         imageData: cButton.imageData,
                         tooltip: cButton.tooltip,
-                        buttonId: cButton.buttonId}});
+                        buttonId: cButton.buttonId
+                    }
+                });
             }
 
             const showSelector = (bounds: Bounds) => {
@@ -410,6 +412,13 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             }
             const { parentElement, ...options } = te;
 
+            const overflow = {
+                onClick: () => {
+                    webGroupsManager.onOverflowButtonClick(TargetType.TabBar, options.targetId);
+                },
+                ...options.overflow
+            };
+
             const feedback = {
                 onClick: () => {
                     webGroupsManager.onFeedbackButtonClick(TargetType.TabBar, options.targetId);
@@ -482,7 +491,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
 
             let customButtonsProps = new Array<CustomButtonProps>();
             if (options.customButtons) {
-                customButtonsProps = options.customButtons.map((cButton) => { 
+                customButtonsProps = options.customButtons.map((cButton) => {
                     return {
                         onClick: () => {
                             webGroupsManager.clickCustomButton(options.targetId, cButton.buttonId);
@@ -490,10 +499,13 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                         visible: true,
                         imageData: cButton.imageData,
                         tooltip: cButton.tooltip,
-                        buttonId: cButton.buttonId}});
+                        buttonId: cButton.buttonId
+                    }
+                });
             }
-           
+
             return <Portal key={options.targetId} parentElement={parentElement}><TabButtonsCustomElement {...options}
+                overflow={overflow}
                 feedback={feedback}
                 clone={clone}
                 sticky={sticky}
@@ -505,6 +517,31 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                 restore={restore}
                 close={close}
                 customButtons={customButtonsProps}
+                frameId={options.targetId}
+            /></Portal>
+        });
+    }
+
+    const renderTabOverflowPopups = () => {
+        const TabOverflowCustomElement = components?.tabs?.OverflowPopup;
+
+        return Object.values(state.tabOverflowPopups).map((top) => {
+            if (!TabOverflowCustomElement || !top.parentElement) {
+                return;
+            }
+            const { parentElement, ...options } = top;
+
+            const select = (windowId: string) => {
+                webGroupsManager.selectTab(windowId);
+            };
+
+            const close = (windowId: string) => {
+                webGroupsManager.onCloseButtonClick(TargetType.Tab, windowId);
+            }
+
+            return <Portal key={options.targetId} parentElement={parentElement}><TabOverflowCustomElement {...options}
+                select={select}
+                close={close}
                 frameId={options.targetId}
             /></Portal>
         });
@@ -531,6 +568,13 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                 return;
             }
             const { parentElement, ...options } = te;
+
+            const overflow = {
+                onClick: () => {
+                    webGroupsManager.onOverflowButtonClick(TargetType.HtmlButtons, options.targetId);
+                },
+                ...options.overflow
+            };
 
             const feedback = {
                 onClick: () => {
@@ -604,7 +648,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
 
             let customButtonsProps = new Array<CustomButtonProps>();
             if (options.customButtons) {
-                customButtonsProps = options.customButtons.map((cButton) => { 
+                customButtonsProps = options.customButtons.map((cButton) => {
                     return {
                         onClick: () => {
                             webGroupsManager.clickCustomButton(options.targetId, cButton.buttonId);
@@ -612,10 +656,13 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                         visible: true,
                         imageData: cButton.imageData,
                         tooltip: cButton.tooltip,
-                        buttonId: cButton.buttonId}});
+                        buttonId: cButton.buttonId
+                    }
+                });
             }
-           
+
             return <Portal key={options.targetId} parentElement={parentElement}><HtmlButtonsCustomElement {...options}
+                overflow={overflow}
                 feedback={feedback}
                 clone={clone}
                 sticky={sticky}
@@ -646,6 +693,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
         {renderTabElements()}
         {renderAfterTabsZones()}
         {renderTabHeaderButtons()}
+        {renderTabOverflowPopups()}
         {renderBelowTabs()}
         {renderHtmlButtons()}
         <GroupWrapper
@@ -664,6 +712,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             onCreateTabHeaderButtonsRequested={components?.tabs?.Buttons ? webGroupsStore.onCreateTabHeaderButtonsRequested : undefined}
             onCreateBelowTabsRequested={components?.tabs?.Below ? webGroupsStore.onCreateBelowTabsComponentRequested : undefined}
             onCreateHtmlButtonsRequested={components?.html?.Buttons ? webGroupsStore.onCreateHtmlButtonsRequested : undefined}
+            onCreateTabOverflowPopupRequested={components?.tabs?.OverflowPopup ? webGroupsStore.onCreateTabOverflowPopupRequested : undefined}
             onUpdateGroupCaptionBarRequested={components?.group?.CaptionBar ? webGroupsStore.onUpdateGroupCaptionBarRequested : undefined}
             onUpdateFrameWindowOverlayRequested={components?.group?.Overlay ? webGroupsStore.onUpdateFrameWindowOverlayRequested : undefined}
             onUpdateFrameCaptionBarRequested={components?.flat?.CaptionBar ? webGroupsStore.onUpdateFrameCaptionBarRequested : undefined}
@@ -688,6 +737,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             onRemoveTabHeaderButtonsRequested={webGroupsStore.onRemoveTabHeaderButtonsRequested}
             onRemoveBelowTabsRequested={webGroupsStore.onRemoveBelowTabsRequested}
             onRemoveHtmlButtonsRequested={webGroupsStore.onRemoveHtmlButtonsRequested}
+            onRemoveTabOverflowPopupRequested={webGroupsStore.onRemoveTabOverflowPopupRequested}
             onShowCaptionEditorRequested={webGroupsStore.onShowCaptionEditorRequested}
             onCommitCaptionEditingRequested={webGroupsStore.onCommitCaptionEditingRequested}
             onHideCaptionEditorRequested={webGroupsStore.onHideCaptionEditorRequested}
