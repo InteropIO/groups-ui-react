@@ -1,5 +1,5 @@
 @import "vars.css";
-@import "../../node_modules/overlayscrollbars/styles/overlayscrollbars.css";
+@import "overlayscrollbars/styles/overlayscrollbars.css";
 
 * {
     box-sizing: border-box;
