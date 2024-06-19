@@ -1,3 +1,7 @@
+2.2.2
+fix: fixed the internal CSS import for the overflow tabs
+2.2.1
+feat: added support for overflowing tabs
 2.2.0
 chore: official 9.3 support
 chore: updated the css file name in the readme
