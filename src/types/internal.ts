@@ -301,6 +301,9 @@ export interface ExternalLibraryFactory {
 	commitCaptionEditing(targetType: TargetType, targetId: string, text: string): void;
 
 	selectTab(windowId: string): void;
+
+	addTabContainerClass(windowId: string, className: string): void;
+	removeTabContainerClass(windowId: string, className: string): void;
 }
 
 export interface WebGroupsManager {

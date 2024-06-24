@@ -162,6 +162,22 @@ class WebGroupsManagerDecorator {
     public selectTab(windowId: string): void {
         window.webGroupsManager.externalLibraryFactory.selectTab(windowId);
     }
+
+    public addTabContainerClass(windowId: string, className: string): void {
+        if (typeof window.webGroupsManager.externalLibraryFactory.addTabContainerClass !== "function") {
+            console.warn("The method addTabContainerClass is not supported by the current version of the library");
+            return;
+        }
+        window.webGroupsManager.externalLibraryFactory.addTabContainerClass(windowId, className);
+    }
+
+    public removeTabContainerClass(windowId: string, className: string): void {
+        if (typeof window.webGroupsManager.externalLibraryFactory.removeTabContainerClass !== "function") {
+            console.warn("The method removeTabContainerClass is not supported by the current version of the library");
+            return;
+        }
+        window.webGroupsManager.externalLibraryFactory.removeTabContainerClass(windowId, className);
+    }
 }
 
 export default new WebGroupsManagerDecorator();

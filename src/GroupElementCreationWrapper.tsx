@@ -378,6 +378,14 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
 
             const notifyCaptionBoundsChanged = (bounds: Bounds) => webGroupsManager.onCaptionTextBoundsChanged(TargetType.Tab, options.targetId, bounds);
 
+            const addContainerClass = (className: string) => {
+                webGroupsManager.addTabContainerClass(options.targetId, className);
+            }
+
+            const removeContainerClass = (className: string) => {
+                webGroupsManager.removeTabContainerClass(options.targetId, className);
+            }
+
             return <Portal key={options.targetId} parentElement={parentElement}>
                 <TabCustomElement {...options}
                     close={onCloseClick}
@@ -385,7 +393,8 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                     windowId={options.targetId}
                     captionEditor={captionEditor}
                     notifyCaptionBoundsChanged={notifyCaptionBoundsChanged}
-                    parentElement={parentElement}
+                    addContainerClass={addContainerClass}
+                    removeContainerClass={removeContainerClass}
                 />
             </Portal>
         });
