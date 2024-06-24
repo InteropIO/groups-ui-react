@@ -385,6 +385,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                     windowId={options.targetId}
                     captionEditor={captionEditor}
                     notifyCaptionBoundsChanged={notifyCaptionBoundsChanged}
+                    parentElement={parentElement}
                 />
             </Portal>
         });

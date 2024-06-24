@@ -117,6 +117,7 @@ export interface TabElementProps {
     channels: ChannelProps;
     notifyCaptionBoundsChanged: (bounds: Bounds) => void;
     captionEditor: CaptionEditorProps;
+    parentElement: HTMLElement;
 }
 
 export interface AfterTabsProps {
