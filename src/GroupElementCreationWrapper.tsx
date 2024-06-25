@@ -536,7 +536,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             };
 
             const close = (windowId: string) => {
-                webGroupsManager.onCloseButtonClick(TargetType.Tab, windowId);
+                webGroupsManager.closeTab(windowId);
             }
 
             return <Portal key={options.targetId} parentElement={parentElement}><TabOverflowCustomElement {...options}
