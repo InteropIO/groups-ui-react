@@ -117,6 +117,8 @@ export interface TabElementProps {
     channels: ChannelProps;
     notifyCaptionBoundsChanged: (bounds: Bounds) => void;
     captionEditor: CaptionEditorProps;
+    addContainerClass: (className: string) => void;
+    removeContainerClass: (className: string) => void;
 }
 
 export interface AfterTabsProps {
