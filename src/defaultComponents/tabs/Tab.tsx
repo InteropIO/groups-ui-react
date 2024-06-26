@@ -5,7 +5,7 @@ import TabCaption from "./TabCaption";
 import TabCaptionEditor from "./TabCaptionEditor";
 import TabCloseButton from "./TabCloseButton";
 
-const Tab: React.FC<Omit<TabElementProps, "parentElement">> = ({ caption, selected, close, channels, captionEditor, notifyCaptionBoundsChanged, windowId }) => {
+const Tab: React.FC<TabElementProps> = ({ caption, selected, close, channels, captionEditor, notifyCaptionBoundsChanged, windowId }) => {
     return <div className="t42-react-tab">
         {channels.visible && <TabChannelSelector {...channels} />}
         {captionEditor.show ?
