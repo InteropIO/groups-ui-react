@@ -1,5 +1,5 @@
 import React from "react";
-import { Bounds, ButtonProps, OverflowedTabInfo, ToggleButtonProps } from "./internal";
+import { Bounds, ButtonProps, Location, OverflowedTabInfo, ToggleButtonProps } from "./internal";
 import { CustomButtonProps } from "./defaultComponents";
 
 export interface ChannelProps {
@@ -124,9 +124,11 @@ export interface TabElementProps {
 export interface AfterTabsProps {
     frameId: string;
     selectedWindow: string;
+    hiddenTabsToTheLeft?: OverflowedTabInfo[];
+    hiddenTabsToTheRight?: OverflowedTabInfo[];
 }
 
-export interface TabHeaderButtonsProps {
+interface FrameButtonsProps {
     overflow?: ButtonProps;
     feedback?: ButtonProps;
     clone?: ButtonProps;
@@ -143,7 +145,12 @@ export interface TabHeaderButtonsProps {
     selectedWindow: string;
 }
 
-export interface HtmlButtonsProps extends TabHeaderButtonsProps {
+export interface TabHeaderButtonsProps extends FrameButtonsProps {
+    hiddenTabsToTheLeft: OverflowedTabInfo[];
+    hiddenTabsToTheRight: OverflowedTabInfo[];
+}
+
+export interface HtmlButtonsProps extends FrameButtonsProps {
 }
 
 export interface GroupProps {
@@ -183,4 +190,9 @@ export interface MoveAreaProps {
 
 export interface GroupComponentVisibilityState {
     groupCaptionBarVisible?: boolean;
+}
+
+export interface OpenTabOverflowPopupOptions {
+    frameId: string;
+    location: Location;
 }

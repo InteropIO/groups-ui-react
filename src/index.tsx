@@ -71,6 +71,7 @@ import {
     GroupProps,
     HtmlButtonsProps,
     MoveAreaProps,
+    OpenTabOverflowPopupOptions,
     TabElementProps,
     TabHeaderButtonsProps,
     TabOverflowPopupProps,
@@ -79,7 +80,7 @@ import {
 import GroupCaptionEditor from "./defaultComponents/groupCaptionBar/GroupCaptionEditor";
 import FlatCaptionEditor from "./defaultComponents/flatCaptionBar/FlatCaptionEditor";
 import TabCaptionEditor from "./defaultComponents/tabs/TabCaptionEditor";
-import { TargetType } from "./types/internal";
+import { Location, TargetType } from "./types/internal";
 import useCommitTabCaptionEditingRequested from "./defaultComponents/tabs/useCommitTabCaptionEditingRequested";
 import useCommitGroupCaptionEditingRequested from "./defaultComponents/groupCaptionBar/useCommitGroupCaptionEditingRequested";
 import useCommitFlatCaptionEditingRequested from "./defaultComponents/flatCaptionBar/useCommitFlatCaptionEditingRequested";
@@ -136,6 +137,7 @@ export const getGroupId: () => string = () => webGroupsManager?.getGroupId();
 export const requestPageFocus: () => void = () => webGroupsManager?.requestPageFocus();
 export const requestFrameFocus: (frameId: string) => void = (frameId) => webGroupsManager?.requestFrameFocus(frameId);
 export const requestGroupFocus: () => void = () => webGroupsManager?.requestGroupFocus();
+export const openTabOverflowPopup: (options: OpenTabOverflowPopupOptions) => void = ({ frameId, location }: OpenTabOverflowPopupOptions) => webGroupsManager.openTabOverflowPopup(frameId, location);
 
 export const onCommitGroupCaptionEditingRequested = (targetId: string, cb: () => void) => webGroupsManager.onCommitCaptionEditingRequested(TargetType.Group, targetId, cb);
 export const onCommitFlatCaptionEditingRequested = (targetId: string, cb: () => void) => webGroupsManager.onCommitCaptionEditingRequested(TargetType.Frame, targetId, cb);
