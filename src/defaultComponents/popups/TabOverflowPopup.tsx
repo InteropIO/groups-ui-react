@@ -15,7 +15,10 @@ const TabOverflowPopup: React.FC<TabOverflowPopupProps> = ({
                 {tabs.map((tab) => (
                     <li key={tab.windowId} onClick={() => handleTabClick(tab.windowId)}>
                         <span>{tab.title}</span>
-                        <div className="t42-tab-close-button-content" onClick={() => handleTabClose(tab.windowId)}></div>
+                        <div className="t42-tab-close-button-content" onClick={(e) => {
+                            e.stopPropagation();
+                            handleTabClose(tab.windowId)
+                        }}></div>
                     </li>
                 ))}
             </ul>
