@@ -14,7 +14,8 @@ import {
     UpdateFrameRequestOptions,
     CreateFrameLoadingAnimationRequestOptions,
     UpdateCustomButtonsRequestOptions,
-    CreateTabOverflowPopupRequestOptions
+    CreateTabOverflowPopupRequestOptions,
+    OverflowedTabInfo
 } from "./types/internal";
 import webGroupsManager from "./webGroupsManager";
 
@@ -453,7 +454,20 @@ class WebGroupsStore {
                 if (s[stateProp]![targetId] && s[stateProp]![targetId]?.selectedWindow !== selectedWindow) {
                     newState[stateProp] = {
                         ...s[stateProp],
-                        [targetId]: { ...s[stateProp]![targetId], selectedWindow: selectedWindow }
+                        [targetId]: { ...s[stateProp]![targetId], selectedWindow }
+                    }
+                }
+            };
+
+            const updateHiddenTabs = <T extends keyof ElementCreationWrapperState>(stateProp: T, targetId: string, hiddenTabsToTheLeft: OverflowedTabInfo[], hiddenTabsToTheRight: OverflowedTabInfo[]) => {
+                const oldHiddenToTheLeft = newState[stateProp]![targetId]?.hiddenTabsToTheLeft;
+                const oldHiddenToTheRight = newState[stateProp]![targetId]?.hiddenTabsToTheRight;
+                newState[stateProp] = {
+                    ...s[stateProp],
+                    [targetId]: {
+                        ...s[stateProp]![targetId],
+                        hiddenTabsToTheLeft: hiddenTabsToTheLeft || oldHiddenToTheLeft,
+                        hiddenTabsToTheRight: hiddenTabsToTheRight || oldHiddenToTheRight
                     }
                 }
             };
@@ -469,6 +483,9 @@ class WebGroupsStore {
             updateSelectionWindow("tabHeaderButtons", options.targetId, options.selectedWindow);
             updateSelectionWindow("belowTabsZones", options.targetId, options.selectedWindow);
             updateSelectionWindow("frameLoadingAnimations", options.targetId, options.selectedWindow);
+
+            updateHiddenTabs("afterTabsZones", options.targetId, options.hiddenTabsToTheLeft, options.hiddenTabsToTheRight);
+            updateHiddenTabs("tabHeaderButtons", options.targetId, options.hiddenTabsToTheLeft, options.hiddenTabsToTheRight);
 
             return newState;
         });

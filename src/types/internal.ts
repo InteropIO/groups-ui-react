@@ -241,7 +241,10 @@ export interface CreateFrameLoadingAnimationRequestOptions extends CreateFrameEl
 	show: boolean;
 }
 
-export type UpdateFrameRequestOptions = CreateFrameElementRequestOptions;
+export interface UpdateFrameRequestOptions extends CreateFrameElementRequestOptions {
+	hiddenTabsToTheLeft: OverflowedTabInfo[];
+	hiddenTabsToTheRight: OverflowedTabInfo[];
+}
 
 export enum TargetType {
 	Group = "group",
@@ -301,6 +304,7 @@ export interface ExternalLibraryFactory {
 	commitCaptionEditing(targetType: TargetType, targetId: string, text: string): void;
 
 	selectTab(windowId: string): void;
+	openTabOverflowPopup(frameId: string, location: Location): void
 
 	addTabContainerClass(windowId: string, className: string): void;
 	removeTabContainerClass(windowId: string, className: string): void;
@@ -322,7 +326,10 @@ export interface Size {
 	height: number;
 }
 
-export interface Bounds extends Size {
+export interface Location {
 	left: number;
 	top: number;
+}
+
+export interface Bounds extends Size, Location {
 }

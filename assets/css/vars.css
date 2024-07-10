@@ -49,6 +49,7 @@
     --t42-tab-bar-selected-tab-hover-text: var(--tabs-color-hover);
     --t42-tab-bar-selected-tab-background: var(--window-tabs-background-active);
     --t42-tab-bar-selected-tab-hover-background: var(--window-tabs-background-active);
+    --t42-tab-bar-fade-size: 24px;
 
     --t42-tab-bar-tab-height: 28px; /* for 10.0 - var(--spacing-24); */ 
     --t42-tab-bar-tab-min-width: 48px;
@@ -105,6 +106,7 @@
     --t42-hover-sizing-border-group-color: hsl(var(--io-highlight-Interactive));
     --t42-active-sizing-border-group-color: hsl(var(--io-interactive-primary));
 
+   
     --t42-wg-tab-over-max-height: 100vh;
     --t42-wg-tab-over-max-width: 200px;
     --t42-wg-tab-over-min-width: 200px;
