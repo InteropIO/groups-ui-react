@@ -451,10 +451,10 @@ class WebGroupsStore {
                     return;
                 }
 
-                if (s[stateProp]![targetId] && s[stateProp]![targetId]?.selectedWindow !== selectedWindow) {
+                if (newState[stateProp]![targetId] && newState[stateProp]![targetId]?.selectedWindow !== selectedWindow) {
                     newState[stateProp] = {
-                        ...s[stateProp],
-                        [targetId]: { ...s[stateProp]![targetId], selectedWindow }
+                        ...newState[stateProp],
+                        [targetId]: { ...newState[stateProp]![targetId], selectedWindow }
                     }
                 }
             };
@@ -463,9 +463,9 @@ class WebGroupsStore {
                 const oldHiddenToTheLeft = newState[stateProp]![targetId]?.hiddenTabsToTheLeft;
                 const oldHiddenToTheRight = newState[stateProp]![targetId]?.hiddenTabsToTheRight;
                 newState[stateProp] = {
-                    ...s[stateProp],
+                    ...newState[stateProp],
                     [targetId]: {
-                        ...s[stateProp]![targetId],
+                        ...newState[stateProp]![targetId],
                         hiddenTabsToTheLeft: hiddenTabsToTheLeft || oldHiddenToTheLeft,
                         hiddenTabsToTheRight: hiddenTabsToTheRight || oldHiddenToTheRight
                     }
