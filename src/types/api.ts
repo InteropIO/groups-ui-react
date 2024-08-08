@@ -1,5 +1,5 @@
 import React from "react";
-import { Bounds, ButtonProps, ToggleButtonProps } from "./internal";
+import { Bounds, ButtonProps, Location, OverflowedTabInfo, ToggleButtonProps } from "./internal";
 import { CustomButtonProps } from "./defaultComponents";
 
 export interface ChannelProps {
@@ -48,6 +48,14 @@ export interface BeforeTabsProps {
 export interface BelowTabsProps {
     frameId: string;
     selectedWindow: string;
+}
+
+export interface TabOverflowPopupProps {
+    frameId: string;
+    select: (windowId: string) => void;
+    close: (windowId: string) => void;
+    hiddenTabsToTheLeft: OverflowedTabInfo[];
+    hiddenTabsToTheRight: OverflowedTabInfo[];
 }
 
 export interface CaptionEditorProps {
@@ -109,14 +117,19 @@ export interface TabElementProps {
     channels: ChannelProps;
     notifyCaptionBoundsChanged: (bounds: Bounds) => void;
     captionEditor: CaptionEditorProps;
+    addContainerClass: (className: string) => void;
+    removeContainerClass: (className: string) => void;
 }
 
 export interface AfterTabsProps {
     frameId: string;
     selectedWindow: string;
+    hiddenTabsToTheLeft?: OverflowedTabInfo[];
+    hiddenTabsToTheRight?: OverflowedTabInfo[];
 }
 
-export interface TabHeaderButtonsProps {
+interface FrameButtonsProps {
+    overflow?: ButtonProps;
     feedback?: ButtonProps;
     clone?: ButtonProps;
     sticky?: ToggleButtonProps;
@@ -132,7 +145,12 @@ export interface TabHeaderButtonsProps {
     selectedWindow: string;
 }
 
-export interface HtmlButtonsProps extends TabHeaderButtonsProps {
+export interface TabHeaderButtonsProps extends FrameButtonsProps {
+    hiddenTabsToTheLeft: OverflowedTabInfo[];
+    hiddenTabsToTheRight: OverflowedTabInfo[];
+}
+
+export interface HtmlButtonsProps extends FrameButtonsProps {
 }
 
 export interface GroupProps {
@@ -158,6 +176,7 @@ export interface GroupProps {
             After?: React.ComponentType<AfterTabsProps>;
             Buttons?: React.ComponentType<TabHeaderButtonsProps>;
             Below?: React.ComponentType<BelowTabsProps>;
+            OverflowPopup?: React.ComponentType<TabOverflowPopupProps>;
         };
         html?: {
             Buttons?: React.ComponentType<HtmlButtonsProps>;
@@ -171,4 +190,9 @@ export interface MoveAreaProps {
 
 export interface GroupComponentVisibilityState {
     groupCaptionBarVisible?: boolean;
+}
+
+export interface OpenTabOverflowPopupOptions {
+    frameId: string;
+    location: Location;
 }

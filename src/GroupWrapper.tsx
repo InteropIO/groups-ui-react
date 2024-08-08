@@ -40,6 +40,9 @@ class GroupWrapper extends React.Component<GroupWrapperProps> {
             
             createHtmlButtonsContainerElement: this.props.onCreateHtmlButtonsRequested,
             destroyHtmlButtonsContainerElement: this.props.onRemoveHtmlButtonsRequested,
+
+            createTabOverflowPopup:this.props.onCreateTabOverflowPopupRequested,
+            destroyTabOverflowPopup: this.props.onRemoveTabOverflowPopupRequested,
             
             updateFrame: this.props.onUpdateFrameRequested,
             updateStandardButton: this.props.onUpdateStandardButtonRequested,

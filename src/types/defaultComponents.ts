@@ -42,6 +42,9 @@ export interface UnlockButtonProps extends ButtonProps {
 export interface MinimizeButtonProps extends ButtonProps {
 }
 
+export interface OverflowButtonProps extends ButtonProps {
+}
+
 export interface MaximizeButtonProps extends ButtonProps {
 }
 
@@ -52,8 +55,8 @@ export interface CloseButtonProps extends ButtonProps {
 }
 
 export interface CustomButtonProps extends ButtonProps {
-	imageData: string;
-	buttonId: string;
+    imageData: string;
+    buttonId: string;
 }
 
 export interface BaseButtonProps {

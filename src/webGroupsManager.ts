@@ -1,4 +1,4 @@
-import { Bounds, StandardButtons, TargetType, WebGroupsManager } from "./types/internal";
+import { Bounds, Location, StandardButtons, TargetType, WebGroupsManager } from "./types/internal";
 import callbackRegistry from "callback-registry";
 
 declare const window: Window & { webGroupsManager: WebGroupsManager };
@@ -79,15 +79,19 @@ class WebGroupsManagerDecorator {
         window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(targetType, targetId, StandardButtons.Unlock);
     }
 
-    public onFeedbackButtonClick(targetType: TargetType, targetId: string):void{
+    public onOverflowButtonClick(targetType: TargetType, targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(targetType, targetId, StandardButtons.Overflow);
+    }
+
+    public onFeedbackButtonClick(targetType: TargetType, targetId: string): void {
         window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(targetType, targetId, StandardButtons.Feedback);
     }
 
-    public onCloneButtonClick(targetType: TargetType, targetId: string):void{
+    public onCloneButtonClick(targetType: TargetType, targetId: string): void {
         window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(targetType, targetId, StandardButtons.Clone);
     }
 
-    public onStickyButtonClick(targetType: TargetType, targetId: string):void{
+    public onStickyButtonClick(targetType: TargetType, targetId: string): void {
         window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(targetType, targetId, StandardButtons.Sticky);
     }
 
@@ -153,6 +157,34 @@ class WebGroupsManagerDecorator {
 
     public requestCommitCaptionEditing(targetType: TargetType, targetId: string) {
         this.registry.execute(`${targetType}-${targetId}`);
+    }
+
+    public selectTab(windowId: string): void {
+        window.webGroupsManager.externalLibraryFactory.selectTab(windowId);
+    }
+
+    public addTabContainerClass(windowId: string, className: string): void {
+        if (typeof window.webGroupsManager.externalLibraryFactory.addTabContainerClass !== "function") {
+            console.warn("The method addTabContainerClass is not supported by the current version of the library");
+            return;
+        }
+        window.webGroupsManager.externalLibraryFactory.addTabContainerClass(windowId, className);
+    }
+
+    public removeTabContainerClass(windowId: string, className: string): void {
+        if (typeof window.webGroupsManager.externalLibraryFactory.removeTabContainerClass !== "function") {
+            console.warn("The method removeTabContainerClass is not supported by the current version of the library");
+            return;
+        }
+        window.webGroupsManager.externalLibraryFactory.removeTabContainerClass(windowId, className);
+    }
+
+    public openTabOverflowPopup(frameId: string, location: Location): void {
+        if (typeof window.webGroupsManager.externalLibraryFactory.openTabOverflowPopup !== "function") {
+            console.warn("The method openTabOverflowPopup is not supported by the current version of the library");
+            return;
+        }
+        window.webGroupsManager.externalLibraryFactory.openTabOverflowPopup(frameId, location);
     }
 }
 

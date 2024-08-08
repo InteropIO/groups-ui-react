@@ -13,7 +13,9 @@ import {
     UpdateStandardButtonRequestOptions,
     UpdateFrameRequestOptions,
     CreateFrameLoadingAnimationRequestOptions,
-    UpdateCustomButtonsRequestOptions
+    UpdateCustomButtonsRequestOptions,
+    CreateTabOverflowPopupRequestOptions,
+    OverflowedTabInfo
 } from "./types/internal";
 import webGroupsManager from "./webGroupsManager";
 
@@ -33,6 +35,7 @@ class WebGroupsStore {
         tabElements: {}, // dict windowId to create tab elements options
         afterTabsZones: {}, // dict frameId to after tabs zones options
         tabHeaderButtons: {}, // dict frameId to crate tab header buttons options
+        tabOverflowPopups: {}, // dict frameId to create tab overflow popup options,
         belowTabsZones: {}, // dict frameId to create options
         frameLoadingAnimations: {}, // dict frameId to create options
         htmlButtons: {}, // dict frameId to crate html buttons options
@@ -275,6 +278,22 @@ class WebGroupsStore {
         });
     }
 
+    public onCreateTabOverflowPopupRequested = (options: CreateTabOverflowPopupRequestOptions) => {
+        if (options === this.state.tabOverflowPopups[options.targetId] || !options) {
+            return;
+        }
+
+        this.setState(s => {
+            return {
+                ...s,
+                tabOverflowPopups: {
+                    ...s.tabOverflowPopups,
+                    [options.targetId]: options
+                }
+            }
+        });
+    }
+
     public onUpdateHtmlButtonsRequested = (options: CreateButtonsOptions) => {
         if (options === this.state.htmlButtons[options.targetId] || !options) {
             return;
@@ -432,10 +451,23 @@ class WebGroupsStore {
                     return;
                 }
 
-                if (s[stateProp]![targetId] && s[stateProp]![targetId]?.selectedWindow !== selectedWindow) {
+                if (newState[stateProp]![targetId] && newState[stateProp]![targetId]?.selectedWindow !== selectedWindow) {
                     newState[stateProp] = {
-                        ...s[stateProp],
-                        [targetId]: { ...s[stateProp]![targetId], selectedWindow: selectedWindow }
+                        ...newState[stateProp],
+                        [targetId]: { ...newState[stateProp]![targetId], selectedWindow }
+                    }
+                }
+            };
+
+            const updateHiddenTabs = <T extends keyof ElementCreationWrapperState>(stateProp: T, targetId: string, hiddenTabsToTheLeft: OverflowedTabInfo[], hiddenTabsToTheRight: OverflowedTabInfo[]) => {
+                const oldHiddenToTheLeft = newState[stateProp]![targetId]?.hiddenTabsToTheLeft;
+                const oldHiddenToTheRight = newState[stateProp]![targetId]?.hiddenTabsToTheRight;
+                newState[stateProp] = {
+                    ...newState[stateProp],
+                    [targetId]: {
+                        ...newState[stateProp]![targetId],
+                        hiddenTabsToTheLeft: hiddenTabsToTheLeft || oldHiddenToTheLeft,
+                        hiddenTabsToTheRight: hiddenTabsToTheRight || oldHiddenToTheRight
                     }
                 }
             };
@@ -452,13 +484,16 @@ class WebGroupsStore {
             updateSelectionWindow("belowTabsZones", options.targetId, options.selectedWindow);
             updateSelectionWindow("frameLoadingAnimations", options.targetId, options.selectedWindow);
 
+            updateHiddenTabs("afterTabsZones", options.targetId, options.hiddenTabsToTheLeft, options.hiddenTabsToTheRight);
+            updateHiddenTabs("tabHeaderButtons", options.targetId, options.hiddenTabsToTheLeft, options.hiddenTabsToTheRight);
+
             return newState;
         });
     }
 
     public onUpdateStandardButton = (options: UpdateStandardButtonRequestOptions) => {
         const targetState = { targetId: options.targetId };
-        switch(options.targetType) {
+        switch (options.targetType) {
             case TargetType.Group:
                 const currentGroupState = this.state.groupCaptionBar || targetState as CreateGroupCaptionBarRequestOptions;
                 const newGroupOptions = {
@@ -503,7 +538,7 @@ class WebGroupsStore {
     }
 
     public onUpdateCustomButtons = (options: UpdateCustomButtonsRequestOptions) => {
-        switch(options.targetType) {
+        switch (options.targetType) {
             case TargetType.Frame:
                 const currentFrameState = this.state.frameCaptionBars[options.targetId] || { targetId: options.targetId } as CreateButtonsOptions;
                 const newFrameOptions = {
@@ -777,6 +812,25 @@ class WebGroupsStore {
         });
     }
 
+    public onRemoveTabOverflowPopupRequested = (options: RemoveRequestOptions) => {
+        if (!this.state.tabOverflowPopups[options.targetId]) {
+            return;
+        }
+        this.setState(s => {
+            const newTabOverflowPopupsObj = Object.keys(s.tabOverflowPopups).reduce((acc, targetId) => {
+                if (targetId != options.targetId) {
+                    acc[targetId] = s.tabOverflowPopups[targetId];
+                }
+                return acc;
+            }, {});
+
+            return {
+                ...s,
+                tabOverflowPopups: newTabOverflowPopupsObj
+            }
+        });
+    }
+
     public onShowCaptionEditorRequested = (targetType: TargetType, targetId: string, text: string) => {
         if (targetType === TargetType.Group) {
             this.onShowGroupCaptionEditorRequested(targetId, text);
@@ -801,15 +855,15 @@ class WebGroupsStore {
         }
     }
 
-    public onShowLoadingAnimationRequested = (targetType: TargetType,targetId: string) => {
-       if (targetType === TargetType.Frame) {
+    public onShowLoadingAnimationRequested = (targetType: TargetType, targetId: string) => {
+        if (targetType === TargetType.Frame) {
             this.onShowLoadingAnimation(targetId);
-       } else {
+        } else {
             console.warn(`Loading animation for elements other than Frame are not supported`);
-       }
+        }
     }
 
-    public onHideLoadingAnimationRequested = (targetType: TargetType,targetId: string) => {
+    public onHideLoadingAnimationRequested = (targetType: TargetType, targetId: string) => {
         if (targetType === TargetType.Frame) {
             this.onHideLoadingAnimation(targetId);
         } else {
