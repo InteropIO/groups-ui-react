@@ -7,6 +7,11 @@ export interface ChannelProps {
     selectedChannel: string;
     showSelector: (bounds: Bounds) => void;
     selectedChannelColor: string;
+    channelRestrictions: {
+        read: boolean,
+        write: boolean
+    };
+    channelLabel: string;
 }
 
 export interface FrameWindowOverlayProps {

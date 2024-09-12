@@ -511,8 +511,8 @@ input {
 
 .t42-tab-channel-selector {
     justify-content: center;
-    width: var(--t42-tab-bar-tab-channels-size);
-    height: var(--t42-tab-bar-tab-channels-size);
+    width: var(--t42-tab-bar-tab-channels-width);
+    height: var(--t42-tab-bar-tab-channels-height);
     margin: var(--t42-tab-bar-tab-channels-margin);
     border-radius: var(--t42-tab-bar-tab-channels-border-radius);
     background-color: transparent;
@@ -598,6 +598,15 @@ input {
 
 .t42-selected-tab-close-button-content .t42-standard-button-image {
     fill: var(--t42-tab-bar-selected-tab-text);
+}
+
+.t42-channel-selector-direction {
+    width: var(--t42-channel-selector-direction-width);
+    height: var(--t42-channel-selector-direction-height);
+}
+
+.t42-channel-selector-direction .icon {
+    gap: var(--t42-channel-selector-direction-gap);
 }
 
 .t42-channel-selector-content-light::before {

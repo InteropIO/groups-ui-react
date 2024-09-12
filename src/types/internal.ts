@@ -128,6 +128,11 @@ export interface CreateFrameCaptionBarRequestOptions extends CreateButtonsOption
 		show: boolean;
 		text?: string;
 	};
+	channelRestrictions: {
+        read: boolean,
+        write: boolean
+    };
+	channelLabel: string;
 }
 
 export interface CreateTabRequestOptions extends CreateElementRequestOptions {
@@ -141,6 +146,11 @@ export interface CreateTabRequestOptions extends CreateElementRequestOptions {
 		show: boolean;
 		text?: string;
 	};
+	channelRestrictions: {
+        read: boolean,
+        write: boolean
+    };
+	channelLabel: string;
 }
 
 export interface UpdateStandardButtonRequestOptions extends CreateElementRequestOptions {

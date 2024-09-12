@@ -12,7 +12,10 @@ const FlatCaptionBar: React.FC<FlatCaptionBarProps> = ({ moveAreaId, caption, ch
             {channels?.visible && <FlatChannelSelector
                 showSelector={channels?.showSelector}
                 selectedChannel={channels?.selectedChannel}
-                selectedChannelColor={channels?.selectedChannelColor} />}
+                selectedChannelColor={channels?.selectedChannelColor}
+                channelRestrictions={channels?.channelRestrictions}
+                channelLabel={channels?.channelLabel}
+                />}
             <FlatMoveArea moveAreaId={moveAreaId}>
                 {captionEditor.show ? <FlatCaptionEditor {...captionEditor} caption={captionEditor.text!} frameId={rest.frameId} /> : <FlatCaption notifyBoundsChanged={notifyCaptionBoundsChanged} caption={caption} />}
             </FlatMoveArea>

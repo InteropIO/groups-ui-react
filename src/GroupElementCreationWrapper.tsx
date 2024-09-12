@@ -195,7 +195,9 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                 showSelector,
                 visible: options.channelSelectorVisible,
                 selectedChannel: options.selectedChannel,
-                selectedChannelColor: options.selectedChannelColor
+                selectedChannelColor: options.selectedChannelColor,
+                channelRestrictions: options.channelRestrictions,
+                channelLabel: options.channelLabel
             }
 
             const captionEditor = {
@@ -344,7 +346,6 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
 
             const { parentElement, ...options } = te;
 
-
             const onCloseClick = () => {
                 webGroupsManager.closeTab(options.targetId);
             }
@@ -357,7 +358,9 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                 showSelector,
                 visible: options.channelSelectorVisible,
                 selectedChannel: options.selectedChannel,
-                selectedChannelColor: options.selectedChannelColor ?? options.selectedChannel // TODO remove the null check when the variable has been added
+                selectedChannelColor: options.selectedChannelColor ?? options.selectedChannel, // TODO remove the null check when the variable has been added
+                channelRestrictions: options.channelRestrictions,
+                channelLabel: options.channelLabel
             };
 
             const captionEditor = {
