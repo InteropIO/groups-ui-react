@@ -70,18 +70,30 @@ export interface BaseChannelSelectorProps {
     contentClass: string;
     selectedChannel: string;
     selectedChannelColor: string;
+    direction: string;
+    channelLabel: string;
 }
 
 export interface FlatChannelSelectorProps {
     showSelector: (bounds: Bounds) => void;
     selectedChannel: string;
     selectedChannelColor: string;
+    channelRestrictions: {
+        read: boolean,
+        write: boolean
+    };
+    channelLabel: string;
 }
 
 export interface TabChannelSelectorProps {
     showSelector: (bounds: Bounds) => void;
     selectedChannel: string;
     selectedChannelColor: string;
+    channelRestrictions: {
+        read: boolean,
+        write: boolean
+    };
+    channelLabel: string;
 }
 
 export interface FlatCaptionEditorProps {

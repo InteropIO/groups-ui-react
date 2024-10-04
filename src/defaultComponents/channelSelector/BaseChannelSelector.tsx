@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { BaseChannelSelectorProps } from "../../types/defaultComponents";
 import { IsBlackReadable } from "./utils";
 
-const BaseChannelSelector: React.FC<BaseChannelSelectorProps> = ({ outsideClass, contentClass, showSelector, selectedChannel, selectedChannelColor }) => {
+const BaseChannelSelector: React.FC<BaseChannelSelectorProps> = ({ outsideClass, contentClass, showSelector, selectedChannel, selectedChannelColor, direction, channelLabel }) => {
     const ref = useRef<HTMLDivElement>(null);
     const wrappedOnClick = () => {
         if (!ref.current) {
@@ -36,8 +36,12 @@ const BaseChannelSelector: React.FC<BaseChannelSelectorProps> = ({ outsideClass,
     return <div title={selectedChannel ?? ""} ref={ref}
         style={style}
         onClick={wrappedOnClick} className={`t42-buttons ${outsideClass}`} >
-        <div className={className}>
-        </div>
+        {channelLabel ?
+            <div className={`${className} icon`}>
+                {channelLabel}
+                {direction && <i className={`icon-${direction}`}></i>}
+            </div> : <div className={className}>
+            </div>}
     </div >
 };
 
