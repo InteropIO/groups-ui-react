@@ -129,9 +129,9 @@ export interface CreateFrameCaptionBarRequestOptions extends CreateButtonsOption
 		text?: string;
 	};
 	channelRestrictions: {
-        read: boolean,
-        write: boolean
-    };
+		read: boolean,
+		write: boolean
+	};
 	channelLabel: string;
 }
 
@@ -148,9 +148,9 @@ export interface CreateTabRequestOptions extends CreateElementRequestOptions {
 		text?: string;
 	};
 	channelRestrictions: {
-        read: boolean,
-        write: boolean
-    };
+		read: boolean,
+		write: boolean
+	};
 	channelLabel: string;
 }
 
@@ -217,7 +217,9 @@ export interface CreateButtonsOptions extends CreateFrameElementRequestOptions {
 		tooltip: string;
 		visible: boolean;
 	};
-	customButtons: UpdateCustomButtonOptions[]
+	customButtons: UpdateCustomButtonOptions[],
+	hiddenTabsToTheLeft: OverflowedTabInfo[];
+	hiddenTabsToTheRight: OverflowedTabInfo[];
 }
 
 export interface RemoveRequestOptions {
