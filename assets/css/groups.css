@@ -896,3 +896,45 @@ input {
     font-size: var(--t42-wg-tab-over-item-title-size);
     letter-spacing: var(--t42-wg-tab-over-item-title-spacing);
 }
+
+.t42-multi-channel-selector-content {
+    width: var(--t42-tab-bar-tab-channels-size);
+    height: var(--t42-tab-bar-tab-channels-size);
+    border-radius: var(--t42-tab-bar-tab-channels-border-radius);
+}
+
+.t42-multi-channel-selector-2 {
+    background-image: conic-gradient(
+        var(--t42-multi-channel-selector-2-color-1) 0deg,
+        var(--t42-multi-channel-selector-2-color-1) 180deg,
+        var(--t42-multi-channel-selector-2-color-2) 180deg,
+        var(--t42-multi-channel-selector-2-color-2) 0deg
+    );
+    mask-image: var(--t42-multi-channel-selector-2-mask);
+}
+
+.t42-multi-channel-selector-3 {
+    background-image: conic-gradient(
+        var(--t42-multi-channel-selector-3-color-1) 0deg,
+        var(--t42-multi-channel-selector-3-color-1) 120deg,
+        var(--t42-multi-channel-selector-3-color-2) 120deg,
+        var(--t42-multi-channel-selector-3-color-2) 240deg,
+        var(--t42-multi-channel-selector-3-color-3) 240deg,
+        var(--t42-multi-channel-selector-3-color-3) 0deg
+    );
+    mask-image: var(--t42-multi-channel-selector-3-mask);
+}
+
+.t42-multi-channel-selector-4 {
+    background-image: conic-gradient(
+        var(--t42-multi-channel-selector-4-color-1) 0deg,
+        var(--t42-multi-channel-selector-4-color-1) 90deg,
+        var(--t42-multi-channel-selector-4-color-2) 90deg,
+        var(--t42-multi-channel-selector-4-color-2) 180deg,
+        var(--t42-multi-channel-selector-4-color-3) 180deg,
+        var(--t42-multi-channel-selector-4-color-3) 270deg,
+        var(--t42-multi-channel-selector-4-color-4) 270deg,
+        var(--t42-multi-channel-selector-4-color-4) 0deg
+    );
+    mask-image: var(--t42-multi-channel-selector-4-mask);
+}

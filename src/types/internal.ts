@@ -128,6 +128,8 @@ export interface CreateFrameCaptionBarRequestOptions extends CreateButtonsOption
 		show: boolean;
 		text?: string;
 	};
+    channelsMode: "single" | "multi";
+    selectedChannels: { name: string; color: string }[];
 }
 
 export interface CreateTabRequestOptions extends CreateElementRequestOptions {
@@ -141,6 +143,8 @@ export interface CreateTabRequestOptions extends CreateElementRequestOptions {
 		show: boolean;
 		text?: string;
 	};
+    channelsMode: "single" | "multi";
+    selectedChannels: { name: string; color: string }[];
 }
 
 export interface UpdateStandardButtonRequestOptions extends CreateElementRequestOptions {

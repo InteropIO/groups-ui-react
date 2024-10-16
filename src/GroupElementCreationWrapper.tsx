@@ -10,7 +10,6 @@ import webGroupsStore from "./webGroupsStore";
 import FrameLoadingAnimation from "./defaultComponents/loadingAnimation/FrameLoadingAnimation";
 
 const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
-
     const state = useSyncExternalStore<ElementCreationWrapperState>(webGroupsStore.subscribe, webGroupsStore.getSnapshot);
     const LoadingAnimation = components?.frame?.LoadingAnimation ?? FrameLoadingAnimation;
 
@@ -195,7 +194,9 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                 showSelector,
                 visible: options.channelSelectorVisible,
                 selectedChannel: options.selectedChannel,
-                selectedChannelColor: options.selectedChannelColor
+                selectedChannelColor: options.selectedChannelColor,
+                channelsMode: options.channelsMode ?? "single",
+                selectedChannels : options.selectedChannels
             }
 
             const captionEditor = {
@@ -357,7 +358,9 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
                 showSelector,
                 visible: options.channelSelectorVisible,
                 selectedChannel: options.selectedChannel,
-                selectedChannelColor: options.selectedChannelColor ?? options.selectedChannel // TODO remove the null check when the variable has been added
+                selectedChannelColor: options.selectedChannelColor ?? options.selectedChannel, // TODO remove the null check when the variable has been added
+                channelsMode: options.channelsMode ?? "single",
+                selectedChannels: options.selectedChannels
             };
 
             const captionEditor = {
