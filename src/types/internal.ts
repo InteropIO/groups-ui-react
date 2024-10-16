@@ -128,14 +128,20 @@ export interface CreateFrameCaptionBarRequestOptions extends CreateButtonsOption
 		show: boolean;
 		text?: string;
 	};
-    channelsMode: "single" | "multi";
-    selectedChannels: { name: string; color: string }[];
+	channelsMode: "single" | "multi";
+	selectedChannels: { name: string; color: string }[];
+	channelRestrictions: {
+		read: boolean,
+		write: boolean
+	};
+	channelLabel: string;
 }
 
 export interface CreateTabRequestOptions extends CreateElementRequestOptions {
 	caption: string;
 	selected: boolean;
 	flashing: boolean;
+	pinned: boolean;
 	channelSelectorVisible: boolean;
 	selectedChannel: string;
 	selectedChannelColor: string;
@@ -143,8 +149,13 @@ export interface CreateTabRequestOptions extends CreateElementRequestOptions {
 		show: boolean;
 		text?: string;
 	};
-    channelsMode: "single" | "multi";
-    selectedChannels: { name: string; color: string }[];
+	channelsMode: "single" | "multi";
+	selectedChannels: { name: string; color: string }[];
+	channelRestrictions: {
+		read: boolean,
+		write: boolean
+	};
+	channelLabel: string;
 }
 
 export interface UpdateStandardButtonRequestOptions extends CreateElementRequestOptions {
@@ -210,7 +221,9 @@ export interface CreateButtonsOptions extends CreateFrameElementRequestOptions {
 		tooltip: string;
 		visible: boolean;
 	};
-	customButtons: UpdateCustomButtonOptions[]
+	customButtons: UpdateCustomButtonOptions[],
+	hiddenTabsToTheLeft: OverflowedTabInfo[];
+	hiddenTabsToTheRight: OverflowedTabInfo[];
 }
 
 export interface RemoveRequestOptions {

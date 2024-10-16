@@ -71,7 +71,8 @@
     --t42-tab-bar-tab-flashing-background:var(--severity-high); /* color-mix(in srgb, var(--severity-high) 65%, transparent); */
 
     --t42-tab-bar-tab-channels-border-radius: var(--base-radius-default);
-    --t42-tab-bar-tab-channels-size: var(--spacing-16);
+    --t42-tab-bar-tab-channels-width: var(--spacing-16);
+    --t42-tab-bar-tab-channels-height: var(--spacing-16);
     --t42-tab-bar-tab-channels-margin: 0 var(--spacing-4) 0 0;
     --t42-tab-bar-tab-channels-content-size: 0;
     --t42-tab-bar-tab-channels-content-margin: 0;
@@ -89,6 +90,10 @@
     --t42-approaching-edge-size: 4px;
 
     --t42-channels-fill-color: var(--tabs-color-active);
+
+    --t42-channel-selector-direction-width: var(--spacing-24);
+    --t42-channel-selector-direction-height: var(--spacing-16); 
+    --t42-channel-selector-direction-gap: var(--spacing-1);
 
     --t42-caption-separator-color: var(--tabs-border);
     --t42-caption-text-hover-color: var(--tabs-color-hover);
@@ -125,6 +130,10 @@
     --t42-wg-tab-over-separator-color: var(--base-border-separator);
     --t42-wg-tab-over-separator-space: var(--spacing-8) 0;
 
+    --t42-wg-pin-tab-border-radius: var(--spacing-4);
+    --t42-wg-pin-tab-width: 120px;
+    --t42-wg-pin-tab-margin: var(--spacing-4);
+    --t42-wg-pin-tab-height: var(--spacing-24);
     --t42-multi-channel-selector-2-color-1: var(--channels-blue);
     --t42-multi-channel-selector-2-color-2: var(--channels-red);
     --t42-multi-channel-selector-2-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' viewBox='0 0 16 16'%3E%3Crect width='7.5' height='16'/%3E%3Crect x='8.5' width='7.5' height='16'/%3E%3C/svg%3E");

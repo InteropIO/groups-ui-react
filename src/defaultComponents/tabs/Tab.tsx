@@ -6,14 +6,14 @@ import TabCaption from "./TabCaption";
 import TabCaptionEditor from "./TabCaptionEditor";
 import TabCloseButton from "./TabCloseButton";
 
-const Tab: React.FC<TabElementProps> = ({ caption, selected, close, channels, captionEditor, notifyCaptionBoundsChanged, windowId }) => {
+const Tab: React.FC<TabElementProps> = ({ caption, selected, close, channels, captionEditor, notifyCaptionBoundsChanged, windowId, pinned }) => {
     return <div className="t42-react-tab">
         {channels.visible && channels.channelsMode !== "multi" && <TabChannelSelector {...channels} />}
         {channels.visible && channels.channelsMode === "multi" && <TabMultiChannelSelector {...channels} />}
         {captionEditor.show ?
             <TabCaptionEditor {...captionEditor} caption={captionEditor.text!} selected={selected} windowId={windowId} /> :
             <TabCaption notifyBoundsChanged={notifyCaptionBoundsChanged} caption={caption} selected={selected} />}
-        <TabCloseButton selected={selected} close={close} />
+        {pinned ? <></> : <TabCloseButton selected={selected} close={close} />}
     </div>
 };
 

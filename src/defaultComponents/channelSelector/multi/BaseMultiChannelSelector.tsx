@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { BaseMultiChannelSelectorProps } from "../../../types/defaultComponents";
 import BaseChannelSelector from "../BaseChannelSelector";
+import { getChannelDirection } from "../utils";
 
-const BaseMultiChannelSelector: React.FC<BaseMultiChannelSelectorProps> = ({ outsideClass, contentClass, showSelector, selectedChannels }) => {
+const BaseMultiChannelSelector: React.FC<BaseMultiChannelSelectorProps> = ({ outsideClass, contentClass, showSelector, selectedChannels, channelLabel, channelRestrictions }) => {
 
     const ref = useRef<HTMLDivElement>(null);
     const wrappedOnClick = () => {
@@ -38,7 +39,9 @@ const BaseMultiChannelSelector: React.FC<BaseMultiChannelSelectorProps> = ({ out
             selectedChannel={selectedChannels[0]?.name}
             selectedChannelColor={selectedChannels[0]?.color}
             outsideClass={outsideClass}
-            contentClass={contentClass} />;
+            contentClass={contentClass}
+            channelLabel={channelLabel}
+            direction={getChannelDirection(channelRestrictions)} />;
     }
 
     const colors = selectedChannels.map((channel) => channel.color) ?? [];
