@@ -609,11 +609,13 @@ input {
     gap: var(--t42-channel-selector-direction-gap);
 }
 
+.t42-channel-selector-content-light,
 .t42-channel-selector-content-light::before {
     color: hsl(var(--io-white));
     transition-property: color;
 }
 
+.t42-channel-selector-content-dark,
 .t42-channel-selector-content-dark::before {
     color: hsl(var(--io-black));
     transition-property: color;
