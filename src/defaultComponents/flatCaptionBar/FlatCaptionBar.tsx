@@ -9,7 +9,7 @@ import FlatMultiChannelSelector from "../channelSelector/multi/FlatMultiChannelS
 
 const FlatCaptionBar: React.FC<FlatCaptionBarProps> = ({ moveAreaId, caption, channels, captionEditor, notifyCaptionBoundsChanged, ...rest }) => {
     return (
-        <div className="t42-re act-caption-bar">
+        <div className="t42-react-caption-bar">
             {channels?.visible && channels.channelsMode !== "multi" && <FlatChannelSelector
                 showSelector={channels?.showSelector}
                 selectedChannel={channels?.selectedChannel}
