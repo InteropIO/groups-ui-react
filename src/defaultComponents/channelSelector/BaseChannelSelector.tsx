@@ -42,7 +42,7 @@ const BaseChannelSelector: React.FC<BaseChannelSelectorProps> = ({ outsideClass,
         style={style}
         onClick={wrappedOnClick} className={`t42-buttons ${outsideClass}`} >
         {channelLabel ?
-            <div className={`${className} icon`}>
+            <div className={`${className} ${direction ? "icon" : ""}`}>
                 {channelLabel}
                 {direction && <i className={`icon-${direction}`}></i>}
             </div> : <div className={className}>
