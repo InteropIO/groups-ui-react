@@ -89,6 +89,8 @@ import useCaptionEditor from "./defaultComponents/captionEditor/useCaptionEditor
 import FrameLoadingAnimation from "./defaultComponents/loadingAnimation/FrameLoadingAnimation";
 import HtmlButtons from "./defaultComponents/htmlButtonsBar/buttons";
 import TabOverflowPopup from "./defaultComponents/popups/TabOverflowPopup";
+import TabMultiChannelSelector from "./defaultComponents/channelSelector/multi/TabMultiChannelSelector";
+import FlatMultiChannelSelector from "./defaultComponents/channelSelector/multi/FlatMultiChannelSelector";
 
 export {
     GroupCaptionBar,
@@ -123,6 +125,8 @@ export {
     TabOverflowPopup,
     OverflowButton,
     GroupComponentVisibilityState,
+    TabMultiChannelSelector,
+    FlatMultiChannelSelector,
     useIOConnectWindow,
     useGroupComponentVisibility,
     waitForWindow,

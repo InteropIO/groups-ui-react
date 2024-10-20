@@ -5,14 +5,22 @@ import FlatButtons from "./FlatButtons";
 import FlatCaption from "./FlatCaption";
 import FlatCaptionEditor from "./FlatCaptionEditor";
 import FlatMoveArea from "./FlatMoveArea";
+import FlatMultiChannelSelector from "../channelSelector/multi/FlatMultiChannelSelector";
 
 const FlatCaptionBar: React.FC<FlatCaptionBarProps> = ({ moveAreaId, caption, channels, captionEditor, notifyCaptionBoundsChanged, ...rest }) => {
     return (
         <div className="t42-react-caption-bar">
-            {channels?.visible && <FlatChannelSelector
+            {channels?.visible && channels.channelsMode !== "multi" && <FlatChannelSelector
                 showSelector={channels?.showSelector}
                 selectedChannel={channels?.selectedChannel}
-                selectedChannelColor={channels?.selectedChannelColor} />}
+                selectedChannelColor={channels?.selectedChannelColor}
+                channelRestrictions={channels?.channelRestrictions}
+                channelLabel={channels?.channelLabel} />}
+            {channels?.visible && channels.channelsMode === "multi" && <FlatMultiChannelSelector
+                showSelector={channels?.showSelector}
+                selectedChannels={channels?.selectedChannels}
+                channelRestrictions={channels?.channelRestrictions}
+                channelLabel={channels?.channelLabel} />}
             <FlatMoveArea moveAreaId={moveAreaId}>
                 {captionEditor.show ? <FlatCaptionEditor {...captionEditor} caption={captionEditor.text!} frameId={rest.frameId} /> : <FlatCaption notifyBoundsChanged={notifyCaptionBoundsChanged} caption={caption} />}
             </FlatMoveArea>
