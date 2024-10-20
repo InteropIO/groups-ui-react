@@ -622,7 +622,7 @@ input {
 
 .t42-channel-selector-direction .icon {
     gap: var(--t42-channel-selector-direction-gap);
-    width: var(--t42-channel-selector-direction-width); 
+    width: var(--t42-channel-selector-direction-width);
 }
 
 .t42-channel-selector-content-light,
@@ -969,8 +969,8 @@ input {
 }
 
 .t42-multi-channel-selector-content {
-    width: var(--t42-tab-bar-tab-channels-size);
-    height: var(--t42-tab-bar-tab-channels-size);
+    width: var(--t42-tab-bar-tab-channels-width);
+    height: var(--t42-tab-bar-tab-channels-height);
     border-radius: var(--t42-tab-bar-tab-channels-border-radius);
 }
 
