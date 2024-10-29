@@ -1,9 +1,3 @@
-2.4.0
-chore: official 9.5 support
-2.3.1
-feat: pinned tabs support
-2.3.0
-chore: official 9.4 support
 2.2.2
 fix: fixed the internal CSS import for the overflow tabs
 2.2.1

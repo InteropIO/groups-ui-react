@@ -129,11 +129,6 @@
     --t42-wg-tab-over-separator-size: var(--spacing-1);
     --t42-wg-tab-over-separator-color: var(--base-border-separator);
     --t42-wg-tab-over-separator-space: var(--spacing-8) 0;
-
-    --t42-wg-pin-tab-border-radius: var(--spacing-4);
-    --t42-wg-pin-tab-width: 120px;
-    --t42-wg-pin-tab-margin: var(--spacing-4);
-    --t42-wg-pin-tab-height: var(--spacing-24);
 }
 
 /* Scroll vars override */

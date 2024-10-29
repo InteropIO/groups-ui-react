@@ -446,8 +446,7 @@ input {
     height: var(--t42-tab-bar-height);
 }
 
-.t42-tabs,
-.t42-tabs-pinned {
+.t42-tabs {
     position: relative;
     display: flex;
     flex-direction: row;
@@ -455,6 +454,7 @@ input {
     flex-shrink: 1;
     align-items: center;
     padding: var(--t42-tab-bar-padding);
+    margin: 0px;
     overflow: hidden;
     list-style-type: none;
     -webkit-app-region: drag;
@@ -484,11 +484,7 @@ input {
     border-top-right-radius: var(--spacing-4);
     background-color: var(--t42-tab-bar-tab-background);
     container-type: size;
-    container-name: normal-tabs;
     -webkit-app-region: no-drag;
-    /* transition-property: all;
-    transition-duration: 260ms;
-    transition-timing-function: ease-in-out; */
 }
 
 .t42-tab::before {
@@ -532,12 +528,12 @@ input {
 .t42-tab-caption {
     flex-grow: 1;
     color: var(--t42-tab-bar-tab-text);
-    mask-image: linear-gradient(90deg, Hsl(var(--io-bg-00)) 75%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, Hsl(var(--io-bg-00)) 75%, transparent);
 }
 
 .t42-tab-caption-editor {
     min-width: unset;
-    mask-image: none;
+    -webkit-mask-image: none;
     height: var(--spacing-12);
 }
 
@@ -588,7 +584,7 @@ input {
 }
 
 .t42-selected-tab::before,
-.t42-selected-tab + .t42-tab::before {
+.t42-selected-tab+.t42-tab::before {
     opacity: 0;
 }
 
@@ -729,6 +725,7 @@ input {
 }
 
 @keyframes clipMe {
+
     0%,
     100% {
         clip: rect(0, 25vh, 2px, 0);
@@ -810,20 +807,20 @@ input {
     background-color: transparent;
 }
 
-@container normal-tabs (max-width: 50px) {
+@container (max-width: 50px) {
     .t42-tab-channel-selector {
-        --t42-tab-bar-tab-channels-size:0;
-        --t42-tab-bar-tab-channels-margin: 0;
+        width: 0;
+        margin: 0;
     }
 }
 
-@container normal-tabs (max-width: 40px) {
+@container (max-width: 40px) {
     .t42-tab-close-button {
         margin: auto;
     }
 }
 
-@container normal-tabs (max-width: 30px) {
+@container (max-width: 30px) {
     .t42-selected-tab-caption {
         flex-grow: 0;
         width: 0;
@@ -843,37 +840,31 @@ input {
 }
 
 .t42-tabs-overflow.t42-tabs-fade-right {
-    -webkit-mask-image: linear-gradient(
-        -90deg,
-        rgba(0, 0, 0, 0) 0,
-        rgba(0, 0, 0, 0.3) calc(var(--t42-tab-bar-fade-size) / 100 * 30),
-        rgba(0, 0, 0, 0.8) calc(var(--t42-tab-bar-fade-size) / 100 * 80),
-        rgba(0, 0, 0, 1) var(--t42-tab-bar-fade-size)
-    );
+    -webkit-mask-image: linear-gradient(-90deg,
+            rgba(0, 0, 0, 0) 0,
+            rgba(0, 0, 0, 0.3) calc(var(--t42-tab-bar-fade-size) / 100 * 30),
+            rgba(0, 0, 0, 0.8) calc(var(--t42-tab-bar-fade-size) / 100 * 80),
+            rgba(0, 0, 0, 1) var(--t42-tab-bar-fade-size));
 }
 
 .t42-tabs-overflow.t42-tabs-fade-left {
-    -webkit-mask-image: linear-gradient(
-        90deg,
-        rgba(0, 0, 0, 0) 0,
-        rgba(0, 0, 0, 0.3) calc(var(--t42-tab-bar-fade-size) / 100 * 30),
-        rgba(0, 0, 0, 0.8) calc(var(--t42-tab-bar-fade-size) / 100 * 80),
-        rgba(0, 0, 0, 1) var(--t42-tab-bar-fade-size)
-    );
+    -webkit-mask-image: linear-gradient(90deg,
+            rgba(0, 0, 0, 0) 0,
+            rgba(0, 0, 0, 0.3) calc(var(--t42-tab-bar-fade-size) / 100 * 30),
+            rgba(0, 0, 0, 0.8) calc(var(--t42-tab-bar-fade-size) / 100 * 80),
+            rgba(0, 0, 0, 1) var(--t42-tab-bar-fade-size));
 }
 
 .t42-tabs-overflow.t42-tabs-fade-both {
-    -webkit-mask-image: linear-gradient(
-        90deg,
-        rgba(0, 0, 0, 0) 0%,
-        rgba(0, 0, 0, 0.3) calc(var(--t42-tab-bar-fade-size) / 100 * 30),
-        rgba(0, 0, 0, 0.8) calc(var(--t42-tab-bar-fade-size) / 100 * 80),
-        rgba(0, 0, 0, 1) var(--t42-tab-bar-fade-size),
-        rgba(0, 0, 0, 1) calc(100% - var(--t42-tab-bar-fade-size)),
-        rgba(0, 0, 0, 0.8) calc(100% - (var(--t42-tab-bar-fade-size) / 100 * 80)),
-        rgba(0, 0, 0, 0.3) calc(100% - (var(--t42-tab-bar-fade-size) / 100 * 30)),
-        rgba(0, 0, 0, 0) 100%
-    );
+    -webkit-mask-image: linear-gradient(90deg,
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 0.3) calc(var(--t42-tab-bar-fade-size) / 100 * 30),
+            rgba(0, 0, 0, 0.8) calc(var(--t42-tab-bar-fade-size) / 100 * 80),
+            rgba(0, 0, 0, 1) var(--t42-tab-bar-fade-size),
+            rgba(0, 0, 0, 1) calc(100% - var(--t42-tab-bar-fade-size)),
+            rgba(0, 0, 0, 0.8) calc(100% - (var(--t42-tab-bar-fade-size) / 100 * 80)),
+            rgba(0, 0, 0, 0.3) calc(100% - (var(--t42-tab-bar-fade-size) / 100 * 30)),
+            rgba(0, 0, 0, 0) 100%);
 }
 
 .t42-page-popup {
@@ -882,8 +873,7 @@ input {
     margin-top: var(--t42-wg-tab-over-top-offset);
 }
 
-.t42-tab-overflow-popup,
-.t42-tab-context-menu {
+.t42-tab-overflow-popup {
     display: flex;
     flex-direction: column;
     min-width: var(--t42-wg-tab-over-min-width);
@@ -895,8 +885,7 @@ input {
     background-color: var(--t42-wg-tab-over-background);
 }
 
-.t42-tab-overflow-popup li,
-.t42-tab-context-menu li {
+.t42-tab-overflow-popup li {
     display: flex;
     gap: var(--t42-wg-tab-over-item-gap);
     align-items: center;
@@ -906,16 +895,14 @@ input {
     transition-property: background-color;
 }
 
-.t42-tab-overflow-popup li span,
-.t42-tab-context-menu li span {
+.t42-tab-overflow-popup li span {
     flex-grow: 1;
     overflow: hidden;
     text-wrap: nowrap;
     text-overflow: clip;
 }
 
-.t42-tab-overflow-popup li:not(.title):hover,
-.t42-tab-context-menu li:not(.title):hover {
+.t42-tab-overflow-popup li:not(.title):hover {
     color: var(--t42-wg-tab-over-item-color-hover);
     background-color: var(--t42-wg-tab-over-item-background-hover);
 }
@@ -931,39 +918,4 @@ input {
     color: var(--t42-wg-tab-over-item-title-color);
     font-size: var(--t42-wg-tab-over-item-title-size);
     letter-spacing: var(--t42-wg-tab-over-item-title-spacing);
-}
-
-.t42-tabs-pinned {
-    min-width: 0;
-    flex-shrink: 0;
-}
-
-.t42-tabs-pinned .t42-tab {
-    --t42-tab-bar-tab-margin: var(--t42-wg-pin-tab-margin);
-    --t42-tab-bar-tab-height: var(--t42-wg-pin-tab-height);
-    border-radius: var(--t42-wg-pin-tab-border-radius);
-    width: var(--t42-wg-pin-tab-width);
-}
-
-.t42-tabs-pinned  .t42-tab-caption {
-    mask-image: none;
-}
-
-.t42-tabs-pinned .t42-tab {
-    container-name: pinned;
-}
-
-@container pinned (min-width:1px) {
-    .t42-tab-close-button {
-        background-color: transparent;
-    }
-}
-
-.t42-tabs-pinned .t42-tab-fade,
-.t42-tabs-overflow .t42-tab-fade {
-    overflow: hidden;
-    width: 0;
-    padding: 0;
-    min-width: 0;
-    margin: 0;
 }

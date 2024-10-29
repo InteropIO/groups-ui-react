@@ -139,7 +139,6 @@ export interface CreateTabRequestOptions extends CreateElementRequestOptions {
 	caption: string;
 	selected: boolean;
 	flashing: boolean;
-	pinned: boolean;
 	channelSelectorVisible: boolean;
 	selectedChannel: string;
 	selectedChannelColor: string;

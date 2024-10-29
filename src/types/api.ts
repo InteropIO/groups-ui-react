@@ -118,7 +118,6 @@ export interface TabElementProps {
     caption: string;
     selected: boolean;
     flashing: boolean;
-    pinned: boolean;
     close: () => void;
     channels: ChannelProps;
     notifyCaptionBoundsChanged: (bounds: Bounds) => void;
