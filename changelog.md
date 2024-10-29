@@ -1,3 +1,5 @@
+2.4.1
+feat: directional channels improvement 
 2.4.0
 chore: official 9.5 support
 2.3.1
