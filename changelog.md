@@ -1,3 +1,6 @@
+2.5.0
+chore: official 9.6 support
+feat: multi channels support
 2.4.1
 feat: directional channels improvement 
 2.4.0
