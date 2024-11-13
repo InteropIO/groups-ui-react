@@ -70,18 +70,62 @@ export interface BaseChannelSelectorProps {
     contentClass: string;
     selectedChannel: string;
     selectedChannelColor: string;
+    direction: string;
+    channelLabel: string;
+}
+
+export interface BaseMultiChannelSelectorProps {
+    showSelector: (bounds: Bounds) => void;
+    outsideClass: string;
+    contentClass: string;
+    selectedChannels: { name: string; color: string }[];
+    channelRestrictions: {
+        read: boolean,
+        write: boolean
+    };
+    channelLabel: string;
 }
 
 export interface FlatChannelSelectorProps {
     showSelector: (bounds: Bounds) => void;
     selectedChannel: string;
     selectedChannelColor: string;
+    channelRestrictions: {
+        read: boolean,
+        write: boolean
+    };
+    channelLabel: string;
+}
+
+export interface FlatMultiChannelSelectorProps {
+    showSelector: (bounds: Bounds) => void;
+    selectedChannels: { name: string; color: string }[];
+    channelRestrictions: {
+        read: boolean,
+        write: boolean
+    };
+    channelLabel: string;
 }
 
 export interface TabChannelSelectorProps {
     showSelector: (bounds: Bounds) => void;
     selectedChannel: string;
     selectedChannelColor: string;
+    channelRestrictions: {
+        read: boolean,
+        write: boolean
+    };
+    channelLabel: string;
+}
+
+export interface TabMultiChannelSelectorProps {
+    showSelector: (bounds: Bounds) => void;
+    selectedChannels: { name: string; color: string }[];
+    channelRestrictions: {
+        read: boolean,
+        write: boolean
+    };
+    channelLabel: string;
 }
 
 export interface FlatCaptionEditorProps {
