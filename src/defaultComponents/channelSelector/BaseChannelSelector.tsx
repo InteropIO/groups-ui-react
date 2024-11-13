@@ -5,7 +5,6 @@ import { IsBlackReadable } from "./utils";
 const BaseChannelSelector: React.FC<BaseChannelSelectorProps> = ({ outsideClass, contentClass, showSelector, selectedChannel, selectedChannelColor, direction, channelLabel }) => {
     const ref = useRef<HTMLDivElement>(null);
     const wrappedOnClick = () => {
-        console.log("single shwoing selector");
         if (!ref.current) {
             return;
         }
@@ -19,14 +18,12 @@ const BaseChannelSelector: React.FC<BaseChannelSelectorProps> = ({ outsideClass,
     }
 
     useEffect(() => {
-        console.log("single subscribing for mousedown");
         const handler = (e: MouseEvent) => {
             e.stopPropagation();
         };
         const current = ref.current;
         current?.addEventListener("mousedown", handler);
-        return () => {
-            console.log("single unsubscribing for mousedown");
+        return ()=> {
             current?.removeEventListener("mousedown", handler);
         }
     }, [ref]);
