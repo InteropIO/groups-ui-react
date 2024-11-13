@@ -7,6 +7,8 @@ export interface ChannelProps {
     selectedChannel: string;
     showSelector: (bounds: Bounds) => void;
     selectedChannelColor: string;
+    channelsMode: "single" | "multi";
+    selectedChannels: { name: string, color: string }[];
     channelRestrictions: {
         read: boolean,
         write: boolean

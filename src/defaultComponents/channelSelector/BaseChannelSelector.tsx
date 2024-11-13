@@ -18,9 +18,14 @@ const BaseChannelSelector: React.FC<BaseChannelSelectorProps> = ({ outsideClass,
     }
 
     useEffect(() => {
-        ref.current?.addEventListener("mousedown", (e) => {
+        const handler = (e: MouseEvent) => {
             e.stopPropagation();
-        });
+        };
+        const current = ref.current;
+        current?.addEventListener("mousedown", handler);
+        return ()=> {
+            current?.removeEventListener("mousedown", handler);
+        }
     }, [ref]);
 
     let className = contentClass;
