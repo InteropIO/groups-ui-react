@@ -1,11 +1,12 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BaseMultiChannelSelectorProps } from "../../../types/defaultComponents";
 import BaseChannelSelector from "../BaseChannelSelector";
 import { getChannelDirection } from "../utils";
 
 const BaseMultiChannelSelector: React.FC<BaseMultiChannelSelectorProps> = ({ outsideClass, contentClass, showSelector, selectedChannels, channelLabel, channelRestrictions }) => {
-
     const ref = useRef<HTMLDivElement>(null);
+    const len = selectedChannels.length;
+    const showBaseChannelSelector = len < 2;
     const wrappedOnClick = () => {
         if (!ref.current) {
             return;
@@ -21,19 +22,21 @@ const BaseMultiChannelSelector: React.FC<BaseMultiChannelSelectorProps> = ({ out
     }
 
     useEffect(() => {
+        if (showBaseChannelSelector) {
+            return;
+        }
+
         const handler = (e: MouseEvent) => {
             e.stopPropagation();
         };
         const current = ref.current;
         ref.current?.addEventListener("mousedown", handler);
-        return ()=> {
+        return () => {
             current?.removeEventListener("mousedown", handler);
         }
-    });
+    }, [ref, showBaseChannelSelector]);
 
-    const len = selectedChannels.length;
-
-    if (len < 2) {
+    if (showBaseChannelSelector) {
         return <BaseChannelSelector
             showSelector={showSelector}
             selectedChannel={selectedChannels[0]?.name}

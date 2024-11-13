@@ -121,6 +121,11 @@ export interface TabChannelSelectorProps {
 export interface TabMultiChannelSelectorProps {
     showSelector: (bounds: Bounds) => void;
     selectedChannels: { name: string; color: string }[];
+    channelRestrictions: {
+        read: boolean,
+        write: boolean
+    };
+    channelLabel: string;
 }
 
 export interface FlatCaptionEditorProps {

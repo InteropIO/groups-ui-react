@@ -1,7 +1,7 @@
 import React from "react";
 import { TabElementProps } from "../../types/api";
 import TabChannelSelector from "../channelSelector/TabChannelSelector";
-import TabMultiChannelSelector from "../channelSelector/multi/FlatMultiChannelSelector";
+import TabMultiChannelSelector from "../channelSelector/multi/TabMultiChannelSelector";
 import TabCaption from "./TabCaption";
 import TabCaptionEditor from "./TabCaptionEditor";
 import TabCloseButton from "./TabCloseButton";
