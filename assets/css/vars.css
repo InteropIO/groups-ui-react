@@ -51,11 +51,12 @@
     --t42-tab-bar-selected-tab-hover-background: var(--window-tabs-background-active);
     --t42-tab-bar-fade-size: 24px;
 
-    --t42-tab-bar-tab-height: 28px; /* for 10.0 - var(--spacing-24); */
+    --t42-tab-bar-tab-height: 28px; /* for 10.0 - var(--spacing-24); */ 
     --t42-tab-bar-tab-min-width: 48px;
+    --t42-tab-bar-tab-overflowable-min-width: 96px;
     --t42-tab-bar-tab-width: 150px;
     --t42-tab-bar-tab-padding: 0 var(--spacing-8);
-    --t42-tab-bar-tab-margin: var(--spacing-4) var(--spacing-2) 0 0; /* for 10.0 - 0 var(--spacing-2) 0 0; */
+    --t42-tab-bar-tab-margin: var(--spacing-4) var(--spacing-2) 0 0; /* for 10.0 - 0 var(--spacing-2) 0 0; */ 
     --t42-tab-bar-tab-text: var(--tabs-color-default);
     --t42-tab-bar-tab-text-hover: var(--tabs-color-hover);
     --t42-tab-bar-tab-separator-size: 1px;
@@ -68,7 +69,7 @@
     --t42-tab-bar-tab-background: transparent;
     --t42-tab-bar-tab-hover-background: transparent; /* non used */
     --t42-tab-bar-tab-flashing-color: var(--io-neutrals-0);
-    --t42-tab-bar-tab-flashing-background:var(--severity-high); /* color-mix(in srgb, var(--severity-high) 65%, transparent); */
+    --t42-tab-bar-tab-flashing-background:var(--severity-high); /* color-mix(in srgb, var(--severity-high) 65%, transparent); */ 
 
     --t42-tab-bar-tab-channels-border-radius: var(--base-radius-default);
     --t42-tab-bar-tab-channels-width: var(--spacing-16);
@@ -77,6 +78,10 @@
     --t42-tab-bar-tab-channels-content-size: 0;
     --t42-tab-bar-tab-channels-content-margin: 0;
     --t42-tab-bar-tab-caption-margin: 0;
+
+    --t42-channel-selector-direction-width: var(--spacing-24);
+    --t42-channel-selector-direction-height: var(--spacing-16); 
+    --t42-channel-selector-direction-gap: var(--spacing-1);
 
     --t42-tab-bar-tab-close-button-size: 6px;
     --t42-tab-bar-tab-close-button-padding: 3px;
@@ -90,10 +95,6 @@
     --t42-approaching-edge-size: 4px;
 
     --t42-channels-fill-color: var(--tabs-color-active);
-
-    --t42-channel-selector-direction-width: var(--spacing-24);
-    --t42-channel-selector-direction-height: var(--spacing-16); 
-    --t42-channel-selector-direction-gap: var(--spacing-1);
 
     --t42-caption-separator-color: var(--tabs-border);
     --t42-caption-text-hover-color: var(--tabs-color-hover);
@@ -111,7 +112,7 @@
     --t42-hover-sizing-border-group-color: hsl(var(--io-highlight-Interactive));
     --t42-active-sizing-border-group-color: hsl(var(--io-interactive-primary));
 
-
+   
     --t42-wg-tab-over-max-height: 100vh;
     --t42-wg-tab-over-max-width: 200px;
     --t42-wg-tab-over-min-width: 200px;
