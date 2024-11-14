@@ -823,7 +823,7 @@ input {
 }
 
 .t42-tabs-overflow .t42-tab {
- min-width: var(--t42-tab-bar-tab-overflowable-min-width);   
+    min-width: var(--t42-tab-bar-tab-overflowable-min-width);   
 }
 
 .t42-tabs-overflow .t42-tabs {

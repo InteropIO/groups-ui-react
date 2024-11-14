@@ -51,12 +51,12 @@
     --t42-tab-bar-selected-tab-hover-background: var(--window-tabs-background-active);
     --t42-tab-bar-fade-size: 24px;
 
-    --t42-tab-bar-tab-height: 28px; /* for 10.0 - var(--spacing-24); */ 
+    --t42-tab-bar-tab-height: 28px; /* for 10.0 - var(--spacing-24); */
     --t42-tab-bar-tab-min-width: 48px;
     --t42-tab-bar-tab-overflowable-min-width: 96px;
     --t42-tab-bar-tab-width: 150px;
     --t42-tab-bar-tab-padding: 0 var(--spacing-8);
-    --t42-tab-bar-tab-margin: var(--spacing-4) var(--spacing-2) 0 0; /* for 10.0 - 0 var(--spacing-2) 0 0; */ 
+    --t42-tab-bar-tab-margin: var(--spacing-4) var(--spacing-2) 0 0; /* for 10.0 - 0 var(--spacing-2) 0 0; */
     --t42-tab-bar-tab-text: var(--tabs-color-default);
     --t42-tab-bar-tab-text-hover: var(--tabs-color-hover);
     --t42-tab-bar-tab-separator-size: 1px;
@@ -69,7 +69,7 @@
     --t42-tab-bar-tab-background: transparent;
     --t42-tab-bar-tab-hover-background: transparent; /* non used */
     --t42-tab-bar-tab-flashing-color: var(--io-neutrals-0);
-    --t42-tab-bar-tab-flashing-background:var(--severity-high); /* color-mix(in srgb, var(--severity-high) 65%, transparent); */ 
+    --t42-tab-bar-tab-flashing-background:var(--severity-high); /* color-mix(in srgb, var(--severity-high) 65%, transparent); */
 
     --t42-tab-bar-tab-channels-border-radius: var(--base-radius-default);
     --t42-tab-bar-tab-channels-width: var(--spacing-16);
@@ -112,7 +112,7 @@
     --t42-hover-sizing-border-group-color: hsl(var(--io-highlight-Interactive));
     --t42-active-sizing-border-group-color: hsl(var(--io-interactive-primary));
 
-   
+
     --t42-wg-tab-over-max-height: 100vh;
     --t42-wg-tab-over-max-width: 200px;
     --t42-wg-tab-over-min-width: 200px;
@@ -135,6 +135,7 @@
     --t42-wg-pin-tab-width: 120px;
     --t42-wg-pin-tab-margin: var(--spacing-4);
     --t42-wg-pin-tab-height: var(--spacing-24);
+
     --t42-multi-channel-selector-2-color-1: var(--channels-blue);
     --t42-multi-channel-selector-2-color-2: var(--channels-red);
     --t42-multi-channel-selector-2-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' viewBox='0 0 16 16'%3E%3Crect width='7.5' height='16'/%3E%3Crect x='8.5' width='7.5' height='16'/%3E%3C/svg%3E");
@@ -147,6 +148,7 @@
     --t42-multi-channel-selector-4-color-3: var(--channels-orange);
     --t42-multi-channel-selector-4-color-4: var(--channels-magenta);
     --t42-multi-channel-selector-4-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' viewBox='0 0 16 16'%3E%3Crect width='7.5' height='7.5'/%3E%3Crect x='8.5' width='7.5' height='7.5'/%3E%3Crect x='8.5' y='8.5' width='7.5' height='7.5'/%3E%3Crect y='8.5' width='7.5' height='7.5'/%3E%3C/svg%3E");
+
 }
 
 /* Scroll vars override */
