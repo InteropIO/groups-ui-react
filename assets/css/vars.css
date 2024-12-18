@@ -53,6 +53,7 @@
 
     --t42-tab-bar-tab-height: 28px; /* for 10.0 - var(--spacing-24); */
     --t42-tab-bar-tab-min-width: 48px;
+    --t42-tab-bar-tab-overflowable-min-width: 96px;
     --t42-tab-bar-tab-width: 150px;
     --t42-tab-bar-tab-padding: 0 var(--spacing-8);
     --t42-tab-bar-tab-margin: var(--spacing-4) var(--spacing-2) 0 0; /* for 10.0 - 0 var(--spacing-2) 0 0; */
@@ -78,6 +79,10 @@
     --t42-tab-bar-tab-channels-content-margin: 0;
     --t42-tab-bar-tab-caption-margin: 0;
 
+    --t42-channel-selector-direction-width: var(--spacing-24);
+    --t42-channel-selector-direction-height: var(--spacing-16); 
+    --t42-channel-selector-direction-gap: var(--spacing-1);
+
     --t42-tab-bar-tab-close-button-size: 6px;
     --t42-tab-bar-tab-close-button-padding: 3px;
     --t42-tab-bar-tab-close-button-margin: 0 0 0 var(--spacing-8);
@@ -90,10 +95,6 @@
     --t42-approaching-edge-size: 4px;
 
     --t42-channels-fill-color: var(--tabs-color-active);
-
-    --t42-channel-selector-direction-width: var(--spacing-24);
-    --t42-channel-selector-direction-height: var(--spacing-16); 
-    --t42-channel-selector-direction-gap: var(--spacing-1);
 
     --t42-caption-separator-color: var(--tabs-border);
     --t42-caption-text-hover-color: var(--tabs-color-hover);
@@ -134,6 +135,7 @@
     --t42-wg-pin-tab-width: 120px;
     --t42-wg-pin-tab-margin: var(--spacing-4);
     --t42-wg-pin-tab-height: var(--spacing-24);
+
     --t42-multi-channel-selector-2-color-1: var(--channels-blue);
     --t42-multi-channel-selector-2-color-2: var(--channels-red);
     --t42-multi-channel-selector-2-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' viewBox='0 0 16 16'%3E%3Crect width='7.5' height='16'/%3E%3Crect x='8.5' width='7.5' height='16'/%3E%3C/svg%3E");
@@ -146,6 +148,7 @@
     --t42-multi-channel-selector-4-color-3: var(--channels-orange);
     --t42-multi-channel-selector-4-color-4: var(--channels-magenta);
     --t42-multi-channel-selector-4-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' viewBox='0 0 16 16'%3E%3Crect width='7.5' height='7.5'/%3E%3Crect x='8.5' width='7.5' height='7.5'/%3E%3Crect x='8.5' y='8.5' width='7.5' height='7.5'/%3E%3Crect y='8.5' width='7.5' height='7.5'/%3E%3C/svg%3E");
+
 }
 
 /* Scroll vars override */
