@@ -1,3 +1,11 @@
+2.6.0
+chore: official 9.7 support
+feat: overflow tabs dynamic width
+2.5.0
+chore: official 9.6 support
+feat: multi channels support
+2.4.1
+feat: directional channels improvement 
 2.4.0
 chore: official 9.5 support
 2.3.1
