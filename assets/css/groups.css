@@ -5,7 +5,13 @@
     box-sizing: border-box;
     transition-timing-function: cubic-bezier(0.45, 0, 0.15, 1);
     transition-duration: 240ms;
-    transition-property: background-color, color;
+    transition-property: background-color;
+}
+
+*::before,
+*::after {
+    transition-timing-function: cubic-bezier(0.45, 0, 0.15, 1);
+    transition-duration: 240ms;
 }
 
 body {
@@ -52,6 +58,8 @@ input {
 
 .t42-internal-caption-bar {
     flex-direction: row;
+    align-items: center;
+    width: 100%;
 }
 
 .t42-react-caption-bar {
@@ -109,7 +117,9 @@ input {
     display: flex;
     flex-grow: 1;
     align-items: center;
+    height: 100%;
     min-width: var(--t42-move-area-min-width);
+    -webkit-app-region: drag;
 }
 
 .t42-buttons-container {
@@ -196,6 +206,14 @@ input {
     color: var(--t42-caption-bar-button-close-hover-text);
 }
 
+.t42-standard-button-collapse::before {
+    content: "\e918";
+}
+
+.t42-standard-button-expand::before {
+    content: "\e90e";
+}
+
 .t42-standard-button-minimize::before {
     content: "\e904";
 }
@@ -273,6 +291,10 @@ input {
 .t42-frame-channel-selector-content::before {
     font-size: var(--spacing-14);
     content: "\e902";
+}
+
+.t42-group-caption-bar-container {
+    display: flex;
 }
 
 .t42-group-caption-bar {
@@ -552,8 +574,7 @@ input {
     height: calc(var(--t42-tab-bar-tab-close-button-size) + var(--t42-tab-bar-tab-close-button-padding) * 2);
     border-radius: 50%;
     background-color: var(--t42-tab-bar-tab-close-button-background);
-    transition-duration: 80ms;
-    transition-property: background-color, fill, color;
+    transition-property: fill, color;
 }
 
 .t42-tab-close-button-content svg {
@@ -568,6 +589,10 @@ input {
 .t42-tab-close-button-content:hover {
     color: var(--t42-tab-bar-tab-text-hover);
     background-color: var(--t42-tab-bar-tab-close-button-bg-hover);
+}
+
+.t42-tab-close-button-content:hover::before {
+    color: var(--t42-tab-bar-tab-text-hover);
 }
 
 .t42-tab-close-button-content:hover .t42-standard-button-image {
@@ -604,24 +629,28 @@ input {
     fill: var(--t42-tab-bar-selected-tab-text);
 }
 
-.t42-channel-selector-content-light::before {
-    color: hsl(var(--io-white));
-    transition-property: color;
-}
-
-.t42-channel-selector-content-dark::before {
-    color: hsl(var(--io-black));
-    transition-property: color;
-}
-
 .t42-channel-selector-direction {
-    width: var(--t42-channel-selector-direction-width);
+    width: auto;
+    min-width: var(--t42-tab-bar-tab-channels-width);
     height: var(--t42-channel-selector-direction-height);
     gap: var(--t42-channel-selector-direction-gap);
 }
 
 .t42-channel-selector-direction .icon {
     gap: var(--t42-channel-selector-direction-gap);
+    width: var(--t42-channel-selector-direction-width);
+}
+
+.t42-channel-selector-content-light,
+.t42-channel-selector-content-light::before,
+.t42-channel-selector-content-light i::before {
+    color: hsl(var(--io-white));
+}
+
+.t42-channel-selector-content-dark,
+.t42-channel-selector-content-dark::before,
+.t42-channel-selector-content-dark i::before {
+    color: hsl(var(--io-black));
 }
 
 @keyframes approaching-edge-animation {
@@ -679,6 +708,7 @@ input {
 
 .t42-sizing-border-group:hover {
     background-color: var(--t42-hover-sizing-border-group-color);
+    z-index: 150;
 }
 
 .t42-active-sizing-border-group {
@@ -732,6 +762,11 @@ input {
     75% {
         clip: rect(0, 25vh, 25vh, calc(25vh - 2px));
     }
+}
+
+.loader-container {
+    display: flex;
+    flex-grow: 1;
 }
 
 .loader-wrapper {
@@ -799,8 +834,7 @@ input {
 
 @container normal-tabs (max-width: 50px) {
     .t42-tab-channel-selector {
-        --t42-tab-bar-tab-channels-height:0;
-        --t42-tab-bar-tab-channels-width: 0;
+        --t42-tab-bar-tab-channels-size:0;
         --t42-tab-bar-tab-channels-margin: 0;
     }
 }
@@ -823,7 +857,7 @@ input {
 }
 
 .t42-tabs-overflow .t42-tab {
-    min-width: var(--t42-tab-bar-tab-overflowable-min-width);   
+    min-width: var(--t42-tab-bar-tab-overflowable-min-width);
 }
 
 .t42-tabs-overflow .t42-tabs {
