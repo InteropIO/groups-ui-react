@@ -604,24 +604,28 @@ input {
     fill: var(--t42-tab-bar-selected-tab-text);
 }
 
-.t42-channel-selector-content-light::before {
-    color: hsl(var(--io-white));
-    transition-property: color;
-}
-
-.t42-channel-selector-content-dark::before {
-    color: hsl(var(--io-black));
-    transition-property: color;
-}
-
 .t42-channel-selector-direction {
-    width: var(--t42-channel-selector-direction-width);
+    width: auto;
+    min-width: var(--t42-tab-bar-tab-channels-width);
     height: var(--t42-channel-selector-direction-height);
     gap: var(--t42-channel-selector-direction-gap);
 }
 
 .t42-channel-selector-direction .icon {
     gap: var(--t42-channel-selector-direction-gap);
+    width: var(--t42-channel-selector-direction-width);
+}
+
+.t42-channel-selector-content-light,
+.t42-channel-selector-content-light::before,
+.t42-channel-selector-content-light i::before {
+    color: hsl(var(--io-white));
+}
+
+.t42-channel-selector-content-dark,
+.t42-channel-selector-content-dark::before,
+.t42-channel-selector-content-dark i::before {
+    color: hsl(var(--io-black));
 }
 
 @keyframes approaching-edge-animation {
