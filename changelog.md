@@ -1,3 +1,5 @@
+2.6.2
+feat: universal mode styles
 2.6.0
 chore: official 9.7 support
 feat: overflow tabs dynamic width
