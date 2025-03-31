@@ -24,3 +24,23 @@ export function IsBlackReadable(color: string) {
     }
     return false;
 }
+
+export function getChannelDirection(channelRestrictions: { read: boolean, write: boolean }): string {
+    if (!channelRestrictions) {
+        return "";
+    }
+    if (typeof channelRestrictions.read === "boolean" && typeof channelRestrictions.write === "boolean") {
+        if (channelRestrictions.read && channelRestrictions.write) {
+            return "";
+        }
+        if (channelRestrictions.read) {
+            return "subscribe";
+        }
+        if (channelRestrictions.write) {
+            return "publish"
+        }
+        return "";
+    } else {
+        return "";
+    }
+};

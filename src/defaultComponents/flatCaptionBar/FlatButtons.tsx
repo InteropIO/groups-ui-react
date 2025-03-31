@@ -3,6 +3,7 @@ import { FlatButtonsProps } from "../../types/defaultComponents";
 import CloseButton from "../buttons/CloseButton";
 import ExtractButton from "../buttons/ExtractButton";
 import FeedbackButton from "../buttons/FeedbackButton";
+import CloneButton from "../buttons/CloneButton";
 import StickyButton from "../buttons/StickyButton";
 import LockButton from "../buttons/LockButtons";
 import MaximizeButton from "../buttons/MaximizeButton";
@@ -11,7 +12,7 @@ import RestoreButton from "../buttons/RestoreButton";
 import UnlockButton from "../buttons/UnlockButton";
 import CustomButton from "../buttons/CustomButton";
 
-const FlatButtons: React.FC<FlatButtonsProps> = ({ extract, minimize, maximize, restore, close, lock, unlock, feedback, sticky, customButtons }) => {
+const FlatButtons: React.FC<FlatButtonsProps> = ({ extract, minimize, maximize, restore, close, lock, unlock, feedback, clone, sticky, customButtons }) => {
     return <div className="t42-buttons-container t42-frame-caption-bar-element">
         <ul className="t42-buttons t42-tab-bar-element">
             {
@@ -22,6 +23,7 @@ const FlatButtons: React.FC<FlatButtonsProps> = ({ extract, minimize, maximize, 
         </ul>
         <ul className="t42-buttons t42-frame-caption-bar-element">
             {feedback?.visible && <FeedbackButton {...feedback} />}
+            {clone?.visible && <CloneButton {...clone} />}
             {sticky?.visible && <StickyButton {...sticky} />}
             {extract?.visible && <ExtractButton {...extract} />}
             {lock?.visible && <LockButton {...lock} />}

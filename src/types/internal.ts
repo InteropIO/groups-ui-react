@@ -47,7 +47,9 @@ export interface GroupWrapperProps {
 	onCreateAfterTabsComponentRequested?: (options: CreateFrameElementRequestOptions) => void;
 	onUpdateAfterTabsComponentRequested?: (options: CreateFrameElementRequestOptions) => void;
 
-	onCreateTabHeaderButtonsRequested?: (options: CreateTabHeaderButtonsOptions) => void;
+	onCreateTabHeaderButtonsRequested?: (options: CreateButtonsOptions) => void;
+
+	onCreateTabOverflowPopupRequested?: (options: CreateTabOverflowPopupRequestOptions) => void;
 
 	onCreateBelowTabsRequested?: (options: CreateFrameElementRequestOptions) => void;
 	onUpdateBelowTabsRequested?: (options: CreateFrameElementRequestOptions) => void;
@@ -55,6 +57,9 @@ export interface GroupWrapperProps {
 	onUpdateFrameRequested?: (options: UpdateFrameRequestOptions) => void;
 	onUpdateStandardButtonRequested?: (options: UpdateStandardButtonRequestOptions) => void;
 	onUpdateCustomButtonsRequested?: (options: UpdateCustomButtonsRequestOptions) => void;
+
+	onCreateHtmlButtonsRequested?: (options: CreateButtonsOptions) => void;
+	onRemoveHtmlButtonsRequested?: (options: RemoveRequestOptions) => void;
 
 	onRemoveFrameCaptionBarRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveFrameWindowOverlayRequested?: (options: RemoveRequestOptions) => void;
@@ -67,6 +72,7 @@ export interface GroupWrapperProps {
 	onRemoveTabRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveAfterTabsComponentRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveTabHeaderButtonsRequested?: (options: RemoveRequestOptions) => void;
+	onRemoveTabOverflowPopupRequested?: (options: RemoveRequestOptions) => void;
 	onRemoveBelowTabsRequested?: (options: RemoveRequestOptions) => void;
 
 	onShowCaptionEditorRequested?: (targetType: TargetType, targetId: string, text: string) => void;
@@ -124,60 +130,30 @@ export interface UpdateFrameCaptionBarRequestOptions extends BaseElementOptions 
 
 }
 
-export interface CreateFrameCaptionBarRequestOptions extends CreateFrameElementRequestOptions {
+export interface CreateFrameCaptionBarRequestOptions extends CreateButtonsOptions {
 	caption: string;
 	moveAreaId: string;
 	channelSelectorVisible: boolean;
 	selectedChannel: string;
 	selectedChannelColor: string;
-	feedback: {
-		tooltip: string;
-		visible: boolean;
-	};
-	sticky: {
-		tooltip: string;
-		visible: boolean;
-		isPressed: boolean;
-	};
-	extract: {
-		tooltip: string;
-		visible: boolean;
-	};
-	lock: {
-		tooltip: string;
-		visible: boolean;
-	};
-	unlock: {
-		tooltip: string;
-		visible: boolean;
-	};
-	minimize: {
-		tooltip: string;
-		visible: boolean;
-	};
-	restore: {
-		tooltip: string;
-		visible: boolean;
-	};
-	maximize: {
-		tooltip: string;
-		visible: boolean;
-	};
-	close: {
-		tooltip: string;
-		visible: boolean;
-	};
 	captionEditor: {
 		show: boolean;
 		text?: string;
 	};
-	customButtons: UpdateCustomButtonOptions[]
+	channelsMode: "single" | "multi";
+	selectedChannels: { name: string; color: string }[];
+	channelRestrictions: {
+		read: boolean,
+		write: boolean
+	};
+	channelLabel: string;
 }
 
 export interface CreateTabRequestOptions extends CreateElementRequestOptions {
 	caption: string;
 	selected: boolean;
 	flashing: boolean;
+	pinned: boolean;
 	channelSelectorVisible: boolean;
 	selectedChannel: string;
 	selectedChannelColor: string;
@@ -185,6 +161,13 @@ export interface CreateTabRequestOptions extends CreateElementRequestOptions {
 		show: boolean;
 		text?: string;
 	};
+	channelsMode: "single" | "multi";
+	selectedChannels: { name: string; color: string }[];
+	channelRestrictions: {
+		read: boolean,
+		write: boolean
+	};
+	channelLabel: string;
 }
 
 export interface UpdateStandardButtonRequestOptions extends CreateElementRequestOptions {
@@ -204,8 +187,16 @@ export interface UpdateCustomButtonOptions {
 	imageData: string;
 }
 
-export interface CreateTabHeaderButtonsOptions extends CreateFrameElementRequestOptions {
+export interface CreateButtonsOptions extends CreateFrameElementRequestOptions {
+	overflow: {
+		tooltip: string;
+		visible: boolean;
+	},
 	feedback: {
+		tooltip: string;
+		visible: boolean;
+	};
+	clone: {
 		tooltip: string;
 		visible: boolean;
 	};
@@ -242,7 +233,9 @@ export interface CreateTabHeaderButtonsOptions extends CreateFrameElementRequest
 		tooltip: string;
 		visible: boolean;
 	};
-	customButtons: UpdateCustomButtonOptions[]
+	customButtons: UpdateCustomButtonOptions[],
+	hiddenTabsToTheLeft: OverflowedTabInfo[];
+	hiddenTabsToTheRight: OverflowedTabInfo[];
 }
 
 export interface RemoveRequestOptions {
@@ -263,21 +256,37 @@ export interface CreateFrameElementRequestOptions extends CreateElementRequestOp
 	selectedWindow: string;
 }
 
+export interface OverflowedTabInfo {
+	title: string;
+	windowId: string;
+}
+
+export interface CreateTabOverflowPopupRequestOptions extends CreateElementRequestOptions {
+	hiddenTabsToTheLeft: OverflowedTabInfo[];
+	hiddenTabsToTheRight: OverflowedTabInfo[];
+}
+
 export interface CreateFrameLoadingAnimationRequestOptions extends CreateFrameElementRequestOptions {
 	show: boolean;
 }
 
-export type UpdateFrameRequestOptions = CreateFrameElementRequestOptions;
+export interface UpdateFrameRequestOptions extends CreateFrameElementRequestOptions {
+	hiddenTabsToTheLeft: OverflowedTabInfo[];
+	hiddenTabsToTheRight: OverflowedTabInfo[];
+}
 
 export enum TargetType {
 	Group = "group",
 	Frame = "frame",
 	TabBar = "tabBar",
-	Tab = "tab"
+	Tab = "tab",
+	HtmlButtons = "html"
 }
 
 export enum StandardButtons {
+	Overflow = "overflow",
 	Feedback = "feedback",
+	Clone = "clone",
 	Sticky = "sticky",
 	Extract = "extract",
 	Lock = "lock",
@@ -301,8 +310,10 @@ export interface ElementCreationWrapperState {
 	beforeTabsZones: { [targetId: string]: CreateFrameElementRequestOptions };
 	tabElements: { [targetId: string]: CreateTabRequestOptions };
 	afterTabsZones: { [targetId: string]: CreateFrameElementRequestOptions };
-	tabHeaderButtons: { [targetId: string]: CreateTabHeaderButtonsOptions };
+	tabHeaderButtons: { [targetId: string]: CreateButtonsOptions };
+	tabOverflowPopups: { [targetId: string]: CreateTabOverflowPopupRequestOptions };
 	belowTabsZones: { [targetId: string]: CreateFrameElementRequestOptions };
+	htmlButtons: { [targetId: string]: CreateButtonsOptions };
 }
 
 export interface ExternalLibraryFactory {
@@ -324,6 +335,12 @@ export interface ExternalLibraryFactory {
 	updateTabHeaderStyles(styles: StylesOptions): void;
 	updateTabMoveAreaStyles(styles: StylesOptions): void;
 	updateFrameStyles(styles: StylesOptions): void;
+
+	selectTab(windowId: string): void;
+	openTabOverflowPopup(frameId: string, location: Location): void
+
+	addTabContainerClass(windowId: string, className: string): void;
+	removeTabContainerClass(windowId: string, className: string): void;
 }
 
 export interface WebGroupsManager {
@@ -342,7 +359,7 @@ export interface Size {
 	height: number;
 }
 
-export interface Bounds extends Size {
+export interface Location {
 	left: number;
 	top: number;
 }
@@ -350,4 +367,7 @@ export interface Bounds extends Size {
 export interface StylesOptions {
 	css?: Partial<NonMethods<CSSStyleDeclaration>>;
 	classes?: string[]
+}
+
+export interface Bounds extends Size, Location {
 }

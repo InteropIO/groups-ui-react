@@ -1,5 +1,5 @@
-import React, { CSSProperties } from "react";
-import { Bounds, ButtonProps, StylesOptions, ToggleButtonProps } from "./internal";
+import React from "react";
+import { Bounds, ButtonProps, Location, OverflowedTabInfo, StylesOptions, ToggleButtonProps } from "./internal";
 import { CustomButtonProps } from "./defaultComponents";
 
 export interface ChannelProps {
@@ -7,6 +7,13 @@ export interface ChannelProps {
     selectedChannel: string;
     showSelector: (bounds: Bounds) => void;
     selectedChannelColor: string;
+    channelsMode: "single" | "multi";
+    selectedChannels: { name: string, color: string }[];
+    channelRestrictions: {
+        read: boolean,
+        write: boolean
+    };
+    channelLabel: string;
 }
 
 export interface FrameWindowOverlayProps {
@@ -50,6 +57,14 @@ export interface BelowTabsProps {
     selectedWindow: string;
 }
 
+export interface TabOverflowPopupProps {
+    frameId: string;
+    select: (windowId: string) => void;
+    close: (windowId: string) => void;
+    hiddenTabsToTheLeft: OverflowedTabInfo[];
+    hiddenTabsToTheRight: OverflowedTabInfo[];
+}
+
 export interface CaptionEditorProps {
     show: boolean;
     text?: string;
@@ -83,6 +98,7 @@ export interface FlatCaptionBarProps {
     moveAreaId: string;
     caption: string;
     feedback?: ButtonProps;
+    clone?: ButtonProps;
     sticky?: ToggleButtonProps;
     extract?: ButtonProps;
     lock?: ButtonProps;
@@ -104,19 +120,26 @@ export interface TabElementProps {
     caption: string;
     selected: boolean;
     flashing: boolean;
+    pinned: boolean;
     close: () => void;
     channels: ChannelProps;
     notifyCaptionBoundsChanged: (bounds: Bounds) => void;
     captionEditor: CaptionEditorProps;
+    addContainerClass: (className: string) => void;
+    removeContainerClass: (className: string) => void;
 }
 
 export interface AfterTabsProps {
     frameId: string;
     selectedWindow: string;
+    hiddenTabsToTheLeft?: OverflowedTabInfo[];
+    hiddenTabsToTheRight?: OverflowedTabInfo[];
 }
 
-export interface TabHeaderButtonsProps {
+interface FrameButtonsProps {
+    overflow?: ButtonProps;
     feedback?: ButtonProps;
+    clone?: ButtonProps;
     sticky?: ToggleButtonProps;
     extract?: ButtonProps;
     lock?: ButtonProps;
@@ -128,6 +151,14 @@ export interface TabHeaderButtonsProps {
     customButtons: CustomButtonProps[];
     frameId: string;
     selectedWindow: string;
+}
+
+export interface TabHeaderButtonsProps extends FrameButtonsProps {
+    hiddenTabsToTheLeft: OverflowedTabInfo[];
+    hiddenTabsToTheRight: OverflowedTabInfo[];
+}
+
+export interface HtmlButtonsProps extends FrameButtonsProps {
 }
 
 export interface GroupProps {
@@ -153,6 +184,10 @@ export interface GroupProps {
             After?: React.ComponentType<AfterTabsProps>;
             Buttons?: React.ComponentType<TabHeaderButtonsProps>;
             Below?: React.ComponentType<BelowTabsProps>;
+            OverflowPopup?: React.ComponentType<TabOverflowPopupProps>;
+        };
+        html?: {
+            Buttons?: React.ComponentType<HtmlButtonsProps>;
         }
     },
     styles?: {
@@ -172,4 +207,9 @@ export interface MoveAreaProps {
 
 export interface GroupComponentVisibilityState {
     groupCaptionBarVisible?: boolean;
+}
+
+export interface OpenTabOverflowPopupOptions {
+    frameId: string;
+    location: Location;
 }
