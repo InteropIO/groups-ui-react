@@ -1,5 +1,5 @@
 import React from "react";
-import { Bounds, ButtonProps, ToggleButtonProps } from "./internal";
+import { Bounds, ButtonProps, StylesOptions, ToggleButtonProps } from "./internal";
 
 export interface ChannelProps {
     visible: boolean;
@@ -150,6 +150,15 @@ export interface GroupProps {
             After?: React.ComponentType<AfterTabsProps>;
             Buttons?: React.ComponentType<TabHeaderButtonsProps>;
             Below?: React.ComponentType<BelowTabsProps>;
+        }
+    },
+    styles?: {
+        tabs?: {
+            header?: StylesOptions;
+            moveArea?: StylesOptions;
+        },
+        frame?: {
+            element?: StylesOptions;
         }
     }
 }

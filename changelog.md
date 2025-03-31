@@ -1,3 +1,5 @@
+1.4.3
+fix: resolved issues around the css-in-js capabilities
 1.4.2
 chore: release process issue
 1.4.1
