@@ -37,7 +37,13 @@ class GroupWrapper extends React.Component<GroupWrapperProps> {
             createTabBarButtonsContainerElement: this.props.onCreateTabHeaderButtonsRequested,
             createBelowTabs: this.props.onCreateBelowTabsRequested,
             updateBelowTabs: this.props.onUpdateBelowTabsRequested,
+            
+            createHtmlButtonsContainerElement: this.props.onCreateHtmlButtonsRequested,
+            destroyHtmlButtonsContainerElement: this.props.onRemoveHtmlButtonsRequested,
 
+            createTabOverflowPopup:this.props.onCreateTabOverflowPopupRequested,
+            destroyTabOverflowPopup: this.props.onRemoveTabOverflowPopupRequested,
+            
             updateFrame: this.props.onUpdateFrameRequested,
             updateStandardButton: this.props.onUpdateStandardButtonRequested,
             updateCustomButtons: this.props.onUpdateCustomButtonsRequested,
@@ -61,6 +67,23 @@ class GroupWrapper extends React.Component<GroupWrapperProps> {
         };
 
         webGroupsManager.init(undefined, componentFactory);
+        webGroupsManager.updateTabHeaderStyles(this.props.styles?.tabs?.header ?? {});
+        webGroupsManager.updateTabMoveAreaStyles(this.props.styles?.tabs?.moveArea ?? {});
+        webGroupsManager.updateFrameStyles(this.props.styles?.frame?.element ?? {});
+    }
+
+    componentDidUpdate(prevProps: Readonly<GroupWrapperProps>, prevState: Readonly<{}>, snapshot?: any): void {
+        if (this.props.styles?.tabs?.header !== prevProps.styles?.tabs?.header) {
+            webGroupsManager.updateTabHeaderStyles(this.props.styles?.tabs?.header ?? {});
+        }
+
+        if (this.props.styles?.tabs?.moveArea !== prevProps.styles?.tabs?.moveArea) {
+            webGroupsManager.updateTabMoveAreaStyles(this.props.styles?.tabs?.moveArea ?? {});
+        }
+
+        if (this.props.styles?.frame?.element !== prevProps.styles?.frame?.element) {
+            webGroupsManager.updateFrameStyles(this.props.styles?.frame?.element ?? {});
+        }
     }
 
     componentWillUnmount() {

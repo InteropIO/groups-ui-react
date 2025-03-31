@@ -22,7 +22,9 @@ import LockButton from "./defaultComponents/buttons/LockButtons";
 import UnlockButton from "./defaultComponents/buttons/UnlockButton";
 import ExtractButton from "./defaultComponents/buttons/ExtractButton";
 import FeedbackButton from "./defaultComponents/buttons/FeedbackButton";
+import CloneButton from "./defaultComponents/buttons/CloneButton";
 import StickyButton from "./defaultComponents/buttons/StickyButton";
+import OverflowButton from "./defaultComponents/buttons/OverflowButton";
 import useIOConnectWindow from "./useIOConnectWindow";
 import CustomButton from "./defaultComponents/buttons/CustomButton";
 import { waitForWindow } from "./utils";
@@ -50,7 +52,8 @@ import {
     TabCloseButtonProps,
     UnlockButtonProps,
     UseCaptionEditorOptions,
-    UseEditableCaptionOptions
+    UseEditableCaptionOptions,
+    OverflowButtonProps
 } from "./types/defaultComponents";
 import {
     AboveTabsProps,
@@ -66,23 +69,28 @@ import {
     GroupComponentVisibilityState,
     GroupOverlayProps,
     GroupProps,
+    HtmlButtonsProps,
     MoveAreaProps,
+    OpenTabOverflowPopupOptions,
     TabElementProps,
     TabHeaderButtonsProps,
+    TabOverflowPopupProps,
     WindowContentOverlayProps,
 } from "./types/api";
 import GroupCaptionEditor from "./defaultComponents/groupCaptionBar/GroupCaptionEditor";
 import FlatCaptionEditor from "./defaultComponents/flatCaptionBar/FlatCaptionEditor";
 import TabCaptionEditor from "./defaultComponents/tabs/TabCaptionEditor";
-import { TargetType } from "./types/internal";
+import { Location, TargetType } from "./types/internal";
 import useCommitTabCaptionEditingRequested from "./defaultComponents/tabs/useCommitTabCaptionEditingRequested";
 import useCommitGroupCaptionEditingRequested from "./defaultComponents/groupCaptionBar/useCommitGroupCaptionEditingRequested";
 import useCommitFlatCaptionEditingRequested from "./defaultComponents/flatCaptionBar/useCommitFlatCaptionEditingRequested";
 import useEditableCaption from "./defaultComponents/captionEditor/useEditableCaption";
 import useCaptionEditor from "./defaultComponents/captionEditor/useCaptionEditor";
 import FrameLoadingAnimation from "./defaultComponents/loadingAnimation/FrameLoadingAnimation";
-
-
+import HtmlButtons from "./defaultComponents/htmlButtonsBar/buttons";
+import TabOverflowPopup from "./defaultComponents/popups/TabOverflowPopup";
+import TabMultiChannelSelector from "./defaultComponents/channelSelector/multi/TabMultiChannelSelector";
+import FlatMultiChannelSelector from "./defaultComponents/channelSelector/multi/FlatMultiChannelSelector";
 
 export {
     GroupCaptionBar,
@@ -95,6 +103,7 @@ export {
     TabCloseButton,
     TabCaptionEditor,
     FeedbackButton,
+    CloneButton,
     StickyButton,
     ExtractButton,
     LockButton,
@@ -112,7 +121,12 @@ export {
     FlatCaptionEditor,
     TabHeaderButtons,
     FrameLoadingAnimation,
+    HtmlButtons,
+    TabOverflowPopup,
+    OverflowButton,
     GroupComponentVisibilityState,
+    TabMultiChannelSelector,
+    FlatMultiChannelSelector,
     useIOConnectWindow,
     useGroupComponentVisibility,
     waitForWindow,
@@ -127,6 +141,7 @@ export const getGroupId: () => string = () => webGroupsManager?.getGroupId();
 export const requestPageFocus: () => void = () => webGroupsManager?.requestPageFocus();
 export const requestFrameFocus: (frameId: string) => void = (frameId) => webGroupsManager?.requestFrameFocus(frameId);
 export const requestGroupFocus: () => void = () => webGroupsManager?.requestGroupFocus();
+export const openTabOverflowPopup: (options: OpenTabOverflowPopupOptions) => void = ({ frameId, location }: OpenTabOverflowPopupOptions) => webGroupsManager.openTabOverflowPopup(frameId, location);
 
 export const onCommitGroupCaptionEditingRequested = (targetId: string, cb: () => void) => webGroupsManager.onCommitCaptionEditingRequested(TargetType.Group, targetId, cb);
 export const onCommitFlatCaptionEditingRequested = (targetId: string, cb: () => void) => webGroupsManager.onCommitCaptionEditingRequested(TargetType.Frame, targetId, cb);
@@ -147,6 +162,7 @@ export {
     TabCloseButtonProps,
     TabHeaderButtonsProps,
     TabCaptionEditorProps,
+    HtmlButtonsProps,
     FlatCaptionBarProps,
     FlatCaptionProps,
     FrameWindowOverlayProps,
@@ -154,6 +170,7 @@ export {
     FlatChannelSelectorProps,
     FlatButtonsProps,
     FlatCaptionEditorProps,
+    OverflowButtonProps,
     StickyButtonProps,
     FeedbackButtonProps,
     ExtractButtonProps,
@@ -172,7 +189,8 @@ export {
     BelowTabsProps,
     BeforeTabsProps,
     AfterTabsProps,
-    WindowContentOverlayProps
+    WindowContentOverlayProps,
+    TabOverflowPopupProps,
 }
 
 export default GroupElementCreationWrapper;

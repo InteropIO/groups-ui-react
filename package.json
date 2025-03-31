@@ -1,6 +1,6 @@
 {
     "name": "@interopio/groups-ui-react",
-    "version": "2.0.0",
+    "version": "2.6.0",
     "description": "React library for building a Web Group App for io.Connect Desktop.",
     "author": {
         "name": "interop.io",
@@ -27,15 +27,17 @@
         "bundle:css": "node ./scripts/bundlecss.js",
         "prepublishOnly": "npm run build",
         "preversion": "npm run build",
-        "version": "npm run build"
+        "version": "npm run build",
+        "clean": "rimraf ./node_modules/react && rimraf ./node_modules/react-dom && rimraf ./node_modules/@interopio/react-hooks"
     },
     "publishConfig": {
         "access": "public"
     },
     "dependencies": {
-        "@interopio/theme": "^1.0.4",
+        "@interopio/theme": "^2.1.32",
         "callback-registry": "^2.7.2",
         "color2k": "^2.0.0",
+        "overlayscrollbars": "^2.8.3",
         "use-sync-external-store": "^1.2.0"
     },
     "peerDependencies": {

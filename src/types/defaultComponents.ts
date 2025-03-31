@@ -26,6 +26,10 @@ export interface StickyButtonProps extends ToggleButtonProps {
 export interface FeedbackButtonProps extends ButtonProps {
 }
 
+export interface CloneButtonProps extends ButtonProps {
+}
+
+
 export interface ExtractButtonProps extends ButtonProps {
 }
 
@@ -38,6 +42,9 @@ export interface UnlockButtonProps extends ButtonProps {
 export interface MinimizeButtonProps extends ButtonProps {
 }
 
+export interface OverflowButtonProps extends ButtonProps {
+}
+
 export interface MaximizeButtonProps extends ButtonProps {
 }
 
@@ -48,8 +55,8 @@ export interface CloseButtonProps extends ButtonProps {
 }
 
 export interface CustomButtonProps extends ButtonProps {
-	imageData: string;
-	buttonId: string;
+    imageData: string;
+    buttonId: string;
 }
 
 export interface BaseButtonProps {
@@ -63,18 +70,62 @@ export interface BaseChannelSelectorProps {
     contentClass: string;
     selectedChannel: string;
     selectedChannelColor: string;
+    direction: string;
+    channelLabel: string;
+}
+
+export interface BaseMultiChannelSelectorProps {
+    showSelector: (bounds: Bounds) => void;
+    outsideClass: string;
+    contentClass: string;
+    selectedChannels: { name: string; color: string }[];
+    channelRestrictions: {
+        read: boolean,
+        write: boolean
+    };
+    channelLabel: string;
 }
 
 export interface FlatChannelSelectorProps {
     showSelector: (bounds: Bounds) => void;
     selectedChannel: string;
     selectedChannelColor: string;
+    channelRestrictions: {
+        read: boolean,
+        write: boolean
+    };
+    channelLabel: string;
+}
+
+export interface FlatMultiChannelSelectorProps {
+    showSelector: (bounds: Bounds) => void;
+    selectedChannels: { name: string; color: string }[];
+    channelRestrictions: {
+        read: boolean,
+        write: boolean
+    };
+    channelLabel: string;
 }
 
 export interface TabChannelSelectorProps {
     showSelector: (bounds: Bounds) => void;
     selectedChannel: string;
     selectedChannelColor: string;
+    channelRestrictions: {
+        read: boolean,
+        write: boolean
+    };
+    channelLabel: string;
+}
+
+export interface TabMultiChannelSelectorProps {
+    showSelector: (bounds: Bounds) => void;
+    selectedChannels: { name: string; color: string }[];
+    channelRestrictions: {
+        read: boolean,
+        write: boolean
+    };
+    channelLabel: string;
 }
 
 export interface FlatCaptionEditorProps {
@@ -93,6 +144,7 @@ export interface FlatMoveAreaProps {
 
 export interface FlatButtonsProps {
     feedback?: ButtonProps;
+    clone?: ButtonProps;
     sticky?: ToggleButtonProps;
     extract?: ButtonProps;
     lock?: ButtonProps;
