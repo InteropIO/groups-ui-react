@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, MouseEvent } from "react";
 import { FlatCaptionProps } from "../../types/defaultComponents";
 import useEditableCaption from "../captionEditor/useEditableCaption";
 import { useDragMove } from "../groupCaptionBar/useDragMove";
@@ -10,7 +10,6 @@ const FlatCaption: React.FC<FlatCaptionProps> = ({
     notifyBoundsChanged,
 }) => {
     const ref = useRef<HTMLDivElement>(null);
-
     useEditableCaption(ref, { notifyBoundsChanged });
 
     const handleDragStart = () => {
@@ -19,9 +18,13 @@ const FlatCaption: React.FC<FlatCaptionProps> = ({
 
     const { startDrag } = useDragMove({ onDragStart: handleDragStart, threshold: 3 });
 
-    const handleMouseDown = (e: React.MouseEvent) => {
+    const handleMouseDown = (e: MouseEvent) => {
         if (e.button !== 0) return;
         startDrag(e);
+    };
+
+    const handleDoubleClick = (e: MouseEvent) => {
+        showCaptionEditor(caption);
         e.stopPropagation();
     };
 
@@ -30,7 +33,7 @@ const FlatCaption: React.FC<FlatCaptionProps> = ({
             ref={ref}
             className="t42-caption t42-title t42-frame-caption-bar-element"
             onMouseDown={handleMouseDown}
-            onDoubleClick={() => showCaptionEditor(caption)}
+            onDoubleClick={handleDoubleClick}
         >
             {caption}
         </div >

@@ -21,13 +21,13 @@ const GroupCaption: React.FC<GroupCaptionProps> = ({
     const handleMouseDown = (e: React.MouseEvent) => {
         if (e.button !== 0) return;
         startDrag(e);
-        e.stopPropagation();
     };
 
     const handleDoubleClick = (e: MouseEvent) => {
         showCaptionEditor(caption);
         e.stopPropagation();
-    }
+    };
+
     return (
         <div
             ref={ref}
