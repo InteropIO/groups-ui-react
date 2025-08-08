@@ -22,6 +22,12 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components, styles 
 
         const { parentElement, ...options } = state.groupCaptionBar;
 
+        const startDragMove = () => {
+            webGroupsManager.startDragMove();
+        }
+        const showCaptionEditor = (text: string) => {
+            webGroupsManager.showCaptionEditor(TargetType.Group, options.targetId, text);
+        }
         const minimize = {
             onClick: () => {
                 webGroupsManager.onMinimizeButtonClick(TargetType.Group, options.targetId);
@@ -76,6 +82,8 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components, styles 
                     restore={restore}
                     close={close}
                     captionEditor={captionEditor}
+                    showCaptionEditor={showCaptionEditor}
+                    startDragMove={startDragMove}
                     notifyCaptionBoundsChanged={notifyCaptionBoundsChanged} />
             </Portal>
         );
@@ -101,6 +109,13 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components, styles 
             }
 
             const { parentElement, ...options } = fcb;
+
+            const startDragMove = () => {
+                webGroupsManager.startDragMove();
+            }
+            const showCaptionEditor = (text: string) => {
+                webGroupsManager.showCaptionEditor(TargetType.Frame, options.targetId, text);
+            };
 
             const feedback = {
                 onClick: () => {
@@ -199,7 +214,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components, styles 
                 channelRestrictions: options.channelRestrictions,
                 channelLabel: options.channelLabel,
                 channelsMode: options.channelsMode ?? "single",
-                selectedChannels : options.selectedChannels
+                selectedChannels: options.selectedChannels
             }
 
             const captionEditor = {
@@ -236,6 +251,8 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components, styles 
                     customButtons={customButtonsProps}
                     frameId={options.targetId}
                     captionEditor={captionEditor}
+                    startDragMove={startDragMove}
+                    showCaptionEditor={showCaptionEditor}
                     notifyCaptionBoundsChanged={notifyCaptionBoundsChanged} />
             </Portal>
         });

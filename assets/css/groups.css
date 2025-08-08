@@ -76,6 +76,7 @@ input {
     white-space: nowrap;
     text-align: left;
     user-select: none;
+    -webkit-app-region: no-drag;
 }
 
 .t42-caption-editor {
@@ -97,6 +98,7 @@ input {
 .t42-caption-editor.t42-frame-caption-bar-element {
     margin: var(--t42-title-margin);
     outline: 0;
+    -webkit-app-region: no-drag;
 }
 
 .t42-title {
@@ -110,6 +112,7 @@ input {
     flex-grow: 1;
     align-items: center;
     min-width: var(--t42-move-area-min-width);
+    -webkit-app-region: drag;
 }
 
 .t42-buttons-container {

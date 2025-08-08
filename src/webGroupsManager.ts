@@ -127,6 +127,22 @@ class WebGroupsManagerDecorator {
         window.webGroupsManager.externalLibraryFactory.onCaptionTextBoundsChanged(targetType, targetId, bounds);
     }
 
+    public startDragMove() {
+        if (typeof window.webGroupsManager.externalLibraryFactory.startDragMove !== "function") {
+            // Handling the case when a new library is used with an older version of io.Connect Desktop
+            return;
+        }
+        window.webGroupsManager.externalLibraryFactory.startDragMove();
+    }
+
+    public showCaptionEditor(targetType: TargetType, targetId: string, text: string): void {
+        if (typeof window.webGroupsManager.externalLibraryFactory.showCaptionEditor !== "function") {
+            // Handling the case when a new library is used with an older version of io.Connect Desktop
+            return;
+        }
+        window.webGroupsManager.externalLibraryFactory.showCaptionEditor(targetType, targetId, text);
+    }
+
     public onCaptionEditorVisibleChanged(targetType: TargetType, targetId: string, visible: boolean): void {
         if (typeof window.webGroupsManager.externalLibraryFactory.onCaptionEditorVisibleChanged !== "function") {
             // Handling the case when a new library is used with an older version of io.Connect Desktop
