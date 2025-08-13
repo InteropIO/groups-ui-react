@@ -1,7 +1,7 @@
 import React, { MouseEvent, useRef } from "react";
 import { GroupCaptionProps } from "../../types/defaultComponents";
 import useEditableCaption from "../captionEditor/useEditableCaption";
-import { useDragMove } from "./useDragMove";
+import { useDragMove } from "../utils/useDragMove";
 
 const GroupCaption: React.FC<GroupCaptionProps> = ({
     showCaptionEditor,

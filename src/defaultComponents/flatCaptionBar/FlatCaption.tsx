@@ -1,7 +1,7 @@
 import React, { useRef, MouseEvent } from "react";
 import { FlatCaptionProps } from "../../types/defaultComponents";
 import useEditableCaption from "../captionEditor/useEditableCaption";
-import { useDragMove } from "../groupCaptionBar/useDragMove";
+import { useDragMove } from "../utils/useDragMove";
 
 const FlatCaption: React.FC<FlatCaptionProps> = ({
     showCaptionEditor,
