@@ -5,18 +5,13 @@ import { useDragMove } from "../groupCaptionBar/useDragMove";
 
 const FlatCaption: React.FC<FlatCaptionProps> = ({
     showCaptionEditor,
-    startDragMove,
     caption,
     notifyBoundsChanged,
 }) => {
     const ref = useRef<HTMLDivElement>(null);
     useEditableCaption(ref, { notifyBoundsChanged });
 
-    const handleDragStart = () => {
-        startDragMove();
-    };
-
-    const { startDrag } = useDragMove({ onDragStart: handleDragStart, threshold: 3 });
+    const { startDrag } = useDragMove();
 
     const handleMouseDown = (e: MouseEvent) => {
         if (e.button !== 0) return;

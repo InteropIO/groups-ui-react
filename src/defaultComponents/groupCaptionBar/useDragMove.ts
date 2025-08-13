@@ -1,14 +1,9 @@
 import { useEffect, useRef } from "react";
+import webGroupsManager from "../../webGroupsManager";
 
-interface DragOptions {
-  onDragStart: (initial: { x: number; y: number }) => void;
-  threshold?: number;
-}
 
-export function useDragMove({ onDragStart, threshold = 0 }: DragOptions) {
+export function useDragMove(threshold = 3) {
   const initialPos = useRef<{ x: number; y: number } | null>(null);
-  const onDragStartRef = useRef(onDragStart);
-  useEffect(() => { onDragStartRef.current = onDragStart; }, [onDragStart]);
 
   const onMoveRef = useRef<(ev: MouseEvent) => void>();
   const onUpRef = useRef<(ev: MouseEvent) => void>();
@@ -27,10 +22,9 @@ export function useDragMove({ onDragStart, threshold = 0 }: DragOptions) {
       const dx = ev.pageX - initialPos.current.x;
       const dy = ev.pageY - initialPos.current.y;
       if (Math.abs(dx) >= threshold || Math.abs(dy) >= threshold) {
-        const startAt = { x: initialPos.current.x, y: initialPos.current.y };
         document.body.style.pointerEvents = "none";
         cleanup();
-        onDragStartRef.current(startAt);
+        webGroupsManager.startDragMove();
       }
 
       ev.stopPropagation();

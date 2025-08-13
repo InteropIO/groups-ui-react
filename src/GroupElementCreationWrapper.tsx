@@ -22,9 +22,6 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components, styles 
 
         const { parentElement, ...options } = state.groupCaptionBar;
 
-        const startDragMove = () => {
-            webGroupsManager.startDragMove();
-        }
         const showCaptionEditor = (text: string) => {
             webGroupsManager.showCaptionEditor(TargetType.Group, options.targetId, text);
         }
@@ -83,7 +80,6 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components, styles 
                     close={close}
                     captionEditor={captionEditor}
                     showCaptionEditor={showCaptionEditor}
-                    startDragMove={startDragMove}
                     notifyCaptionBoundsChanged={notifyCaptionBoundsChanged} />
             </Portal>
         );
@@ -110,9 +106,6 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components, styles 
 
             const { parentElement, ...options } = fcb;
 
-            const startDragMove = () => {
-                webGroupsManager.startDragMove();
-            }
             const showCaptionEditor = (text: string) => {
                 webGroupsManager.showCaptionEditor(TargetType.Frame, options.targetId, text);
             };
@@ -251,7 +244,6 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components, styles 
                     customButtons={customButtonsProps}
                     frameId={options.targetId}
                     captionEditor={captionEditor}
-                    startDragMove={startDragMove}
                     showCaptionEditor={showCaptionEditor}
                     notifyCaptionBoundsChanged={notifyCaptionBoundsChanged} />
             </Portal>

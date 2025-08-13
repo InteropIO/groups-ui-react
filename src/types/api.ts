@@ -82,7 +82,6 @@ export interface GroupCaptionBarProps {
     captionEditor?: CaptionEditorProps;
     visible: boolean;
     showCaptionEditor: (text: string) => void;
-    startDragMove: () => void;
     notifyCaptionBoundsChanged: (bounds: Bounds) => void;
 
     minimize: ButtonProps;
@@ -96,7 +95,6 @@ export interface GroupOverlayProps {
 }
 
 export interface FlatCaptionBarProps {
-    startDragMove: () => void;
     showCaptionEditor: (text: string) => void;
     frameId: string;
     moveAreaId: string;

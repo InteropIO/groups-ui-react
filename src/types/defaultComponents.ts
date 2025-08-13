@@ -158,7 +158,6 @@ export interface FlatButtonsProps {
 
 export interface FlatCaptionProps {
     caption: string;
-    startDragMove: () => void;
     showCaptionEditor: (text: string) => void;
     notifyBoundsChanged?: (bounds: Bounds) => void;
 }
@@ -177,7 +176,6 @@ export interface GroupButtonsProps {
 
 export interface GroupCaptionProps {
     caption: string;
-    startDragMove: () => void;
     showCaptionEditor: (text: string) => void;
     notifyBoundsChanged?: (bounds: Bounds) => void;
 }
