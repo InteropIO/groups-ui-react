@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import webGroupsManager from "../../webGroupsManager";
 
 
-export function useDragMove(threshold = 3) {
+export function useDragMove({ threshold = 3 }) {
   const initialPos = useRef<{ x: number; y: number } | null>(null);
 
   const onMoveRef = useRef<(ev: MouseEvent) => void>();
