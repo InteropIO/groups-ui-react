@@ -1,8 +1,12 @@
 import { useEffect, useRef } from "react";
 import webGroupsManager from "../../webGroupsManager";
 
+export interface DragMoveOptions {
+  threshold?: number; // Minimum movement in pixels to start drag
+}
 
-export function useDragMove({ threshold = 3 }) {
+export function useDragMove(option?: DragMoveOptions) {
+  const { threshold = 3 } = option || {};
   const initialPos = useRef<{ x: number; y: number } | null>(null);
 
   const onMoveRef = useRef<(ev: MouseEvent) => void>();
