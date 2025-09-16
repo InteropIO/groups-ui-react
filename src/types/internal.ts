@@ -328,6 +328,8 @@ export interface ExternalLibraryFactory {
 	onFrameChannelSelectorClick(targetId: string, channelSelectorBounds: Bounds): void;
 	onMoveAreaChanged(targetType: TargetType, targetId: string): void;
 	onCaptionTextBoundsChanged(targetType: TargetType, targetId: string, bounds: Bounds): void;
+	showCaptionEditor(targetType: TargetType, targetId: string, text: string): void;
+	startDragMove(): void;
 	onCaptionEditorVisibleChanged(targetType: TargetType, targetId: string, visible: boolean): void;
 	onCaptionEditorBoundsChanged(targetType: TargetType, targetId: string, bounds: Bounds): void;
 	commitCaptionEditing(targetType: TargetType, targetId: string, text: string): void;

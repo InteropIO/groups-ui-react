@@ -158,6 +158,7 @@ export interface FlatButtonsProps {
 
 export interface FlatCaptionProps {
     caption: string;
+    showCaptionEditor: (text: string) => void;
     notifyBoundsChanged?: (bounds: Bounds) => void;
 }
 
@@ -175,6 +176,7 @@ export interface GroupButtonsProps {
 
 export interface GroupCaptionProps {
     caption: string;
+    showCaptionEditor: (text: string) => void;
     notifyBoundsChanged?: (bounds: Bounds) => void;
 }
 

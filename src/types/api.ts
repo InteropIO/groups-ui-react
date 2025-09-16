@@ -80,7 +80,8 @@ export interface GroupCaptionBarProps {
     targetId: string;
     caption: string;
     captionEditor?: CaptionEditorProps;
-    visible: boolean,
+    visible: boolean;
+    showCaptionEditor: (text: string) => void;
     notifyCaptionBoundsChanged: (bounds: Bounds) => void;
 
     minimize: ButtonProps;
@@ -94,6 +95,7 @@ export interface GroupOverlayProps {
 }
 
 export interface FlatCaptionBarProps {
+    showCaptionEditor: (text: string) => void;
     frameId: string;
     moveAreaId: string;
     caption: string;
