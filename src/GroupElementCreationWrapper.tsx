@@ -9,7 +9,8 @@ import webGroupsManager from "./webGroupsManager";
 import webGroupsStore from "./webGroupsStore";
 import FrameLoadingAnimation from "./defaultComponents/loadingAnimation/FrameLoadingAnimation";
 
-const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
+const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components, styles }) => {
+
     const state = useSyncExternalStore<ElementCreationWrapperState>(webGroupsStore.subscribe, webGroupsStore.getSnapshot);
     const LoadingAnimation = components?.frame?.LoadingAnimation ?? FrameLoadingAnimation;
 
@@ -759,6 +760,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components }) => {
             onHideCaptionEditorRequested={webGroupsStore.onHideCaptionEditorRequested}
             onShowLoadingAnimationRequested={webGroupsStore.onShowLoadingAnimationRequested}
             onHideLoadingAnimationRequested={webGroupsStore.onHideLoadingAnimationRequested}
+            styles={styles}
         />
     </>
 }

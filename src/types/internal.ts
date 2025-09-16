@@ -1,5 +1,8 @@
 import React from "react";
 
+type NonMethodKeys<T> = ({ [P in keyof T]: T[P] extends Function ? never : P })[keyof T];
+type NonMethods<T> = Pick<T, NonMethodKeys<T>>;
+
 export interface PortalProps {
 	parentElement: HTMLElement;
 	children?: React.ReactNode;
@@ -78,6 +81,15 @@ export interface GroupWrapperProps {
 
 	onShowLoadingAnimationRequested?: (targetType: TargetType, targetId: string) => void;
 	onHideLoadingAnimationRequested?: (targetType: TargetType, targetId: string) => void;
+	styles?: {
+		tabs?: {
+			header?: StylesOptions;
+			moveArea?: StylesOptions;
+		},
+		frame?: {
+			element?: StylesOptions;
+		}
+	};
 }
 
 export interface CreateGroupCaptionBarRequestOptions extends CreateElementRequestOptions {
@@ -320,6 +332,10 @@ export interface ExternalLibraryFactory {
 	onCaptionEditorBoundsChanged(targetType: TargetType, targetId: string, bounds: Bounds): void;
 	commitCaptionEditing(targetType: TargetType, targetId: string, text: string): void;
 
+	updateTabHeaderStyles(styles: StylesOptions): void;
+	updateTabMoveAreaStyles(styles: StylesOptions): void;
+	updateFrameStyles(styles: StylesOptions): void;
+
 	selectTab(windowId: string): void;
 	openTabOverflowPopup(frameId: string, location: Location): void
 
@@ -346,6 +362,11 @@ export interface Size {
 export interface Location {
 	left: number;
 	top: number;
+}
+
+export interface StylesOptions {
+	css?: Partial<NonMethods<CSSStyleDeclaration>>;
+	classes?: string[]
 }
 
 export interface Bounds extends Size, Location {
