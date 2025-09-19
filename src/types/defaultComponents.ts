@@ -1,4 +1,4 @@
-import { Bounds, ButtonProps, TargetType, ToggleButtonProps } from "./internal";
+import { Bounds, ButtonProps, StandardButtons, StandardButtonTarget, TargetType, ToggleButtonProps } from "./internal";
 
 export interface CaptionEditorProps {
     targetId: string;
@@ -20,6 +20,14 @@ export interface GroupCaptionEditorProps {
     caption: string;
 }
 
+export interface StandardButtonProps {
+    buttonId: StandardButtons;
+    tooltip: string;
+    target?: StandardButtonTarget;
+    isPressed?: boolean;
+    onClick: () => void;
+}
+
 export interface StickyButtonProps extends ToggleButtonProps {
 }
 
@@ -28,7 +36,6 @@ export interface FeedbackButtonProps extends ButtonProps {
 
 export interface CloneButtonProps extends ButtonProps {
 }
-
 
 export interface ExtractButtonProps extends ButtonProps {
 }

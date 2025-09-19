@@ -1,6 +1,7 @@
 @import "overlayscrollbars/styles/overlayscrollbars.css";
 @import "vars.css";
 
+
 * {
     box-sizing: border-box;
     transition-timing-function: cubic-bezier(0.45, 0, 0.15, 1);
@@ -127,6 +128,9 @@ input {
     display: flex;
     flex-direction: row;
 }
+.t42-buttons-container.t42-tab-bar-element {
+    padding: var(--t42-tab-buttons-container-padding);
+}
 
 .t42-html-buttons-container {
     position: absolute;
@@ -184,6 +188,10 @@ input {
     content: "";
 }
 
+.t42-standard-button-frame {
+    position: relative;
+}
+
 .t42-standard-button-image {
     fill: var(--t42-standard-button-color);
 }
@@ -196,7 +204,11 @@ input {
 .t42-caption-bar-button-extract,
 .t42-caption-bar-button-overflow,
 .t42-caption-bar-button-collapse,
-.t42-caption-bar-button-expand{
+.t42-caption-bar-button-expand,
+.t42-caption-bar-button-frame-minimize,
+.t42-caption-bar-button-frame-maximize,
+.t42-caption-bar-button-frame-restore,
+.t42-caption-bar-button-frame-close {
     margin: var(--t42-tab-bar-button-margin);
     border-radius: var(--t42-tab-bar-button-radius);
 }
@@ -204,7 +216,11 @@ input {
 .t42-caption-bar-button-lock .t42-standard-button::before,
 .t42-caption-bar-button-unlock .t42-standard-button::before,
 .t42-caption-bar-button-feedback .t42-standard-button::before,
-.t42-caption-bar-button-clone .t42-standard-button::before {
+.t42-caption-bar-button-clone .t42-standard-button::before,
+.t42-caption-bar-button-frame-minimize .t42-standard-button::before,
+.t42-caption-bar-button-frame-maximize .t42-standard-button::before,
+.t42-caption-bar-button-frame-restore .t42-standard-button::before,
+.t42-caption-bar-button-frame-close .t42-standard-button::before {
     font-size: var(--spacing-14);
 }
 
@@ -224,8 +240,16 @@ input {
     content: "\e904";
 }
 
+.t42-standard-button-frame-minimize::before {
+    content: "\e965";
+}
+
 .t42-standard-button-maximize::before {
     content: "\e906";
+}
+
+.t42-standard-button-frame-maximize::before {
+    content: "\e92a";
 }
 
 .t42-standard-button-close::before {
@@ -244,6 +268,10 @@ input {
 
 .t42-standard-button-restore::before {
     content: "\e912";
+}
+
+.t42-standard-button-frame-restore::before {
+    content: "\e928";
 }
 
 .t42-standard-button-extract::before {
@@ -468,6 +496,20 @@ input {
 .t42-caption-bar-button-close {
     width: var(--t42-caption-bar-button-width);
     height: var(--t42-caption-bar-button-height);
+}
+
+.t42-caption-bar-button-frame-maximize,
+.t42-caption-bar-button-frame-minimize,
+.t42-caption-bar-button-frame-restore,
+.t42-caption-bar-button-frame-close {
+    --t42-caption-bar-button-close-hover-background: var(--t42-caption-bar-button-hover-background);
+    --t42-caption-bar-button-close-hover-text: var(--text-states-active);
+    width: var(--t42-tab-bar-button-size);
+    height: var(--t42-tab-bar-button-size);
+}
+
+.t42-caption-bar-button-frame {
+    position: relative;
 }
 
 .t42-tabs,

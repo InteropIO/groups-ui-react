@@ -8,10 +8,16 @@ export interface PortalProps {
 	children?: React.ReactNode;
 }
 
+export enum StandardButtonTarget {
+    Default = "default",
+    Frame = "frame"
+}
+
 export interface ButtonProps {
 	onClick: () => void;
 	tooltip: string;
 	visible: boolean;
+	target?: StandardButtonTarget;
 }
 
 export interface ToggleButtonProps extends ButtonProps {
@@ -172,6 +178,7 @@ export interface CreateTabRequestOptions extends CreateElementRequestOptions {
 
 export interface UpdateStandardButtonRequestOptions extends CreateElementRequestOptions {
 	buttonId: StandardButtons;
+	buttonTarget: StandardButtonTarget;
 	visible: boolean;
 	tooltip: string;
 	isPressed: boolean;
@@ -187,52 +194,28 @@ export interface UpdateCustomButtonOptions {
 	imageData: string;
 }
 
+export interface CreateStandardButtonsOptions {
+	tooltip: string;
+	visible: boolean;
+	target: StandardButtonTarget;
+}
+
+export interface CreateStandardToggleButtonsOptions extends CreateStandardButtonsOptions {
+	isPressed: boolean;
+}
+
 export interface CreateButtonsOptions extends CreateFrameElementRequestOptions {
-	overflow: {
-		tooltip: string;
-		visible: boolean;
-	},
-	feedback: {
-		tooltip: string;
-		visible: boolean;
-	};
-	clone: {
-		tooltip: string;
-		visible: boolean;
-	};
-	sticky: {
-		tooltip: string;
-		visible: boolean;
-		isPressed: boolean;
-	};
-	extract: {
-		tooltip: string;
-		visible: boolean;
-	};
-	lock: {
-		tooltip: string;
-		visible: boolean;
-	};
-	unlock: {
-		tooltip: string;
-		visible: boolean;
-	};
-	minimize: {
-		tooltip: string;
-		visible: boolean;
-	};
-	restore: {
-		tooltip: string;
-		visible: boolean;
-	};
-	maximize: {
-		tooltip: string;
-		visible: boolean;
-	};
-	close: {
-		tooltip: string;
-		visible: boolean;
-	};
+	overflow: CreateStandardButtonsOptions,
+	feedback: CreateStandardButtonsOptions,
+	clone: CreateStandardButtonsOptions,
+	sticky: CreateStandardToggleButtonsOptions,
+	extract: CreateStandardButtonsOptions,
+	lock: CreateStandardButtonsOptions,
+	unlock: CreateStandardButtonsOptions,
+	minimize: CreateStandardButtonsOptions,
+	restore: CreateStandardButtonsOptions,
+	maximize: CreateStandardButtonsOptions,
+	close: CreateStandardButtonsOptions,
 	customButtons: UpdateCustomButtonOptions[],
 	hiddenTabsToTheLeft: OverflowedTabInfo[];
 	hiddenTabsToTheRight: OverflowedTabInfo[];
