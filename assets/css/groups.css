@@ -1,7 +1,6 @@
 @import "overlayscrollbars/styles/overlayscrollbars.css";
 @import "vars.css";
 
-
 * {
     box-sizing: border-box;
     transition-timing-function: cubic-bezier(0.45, 0, 0.15, 1);
@@ -57,15 +56,10 @@ input {
     overflow: hidden;
 }
 
-.t42-internal-caption-bar {
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-}
-
 .t42-react-caption-bar {
     display: flex;
     flex-grow: 1;
+    height: 100%;
 }
 
 .t42-caption-bar::after {
@@ -332,6 +326,9 @@ input {
 }
 
 .t42-group-caption-bar {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
     height: var(--t42-group-caption-height);
 }
 
@@ -376,7 +373,10 @@ input {
 }
 
 .t42-frame-caption-bar {
-    height: auto;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: var(--t42-frame-caption-bar-height);
 }
 
 .t42-frame-caption-bar::after {

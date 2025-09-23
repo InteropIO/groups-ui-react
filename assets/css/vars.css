@@ -40,6 +40,7 @@
     --t42-frame-channel-icon-color-black: black;
     --t42-frame-channel-icon-color-white: white;
 
+    --t42-frame-caption-bar-height: 40px;
     --t42-frame-caption-height: 30px;
     --t42-frame-caption-separator-size: 0;
     --t42-frame-caption-background: var(--window-header-background);
@@ -190,6 +191,7 @@
     --tabs-border: var(--io-neutrals-100); /* remove after PR#1421 is merged */
     --t42-background: #ffffff;
     --t42-tab-bar-separator-size: 1px;
+    --t42-frame-caption-separator-size: 1px;
     --t42-group-caption-separator-size: 1px;
     --t42-wg-tab-over-background: var(--base-panel-background);
     --t42-tab-bar-tab-close-button-bg-hover: var(--io-neutrals-150);
