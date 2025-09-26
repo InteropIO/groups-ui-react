@@ -1,12 +1,13 @@
 import React from "react";
 import { StickyButtonProps } from "../../types/defaultComponents";
-import BaseButton from "./BaseButton";
+import { StandardButtons } from "../../types/internal";
+import StandardButton from "./StandardButton";
 
-const StickyButton: React.FC<StickyButtonProps> = ({ onClick, tooltip, isPressed }) => {
-    const outerElementClassName = "t42-button t42-caption-bar-button t42-tab-bar-button t42-caption-bar-button-sticky";
-    return <BaseButton
-        innerElement={{ className: "t42-standard-button t42-standard-button-sticky" }}
-        outerElement={{ className: isPressed ? outerElementClassName +" active" : outerElementClassName, title: tooltip, onClick }} />
+const StickyButton: React.FC<StickyButtonProps> = (props) => {
+    return <StandardButton
+        buttonId={StandardButtons.Sticky}
+        {...props}
+    />
 }
 
 export default StickyButton;

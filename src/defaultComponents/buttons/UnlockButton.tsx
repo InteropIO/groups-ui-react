@@ -1,11 +1,13 @@
 import React from "react";
 import { UnlockButtonProps } from "../../types/defaultComponents";
-import BaseButton from "./BaseButton";
+import { StandardButtons } from "../../types/internal";
+import StandardButton from "./StandardButton";
 
-const UnlockButton: React.FC<UnlockButtonProps> = ({ tooltip, onClick }) => {
-    return <BaseButton
-        innerElement={{ className: "t42-standard-button t42-standard-button-unlock" }}
-        outerElement={{ className: "t42-button t42-caption-bar-button t42-tab-bar-button t42-caption-bar-button-unlock", title: tooltip, onClick }} />
+const UnlockButton: React.FC<UnlockButtonProps> = (props) => {
+    return <StandardButton
+        buttonId={StandardButtons.Unlock}
+        {...props}
+    />
 }
 
 export default UnlockButton;
