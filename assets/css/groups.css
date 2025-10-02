@@ -92,6 +92,7 @@ input {
 .t42-caption-editor.t42-frame-caption-bar-element {
     margin: var(--t42-title-margin);
     outline: 0;
+    --webkit-app-region: no-drag;
 }
 
 .t42-title {
