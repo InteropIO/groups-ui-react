@@ -46,7 +46,9 @@
     --t42-frame-caption-background: var(--window-header-background);
 
     --t42-html-buttons-bar-background: var(--window-header-background);
+
     --t42-tab-buttons-container-padding: 0 6px 0 0;
+    --t42-flat-buttons-container-padding: 0 6px 0 0;
 
     --t42-tab-bar-height: 40px;
     --t42-tab-bar-button-size: 32px;
