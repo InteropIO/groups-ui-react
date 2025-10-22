@@ -1,4 +1,4 @@
-import { Bounds, Location, StandardButtons, StylesOptions, TargetType, WebGroupsManager } from "./types/internal";
+import { Bounds, Location, Size, StandardButtons, StylesOptions, TargetType, WebGroupsManager } from "./types/internal";
 import callbackRegistry from "callback-registry";
 
 declare const window: Window & { webGroupsManager: WebGroupsManager };
@@ -212,6 +212,14 @@ class WebGroupsManagerDecorator {
             return;
         }
         window.webGroupsManager.externalLibraryFactory.openTabOverflowPopup(frameId, location);
+    }
+
+    public resizeTabOverflowPopup(frameId: string, size: Size): void {
+        if (typeof window.webGroupsManager.externalLibraryFactory.resizeTabOverflowPopup !== "function") {
+            console.warn("The method resizeTabOverflowPopup is not supported by the current version of the library");
+            return;
+        }
+        window.webGroupsManager.externalLibraryFactory.resizeTabOverflowPopup(frameId, size);
     }
 }
 

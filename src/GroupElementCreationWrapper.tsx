@@ -561,15 +561,21 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components, styles 
                 webGroupsManager.selectTab(windowId);
             };
 
-            const close = (windowId: string) => {
-                webGroupsManager.closeTab(windowId);
+            const resize = (bounds: Bounds) => {
+                webGroupsManager.resizeTabOverflowPopup(options.targetId, bounds);
             }
 
-            return <Portal key={options.targetId} parentElement={parentElement}><TabOverflowCustomElement {...options}
-                select={select}
-                close={close}
-                frameId={options.targetId}
-            /></Portal>
+            const close = (windowId: string) => {
+                webGroupsManager.closeTab(windowId);
+            };
+
+            return <Portal key={options.targetId} parentElement={parentElement}>
+                <TabOverflowCustomElement {...options}
+                    resize={resize}
+                    select={select}
+                    close={close}
+                    frameId={options.targetId}
+                /></Portal>
         });
     }
 

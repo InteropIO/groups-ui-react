@@ -9,8 +9,8 @@ export interface PortalProps {
 }
 
 export enum StandardButtonTarget {
-    Default = "default",
-    Frame = "frame"
+	Default = "default",
+	Frame = "frame"
 }
 
 export interface ButtonProps {
@@ -299,6 +299,8 @@ export interface ElementCreationWrapperState {
 	htmlButtons: { [targetId: string]: CreateButtonsOptions };
 }
 
+export type IndexableElementCreationWrapperState = Omit<Omit<ElementCreationWrapperState, "groupCaptionBar">, "groupOverlay">;
+
 export interface ExternalLibraryFactory {
 	readonly groupId: string;
 	focusPage(): void;
@@ -323,6 +325,7 @@ export interface ExternalLibraryFactory {
 
 	selectTab(windowId: string): void;
 	openTabOverflowPopup(frameId: string, location: Location): void
+	resizeTabOverflowPopup(frameId: string, size: Size): void;
 
 	addTabContainerClass(windowId: string, className: string): void;
 	removeTabContainerClass(windowId: string, className: string): void;
@@ -355,4 +358,17 @@ export interface StylesOptions {
 }
 
 export interface Bounds extends Size, Location {
+}
+
+export type PopupTargetLocation = "top" | "bottom" | "left" | "right" | "none";
+
+export interface ExternalWindowPopup {
+  browserWindow?: Window;
+  ioConnectWindow?: any;
+}
+
+export interface ShowExternalWindowPopupConfig {
+  targetBounds: Bounds;
+  size: Size;
+  targetLocation: PopupTargetLocation;
 }

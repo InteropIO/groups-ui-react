@@ -1,5 +1,5 @@
 import React from "react";
-import { Bounds, ButtonProps, Location, OverflowedTabInfo, StylesOptions, ToggleButtonProps } from "./internal";
+import { Bounds, ButtonProps, Location, OverflowedTabInfo, PopupTargetLocation, Size, StylesOptions, ToggleButtonProps } from "./internal";
 import { CustomButtonProps } from "./defaultComponents";
 
 export interface ChannelProps {
@@ -61,6 +61,7 @@ export interface TabOverflowPopupProps {
     frameId: string;
     select: (windowId: string) => void;
     close: (windowId: string) => void;
+    resize?: (size: Size) => void;
     hiddenTabsToTheLeft: OverflowedTabInfo[];
     hiddenTabsToTheRight: OverflowedTabInfo[];
 }
@@ -214,4 +215,11 @@ export interface GroupComponentVisibilityState {
 export interface OpenTabOverflowPopupOptions {
     frameId: string;
     location: Location;
+}
+
+export interface ExternalWindowPopupResult {
+    getContainer: () => HTMLElement | undefined;
+    show: (targetBounds: Bounds, size: Size, targetLocation: PopupTargetLocation) => void;
+    resize: (size: Size) => void;
+    hide: () => void;
 }
