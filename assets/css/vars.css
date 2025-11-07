@@ -119,7 +119,7 @@
     --t42-caption-bar-button-close-hover-background: var(--io-red-700);
     --t42-caption-bar-button-close-hover-text: var(--io-neutrals-0);
 
-    --t42-sizing-border-group-color: transparent;
+    --t42-sizing-border-group-color: var(--window-header-background);
     --t42-hover-sizing-border-group-color: var(--io-blue-600);
     --t42-active-sizing-border-group-color: var(--io-blue-700);
 
