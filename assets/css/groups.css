@@ -919,9 +919,9 @@ input {
 .t42-tabs-overflow.t42-tabs-fade-right {
     -webkit-mask-image: linear-gradient(
         -90deg,
-        rgba(0, 0, 0, 0) 0,
-        rgba(0, 0, 0, 0.3) calc(var(--t42-tab-bar-fade-size) / 100 * 30),
-        rgba(0, 0, 0, 0.8) calc(var(--t42-tab-bar-fade-size) / 100 * 80),
+            rgba(0, 0, 0, 0) 0,
+            rgba(0, 0, 0, 0.3) calc(var(--t42-tab-bar-fade-size) / 100 * 30),
+            rgba(0, 0, 0, 0.8) calc(var(--t42-tab-bar-fade-size) / 100 * 80),
         rgba(0, 0, 0, 1) var(--t42-tab-bar-fade-size)
     );
 }
@@ -929,9 +929,9 @@ input {
 .t42-tabs-overflow.t42-tabs-fade-left {
     -webkit-mask-image: linear-gradient(
         90deg,
-        rgba(0, 0, 0, 0) 0,
-        rgba(0, 0, 0, 0.3) calc(var(--t42-tab-bar-fade-size) / 100 * 30),
-        rgba(0, 0, 0, 0.8) calc(var(--t42-tab-bar-fade-size) / 100 * 80),
+            rgba(0, 0, 0, 0) 0,
+            rgba(0, 0, 0, 0.3) calc(var(--t42-tab-bar-fade-size) / 100 * 30),
+            rgba(0, 0, 0, 0.8) calc(var(--t42-tab-bar-fade-size) / 100 * 80),
         rgba(0, 0, 0, 1) var(--t42-tab-bar-fade-size)
     );
 }
@@ -939,13 +939,13 @@ input {
 .t42-tabs-overflow.t42-tabs-fade-both {
     -webkit-mask-image: linear-gradient(
         90deg,
-        rgba(0, 0, 0, 0) 0%,
-        rgba(0, 0, 0, 0.3) calc(var(--t42-tab-bar-fade-size) / 100 * 30),
-        rgba(0, 0, 0, 0.8) calc(var(--t42-tab-bar-fade-size) / 100 * 80),
-        rgba(0, 0, 0, 1) var(--t42-tab-bar-fade-size),
-        rgba(0, 0, 0, 1) calc(100% - var(--t42-tab-bar-fade-size)),
-        rgba(0, 0, 0, 0.8) calc(100% - (var(--t42-tab-bar-fade-size) / 100 * 80)),
-        rgba(0, 0, 0, 0.3) calc(100% - (var(--t42-tab-bar-fade-size) / 100 * 30)),
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 0.3) calc(var(--t42-tab-bar-fade-size) / 100 * 30),
+            rgba(0, 0, 0, 0.8) calc(var(--t42-tab-bar-fade-size) / 100 * 80),
+            rgba(0, 0, 0, 1) var(--t42-tab-bar-fade-size),
+            rgba(0, 0, 0, 1) calc(100% - var(--t42-tab-bar-fade-size)),
+            rgba(0, 0, 0, 0.8) calc(100% - (var(--t42-tab-bar-fade-size) / 100 * 80)),
+            rgba(0, 0, 0, 0.3) calc(100% - (var(--t42-tab-bar-fade-size) / 100 * 30)),
         rgba(0, 0, 0, 0) 100%
     );
 }
@@ -954,14 +954,17 @@ input {
     position: absolute;
     z-index: 999;
     margin-top: var(--t42-wg-tab-over-top-offset);
-
 }
 
 .t42-external-page-popup {
     position: absolute;
     z-index: 999;
-    margin-top: var(--t42-wg-tab-over-top-offset);
     background-color: transparent;
+    height: fit-content;
+}
+
+.t42-external-page-popup .t42-tab-overflow-popup {
+    --t42-wg-tab-over-max-height: none;
 }
 
 .t42-tab-overflow-popup {
@@ -975,6 +978,10 @@ input {
     border-radius: var(--t42-wg-tab-over-border-radius);
     overflow: auto;
     background-color: var(--t42-wg-tab-over-background);
+}
+
+.renderer-mode-keycolor .t42-tab-overflow-popup {
+    border-radius: 0px;
 }
 
 .t42-tab-overflow-popup li {
@@ -1056,8 +1063,8 @@ input {
 .t42-multi-channel-selector-2 {
     background-image: conic-gradient(
         var(--t42-multi-channel-selector-2-color-1) 0deg,
-        var(--t42-multi-channel-selector-2-color-1) 180deg,
-        var(--t42-multi-channel-selector-2-color-2) 180deg,
+            var(--t42-multi-channel-selector-2-color-1) 180deg,
+            var(--t42-multi-channel-selector-2-color-2) 180deg,
         var(--t42-multi-channel-selector-2-color-2) 0deg
     );
     mask-image: var(--t42-multi-channel-selector-2-mask);
@@ -1066,10 +1073,10 @@ input {
 .t42-multi-channel-selector-3 {
     background-image: conic-gradient(
         var(--t42-multi-channel-selector-3-color-1) 0deg,
-        var(--t42-multi-channel-selector-3-color-1) 120deg,
-        var(--t42-multi-channel-selector-3-color-2) 120deg,
-        var(--t42-multi-channel-selector-3-color-2) 240deg,
-        var(--t42-multi-channel-selector-3-color-3) 240deg,
+            var(--t42-multi-channel-selector-3-color-1) 120deg,
+            var(--t42-multi-channel-selector-3-color-2) 120deg,
+            var(--t42-multi-channel-selector-3-color-2) 240deg,
+            var(--t42-multi-channel-selector-3-color-3) 240deg,
         var(--t42-multi-channel-selector-3-color-3) 0deg
     );
     mask-image: var(--t42-multi-channel-selector-3-mask);
@@ -1078,12 +1085,12 @@ input {
 .t42-multi-channel-selector-4 {
     background-image: conic-gradient(
         var(--t42-multi-channel-selector-4-color-1) 0deg,
-        var(--t42-multi-channel-selector-4-color-1) 90deg,
-        var(--t42-multi-channel-selector-4-color-2) 90deg,
-        var(--t42-multi-channel-selector-4-color-2) 180deg,
-        var(--t42-multi-channel-selector-4-color-3) 180deg,
-        var(--t42-multi-channel-selector-4-color-3) 270deg,
-        var(--t42-multi-channel-selector-4-color-4) 270deg,
+            var(--t42-multi-channel-selector-4-color-1) 90deg,
+            var(--t42-multi-channel-selector-4-color-2) 90deg,
+            var(--t42-multi-channel-selector-4-color-2) 180deg,
+            var(--t42-multi-channel-selector-4-color-3) 180deg,
+            var(--t42-multi-channel-selector-4-color-3) 270deg,
+            var(--t42-multi-channel-selector-4-color-4) 270deg,
         var(--t42-multi-channel-selector-4-color-4) 0deg
     );
     mask-image: var(--t42-multi-channel-selector-4-mask);
