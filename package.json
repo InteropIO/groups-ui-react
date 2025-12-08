@@ -1,6 +1,6 @@
 {
     "name": "@interopio/groups-ui-react",
-    "version": "2.7.1",
+    "version": "3.0.1",
     "description": "React library for building a Web Group App for io.Connect Desktop.",
     "keywords": [
         "interop",

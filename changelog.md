@@ -1,3 +1,8 @@
+3.0.0
+chore: official 10.0 support
+feat: universal support
+feat: style updates
+feat: External window popup API support
 2.7.1
 fix: added the CSS in JS capabilities 
 2.7.0
