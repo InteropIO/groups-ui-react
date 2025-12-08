@@ -1,4 +1,4 @@
-import { Bounds, Location, StandardButtons, StylesOptions, TargetType, WebGroupsManager } from "./types/internal";
+import { Bounds, Location, Size, StandardButtons, StylesOptions, TargetType, WebGroupsManager } from "./types/internal";
 import callbackRegistry from "callback-registry";
 
 declare const window: Window & { webGroupsManager: WebGroupsManager };
@@ -127,6 +127,22 @@ class WebGroupsManagerDecorator {
         window.webGroupsManager.externalLibraryFactory.onCaptionTextBoundsChanged(targetType, targetId, bounds);
     }
 
+    public startDragMove() {
+        if (typeof window.webGroupsManager.externalLibraryFactory.startDragMove !== "function") {
+            // Handling the case when a new library is used with an older version of io.Connect Desktop
+            return;
+        }
+        window.webGroupsManager.externalLibraryFactory.startDragMove();
+    }
+
+    public showCaptionEditor(targetType: TargetType, targetId: string, text: string): void {
+        if (typeof window.webGroupsManager.externalLibraryFactory.showCaptionEditor !== "function") {
+            // Handling the case when a new library is used with an older version of io.Connect Desktop
+            return;
+        }
+        window.webGroupsManager.externalLibraryFactory.showCaptionEditor(targetType, targetId, text);
+    }
+
     public onCaptionEditorVisibleChanged(targetType: TargetType, targetId: string, visible: boolean): void {
         if (typeof window.webGroupsManager.externalLibraryFactory.onCaptionEditorVisibleChanged !== "function") {
             // Handling the case when a new library is used with an older version of io.Connect Desktop
@@ -196,6 +212,14 @@ class WebGroupsManagerDecorator {
             return;
         }
         window.webGroupsManager.externalLibraryFactory.openTabOverflowPopup(frameId, location);
+    }
+
+    public resizeTabOverflowPopup(frameId: string, size: Size): void {
+        if (typeof window.webGroupsManager.externalLibraryFactory.resizeTabOverflowPopup !== "function") {
+            console.warn("The method resizeTabOverflowPopup is not supported by the current version of the library");
+            return;
+        }
+        window.webGroupsManager.externalLibraryFactory.resizeTabOverflowPopup(frameId, size);
     }
 }
 

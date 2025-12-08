@@ -1,5 +1,5 @@
 import React from "react";
-import { Bounds, ButtonProps, Location, OverflowedTabInfo, StylesOptions, ToggleButtonProps } from "./internal";
+import { Bounds, ButtonProps, Location, OverflowedTabInfo, PopupTargetLocation, Size, StylesOptions, ToggleButtonProps } from "./internal";
 import { CustomButtonProps } from "./defaultComponents";
 
 export interface ChannelProps {
@@ -61,6 +61,7 @@ export interface TabOverflowPopupProps {
     frameId: string;
     select: (windowId: string) => void;
     close: (windowId: string) => void;
+    resize?: (size: Size) => void;
     hiddenTabsToTheLeft: OverflowedTabInfo[];
     hiddenTabsToTheRight: OverflowedTabInfo[];
 }
@@ -80,7 +81,8 @@ export interface GroupCaptionBarProps {
     targetId: string;
     caption: string;
     captionEditor?: CaptionEditorProps;
-    visible: boolean,
+    visible: boolean;
+    showCaptionEditor: (text: string) => void;
     notifyCaptionBoundsChanged: (bounds: Bounds) => void;
 
     minimize: ButtonProps;
@@ -94,6 +96,7 @@ export interface GroupOverlayProps {
 }
 
 export interface FlatCaptionBarProps {
+    showCaptionEditor: (text: string) => void;
     frameId: string;
     moveAreaId: string;
     caption: string;
@@ -212,4 +215,43 @@ export interface GroupComponentVisibilityState {
 export interface OpenTabOverflowPopupOptions {
     frameId: string;
     location: Location;
+}
+
+export interface CreatePopupOptions {
+    left?: number;
+    top?: number;
+    width?: number;
+    height?: number;
+    roundedCorners?: boolean;
+    hasSizeAreas?: boolean;
+    hasMoveAreas?: boolean;
+    transparent?: boolean;
+    copyStyles?: boolean;
+}
+
+export interface PopupShowOptions {
+    targetBounds?: Bounds;
+    size?: Size;
+    targetLocation?: PopupTargetLocation;
+    focus?: boolean;
+    horizontalOffset?: number;
+    verticalOffset?: number;
+}
+
+export interface PopupWindow {
+    ioConnectWindow: any;
+    browserWindow: Window;
+}
+
+export interface ExternalWindowPopupResult {
+    getContainer: () => HTMLElement | null;
+    createPopup: (options?: CreatePopupOptions) => Promise<PopupWindow | null>;
+    showPopup: (options?: PopupShowOptions) => Promise<void>;
+    resizePopup: (size: Size) => Promise<void>;
+    hidePopup: () => Promise<void>;
+    closePopup: () => Promise<void>;
+
+    isOpen: boolean;
+    isVisible: boolean;
+    popup: PopupWindow | null;
 }

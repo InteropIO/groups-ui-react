@@ -91,6 +91,8 @@ import HtmlButtons from "./defaultComponents/htmlButtonsBar/buttons";
 import TabOverflowPopup from "./defaultComponents/popups/TabOverflowPopup";
 import TabMultiChannelSelector from "./defaultComponents/channelSelector/multi/TabMultiChannelSelector";
 import FlatMultiChannelSelector from "./defaultComponents/channelSelector/multi/FlatMultiChannelSelector";
+import { useDragMove } from "./defaultComponents/utils/useDragMove";
+import useExternalWindowPopup from "./defaultComponents/hooks/useExternalWindowPopup";
 
 export {
     GroupCaptionBar,
@@ -132,9 +134,11 @@ export {
     waitForWindow,
     useEditableCaption,
     useCaptionEditor,
+    useDragMove,
     useCommitGroupCaptionEditingRequested,
     useCommitFlatCaptionEditingRequested,
     useCommitTabCaptionEditingRequested,
+    useExternalWindowPopup,
 }
 
 export const getGroupId: () => string = () => webGroupsManager?.getGroupId();

@@ -6,12 +6,8 @@ export function IsBlackReadable(color: string) {
         const r = rgba[0];
         const g = rgba[1];
         const b = rgba[2];
-        const displayGamma = 2.2;
-        const backgroundWeight =
-            0.2126 * Math.pow(r / 255.0, displayGamma) +
-            0.7152 * Math.pow(g / 255.0, displayGamma) +
-            0.0722 * Math.pow(b / 255.0, displayGamma);
-        return backgroundWeight > Math.pow(0.5, displayGamma);
+        const backgroundWeight = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+        return backgroundWeight > 0.5;
     } catch {
         // Fallback to other implementation
     }

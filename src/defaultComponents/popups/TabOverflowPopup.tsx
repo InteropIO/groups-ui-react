@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { TabOverflowPopupProps } from '../../types/api';
 import { OverflowedTabInfo } from '../../types/internal';
+import { getElementBounds } from '../../utils';
 
 const TabOverflowPopup: React.FC<TabOverflowPopupProps> = ({
     hiddenTabsToTheLeft,
     hiddenTabsToTheRight,
     close,
+    resize,
     select
 }) => {
+    const ref = React.useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (!ref.current) return;
+        if (typeof resize !== "function") return;
+        const bounds = getElementBounds(ref.current);
+        resize(bounds);
+    }, [ref]);
+
     const createSection = (tabs: OverflowedTabInfo[], title: string) => {
         return (
             <ul>
@@ -34,7 +45,7 @@ const TabOverflowPopup: React.FC<TabOverflowPopupProps> = ({
     };
 
     return (
-        <div className="t42-wg-tab-overflow-popup">
+        <div ref={ref} className="t42-wg-tab-overflow-popup">
             {hiddenTabsToTheLeft.length > 0 && createSection(hiddenTabsToTheLeft, "Open left")}
             {hiddenTabsToTheLeft.length > 0 && hiddenTabsToTheRight.length > 0 && <hr />}
             {hiddenTabsToTheRight.length > 0 && createSection(hiddenTabsToTheRight, "Open right")}

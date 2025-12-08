@@ -3,6 +3,8 @@ fix: added the CSS in JS capabilities
 2.7.0
 chore: official 9.8 support
 feat: multi directional channels
+2.6.2
+feat: universal mode styles
 2.6.0
 chore: official 9.7 support
 feat: overflow tabs dynamic width

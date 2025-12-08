@@ -15,7 +15,9 @@ import {
     CreateFrameLoadingAnimationRequestOptions,
     UpdateCustomButtonsRequestOptions,
     CreateTabOverflowPopupRequestOptions,
-    OverflowedTabInfo
+    OverflowedTabInfo,
+    IndexableElementCreationWrapperState,
+    BaseElementOptions
 } from "./types/internal";
 import webGroupsManager from "./webGroupsManager";
 
@@ -77,236 +79,63 @@ class WebGroupsStore {
     }
 
     public onCreateFrameCaptionBarRequested = (options: CreateFrameCaptionBarRequestOptions) => {
-        if (options === this.state.frameCaptionBars[options.targetId] || !options) {
-            return;
-        }
-        this.setState(s => {
-            return {
-                ...s,
-                frameCaptionBars: {
-                    ...s.frameCaptionBars,
-                    [options.targetId]: options
-                }
-            }
-        });
+        this.onCreateElementRequested("frameCaptionBars", options);
     }
 
     public onCreateFrameWindowOverlayRequested = (options: CreateFrameElementRequestOptions) => {
-        if (options === this.state.frameWindowOverlays[options.targetId] || !options) {
-            return;
-        }
-        this.setState(s => {
-            return {
-                ...s,
-                frameWindowOverlays: {
-                    ...s.frameWindowOverlays,
-                    [options.targetId]: options
-                }
-            }
-        });
+        this.onCreateElementRequested("frameWindowOverlays", options);
     }
 
     public onCreateAboveWindowRequested = (options: CreateFrameElementRequestOptions) => {
-        if (options === this.state.aboveWindowZones[options.targetId] || !options) {
-            return;
-        }
-        this.setState(s => {
-            return {
-                ...s,
-                aboveWindowZones: {
-                    ...s.aboveWindowZones,
-                    [options.targetId]: options
-                }
-            }
-        });
+        this.onCreateElementRequested("aboveWindowZones", options);
     }
 
     public onCreateWindowContentOverlayRequested = (options: CreateFrameElementRequestOptions) => {
-        if (options === this.state.windowContentOverlays[options.targetId] || !options) {
-            return;
-        }
-        this.setState(s => {
-            return {
-                ...s,
-                windowContentOverlays: {
-                    ...s.windowContentOverlays,
-                    [options.targetId]: options
-                }
-            }
-        });
+        this.onCreateElementRequested("windowContentOverlays", options);
     }
 
     public onCreateFrameLoadingAnimationRequested = (options: CreateFrameLoadingAnimationRequestOptions) => {
-        if (options === this.state.frameLoadingAnimations[options.targetId] || !options) {
-            return;
-        }
-        this.setState(s => {
-            return {
-                ...s,
-                frameLoadingAnimations: {
-                    ...s.frameLoadingAnimations,
-                    [options.targetId]: options
-                }
-            }
-        });
+        this.onCreateElementRequested("frameLoadingAnimations", options);
     }
 
     public onCreateBelowWindowRequested = (options: CreateFrameElementRequestOptions) => {
-        if (options === this.state.belowWindowZones[options.targetId] || !options) {
-            return;
-        }
-        this.setState(s => {
-            return {
-                ...s,
-                belowWindowZones: {
-                    ...s.belowWindowZones,
-                    [options.targetId]: options
-                }
-            }
-        });
+        this.onCreateElementRequested("belowWindowZones", options);
     }
 
     public onCreateAboveTabsComponentRequested = (options: CreateFrameElementRequestOptions) => {
-        if (options === this.state.aboveTabsZones[options.targetId] || !options) {
-            return;
-        }
-        this.setState(s => {
-            return {
-                ...s,
-                aboveTabsZones: {
-                    ...s.aboveTabsZones,
-                    [options.targetId]: options
-                }
-            }
-        });
+        this.onCreateElementRequested("aboveTabsZones", options);
     }
 
     public onCreateBeforeTabsComponentRequested = (options: CreateFrameElementRequestOptions) => {
-        if (options === this.state.beforeTabsZones[options.targetId] || !options) {
-            return;
-        }
-        this.setState(s => {
-            return {
-                ...s,
-                beforeTabsZones: {
-                    ...s.beforeTabsZones,
-                    [options.targetId]: options
-                }
-            }
-        });
+        this.onCreateElementRequested("beforeTabsZones", options);
     }
 
     public onCreateTabElementRequested = (options: CreateTabRequestOptions) => {
-        if (options === this.state.tabElements[options.targetId] || !options) {
-            return;
-        }
-        this.setState(s => {
-            const newTabElementsObj = Object.keys(s.tabElements).reduce((acc, targetId) => {
-                acc[targetId] = s.tabElements[targetId];
-                return acc;
-            }, {});
-
-            newTabElementsObj[options.targetId] = options;
-
-            return {
-                ...s,
-                tabElements: {
-                    ...s.tabElements,
-                    [options.targetId]: options
-                }
-            }
-        });
+        this.onCreateElementRequested("tabElements", options);
     }
 
     public onCreateAfterTabsComponentRequested = (options: CreateFrameElementRequestOptions) => {
-        if (options === this.state.afterTabsZones[options.targetId] || !options) {
-            return;
-        }
-        this.setState(s => {
-            return {
-                ...s,
-                afterTabsZones: {
-                    ...s.afterTabsZones,
-                    [options.targetId]: options
-                }
-            }
-        });
+        this.onCreateElementRequested("afterTabsZones", options);
     }
 
     public onCreateTabHeaderButtonsRequested = (options: CreateButtonsOptions) => {
-        if (options === this.state.tabHeaderButtons[options.targetId] || !options) {
-            return;
-        }
-        this.setState(s => {
-            return {
-                ...s,
-                tabHeaderButtons: {
-                    ...s.tabHeaderButtons,
-                    [options.targetId]: options
-                }
-            }
-        });
+        this.onCreateElementRequested("tabHeaderButtons", options);
     }
 
     public onCreateBelowTabsComponentRequested = (options: CreateFrameElementRequestOptions) => {
-        if (options === this.state.belowTabsZones[options.targetId] || !options) {
-            return;
-        }
-        this.setState(s => {
-            return {
-                ...s,
-                belowTabsZones: {
-                    ...s.belowTabsZones,
-                    [options.targetId]: options
-                }
-            }
-        });
+        this.onCreateElementRequested("belowTabsZones", options);
     }
 
     public onCreateHtmlButtonsRequested = (options: CreateButtonsOptions) => {
-        if (options === this.state.htmlButtons[options.targetId] || !options) {
-            return;
-        }
-        this.setState(s => {
-            return {
-                ...s,
-                htmlButtons: {
-                    ...s.htmlButtons,
-                    [options.targetId]: options
-                }
-            }
-        });
+        this.onCreateElementRequested("htmlButtons", options);
     }
 
     public onCreateTabOverflowPopupRequested = (options: CreateTabOverflowPopupRequestOptions) => {
-        if (options === this.state.tabOverflowPopups[options.targetId] || !options) {
-            return;
-        }
-
-        this.setState(s => {
-            return {
-                ...s,
-                tabOverflowPopups: {
-                    ...s.tabOverflowPopups,
-                    [options.targetId]: options
-                }
-            }
-        });
+        this.onCreateElementRequested("tabOverflowPopups", options);
     }
 
     public onUpdateHtmlButtonsRequested = (options: CreateButtonsOptions) => {
-        if (options === this.state.htmlButtons[options.targetId] || !options) {
-            return;
-        }
-        this.setState(s => {
-            return {
-                ...s,
-                htmlButtons: {
-                    ...s.htmlButtons,
-                    [options.targetId]: { ...s.htmlButtons[options.targetId], ...options }
-                }
-            }
-        });
+        this.onUpdateElementRequested("htmlButtons", options);
     }
 
     public onUpdateGroupCaptionBarRequested = (options: UpdateGroupCaptionBarRequestOptions) => {
@@ -322,136 +151,48 @@ class WebGroupsStore {
     }
 
     public onUpdateFrameCaptionBarRequested = (options: UpdateFrameCaptionBarRequestOptions) => {
-        if (options === this.state.frameCaptionBars[options.targetId] || !options) {
-            return;
-        }
-        this.setState(s => {
-            return {
-                ...s,
-                frameCaptionBars: {
-                    ...s.frameCaptionBars,
-                    [options.targetId]: { ...s.frameCaptionBars[options.targetId], ...options }
-                }
-            }
-        });
+        this.onUpdateElementRequested("frameCaptionBars", options);
     }
 
     public onUpdateFrameWindowOverlayRequested = (options: CreateElementRequestOptions) => {
-        if (options === this.state.frameWindowOverlays[options.targetId] || !options) {
-            return;
-        }
-        this.setState(s => {
-            return {
-                ...s,
-                frameWindowOverlays: {
-                    ...s.frameWindowOverlays,
-                    [options.targetId]: { ...s.frameWindowOverlays[options.targetId], ...options }
-                }
-            }
-        });
+        this.onUpdateElementRequested("frameWindowOverlays", options);
     }
 
     public onUpdateAboveTabsRequested = (options: CreateElementRequestOptions) => {
-        if (options === this.state.aboveTabsZones[options.targetId] || !options) {
-            return;
-        }
-        this.setState(s => {
-            return {
-                ...s,
-                aboveTabsZones: {
-                    ...s.aboveTabsZones,
-                    [options.targetId]: { ...s.aboveTabsZones[options.targetId], ...options }
-                }
-            }
-        });
+        this.onUpdateElementRequested("aboveTabsZones", options);
     }
 
     public onUpdateBeforeTabsRequested = (options: CreateElementRequestOptions) => {
-        if (options === this.state.beforeTabsZones[options.targetId] || !options) {
-            return;
-        }
-        this.setState(s => {
-            return {
-                ...s,
-                beforeTabsZones: {
-                    ...s.beforeTabsZones,
-                    [options.targetId]: { ...s.beforeTabsZones[options.targetId], ...options }
-                }
-            }
-        });
+        this.onUpdateElementRequested("beforeTabsZones", options);
     }
 
     public onUpdateTabElementRequested = (options: CreateTabRequestOptions) => {
-        if (options === this.state.tabElements[options.targetId] || !options) {
-            return;
-        }
-
-        this.setState(s => {
-            return {
-                ...s,
-                tabElements: {
-                    ...s.tabElements,
-                    [options.targetId]: { ...s.tabElements[options.targetId], ...options }
-                }
-            }
-        });
+        this.onUpdateElementRequested("tabElements", options);
     }
 
     public onUpdateAfterTabsRequested = (options: CreateElementRequestOptions) => {
-        if (options === this.state.afterTabsZones[options.targetId] || !options) {
-            return;
-        }
-        this.setState(s => {
-            return {
-                ...s,
-                afterTabsZones: {
-                    ...s.afterTabsZones,
-                    [options.targetId]: { ...s.afterTabsZones[options.targetId], ...options }
-                }
-            }
-        });
+        this.onUpdateElementRequested("afterTabsZones", options);
     }
 
     public onUpdateTabHeaderButtonsRequested = (options: CreateButtonsOptions) => {
-        if (options === this.state.tabHeaderButtons[options.targetId] || !options) {
-            return;
-        }
-        this.setState(s => {
-            return {
-                ...s,
-                tabHeaderButtons: {
-                    ...s.tabHeaderButtons,
-                    [options.targetId]: { ...s.tabHeaderButtons[options.targetId], ...options }
-                }
-            }
-        });
+        this.onUpdateElementRequested("tabHeaderButtons", options);
     }
 
     public onUpdateBelowTabsRequested = (options: CreateElementRequestOptions) => {
-        if (options === this.state.belowTabsZones[options.targetId] || !options) {
-            return;
-        }
-        this.setState(s => {
-            return {
-                ...s,
-                belowTabsZones: {
-                    ...s.belowTabsZones,
-                    [options.targetId]: { ...s.belowTabsZones[options.targetId], ...options }
-                }
-            }
-        });
+        this.onUpdateElementRequested("belowTabsZones", options);
     }
 
     public onUpdateFrame = (options: UpdateFrameRequestOptions) => {
         this.setState(s => {
             const newState = { ...s };
 
-            const updateSelectionWindow = <T extends keyof ElementCreationWrapperState>(stateProp: T, targetId: string, selectedWindow: string) => {
-                if (stateProp === "groupOverlay" || stateProp === "groupCaptionBar" || stateProp === "tabElements") {
+            const updateSelectionWindow = <T extends keyof IndexableElementCreationWrapperState>(stateProp: T, targetId: string, selectedWindow: string) => {
+                if (stateProp === "tabElements") {
                     return;
                 }
+                const newStateRecord = newState[stateProp]![targetId] as any;
 
-                if (newState[stateProp]![targetId] && newState[stateProp]![targetId]?.selectedWindow !== selectedWindow) {
+                if (newStateRecord && newStateRecord?.selectedWindow !== selectedWindow) {
                     newState[stateProp] = {
                         ...newState[stateProp],
                         [targetId]: { ...newState[stateProp]![targetId], selectedWindow }
@@ -459,9 +200,10 @@ class WebGroupsStore {
                 }
             };
 
-            const updateHiddenTabs = <T extends keyof ElementCreationWrapperState>(stateProp: T, targetId: string, hiddenTabsToTheLeft: OverflowedTabInfo[], hiddenTabsToTheRight: OverflowedTabInfo[]) => {
-                const oldHiddenToTheLeft = newState[stateProp]![targetId]?.hiddenTabsToTheLeft;
-                const oldHiddenToTheRight = newState[stateProp]![targetId]?.hiddenTabsToTheRight;
+            const updateHiddenTabs = <T extends keyof IndexableElementCreationWrapperState>(stateProp: T, targetId: string, hiddenTabsToTheLeft: OverflowedTabInfo[], hiddenTabsToTheRight: OverflowedTabInfo[]) => {
+                const oldState = newState[stateProp]![targetId] as any;
+                const oldHiddenToTheLeft = oldState?.hiddenTabsToTheLeft;
+                const oldHiddenToTheRight = oldState?.hiddenTabsToTheRight;
                 newState[stateProp] = {
                     ...newState[stateProp],
                     [targetId]: {
@@ -567,268 +309,59 @@ class WebGroupsStore {
     }
 
     public onRemoveFrameCaptionBarRequested = (options: RemoveRequestOptions) => {
-        if (!this.state.frameCaptionBars[options.targetId]) {
-            return;
-        }
-        this.setState(s => {
-            const newCaptionBarsObj = Object.keys(s.frameCaptionBars).reduce((acc, targetId) => {
-                if (targetId !== options.targetId) {
-                    acc[targetId] = s.frameCaptionBars[targetId];
-                }
-                return acc;
-            }, {});
-
-            return {
-                ...s,
-                frameCaptionBars: newCaptionBarsObj
-            }
-        });
+        this.onRemoveElementRequested("frameCaptionBars", options);
     }
 
     public onRemoveFrameWindowOverlayRequested = (options: RemoveRequestOptions) => {
-        if (!this.state.frameWindowOverlays[options.targetId]) {
-            return;
-        }
-        this.setState(s => {
-            const newCaptionBarsObj = Object.keys(s.frameWindowOverlays).reduce((acc, targetId) => {
-                if (targetId !== options.targetId) {
-                    acc[targetId] = s.frameWindowOverlays[targetId];
-                }
-                return acc;
-            }, {});
-
-            return {
-                ...s,
-                frameWindowOverlays: newCaptionBarsObj
-            }
-        });
+        this.onRemoveElementRequested("frameWindowOverlays", options);
     }
 
     public onRemoveAboveWindowRequested = (options: RemoveRequestOptions) => {
-        if (!this.state.aboveWindowZones[options.targetId]) {
-            return;
-        }
-        this.setState(s => {
-            const newCaptionBarsObj = Object.keys(s.aboveWindowZones).reduce((acc, targetId) => {
-                if (targetId !== options.targetId) {
-                    acc[targetId] = s.aboveWindowZones[targetId];
-                }
-                return acc;
-            }, {});
-
-            return {
-                ...s,
-                aboveWindowZones: newCaptionBarsObj
-            }
-        });
+        this.onRemoveElementRequested("aboveWindowZones", options);
     }
 
     public onRemoveWindowContentOverlayRequested = (options: RemoveRequestOptions) => {
-        if (!this.state.windowContentOverlays[options.targetId]) {
-            return;
-        }
-        this.setState(s => {
-            const newOverlaysObj = Object.keys(s.windowContentOverlays).reduce((acc, targetId) => {
-                if (targetId !== options.targetId) {
-                    acc[targetId] = s.windowContentOverlays[targetId];
-                }
-                return acc;
-            }, {});
-
-            return {
-                ...s,
-                windowContentOverlays: newOverlaysObj
-            }
-        });
+        this.onRemoveElementRequested("windowContentOverlays", options);
     }
 
     public onRemoveFrameLoadingAnimationRequested = (options: RemoveRequestOptions) => {
-        if (!this.state.frameLoadingAnimations[options.targetId]) {
-            return;
-        }
-        this.setState(s => {
-            const newLoadingAnimationObj = Object.keys(s.frameLoadingAnimations).reduce((acc, targetId) => {
-                if (targetId !== options.targetId) {
-                    acc[targetId] = s.frameLoadingAnimations[targetId];
-                }
-                return acc;
-            }, {});
-            return {
-                ...s,
-                frameLoadingAnimation: newLoadingAnimationObj
-            }
-        })
+        this.onRemoveElementRequested("frameLoadingAnimations", options);
     }
 
     public onRemoveBelowWindowRequested = (options: RemoveRequestOptions) => {
-        if (!this.state.belowWindowZones[options.targetId]) {
-            return;
-        }
-        this.setState(s => {
-            const newCaptionBarsObj = Object.keys(s.belowWindowZones).reduce((acc, targetId) => {
-                if (targetId !== options.targetId) {
-                    acc[targetId] = s.belowWindowZones[targetId];
-                }
-                return acc;
-            }, {});
-
-            return {
-                ...s,
-                belowWindowZones: newCaptionBarsObj
-            }
-        });
+        this.onRemoveElementRequested("belowWindowZones", options);
     }
 
     public onRemoveAboveTabsRequested = (options: RemoveRequestOptions) => {
-        if (!this.state.aboveTabsZones[options.targetId]) {
-            return;
-        }
-        this.setState(s => {
-            const newTabElementsObj = Object.keys(s.aboveTabsZones).reduce((acc, targetId) => {
-                if (targetId != options.targetId) {
-                    acc[targetId] = s.aboveTabsZones[targetId];
-                }
-                return acc;
-            }, {});
-
-            return {
-                ...s,
-                aboveTabsZones: newTabElementsObj
-            }
-        });
+        this.onRemoveElementRequested("aboveTabsZones", options);
     }
 
     public onRemoveBeforeTabsComponentRequested = (options: RemoveRequestOptions) => {
-        if (!this.state.beforeTabsZones[options.targetId]) {
-            return;
-        }
-        this.setState(s => {
-            const newTabElementsObj = Object.keys(s.beforeTabsZones).reduce((acc, targetId) => {
-                if (targetId != options.targetId) {
-                    acc[targetId] = s.beforeTabsZones[targetId];
-                }
-                return acc;
-            }, {});
-
-            return {
-                ...s,
-                beforeTabsZones: newTabElementsObj
-            }
-        });
+        this.onRemoveElementRequested("beforeTabsZones", options);
     }
 
     public onRemoveTabElementRequested = (options: RemoveRequestOptions) => {
-        if (!this.state.tabElements[options.targetId]) {
-            return;
-        }
-        this.setState(s => {
-            const newTabElementsObj = Object.keys(s.tabElements).reduce((acc, targetId) => {
-                if (targetId != options.targetId) {
-                    acc[targetId] = s.tabElements[targetId];
-                }
-                return acc;
-            }, {});
-
-            return {
-                ...s,
-                tabElements: newTabElementsObj
-            }
-        });
+        this.onRemoveElementRequested("tabElements", options);
     }
 
     public onRemoveAfterTabsComponentRequested = (options: RemoveRequestOptions) => {
-        if (!this.state.afterTabsZones[options.targetId]) {
-            return;
-        }
-        this.setState(s => {
-            const newTabElementsObj = Object.keys(s.afterTabsZones).reduce((acc, targetId) => {
-                if (targetId != options.targetId) {
-                    acc[targetId] = s.afterTabsZones[targetId];
-                }
-                return acc;
-            }, {});
-
-            return {
-                ...s,
-                afterTabsZones: newTabElementsObj
-            }
-        });
+        this.onRemoveElementRequested("afterTabsZones", options);
     }
 
     public onRemoveTabHeaderButtonsRequested = (options: RemoveRequestOptions) => {
-        if (!this.state.tabHeaderButtons[options.targetId]) {
-            return;
-        }
-        this.setState(s => {
-            const newTabElementsObj = Object.keys(s.tabHeaderButtons).reduce((acc, targetId) => {
-                if (targetId != options.targetId) {
-                    acc[targetId] = s.tabHeaderButtons[targetId];
-                }
-                return acc;
-            }, {});
-
-            return {
-                ...s,
-                tabHeaderButtons: newTabElementsObj
-            }
-        });
+        this.onRemoveElementRequested("tabHeaderButtons", options);
     }
 
     public onRemoveBelowTabsRequested = (options: RemoveRequestOptions) => {
-        if (!this.state.belowTabsZones[options.targetId]) {
-            return;
-        }
-        this.setState(s => {
-            const newTabElementsObj = Object.keys(s.belowTabsZones).reduce((acc, targetId) => {
-                if (targetId != options.targetId) {
-                    acc[targetId] = s.belowTabsZones[targetId];
-                }
-                return acc;
-            }, {});
-
-            return {
-                ...s,
-                belowTabsZones: newTabElementsObj
-            }
-        });
+        this.onRemoveElementRequested("belowTabsZones", options);
     }
 
     public onRemoveHtmlButtonsRequested = (options: RemoveRequestOptions) => {
-        if (!this.state.htmlButtons[options.targetId]) {
-            return;
-        }
-        this.setState(s => {
-            const newHtmlObj = Object.keys(s.htmlButtons).reduce((acc, targetId) => {
-                if (targetId != options.targetId) {
-                    acc[targetId] = s.htmlButtons[targetId];
-                }
-                return acc;
-            }, {});
-
-            return {
-                ...s,
-                htmlButtons: newHtmlObj
-            }
-        });
+        this.onRemoveElementRequested("htmlButtons", options);
     }
 
     public onRemoveTabOverflowPopupRequested = (options: RemoveRequestOptions) => {
-        if (!this.state.tabOverflowPopups[options.targetId]) {
-            return;
-        }
-        this.setState(s => {
-            const newTabOverflowPopupsObj = Object.keys(s.tabOverflowPopups).reduce((acc, targetId) => {
-                if (targetId != options.targetId) {
-                    acc[targetId] = s.tabOverflowPopups[targetId];
-                }
-                return acc;
-            }, {});
-
-            return {
-                ...s,
-                tabOverflowPopups: newTabOverflowPopupsObj
-            }
-        });
+        this.onRemoveElementRequested("tabOverflowPopups", options);
     }
 
     public onShowCaptionEditorRequested = (targetType: TargetType, targetId: string, text: string) => {
@@ -1055,6 +588,56 @@ class WebGroupsStore {
                 }
             }
             return newState;
+        });
+    }
+
+    private onCreateElementRequested = <T extends keyof IndexableElementCreationWrapperState>(key: T, options: BaseElementOptions) => {
+        if (options === this.state[key][options.targetId] || !options) {
+            return;
+        }
+        this.setState(s => {
+            return {
+                ...s,
+                [key]: {
+                    ...s[key],
+                    [options.targetId]: options
+                }
+            }
+        });
+    }
+
+    private onUpdateElementRequested = <T extends keyof IndexableElementCreationWrapperState>(key: T, options: BaseElementOptions) => {
+        if (options === this.state[key][options.targetId] || !options) {
+            return;
+        }
+        this.setState(s => {
+            return {
+                ...s,
+                [key]: {
+                    ...s[key],
+                    [options.targetId]: { ...s[key][options.targetId], ...options }
+                }
+            }
+        });
+    }
+
+    private onRemoveElementRequested = <T extends keyof IndexableElementCreationWrapperState>(key: T, options: RemoveRequestOptions) => {
+        const stateValue = this.state[key];
+        if (!stateValue || !stateValue[options.targetId]) {
+            return;
+        }
+        this.setState(s => {
+            const newRecordObj = Object.keys(s[key]!).reduce<IndexableElementCreationWrapperState[T]>((acc, targetId: keyof IndexableElementCreationWrapperState[T]) => {
+                if (targetId != options.targetId) {
+                    acc[targetId] = (s[key] as IndexableElementCreationWrapperState[T])[targetId];
+                }
+                return acc;
+            }, {} as ElementCreationWrapperState[T]);
+
+            return {
+                ...s,
+                [key]: newRecordObj
+            }
         });
     }
 
