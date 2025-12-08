@@ -32,6 +32,7 @@
         "clean": ""
     },
     "dependencies": {
+        "@interopio/components-react": "^0.8.2",
         "@interopio/theme": "3.1.0",
         "callback-registry": "^2.7.2",
         "color2k": "^2.0.0",

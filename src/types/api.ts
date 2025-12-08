@@ -217,9 +217,41 @@ export interface OpenTabOverflowPopupOptions {
     location: Location;
 }
 
+export interface CreatePopupOptions {
+    left?: number;
+    top?: number;
+    width?: number;
+    height?: number;
+    roundedCorners?: boolean;
+    hasSizeAreas?: boolean;
+    hasMoveAreas?: boolean;
+    transparent?: boolean;
+    copyStyles?: boolean;
+}
+
+export interface PopupShowOptions {
+    targetBounds?: Bounds;
+    size?: Size;
+    targetLocation?: PopupTargetLocation;
+    focus?: boolean;
+    horizontalOffset?: number;
+    verticalOffset?: number;
+}
+
+export interface PopupWindow {
+    ioConnectWindow: any;
+    browserWindow: Window;
+}
+
 export interface ExternalWindowPopupResult {
-    getContainer: () => HTMLElement | undefined;
-    show: (targetBounds: Bounds, size: Size, targetLocation: PopupTargetLocation) => void;
-    resize: (size: Size) => void;
-    hide: () => void;
+    getContainer: () => HTMLElement | null;
+    createPopup: (options?: CreatePopupOptions) => Promise<PopupWindow | null>;
+    showPopup: (options?: PopupShowOptions) => Promise<void>;
+    resizePopup: (size: Size) => Promise<void>;
+    hidePopup: () => Promise<void>;
+    closePopup: () => Promise<void>;
+
+    isOpen: boolean;
+    isVisible: boolean;
+    popup: PopupWindow | null;
 }
