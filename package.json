@@ -23,7 +23,8 @@
         "dist"
     ],
     "scripts": {
-        "build": "rollup -c ./rollup.config.js",
+        "build": "vite build",
+        "build:dev": "vite build --mode development",
         "test": "jest",
         "bundle:css": "node ./scripts/bundlecss.js",
         "prepublishOnly": "npm run build",
@@ -40,21 +41,19 @@
         "use-sync-external-store": "^1.4.0"
     },
     "devDependencies": {
-        "@rollup/plugin-commonjs": "^15.1.0",
-        "@rollup/plugin-node-resolve": "^9.0.0",
-        "@rollup/plugin-typescript": "^6.0.0",
-        "@svgr/rollup": "^6.2.1",
+        "@interopio/react-hooks": "^4.2.1",
         "@swc/jest": "^0.2.37",
         "@testing-library/jest-dom": "^6.2.0",
         "@testing-library/react": "^16.0.1",
         "@testing-library/user-event": "^14.4.3",
         "@types/jest": "^29.2.4",
-        "@types/node": "^12.12.38",
+        "@types/node": "^20.0.0",
         "@types/react": "^18.0.9",
         "@types/react-dom": "^18.0.4",
         "@types/use-sync-external-store": "0.0.3",
         "@typescript-eslint/eslint-plugin": "^2.26.0",
         "@typescript-eslint/parser": "^2.26.0",
+        "@vitejs/plugin-react": "^5.1.2",
         "babel-eslint": "^10.0.3",
         "cross-env": "^7.0.2",
         "eslint": "^6.8.0",
@@ -75,12 +74,9 @@
         "prettier": "^2.0.4",
         "react-scripts": "^5.0.1",
         "resize-observer-polyfill": "^1.5.1",
-        "rollup": "^2.33.1",
-        "rollup-plugin-copy": "^3.3.0",
-        "rollup-plugin-execute": "^1.1.1",
-        "rollup-plugin-peer-deps-external": "^2.2.4",
-        "rollup-plugin-typescript2": "^0.29.0",
-        "typescript": "^3.7.5"
+        "typescript": "^5.7.2",
+        "vite": "^7.3.0",
+        "vite-plugin-dts": "^4.5.4"
     },
     "peerDependencies": {
         "@interopio/react-hooks": "^3.0.2",
