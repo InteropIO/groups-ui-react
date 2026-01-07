@@ -93,12 +93,12 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components, styles 
 
         const { parentElement, ...options } = state.groupOverlay;
 
-
         return <Portal parentElement={parentElement}><GroupOverlayCustomElement {...options} /></Portal>;
     }
 
     const renderFrameCaptionBar = () => {
         const FrameCaptionBarCustomElement = components?.flat?.CaptionBar;
+        
         return Object.values(state.frameCaptionBars).map((fcb) => {
             if (!FrameCaptionBarCustomElement || !fcb.parentElement) {
                 return;
@@ -151,6 +151,13 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components, styles 
                 },
                 ...options.unlock
             };
+
+            const downloads = {
+                onClick: () => {
+                    webGroupsManager.onDownloadsButtonClick(TargetType.Frame, options.targetId);
+                },
+                ...options.downloads
+            }
 
             const minimize = {
                 onClick: () => {
@@ -236,6 +243,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components, styles 
                     extract={extract}
                     lock={lock}
                     unlock={unlock}
+                    downloads={downloads}
                     minimize={minimize}
                     maximize={maximize}
                     restore={restore}
@@ -487,6 +495,13 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components, styles 
                 ...options.unlock
             }
 
+            const downloads = {
+                onClick: () => {
+                    webGroupsManager.onDownloadsButtonClick(TargetType.TabBar, options.targetId);
+                },
+                ...options.downloads,
+            }
+
             const minimize = {
                 onClick: () => {
                     webGroupsManager.onMinimizeButtonClick(TargetType.TabBar, options.targetId);
@@ -538,6 +553,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components, styles 
                 extract={extract}
                 lock={lock}
                 unlock={unlock}
+                downloads={downloads}
                 minimize={minimize}
                 maximize={maximize}
                 restore={restore}
@@ -650,6 +666,13 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components, styles 
                 ...options.unlock
             }
 
+            const downloads = {
+                onClick: () => {
+                    webGroupsManager.onDownloadsButtonClick(TargetType.HtmlButtons, options.targetId);
+                },
+                ...options.downloads
+            };
+
             const minimize = {
                 onClick: () => {
                     webGroupsManager.onMinimizeButtonClick(TargetType.HtmlButtons, options.targetId);
@@ -701,6 +724,7 @@ const GroupElementCreationWrapper: React.FC<GroupProps> = ({ components, styles 
                 extract={extract}
                 lock={lock}
                 unlock={unlock}
+                downloads={downloads}
                 minimize={minimize}
                 maximize={maximize}
                 restore={restore}

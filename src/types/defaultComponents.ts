@@ -26,6 +26,8 @@ export interface StandardButtonProps {
     target?: StandardButtonTarget;
     isPressed?: boolean;
     onClick: () => void;
+    innerElement?: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+    outerElement?: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 }
 
 export interface StickyButtonProps extends ToggleButtonProps {
@@ -45,6 +47,8 @@ export interface LockButtonProps extends ButtonProps {
 
 export interface UnlockButtonProps extends ButtonProps {
 }
+
+export interface DownloadsButtonProps extends ButtonProps {}
 
 export interface MinimizeButtonProps extends ButtonProps {
 }
@@ -156,6 +160,7 @@ export interface FlatButtonsProps {
     extract?: ButtonProps;
     lock?: ButtonProps;
     unlock?: ButtonProps;
+    downloads?: ButtonProps;
     minimize?: ButtonProps;
     maximize?: ButtonProps;
     restore?: ButtonProps;
