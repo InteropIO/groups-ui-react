@@ -196,6 +196,7 @@ input {
 .t42-caption-bar-button-overflow,
 .t42-caption-bar-button-collapse,
 .t42-caption-bar-button-expand,
+.t42-caption-bar-button-frame-downloads,
 .t42-caption-bar-button-frame-minimize,
 .t42-caption-bar-button-frame-maximize,
 .t42-caption-bar-button-frame-restore,
@@ -208,6 +209,7 @@ input {
 .t42-caption-bar-button-unlock .t42-standard-button::before,
 .t42-caption-bar-button-feedback .t42-standard-button::before,
 .t42-caption-bar-button-clone .t42-standard-button::before,
+.t42-caption-bar-button-frame-downloads .t42-standard-button::before,
 .t42-caption-bar-button-frame-minimize .t42-standard-button::before,
 .t42-caption-bar-button-frame-maximize .t42-standard-button::before,
 .t42-caption-bar-button-frame-restore .t42-standard-button::before,
@@ -225,6 +227,51 @@ input {
 
 .t42-standard-button-expand::before {
     content: "\e90e";
+}
+
+.t42-standard-button-downloads {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.t42-standard-button-downloads::before {
+    content: "\e980";
+}
+
+.t42-standard-button-downloads::after {
+    content: "";
+    margin-left: auto;
+    height: var(--t42-progress-bar-height);
+    width: var(--t42-progress-bar-width);
+    border-radius: var(--t42-progress-bar-border-radius);
+    transform: translateY(var(--t42-progress-bar-top-offset));
+    background-color: var(--t42-progress-bar-background-color);
+    background-image: linear-gradient(
+        to right,
+        var(--t42-progress-bar-current-color),
+        var(--t42-progress-bar-current-color)
+    );
+    background-size: calc(var(--progress) * 1%) 100%;
+    background-repeat: no-repeat;
+    background-position: left top;
+    transition: background-size var(--t42-progress-bar-animation-duration) ease;
+}
+
+.t42-standard-button-downloads.t42-standard-button-downloads-download-not-started::after {
+    visibility: hidden;
+}
+
+.t42-standard-button-downloads-download-paused {
+    --t42-progress-bar-current-color: var(--t42-progress-bar-paused-color);
+}
+
+.t42-standard-button-downloads-download-in-progress {
+    --t42-progress-bar-current-color: var(--t42-progress-bar-progress-color);
+}
+
+.t42-standard-button-downloads-download-ready {
+    --t42-progress-bar-current-color: var(--t42-progress-bar-ready-color);
 }
 
 .t42-standard-button-minimize::before {
@@ -503,6 +550,7 @@ input {
 
 .t42-caption-bar-button-maximize,
 .t42-caption-bar-button-minimize,
+.t42-caption-bar-button-downloads,
 .t42-caption-bar-button-restore,
 .t42-caption-bar-button-close {
     width: var(--t42-caption-bar-button-width);
@@ -511,6 +559,7 @@ input {
 
 .t42-caption-bar-button-frame-maximize,
 .t42-caption-bar-button-frame-minimize,
+.t42-caption-bar-button-frame-downloads,
 .t42-caption-bar-button-frame-restore,
 .t42-caption-bar-button-frame-close {
     --t42-caption-bar-button-close-hover-background: var(--t42-caption-bar-button-hover-background);

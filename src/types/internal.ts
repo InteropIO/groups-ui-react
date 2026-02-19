@@ -18,6 +18,11 @@ export interface ButtonProps {
 	tooltip: string;
 	visible: boolean;
 	target?: StandardButtonTarget;
+	isPressed?: boolean;
+	downloadsState?: {
+        state: 'not-started' | 'in-progress' | 'paused' | 'finished';
+    	progress: number;
+    };
 }
 
 export interface ToggleButtonProps extends ButtonProps {
@@ -198,6 +203,10 @@ export interface CreateStandardButtonsOptions {
 	tooltip: string;
 	visible: boolean;
 	target: StandardButtonTarget;
+	downloadsState: {
+        state: 'not-started' | 'in-progress' | 'paused' | 'finished';
+    	progress: number;
+    };
 }
 
 export interface CreateStandardToggleButtonsOptions extends CreateStandardButtonsOptions {
@@ -212,6 +221,7 @@ export interface CreateButtonsOptions extends CreateFrameElementRequestOptions {
 	extract: CreateStandardButtonsOptions,
 	lock: CreateStandardButtonsOptions,
 	unlock: CreateStandardButtonsOptions,
+    downloads: CreateStandardButtonsOptions,
 	minimize: CreateStandardButtonsOptions,
 	restore: CreateStandardButtonsOptions,
 	maximize: CreateStandardButtonsOptions,
@@ -274,6 +284,7 @@ export enum StandardButtons {
 	Extract = "extract",
 	Lock = "lock",
 	Unlock = "unlock",
+    Downloads = "downloads",
 	Minimize = "minimize",
 	Maximize = "maximize",
 	Restore = "restore",

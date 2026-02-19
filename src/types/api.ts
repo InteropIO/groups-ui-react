@@ -106,6 +106,7 @@ export interface FlatCaptionBarProps {
     extract?: ButtonProps;
     lock?: ButtonProps;
     unlock?: ButtonProps;
+    downloads?: ButtonProps;
     minimize?: ButtonProps;
     maximize?: ButtonProps;
     restore?: ButtonProps;
@@ -147,6 +148,7 @@ interface FrameButtonsProps {
     extract?: ButtonProps;
     lock?: ButtonProps;
     unlock?: ButtonProps;
+    downloads?: ButtonProps;
     minimize?: ButtonProps;
     maximize?: ButtonProps;
     restore?: ButtonProps;
