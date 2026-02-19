@@ -67,6 +67,14 @@ class WebGroupsManagerDecorator {
         window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(targetType, targetId, StandardButtons.Maximize);
     }
 
+    public onDownloadsButtonClick(targetType: TargetType, targetId: string): void {
+        window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(
+            targetType,
+            targetId,
+            StandardButtons.Downloads
+        );
+    }
+
     public onMinimizeButtonClick(targetType: TargetType, targetId: string): void {
         window.webGroupsManager.externalLibraryFactory.onStandardButtonClick(targetType, targetId, StandardButtons.Minimize);
     }
