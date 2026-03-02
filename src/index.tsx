@@ -29,7 +29,7 @@ import useIOConnectWindow from "./useIOConnectWindow";
 import CustomButton from "./defaultComponents/buttons/CustomButton";
 import { waitForWindow } from "./utils";
 import useGroupComponentVisibility from "./useGroupComponentVisibility";
-import {
+import type {
     CloseButtonProps,
     ExtractButtonProps,
     StickyButtonProps,
@@ -55,7 +55,7 @@ import {
     UseEditableCaptionOptions,
     OverflowButtonProps
 } from "./types/defaultComponents";
-import {
+import type {
     AboveTabsProps,
     AboveWindowProps,
     AfterTabsProps,
@@ -80,7 +80,8 @@ import {
 import GroupCaptionEditor from "./defaultComponents/groupCaptionBar/GroupCaptionEditor";
 import FlatCaptionEditor from "./defaultComponents/flatCaptionBar/FlatCaptionEditor";
 import TabCaptionEditor from "./defaultComponents/tabs/TabCaptionEditor";
-import { Location, TargetType } from "./types/internal";
+import { TargetType } from "./types/internal";
+import type { Location } from "./types/internal";
 import useCommitTabCaptionEditingRequested from "./defaultComponents/tabs/useCommitTabCaptionEditingRequested";
 import useCommitGroupCaptionEditingRequested from "./defaultComponents/groupCaptionBar/useCommitGroupCaptionEditingRequested";
 import useCommitFlatCaptionEditingRequested from "./defaultComponents/flatCaptionBar/useCommitFlatCaptionEditingRequested";
@@ -126,7 +127,6 @@ export {
     HtmlButtons,
     TabOverflowPopup,
     OverflowButton,
-    GroupComponentVisibilityState,
     TabMultiChannelSelector,
     FlatMultiChannelSelector,
     useIOConnectWindow,
@@ -151,15 +151,17 @@ export const onCommitGroupCaptionEditingRequested = (targetId: string, cb: () =>
 export const onCommitFlatCaptionEditingRequested = (targetId: string, cb: () => void) => webGroupsManager.onCommitCaptionEditingRequested(TargetType.Frame, targetId, cb);
 export const onCommitTabCaptionEditingRequested = (targetId: string, cb: () => void) => webGroupsManager.onCommitCaptionEditingRequested(TargetType.Tab, targetId, cb);
 
-export {
+export { GroupCaption };
+
+export type {
     MoveAreaProps,
     GroupProps,
-    GroupCaption,
     GroupCaptionBarProps,
     GroupMoveAreaProps,
     GroupOverlayProps,
     GroupButtonsProps,
     GroupCaptionEditorProps,
+    GroupComponentVisibilityState,
     TabElementProps,
     TabChannelSelectorProps,
     TabCaptionProps,
